@@ -1,0 +1,11 @@
+{
+    "applications": {
+        "_default": {
+            "link": "interactron"
+        }, 
+        "interactron": {
+            "applicationId": "yc2HKK3EGe1tDIlvTyY9x2dKhgGaVNai7dQWfvGG", 
+            "masterKey": "177aTwjT6Z9dgVMOyXIcg6fiR7lc4s4p5I2LXAmK"
+        }
+    }
+}

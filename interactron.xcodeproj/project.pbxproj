@@ -1,0 +1,611 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		25950C538F2E22059889AAFF /* libPods-interactron.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB2B9B4878718595BD195F53 /* libPods-interactron.a */; };
+		E2B0C1A11A92819E00CB61FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */; };
+		E2B0C1A31A92819E00CB61FC /* DisconnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */; };
+		E2B0C1A61A92819E00CB61FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2B0C1A41A92819E00CB61FC /* Main.storyboard */; };
+		E2B0C1A81A92819E00CB61FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B0C1A71A92819E00CB61FC /* Images.xcassets */; };
+		E2B0C1AB1A92819E00CB61FC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B0C1A91A92819E00CB61FC /* LaunchScreen.xib */; };
+		E2B0C1B71A92819E00CB61FC /* interactronTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1B61A92819E00CB61FC /* interactronTests.swift */; };
+		E2B0C1C71A92851900CB61FC /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1C61A92851900CB61FC /* Accounts.framework */; };
+		E2B0C1C91A92855100CB61FC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1C81A92855100CB61FC /* AudioToolbox.framework */; };
+		E2B0C1CB1A92855600CB61FC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1CA1A92855600CB61FC /* CFNetwork.framework */; };
+		E2B0C1CD1A92855C00CB61FC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1CC1A92855C00CB61FC /* CoreGraphics.framework */; };
+		E2B0C1CF1A92856100CB61FC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1CE1A92856100CB61FC /* CoreLocation.framework */; };
+		E2B0C1D11A92856800CB61FC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1D01A92856800CB61FC /* MobileCoreServices.framework */; };
+		E2B0C1D31A92856E00CB61FC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1D21A92856E00CB61FC /* QuartzCore.framework */; };
+		E2B0C1D51A92857400CB61FC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1D41A92857400CB61FC /* Security.framework */; };
+		E2B0C1D71A92857900CB61FC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1D61A92857900CB61FC /* Social.framework */; };
+		E2B0C1D91A92857E00CB61FC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1D81A92857E00CB61FC /* StoreKit.framework */; };
+		E2B0C1DB1A92858400CB61FC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1DA1A92858400CB61FC /* SystemConfiguration.framework */; };
+		E2B0C1DD1A92858E00CB61FC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1DC1A92858E00CB61FC /* libz.dylib */; };
+		E2B0C1DF1A92859500CB61FC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1DE1A92859500CB61FC /* libsqlite3.dylib */; };
+		E2B0C1E61A92870800CB61FC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1E31A92870800CB61FC /* Bolts.framework */; };
+		E2B0C1E71A92870800CB61FC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1E41A92870800CB61FC /* Parse.framework */; };
+		E2B0C1EA1A928CF800CB61FC /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1E91A928CF800CB61FC /* ParseCrashReporting.framework */; };
+		E2B0C1EC1A928D2600CB61FC /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1EB1A928D2600CB61FC /* libstdc++.6.dylib */; };
+		E2B0C1EF1A92909A00CB61FC /* ConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1EE1A92909A00CB61FC /* ConnectedViewController.swift */; };
+		E2B0C1F31A92910D00CB61FC /* RotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B0C1F21A92910D00CB61FC /* RotationView.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E2B0C1B11A92819E00CB61FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2B0C1931A92819E00CB61FC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E2B0C19A1A92819E00CB61FC;
+			remoteInfo = interactron;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C9091ACD305351E10E512004 /* Pods-interactron.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interactron.debug.xcconfig"; path = "Pods/Target Support Files/Pods-interactron/Pods-interactron.debug.xcconfig"; sourceTree = "<group>"; };
+		E2B0C19B1A92819E00CB61FC /* interactron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = interactron.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2B0C19F1A92819E00CB61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectedViewController.swift; sourceTree = "<group>"; };
+		E2B0C1A51A92819E00CB61FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E2B0C1A71A92819E00CB61FC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E2B0C1AA1A92819E00CB61FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		E2B0C1B01A92819E00CB61FC /* interactronTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = interactronTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2B0C1B51A92819E00CB61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2B0C1B61A92819E00CB61FC /* interactronTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = interactronTests.swift; sourceTree = "<group>"; };
+		E2B0C1C61A92851900CB61FC /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		E2B0C1C81A92855100CB61FC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		E2B0C1CA1A92855600CB61FC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		E2B0C1CC1A92855C00CB61FC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E2B0C1CE1A92856100CB61FC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E2B0C1D01A92856800CB61FC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		E2B0C1D21A92856E00CB61FC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E2B0C1D41A92857400CB61FC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		E2B0C1D61A92857900CB61FC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		E2B0C1D81A92857E00CB61FC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		E2B0C1DA1A92858400CB61FC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E2B0C1DC1A92858E00CB61FC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		E2B0C1DE1A92859500CB61FC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		E2B0C1E01A9285D400CB61FC /* interactron-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "interactron-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		E2B0C1E31A92870800CB61FC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = interactron/Frameworks/Bolts.framework; sourceTree = "<group>"; };
+		E2B0C1E41A92870800CB61FC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = interactron/Frameworks/Parse.framework; sourceTree = "<group>"; };
+		E2B0C1E91A928CF800CB61FC /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = interactron/Frameworks/ParseCrashReporting.framework; sourceTree = "<group>"; };
+		E2B0C1EB1A928D2600CB61FC /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
+		E2B0C1EE1A92909A00CB61FC /* ConnectedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedViewController.swift; sourceTree = "<group>"; };
+		E2B0C1F21A92910D00CB61FC /* RotationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RotationView.xib; sourceTree = "<group>"; };
+		E97958671897AF38B5BCB553 /* Pods-interactron.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interactron.release.xcconfig"; path = "Pods/Target Support Files/Pods-interactron/Pods-interactron.release.xcconfig"; sourceTree = "<group>"; };
+		FB2B9B4878718595BD195F53 /* libPods-interactron.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-interactron.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E2B0C1981A92819E00CB61FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2B0C1EC1A928D2600CB61FC /* libstdc++.6.dylib in Frameworks */,
+				E2B0C1C91A92855100CB61FC /* AudioToolbox.framework in Frameworks */,
+				E2B0C1DF1A92859500CB61FC /* libsqlite3.dylib in Frameworks */,
+				E2B0C1DD1A92858E00CB61FC /* libz.dylib in Frameworks */,
+				E2B0C1DB1A92858400CB61FC /* SystemConfiguration.framework in Frameworks */,
+				E2B0C1EA1A928CF800CB61FC /* ParseCrashReporting.framework in Frameworks */,
+				E2B0C1D91A92857E00CB61FC /* StoreKit.framework in Frameworks */,
+				E2B0C1D71A92857900CB61FC /* Social.framework in Frameworks */,
+				E2B0C1D51A92857400CB61FC /* Security.framework in Frameworks */,
+				E2B0C1D31A92856E00CB61FC /* QuartzCore.framework in Frameworks */,
+				E2B0C1D11A92856800CB61FC /* MobileCoreServices.framework in Frameworks */,
+				E2B0C1CF1A92856100CB61FC /* CoreLocation.framework in Frameworks */,
+				E2B0C1CD1A92855C00CB61FC /* CoreGraphics.framework in Frameworks */,
+				E2B0C1CB1A92855600CB61FC /* CFNetwork.framework in Frameworks */,
+				E2B0C1C71A92851900CB61FC /* Accounts.framework in Frameworks */,
+				E2B0C1E71A92870800CB61FC /* Parse.framework in Frameworks */,
+				25950C538F2E22059889AAFF /* libPods-interactron.a in Frameworks */,
+				E2B0C1E61A92870800CB61FC /* Bolts.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2B0C1AD1A92819E00CB61FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		79D800E76E8A5F641A41773E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E2B0C1EB1A928D2600CB61FC /* libstdc++.6.dylib */,
+				E2B0C1E91A928CF800CB61FC /* ParseCrashReporting.framework */,
+				E2B0C1E31A92870800CB61FC /* Bolts.framework */,
+				E2B0C1E41A92870800CB61FC /* Parse.framework */,
+				E2B0C1DA1A92858400CB61FC /* SystemConfiguration.framework */,
+				E2B0C1D81A92857E00CB61FC /* StoreKit.framework */,
+				E2B0C1D61A92857900CB61FC /* Social.framework */,
+				E2B0C1D41A92857400CB61FC /* Security.framework */,
+				E2B0C1D21A92856E00CB61FC /* QuartzCore.framework */,
+				E2B0C1D01A92856800CB61FC /* MobileCoreServices.framework */,
+				E2B0C1CE1A92856100CB61FC /* CoreLocation.framework */,
+				E2B0C1CC1A92855C00CB61FC /* CoreGraphics.framework */,
+				E2B0C1CA1A92855600CB61FC /* CFNetwork.framework */,
+				E2B0C1C81A92855100CB61FC /* AudioToolbox.framework */,
+				E2B0C1C61A92851900CB61FC /* Accounts.framework */,
+				E2B0C1DE1A92859500CB61FC /* libsqlite3.dylib */,
+				E2B0C1DC1A92858E00CB61FC /* libz.dylib */,
+				FB2B9B4878718595BD195F53 /* libPods-interactron.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BEF8A05E7406182F1E9F5660 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C9091ACD305351E10E512004 /* Pods-interactron.debug.xcconfig */,
+				E97958671897AF38B5BCB553 /* Pods-interactron.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E2B0C1921A92819E00CB61FC = {
+			isa = PBXGroup;
+			children = (
+				E2B0C19D1A92819E00CB61FC /* interactron */,
+				E2B0C1B31A92819E00CB61FC /* interactronTests */,
+				E2B0C19C1A92819E00CB61FC /* Products */,
+				BEF8A05E7406182F1E9F5660 /* Pods */,
+				79D800E76E8A5F641A41773E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E2B0C19C1A92819E00CB61FC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E2B0C19B1A92819E00CB61FC /* interactron.app */,
+				E2B0C1B01A92819E00CB61FC /* interactronTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E2B0C19D1A92819E00CB61FC /* interactron */ = {
+			isa = PBXGroup;
+			children = (
+				E2B0C1A71A92819E00CB61FC /* Images.xcassets */,
+				E2B0C1A41A92819E00CB61FC /* Main.storyboard */,
+				E2B0C1A91A92819E00CB61FC /* LaunchScreen.xib */,
+				E2B0C1F11A9290AC00CB61FC /* Controllers */,
+				E2B0C1F01A9290A600CB61FC /* Views */,
+				E2B0C19E1A92819E00CB61FC /* Supporting Files */,
+			);
+			path = interactron;
+			sourceTree = "<group>";
+		};
+		E2B0C19E1A92819E00CB61FC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */,
+				E2B0C1E01A9285D400CB61FC /* interactron-Bridging-Header.h */,
+				E2B0C19F1A92819E00CB61FC /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E2B0C1B31A92819E00CB61FC /* interactronTests */ = {
+			isa = PBXGroup;
+			children = (
+				E2B0C1B61A92819E00CB61FC /* interactronTests.swift */,
+				E2B0C1B41A92819E00CB61FC /* Supporting Files */,
+			);
+			path = interactronTests;
+			sourceTree = "<group>";
+		};
+		E2B0C1B41A92819E00CB61FC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E2B0C1B51A92819E00CB61FC /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E2B0C1F01A9290A600CB61FC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E2B0C1F21A92910D00CB61FC /* RotationView.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		E2B0C1F11A9290AC00CB61FC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */,
+				E2B0C1EE1A92909A00CB61FC /* ConnectedViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E2B0C19A1A92819E00CB61FC /* interactron */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2B0C1BA1A92819E00CB61FC /* Build configuration list for PBXNativeTarget "interactron" */;
+			buildPhases = (
+				3A0600996334A03D00260A65 /* Check Pods Manifest.lock */,
+				E2B0C1971A92819E00CB61FC /* Sources */,
+				E2B0C1981A92819E00CB61FC /* Frameworks */,
+				E2B0C1991A92819E00CB61FC /* Resources */,
+				D55D74B7C60966C7A69A4980 /* Copy Pods Resources */,
+				E2B0C1ED1A928DA500CB61FC /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = interactron;
+			productName = interactron;
+			productReference = E2B0C19B1A92819E00CB61FC /* interactron.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E2B0C1AF1A92819E00CB61FC /* interactronTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2B0C1BD1A92819E00CB61FC /* Build configuration list for PBXNativeTarget "interactronTests" */;
+			buildPhases = (
+				E2B0C1AC1A92819E00CB61FC /* Sources */,
+				E2B0C1AD1A92819E00CB61FC /* Frameworks */,
+				E2B0C1AE1A92819E00CB61FC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E2B0C1B21A92819E00CB61FC /* PBXTargetDependency */,
+			);
+			name = interactronTests;
+			productName = interactronTests;
+			productReference = E2B0C1B01A92819E00CB61FC /* interactronTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E2B0C1931A92819E00CB61FC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Tom Arthur";
+				TargetAttributes = {
+					E2B0C19A1A92819E00CB61FC = {
+						CreatedOnToolsVersion = 6.1.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					E2B0C1AF1A92819E00CB61FC = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = E2B0C19A1A92819E00CB61FC;
+					};
+				};
+			};
+			buildConfigurationList = E2B0C1961A92819E00CB61FC /* Build configuration list for PBXProject "interactron" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E2B0C1921A92819E00CB61FC;
+			productRefGroup = E2B0C19C1A92819E00CB61FC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E2B0C19A1A92819E00CB61FC /* interactron */,
+				E2B0C1AF1A92819E00CB61FC /* interactronTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E2B0C1991A92819E00CB61FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2B0C1A61A92819E00CB61FC /* Main.storyboard in Resources */,
+				E2B0C1AB1A92819E00CB61FC /* LaunchScreen.xib in Resources */,
+				E2B0C1A81A92819E00CB61FC /* Images.xcassets in Resources */,
+				E2B0C1F31A92910D00CB61FC /* RotationView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2B0C1AE1A92819E00CB61FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3A0600996334A03D00260A65 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D55D74B7C60966C7A69A4980 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-interactron/Pods-interactron-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E2B0C1ED1A928DA500CB61FC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=/usr/local/bin:$PATH\ncd /Users/tom/Documents/ITP/Semester\\ 4/Thesis/interactron/parse\n\nparse symbols \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E2B0C1971A92819E00CB61FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2B0C1A31A92819E00CB61FC /* DisconnectedViewController.swift in Sources */,
+				E2B0C1A11A92819E00CB61FC /* AppDelegate.swift in Sources */,
+				E2B0C1EF1A92909A00CB61FC /* ConnectedViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2B0C1AC1A92819E00CB61FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2B0C1B71A92819E00CB61FC /* interactronTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E2B0C1B21A92819E00CB61FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E2B0C19A1A92819E00CB61FC /* interactron */;
+			targetProxy = E2B0C1B11A92819E00CB61FC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E2B0C1A41A92819E00CB61FC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E2B0C1A51A92819E00CB61FC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E2B0C1A91A92819E00CB61FC /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E2B0C1AA1A92819E00CB61FC /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E2B0C1B81A92819E00CB61FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E2B0C1B91A92819E00CB61FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E2B0C1BB1A92819E00CB61FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C9091ACD305351E10E512004 /* Pods-interactron.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/interactron/Frameworks",
+				);
+				INFOPLIST_FILE = interactron/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "interactron-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E2B0C1BC1A92819E00CB61FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E97958671897AF38B5BCB553 /* Pods-interactron.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/interactron/Frameworks",
+				);
+				INFOPLIST_FILE = interactron/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "interactron-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		E2B0C1BE1A92819E00CB61FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = interactronTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/interactron.app/interactron";
+			};
+			name = Debug;
+		};
+		E2B0C1BF1A92819E00CB61FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = interactronTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/interactron.app/interactron";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E2B0C1961A92819E00CB61FC /* Build configuration list for PBXProject "interactron" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2B0C1B81A92819E00CB61FC /* Debug */,
+				E2B0C1B91A92819E00CB61FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2B0C1BA1A92819E00CB61FC /* Build configuration list for PBXNativeTarget "interactron" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2B0C1BB1A92819E00CB61FC /* Debug */,
+				E2B0C1BC1A92819E00CB61FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2B0C1BD1A92819E00CB61FC /* Build configuration list for PBXNativeTarget "interactronTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2B0C1BE1A92819E00CB61FC /* Debug */,
+				E2B0C1BF1A92819E00CB61FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E2B0C1931A92819E00CB61FC /* Project object */;
+}
