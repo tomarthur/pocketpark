@@ -33,6 +33,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        manager = PTDBeanManager(delegate: self)
         // Do any additional setup after loading the view, typically from a nib.
         
 //        var testObject = PFObject(className:"TestObject")
@@ -48,6 +49,25 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    func beanManagerDidUpdateState(beanManager: PTDBeanManager!) {
+        if beanManager.state == BeanManagerState.PoweredOn {
+            beanManager.startScanningForBeans_error(nil)
+        }
+    }
+//
+//    func BeanManager(beanManager: PTDBeanManager!, didDiscoverBean bean: PTDBean!, error: NSError!) {
+//        let identifier = bean.identifier
+//        NSLog("%@", identifier)
+//    }
+//    
+//    func BeanManager(beanManager: PTDBeanManager!, didConnectToBean bean: PTDBean!, error: NSError!) {
+//        
+//    }
+//    
+//    func BeanManager(beanManager: PTDBeanManager!, didDisconnectBean bean: PTDBean!, error: NSError!) {
+//        
+//    }
 
 }
 
