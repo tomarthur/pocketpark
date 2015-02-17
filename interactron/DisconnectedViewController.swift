@@ -5,11 +5,12 @@
 //  Created by Tom Arthur on 2/16/15.
 //  Copyright (c) 2015 Tom Arthur. All rights reserved.
 //
-//  Contains code adapted from:
+//  Adapted from:
 //  DisconnectedViewController.swift
 //  Cool Beans
 //  Created by Kyle on 11/14/14.
-//  Copyright (c) 2014 Kyle Weiner. All rights reserved.
+//  Copyright (c) 2014 Kyle Weiner. All rights reserved. 
+//  Cool Beans is MIT Licensed.
 //
 
 import UIKit
@@ -34,19 +35,12 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         manager = PTDBeanManager(delegate: self)
+        
+        
         queryParseForInteractives()
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
-        
-//        var testObject = PFObject(className:"TestObject")
-//        testObject["foo"] = "bar"
-//        testObject.saveInBackground()
-//        
-//        NSException.raise("Exception", format:"Error: %@", arguments:getVaList(["nil"]))
-        
-        
-        
-//        var count = myArray.l
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,7 +66,21 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         case .Unsupported:
             UIAlertView(
                 title: "Error",
-                message: "This device is unsupported.",
+                message: "This device does not support Bluetooth Low Energy.",
+                delegate: self,
+                cancelButtonTitle: "OK"
+                ).show()
+        case .Unknown:
+            UIAlertView(
+                title: "Error",
+                message: "This device does is not able to use Bluetooth Low Energy at this time.",
+                delegate: self,
+                cancelButtonTitle: "OK"
+                ).show()
+        case .Unauthorized:
+            UIAlertView(
+                title: "Error",
+                message: "Please give permission for Bluetooth in Settings.",
                 delegate: self,
                 cancelButtonTitle: "OK"
                 ).show()
@@ -104,6 +112,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         if connectedBean == nil {
             connectedBean = bean
         }
+//        PFAnalytics.trackEvent("interactConnect", name:bean.name)
     }
     
     func beanManager(beanManager: PTDBeanManager!, didDisconnectBean bean: PTDBean!, error: NSError!) {
@@ -117,8 +126,12 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         self.connectedBean = nil
     }
     
+    
+    // MARK: Parse Data Gathering
+    
     func queryParseForInteractives() {
         
+        // pull latest interactive objects from Parse
         var query = PFQuery(className:"installations")
         query.findObjectsInBackgroundWithBlock
             {
@@ -128,40 +141,54 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                     PFObject.pinAllInBackground(objects)
                     println("pinned objects")
                 } else {
-                    var alert = UIAlertController(title: "Error", message: "Unable to retrieve interactives from the server", preferredStyle: UIAlertControllerStyle.Alert)
+                    var alert = UIAlertController(title: "Error", message: "Unable to retrieve interactives from the server.", preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
         }
+        
         debugPrintAllKnownInteractives()
     }
     
     func debugPrintAllKnownInteractives() {
-        
+
+        // liststhe names of all known interactive elemments found in the localstorage from Parse
         var query = PFQuery(className:"installations")
         query.fromLocalDatastore()
         
         query.findObjectsInBackgroundWithBlock
-            {
+        {
             (objects: [AnyObject]!, error: NSError!) -> Void in
             if error != nil {
                 // There was an error.
-                var alert = UIAlertController(title: "Error", message: "Unable to retrieve interactives from the local store", preferredStyle: UIAlertControllerStyle.Alert)
+                var alert = UIAlertController(title: "Error", message: "Unable to retrieve interactives from the local device.", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             } else {
-                println("objects should spit out here")
+                println("known interactives:")
                 for object in objects {
-                    println(object["identifier"])
+                    println(object["name"])
                 }
             }
+            self.knownInteractives()
         }
     }
     
-    func declareKnownInteractives(){
+    func knownInteractives(){
+        
+        // liststhe names of all known interactive elemments found in the localstorage from Parse
+        var query = PFQuery(className:"installations")
+        query.fromLocalDatastore()
+        var interactivesObjects = query.findObjects() as [PFObject]
+        
+        println("now displaying from known interactives")
+        for interactive in interactivesObjects {
+            // Use staff as a standard PFObject now. e.g.
+//            let firstName = staff.objectForKey("first_name")
+            println(interactive.objectForKey("identifier"))
+        }
         
     }
-
 
 }
 
