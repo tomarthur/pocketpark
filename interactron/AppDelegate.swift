@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Parse framework for analytics, data and bug tracking
         ParseCrashReporting.enable()
+        Parse.enableLocalDatastore()
         Parse.setApplicationId("yc2HKK3EGe1tDIlvTyY9x2dKhgGaVNai7dQWfvGG",
                 clientKey: "dVeENxp57pgP3Zwqlez4U2G8O64B1tXQUBKsgTC1")
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)

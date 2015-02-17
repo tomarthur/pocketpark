@@ -34,6 +34,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         manager = PTDBeanManager(delegate: self)
+        queryParseForInteractives()
         // Do any additional setup after loading the view, typically from a nib.
         
 //        var testObject = PFObject(className:"TestObject")
@@ -41,6 +42,10 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
 //        testObject.saveInBackground()
 //        
 //        NSException.raise("Exception", format:"Error: %@", arguments:getVaList(["nil"]))
+        
+        
+        
+//        var count = myArray.l
         
     }
 
@@ -87,11 +92,11 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     func beanManager(beanManager: PTDBeanManager!, didDiscoverBean bean: PTDBean!, error: NSError!) {
         println("DISCOVERED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
-        if connectedBean == nil {
-            if bean.state == .Discovered {
-                manager.connectToBean(bean, error: nil)
-            }
-        }
+//        if connectedBean == nil {
+//            if bean.state == .Discovered {
+//                manager.connectToBean(bean, error: nil)
+//            }
+//        }
     }
     
     func BeanManager(beanManager: PTDBeanManager!, didConnectToBean bean: PTDBean!, error: NSError!) {
@@ -110,6 +115,51 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         })
         
         self.connectedBean = nil
+    }
+    
+    func queryParseForInteractives() {
+        
+        var query = PFQuery(className:"installations")
+        query.findObjectsInBackgroundWithBlock
+            {
+                (objects: [AnyObject]!, error: NSError!) -> Void in
+                if error == nil
+                {
+                    PFObject.pinAllInBackground(objects)
+                    println("pinned objects")
+                } else {
+                    var alert = UIAlertController(title: "Error", message: "Unable to retrieve interactives from the server", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+        }
+        debugPrintAllKnownInteractives()
+    }
+    
+    func debugPrintAllKnownInteractives() {
+        
+        var query = PFQuery(className:"installations")
+        query.fromLocalDatastore()
+        
+        query.findObjectsInBackgroundWithBlock
+            {
+            (objects: [AnyObject]!, error: NSError!) -> Void in
+            if error != nil {
+                // There was an error.
+                var alert = UIAlertController(title: "Error", message: "Unable to retrieve interactives from the local store", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            } else {
+                println("objects should spit out here")
+                for object in objects {
+                    println(object["identifier"])
+                }
+            }
+        }
+    }
+    
+    func declareKnownInteractives(){
+        
     }
 
 
