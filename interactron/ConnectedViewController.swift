@@ -6,4 +6,14 @@
 //  Copyright (c) 2015 Tom Arthur. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+
+class ConnectedViewController: UIViewController, PTDBeanDelegate {
+    
+    let refreshControl = UIRefreshControl()
+    
+    var connectedBean: PTDBean?
+    
+    
+}

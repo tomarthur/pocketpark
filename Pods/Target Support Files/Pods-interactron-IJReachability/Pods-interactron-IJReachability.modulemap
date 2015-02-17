@@ -1,0 +1,6 @@
+framework module IJReachability {
+  umbrella header "Pods-interactron-IJReachability-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -12,3 +12,9 @@
 #define COCOAPODS_VERSION_MINOR_Bean_iOS_OSX_SDK 7
 #define COCOAPODS_VERSION_PATCH_Bean_iOS_OSX_SDK 1
 
+// IJReachability
+#define COCOAPODS_POD_AVAILABLE_IJReachability
+#define COCOAPODS_VERSION_MAJOR_IJReachability 0
+#define COCOAPODS_VERSION_MINOR_IJReachability 1
+#define COCOAPODS_VERSION_PATCH_IJReachability 0
+

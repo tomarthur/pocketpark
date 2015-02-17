@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "152E20AB889089356162349F"
-               BuildableName = "Pods_interactron.framework"
-               BlueprintName = "Pods-interactron"
+               BlueprintIdentifier = "74556DB49FA68381741710A9"
+               BuildableName = "IJReachability.framework"
+               BlueprintName = "Pods-interactron-IJReachability"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

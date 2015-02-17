@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-interactron-IJReachability.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-interactron.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1DEF932BBC84FD5AE51B6A2F</key>
+		<key>152E20AB889089356162349F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3A39D0C410E1C261FF79A8BC</key>
+		<key>2FCFBBD97E5CD492C51883B3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>74556DB49FA68381741710A9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

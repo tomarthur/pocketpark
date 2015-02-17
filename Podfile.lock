@@ -1,10 +1,22 @@
 PODS:
   - Bean-iOS-OSX-SDK (0.7.1)
+  - IJReachability (0.1.0)
 
 DEPENDENCIES:
   - Bean-iOS-OSX-SDK (~> 0.6)
+  - IJReachability (from `https://github.com/Isuru-Nanayakkara/IJReachability.git`)
+
+EXTERNAL SOURCES:
+  IJReachability:
+    :git: https://github.com/Isuru-Nanayakkara/IJReachability.git
+
+CHECKOUT OPTIONS:
+  IJReachability:
+    :commit: da69c8f4bed9f82203bb49180fb36091b4cd0d28
+    :git: https://github.com/Isuru-Nanayakkara/IJReachability.git
 
 SPEC CHECKSUMS:
   Bean-iOS-OSX-SDK: 284aa4c8c929ff20f8cabc497375b49256aa459c
+  IJReachability: 3eff33caca50869df09b257bcf712031a56a8575
 
 COCOAPODS: 0.36.0.beta.2

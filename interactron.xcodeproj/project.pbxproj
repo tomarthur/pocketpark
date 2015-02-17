@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		25950C538F2E22059889AAFF /* libPods-interactron.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB2B9B4878718595BD195F53 /* libPods-interactron.a */; };
+		45F934AA53805DFE6CF14ECF /* Pods_interactron.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DA5AB3A83F6A026DD60D83 /* Pods_interactron.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E2B0C1A11A92819E00CB61FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */; };
 		E2B0C1A31A92819E00CB61FC /* DisconnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */; };
 		E2B0C1A61A92819E00CB61FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2B0C1A41A92819E00CB61FC /* Main.storyboard */; };
@@ -46,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		76DA5AB3A83F6A026DD60D83 /* Pods_interactron.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_interactron.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9091ACD305351E10E512004 /* Pods-interactron.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interactron.debug.xcconfig"; path = "Pods/Target Support Files/Pods-interactron/Pods-interactron.debug.xcconfig"; sourceTree = "<group>"; };
 		E2B0C19B1A92819E00CB61FC /* interactron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = interactron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B0C19F1A92819E00CB61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -78,7 +79,6 @@
 		E2B0C1EE1A92909A00CB61FC /* ConnectedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedViewController.swift; sourceTree = "<group>"; };
 		E2B0C1F21A92910D00CB61FC /* RotationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RotationView.xib; sourceTree = "<group>"; };
 		E97958671897AF38B5BCB553 /* Pods-interactron.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interactron.release.xcconfig"; path = "Pods/Target Support Files/Pods-interactron/Pods-interactron.release.xcconfig"; sourceTree = "<group>"; };
-		FB2B9B4878718595BD195F53 /* libPods-interactron.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-interactron.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +102,8 @@
 				E2B0C1CB1A92855600CB61FC /* CFNetwork.framework in Frameworks */,
 				E2B0C1C71A92851900CB61FC /* Accounts.framework in Frameworks */,
 				E2B0C1E71A92870800CB61FC /* Parse.framework in Frameworks */,
-				25950C538F2E22059889AAFF /* libPods-interactron.a in Frameworks */,
 				E2B0C1E61A92870800CB61FC /* Bolts.framework in Frameworks */,
+				45F934AA53805DFE6CF14ECF /* Pods_interactron.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +137,7 @@
 				E2B0C1C61A92851900CB61FC /* Accounts.framework */,
 				E2B0C1DE1A92859500CB61FC /* libsqlite3.dylib */,
 				E2B0C1DC1A92858E00CB61FC /* libz.dylib */,
-				FB2B9B4878718595BD195F53 /* libPods-interactron.a */,
+				76DA5AB3A83F6A026DD60D83 /* Pods_interactron.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -241,6 +241,7 @@
 				E2B0C1991A92819E00CB61FC /* Resources */,
 				D55D74B7C60966C7A69A4980 /* Copy Pods Resources */,
 				E2B0C1ED1A928DA500CB61FC /* ShellScript */,
+				A18459F529822D46EBFFA822 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -346,6 +347,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A18459F529822D46EBFFA822 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-interactron/Pods-interactron-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D55D74B7C60966C7A69A4980 /* Copy Pods Resources */ = {
@@ -515,11 +531,17 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/interactron/Frameworks",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${PODS_ROOT}/**",
+				);
 				INFOPLIST_FILE = interactron/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "interactron-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/interactron-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -534,10 +556,16 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/interactron/Frameworks",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${PODS_ROOT}/**",
+				);
 				INFOPLIST_FILE = interactron/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "interactron-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/interactron-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -16,14 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow?
     var locationManager: CLLocationManager?
     var lastProximity: CLProximity?
+    var sentNotification = false
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Parse framework for analytics, data and bug tracking
         ParseCrashReporting.enable()
         Parse.setApplicationId("yc2HKK3EGe1tDIlvTyY9x2dKhgGaVNai7dQWfvGG",
                 clientKey: "dVeENxp57pgP3Zwqlez4U2G8O64B1tXQUBKsgTC1")
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
+        // iBeacon Regions and Notification to find Interactive Elements enabled by LightBlue Bean
         let uuid = NSUUID(UUIDString: "A4955441-C5B1-4B44-B512-1370F02D74DE")
         let beaconIdentifier = NSBundle.mainBundle().bundleIdentifier!
         let beaconRegion:CLBeaconRegion = CLBeaconRegion(proximityUUID: uuid,
@@ -36,13 +39,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         locationManager!.delegate = self
         
-        //notice for this
-        locationManager!.pausesLocationUpdatesAutomatically = false
+        locationManager!.pausesLocationUpdatesAutomatically = true
         
         locationManager!.startMonitoringForRegion(beaconRegion)
         locationManager!.startRangingBeaconsInRegion(beaconRegion)
         locationManager!.startUpdatingLocation()
         
+        // Local Notification Registration
         if(application.respondsToSelector("registerUserNotificationSettings:")) {
             application.registerUserNotificationSettings(
                 UIUserNotificationSettings(
@@ -51,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 )
             )
         }
+        
         // Override point for customization after application launch.
         return true
     }
@@ -76,23 +80,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        println("Received Local Notification:")
+        println(notification.alertBody)
+        println(notification.userInfo)
+    }
     
 }
 
 extension AppDelegate: CLLocationManagerDelegate {
-    
+
     func sendLocalNotificationWithMessage(message: String!) {
         let notification:UILocalNotification = UILocalNotification()
         notification.alertBody = message
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
+    func sendLocalNotificationToStartInteraction(major: NSNumber!, minor: NSNumber!) {
+        
+        // send the major/minor to help determine what interactive we will be connecting to
+        var interactionNearbyNotification = UILocalNotification()
+        interactionNearbyNotification.alertBody = "There's something you can control nearby."
+        interactionNearbyNotification.hasAction = true
+        interactionNearbyNotification.alertAction = "activate"
+        interactionNearbyNotification.userInfo = [
+            "Major" : major,
+            "Minor" : minor
+        ]
+        UIApplication.sharedApplication().scheduleLocalNotification(interactionNearbyNotification)
+        
+    }
+    
     func locationManager(manager: CLLocationManager!,
         didRangeBeacons beacons: [AnyObject]!,
         inRegion region: CLBeaconRegion!) {
             
-            var message:String = ""
             
             if(beacons.count > 0) {
                 let nearestBeacon:CLBeacon = beacons[0] as CLBeacon
@@ -106,11 +129,19 @@ extension AppDelegate: CLLocationManagerDelegate {
                 
                 switch nearestBeacon.proximity {
                 case CLProximity.Far:
-                    message = "You are far away from the beacon"
+                    return
                 case CLProximity.Near:
-                    message = "You are near the beacon"
+                    if (sentNotification == false) {
+                        sendLocalNotificationToStartInteraction(nearestBeacon.major, minor: nearestBeacon.minor)
+                        sentNotification = true
+                    }
                 case CLProximity.Immediate:
-                    message = "You are in the immediate proximity of the beacon"
+                    if (sentNotification == false) {
+                        sendLocalNotificationToStartInteraction(nearestBeacon.major, minor: nearestBeacon.minor)
+                        sentNotification = true
+                        println(nearestBeacon.major)
+                        println(nearestBeacon.minor)
+                    }
                 case CLProximity.Unknown:
                     return
                 }
@@ -118,13 +149,8 @@ extension AppDelegate: CLLocationManagerDelegate {
                 if(lastProximity == CLProximity.Unknown) {
                     return
                 }
-                
-                message = "No beacons are nearby"
                 lastProximity = CLProximity.Unknown
             }
-            
-            NSLog("%@", message)
-            sendLocalNotificationWithMessage(message)
     }
     
     func locationManager(manager: CLLocationManager!,
@@ -133,16 +159,16 @@ extension AppDelegate: CLLocationManagerDelegate {
             manager.startUpdatingLocation()
             
             NSLog("You entered the region")
-//            sendLocalNotificationWithMessage("You entered the region")
     }
     
     func locationManager(manager: CLLocationManager!,
         didExitRegion region: CLRegion!) {
             manager.stopRangingBeaconsInRegion(region as CLBeaconRegion)
             manager.stopUpdatingLocation()
-            
+            sentNotification = false
             NSLog("You exited the region")
-//            sendLocalNotificationWithMessage("You exited the region")
     }
+
+
 }
 

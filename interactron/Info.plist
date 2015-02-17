@@ -25,7 +25,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Backround location is used to notify you of nearby interactive elements.</string>
+	<string>Backround location is used to notify you of nearby interactive installations.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>
@@ -38,6 +38,11 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+		<string>accelerometer</string>
+		<string>bluetooth-le</string>
+		<string>location-services</string>
+		<string>magnetometer</string>
+		<string>microphone</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
