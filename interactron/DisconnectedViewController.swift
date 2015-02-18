@@ -17,6 +17,12 @@ import UIKit
 
 class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
+//     var beanList: [BeanContainer] = []
+//    var knownInteractives = [String:String]
+    
+    var knownInteractives = [String: String]()
+
+    
     let connectedViewControllerSegueIdentifier = "ViewConnection"
     
     var manager: PTDBeanManager!
@@ -25,6 +31,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
             if connectedBean == nil {
                 self.beanManagerDidUpdateState(manager)
             } else {
+                // segue to connected view when beacon connection established
                 performSegueWithIdentifier(connectedViewControllerSegueIdentifier, sender: self)
             }
         }
@@ -34,11 +41,9 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         manager = PTDBeanManager(delegate: self)
-        
-        
-        queryParseForInteractives()
-        
+        queryParseForInteractiveObjects()
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -100,11 +105,23 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     func beanManager(beanManager: PTDBeanManager!, didDiscoverBean bean: PTDBean!, error: NSError!) {
         println("DISCOVERED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
-//        if connectedBean == nil {
-//            if bean.state == .Discovered {
-//                manager.connectToBean(bean, error: nil)
-//            }
-//        }
+        
+        // check to see if the bean is on the interaction list
+        // if it is on the list:
+        //    - stop ranging for iBeacons
+        //    - connect to it
+        //    - load connected view controller
+        //    - load sub view controller with information about how to operate
+        NSLog("Entered bean discovery zone")
+        if isInteractiveKnown(bean.name) == true {
+
+            if connectedBean == nil {
+                if bean.state == .Discovered {
+                    manager.connectToBean(bean, error: nil)
+                }
+            }
+        }
+
     }
     
     func BeanManager(beanManager: PTDBeanManager!, didConnectToBean bean: PTDBean!, error: NSError!) {
@@ -124,12 +141,15 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         })
         
         self.connectedBean = nil
+        
+//        do I need to start looking for beans here again?
     }
     
     
-    // MARK: Parse Data Gathering
     
-    func queryParseForInteractives() {
+    // MARK: Parse Data
+    
+    func queryParseForInteractiveObjects() {
         
         // pull latest interactive objects from Parse
         var query = PFQuery(className:"installations")
@@ -139,18 +159,16 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                 if error == nil
                 {
                     PFObject.pinAllInBackground(objects)
-                    println("pinned objects")
                 } else {
-                    var alert = UIAlertController(title: "Error", message: "Unable to retrieve interactives from the server.", preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    NSLog("Unable to add interactives to local data store")
+                    NSLog("Error: %@ %@", error, error.userInfo!)
                 }
         }
         
-        debugPrintAllKnownInteractives()
+        dictionaryOfInteractivesFromLocalDatastore()
     }
     
-    func debugPrintAllKnownInteractives() {
+    func dictionaryOfInteractivesFromLocalDatastore() {
 
         // liststhe names of all known interactive elemments found in the localstorage from Parse
         var query = PFQuery(className:"installations")
@@ -161,34 +179,42 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
             (objects: [AnyObject]!, error: NSError!) -> Void in
             if error != nil {
                 // There was an error.
-                var alert = UIAlertController(title: "Error", message: "Unable to retrieve interactives from the local device.", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                UIAlertView(
+                    title: "Error",
+                    message: "Unable to retrieve interactives from device.",
+                    delegate: self,
+                    cancelButtonTitle: "OK"
+                    ).show()
+                NSLog("Error: %@ %@", error, error.userInfo!)
+                NSLog("Unable to find interactives in local data store")
+                
             } else {
                 println("known interactives:")
-                for object in objects {
-                    println(object["name"])
+                var PFVersions = objects as [PFObject]
+                for PFVersion in PFVersions {
+                    self.knownInteractives[toString(PFVersion["blename"])] = toString(PFVersion["objectId"])
+                    println(PFVersion["name"])
                 }
             }
-            self.knownInteractives()
         }
     }
     
-    func knownInteractives(){
-        
-        // liststhe names of all known interactive elemments found in the localstorage from Parse
-        var query = PFQuery(className:"installations")
-        query.fromLocalDatastore()
-        var interactivesObjects = query.findObjects() as [PFObject]
-        
-        println("now displaying from known interactives")
-        for interactive in interactivesObjects {
-            // Use staff as a standard PFObject now. e.g.
-//            let firstName = staff.objectForKey("first_name")
-            println(interactive.objectForKey("identifier"))
+    
+    func isInteractiveKnown(foundInteractiveIdentifier: String) -> Bool{
+        NSLog("Checking for: ", foundInteractiveIdentifier)
+        for key in knownInteractives.keys {
+            println("Key: \(key)")
+            if (key == foundInteractiveIdentifier)
+            {
+                NSLog("Found!")
+                return true
+            }
         }
-        
+        NSLog("Not Found!")
+        return false
     }
-
 }
+
+
+
 
