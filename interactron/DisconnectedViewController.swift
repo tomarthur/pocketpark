@@ -17,13 +17,10 @@ import UIKit
 
 class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
-//     var beanList: [BeanContainer] = []
-//    var knownInteractives = [String:String]
-    
     var knownInteractives = [String: String]()
-
+    var connectedBeanObjectID: String?
     
-    let connectedViewControllerSegueIdentifier = "ViewConnection"
+    let connectedViewControllerSegueIdentifier = "goToConnectedView"
     
     var manager: PTDBeanManager!
     var connectedBean: PTDBean? {
@@ -61,6 +58,9 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
             let vc = segue.destinationViewController as ConnectedViewController
             vc.connectedBean = connectedBean
             vc.connectedBean?.delegate = vc
+            println(connectedBeanObjectID)
+            //Pass identifer of parse interactive object to connectedVC
+            vc.foundInteractiveObjectID = connectedBeanObjectID
         }
     }
     
@@ -112,12 +112,14 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         //    - connect to it
         //    - load connected view controller
         //    - load sub view controller with information about how to operate
-        NSLog("Entered bean discovery zone")
-        if isInteractiveKnown(bean.name) == true {
-
+        NSLog("Bean discovered: \nName: \(bean.name)")
+        if isInteractiveKnown(toString(bean.name)) == true {
+            NSLog("Interactive is known!")
             if connectedBean == nil {
                 if bean.state == .Discovered {
+                    NSLog("Attempting to connect!")
                     manager.connectToBean(bean, error: nil)
+                    connectedBeanObjectID = knownInteractives[bean.name]
                 }
             }
         }
@@ -139,7 +141,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         presentedViewController?.dismissViewControllerAnimated(true, completion: { () in
             self.dismissViewControllerAnimated(true, completion: nil)
         })
-        
+        self.connectedBeanObjectID = nil
         self.connectedBean = nil
         
 //        do I need to start looking for beans here again?
@@ -149,6 +151,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     // MARK: Parse Data
     
+    // get most recent interactives from parse cloud
     func queryParseForInteractiveObjects() {
         
         // pull latest interactive objects from Parse
@@ -168,6 +171,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         dictionaryOfInteractivesFromLocalDatastore()
     }
     
+    // make a dictionary of interactives pulled from parse local data
     func dictionaryOfInteractivesFromLocalDatastore() {
 
         // liststhe names of all known interactive elemments found in the localstorage from Parse
@@ -181,7 +185,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                 // There was an error.
                 UIAlertView(
                     title: "Error",
-                    message: "Unable to retrieve interactives from device.",
+                    message: "Unable to retrieve interactives list.",
                     delegate: self,
                     cancelButtonTitle: "OK"
                     ).show()
@@ -192,25 +196,22 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                 println("known interactives:")
                 var PFVersions = objects as [PFObject]
                 for PFVersion in PFVersions {
-                    self.knownInteractives[toString(PFVersion["blename"])] = toString(PFVersion["objectId"])
-                    println(PFVersion["name"])
+                    self.knownInteractives[toString(PFVersion["blename"])] = toString(PFVersion.objectId)
                 }
             }
         }
     }
     
-    
+    // quickly check dictionary to see if interactive is in the known
     func isInteractiveKnown(foundInteractiveIdentifier: String) -> Bool{
-        NSLog("Checking for: ", foundInteractiveIdentifier)
-        for key in knownInteractives.keys {
-            println("Key: \(key)")
+        NSLog(foundInteractiveIdentifier)
+        for (key, value) in knownInteractives {
+            println("\(key) -> \(value)")
             if (key == foundInteractiveIdentifier)
             {
-                NSLog("Found!")
                 return true
             }
         }
-        NSLog("Not Found!")
         return false
     }
 }

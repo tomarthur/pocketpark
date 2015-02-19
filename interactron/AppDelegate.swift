@@ -17,8 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var locationManager: CLLocationManager?
     var lastProximity: CLProximity?
     var sentNotification = false
-
-
+//    let interactionNearbyNotificationKey = NSBundle.mainBundle().bundleIdentifier! + ".interactioniBeaconNotification"
+    
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Parse framework for analytics, data and bug tracking
         ParseCrashReporting.enable()
@@ -56,6 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 )
             )
         }
+        
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "actOnSpecialNotification", name: mySpecialNotificationKey, object: nil)
         
         // Override point for customization after application launch.
         return true
@@ -100,7 +103,7 @@ extension AppDelegate: CLLocationManagerDelegate {
     }
     
     func sendLocalNotificationToStartInteraction(major: NSNumber!, minor: NSNumber!) {
-        
+//        NSNotificationCenter.defaultCenter().postNotificationName(interactionNearbyNotificationKey, object: self)
         // send the major/minor to help determine what interactive we will be connecting to
         var interactionNearbyNotification = UILocalNotification()
         interactionNearbyNotification.alertBody = "There's something you can control nearby."
