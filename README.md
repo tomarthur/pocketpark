@@ -16,6 +16,9 @@ Interactron is developed by Tom Arthur for ITP Thesis in 2015.
 
 ## License
 
-Cool Beans was written by Kyle Weiner.
+Interactron was written by Tom Arthur
 Interactron is available under the MIT license. See the LICENSE file for details.
+
+Utilizes open source code:
+
 Cool Beans is available under the MIT license. See the LICENSE file for details.
