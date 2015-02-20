@@ -14,6 +14,7 @@
 //
 
 import UIKit
+import CoreMotion
 
 
 class ConnectedViewController: UIViewController, PTDBeanDelegate {
@@ -23,7 +24,9 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
     var connectedBean: PTDBean?
     var connectedObjectInfo: PFObject?
     var foundInteractiveObjectID: String?
-    var interactionMode: String
+    var interactionMode: String?
+    
+    lazy var motionManager = CMMotionManager()
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var explanation: UILabel!
@@ -33,10 +36,55 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
         super.viewDidLoad()
         
         getInteractiveObject(foundInteractiveObjectID!)
-
+        
     }
     
-
+    func strToDataWithTrail(message:String) ->NSData {
+        let messageWithTrail = message + String(UnicodeScalar(extraDigit.x))
+        extraDigit.x = (extraDigit.x < 255 ? extraDigit.x + 1 : 0)
+        return NSData(data: messageWithTrail.dataUsingEncoding(NSUTF8StringEncoding)!)
+        
+    }
+    
+    func activateRotationMotion()
+    {
+        if motionManager.deviceMotionAvailable{
+            println("deviceMotion available")
+            motionManager.deviceMotionUpdateInterval = 0.2
+            motionManager.startDeviceMotionUpdatesToQueue(NSOperationQueue.mainQueue()) {
+                [weak self] (data: CMDeviceMotion!, error: NSError!) in
+                
+                let rotation = atan2(data.gravity.x, data.gravity.y) - M_PI
+                println(rotation)
+                
+                var mappedRotation = ((rotation - 0) * (180 - 0) / (-6.5 - 0) + 0)
+                var integer1 = Int(mappedRotation)
+//                var rotationStringHex = NSString(format:"%2X", mappedRotation)
+//                var rotationStringInt = NSString(format:"%i", mappedRotation)
+//
+                var random = NSInteger(integer1) //(1-100)
+                let dataSend = NSData(bytes: &random, length: sizeof(integer1.dynamicType))
+    
+                var scratchNumber = 1;
+                self?.connectedBean?.setScratchBank(Int(scratchNumber), data:dataSend)
+                
+                println("rotation: \(rotation) mapped: \(mappedRotation) sentdata: \(dataSend)")
+                
+                
+            }
+        } else {
+            println("deviceMotion not available")
+        }
+        
+    }
+    
+    
+    //workaround for lack of/broken class variables. This stores the change digit to append to strToDataWithTrail
+    struct extraDigit {
+        static var x:UInt8 = 0
+    }
+    
+    
     
     func getInteractiveObject(foundInteractiveObjectID: String){
         var query = PFQuery(className: "installations")
@@ -65,6 +113,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
         connectedObjectInfo = parseInfo
         println(connectedObjectInfo)
         updateUIWithInfo()
+        startInteraction()
         
     }
     
@@ -76,15 +125,27 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
         
     }
     
+    func startInteraction() {
+        var nonOptional = connectedObjectInfo!
+        
+        interactionMode(toString(nonOptional["control"]))
+        
+    }
+    
     func interactionMode(modeString: String){
         
         if (modeString == "gyro-rotate"){
-            
-            
+            println("activating gyro interaction mode")
+            activateRotationMotion()
         } else {
-            
+            println("invalid interaction mode")
         }
         
+    }
+    
+    func sendScratchDatatoBean(){
+        
+
         
     }
 
