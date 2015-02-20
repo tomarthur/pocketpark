@@ -14,11 +14,13 @@
 //
 
 import UIKit
+import IJReachability
 
 class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     var knownInteractives = [String: String]()
     var connectedBeanObjectID: String?
+    var dataStoreReady = false
     
     let connectedViewControllerSegueIdentifier = "goToConnectedView"
     
@@ -40,6 +42,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         super.viewDidLoad()
         
         manager = PTDBeanManager(delegate: self)
+        
         queryParseForInteractiveObjects()
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -97,7 +100,12 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                 cancelButtonTitle: "OK"
                 ).show()
         case .PoweredOn:
-            beanManager.startScanningForBeans_error(nil);
+            // start checking for beans only after local data is loaded to check for beans
+            if dataStoreReady == true{
+                beanManager.startScanningForBeans_error(nil)
+            } else {
+                println("DataStore Not Ready")
+            }
         default:
             break
         }
@@ -112,14 +120,17 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         //    - connect to it
         //    - load connected view controller
         //    - load sub view controller with information about how to operate
-        NSLog("Bean discovered: \nName: \(bean.name)")
+        
+        // TO DO: FIX THIS
+        // this is not restarting the find process if the parse data isn't complete
         if isInteractiveKnown(toString(bean.name)) == true {
             NSLog("Interactive is known!")
             if connectedBean == nil {
                 if bean.state == .Discovered {
                     NSLog("Attempting to connect!")
-                    manager.connectToBean(bean, error: nil)
                     connectedBeanObjectID = knownInteractives[bean.name]
+                    manager.connectToBean(bean, error: nil)
+                    
                 }
             }
         }
@@ -131,7 +142,17 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         if connectedBean == nil {
             connectedBean = bean
         }
-//        PFAnalytics.trackEvent("interactConnect", name:bean.name)
+        
+//        let dimensions = [
+//            // Define ranges to bucket data points into meaningful segments
+//            "beanName": bean.name,
+//            // Did the user filter the query?
+//            "rssi": bean.RSSI
+//        ]
+//        
+//        // Send the dimensions to Parse along with the 'search' event
+//        PFAnalytics.trackEvent("interactConnect", dimensions:dimensions)
+
     }
     
     func beanManager(beanManager: PTDBeanManager!, didDisconnectBean bean: PTDBean!, error: NSError!) {
@@ -153,22 +174,40 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     // get most recent interactives from parse cloud
     func queryParseForInteractiveObjects() {
-        
-        // pull latest interactive objects from Parse
-        var query = PFQuery(className:"installations")
-        query.findObjectsInBackgroundWithBlock
-            {
-                (objects: [AnyObject]!, error: NSError!) -> Void in
-                if error == nil
+    
+        // check for network availablity before requesting interactives from parse
+        if (IJReachability.isConnectedToNetwork() == true) {
+            
+            // pull latest interactive objects from Parse
+            var query = PFQuery(className:"installations")
+            query.findObjectsInBackgroundWithBlock
                 {
-                    PFObject.pinAllInBackground(objects)
-                } else {
-                    NSLog("Unable to add interactives to local data store")
-                    NSLog("Error: %@ %@", error, error.userInfo!)
-                }
+                    (objects: [AnyObject]!, error: NSError!) -> Void in
+                    if error == nil
+                    {
+                        PFObject.pinAllInBackground(objects)
+                    } else {
+                        NSLog("Unable to add interactives to local data store")
+                        NSLog("Error: %@ %@", error, error.userInfo!)
+                    }
+            }
+            
+            dictionaryOfInteractivesFromLocalDatastore()
+        } else {
+            
+            // There was an error.
+            UIAlertView(
+                title: "No Internet Connection",
+                message: "You have no network connection.",
+                delegate: self,
+                cancelButtonTitle: "OK"
+                ).show()
+            NSLog("Unable to access network, checking if localdatastore is avaialble")
+            
+            // still attempt to load data if it's available
+            dictionaryOfInteractivesFromLocalDatastore()
+            
         }
-        
-        dictionaryOfInteractivesFromLocalDatastore()
     }
     
     // make a dictionary of interactives pulled from parse local data
@@ -177,14 +216,13 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         // liststhe names of all known interactive elemments found in the localstorage from Parse
         var query = PFQuery(className:"installations")
         query.fromLocalDatastore()
-        
         query.findObjectsInBackgroundWithBlock
         {
             (objects: [AnyObject]!, error: NSError!) -> Void in
             if error != nil {
                 // There was an error.
                 UIAlertView(
-                    title: "Error",
+                    title: "No Interactives Known",
                     message: "Unable to retrieve interactives list.",
                     delegate: self,
                     cancelButtonTitle: "OK"
@@ -193,13 +231,29 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                 NSLog("Unable to find interactives in local data store")
                 
             } else {
-                println("known interactives:")
                 var PFVersions = objects as [PFObject]
                 for PFVersion in PFVersions {
                     self.knownInteractives[toString(PFVersion["blename"])] = toString(PFVersion.objectId)
                 }
+                self.dataStoreReady = true
+                self.startScanningForInteractives()
             }
         }
+    }
+    
+    func startScanningForInteractives()
+    {
+//        TO DO: FIX THIS
+        println("start scanning")
+        switch manager.state {
+            case .Unsupported:
+                break
+            case .PoweredOn:
+                self.manager.startScanningForBeans_error(nil)
+            default:
+                break
+        }
+        
     }
     
     // quickly check dictionary to see if interactive is in the known

@@ -19,30 +19,77 @@ import CoreMotion
 
 class ConnectedViewController: UIViewController, PTDBeanDelegate {
     
-    let refreshControl = UIRefreshControl()
+//    let refreshControl = UIRefreshControl()
     
+    // Bluetooth Interactive Control
     var connectedBean: PTDBean?
     var connectedObjectInfo: PFObject?
     var foundInteractiveObjectID: String?
     var interactionMode: String?
     
+    // Sensor Readings
     lazy var motionManager = CMMotionManager()
     
+    // UI
+    let disconnectedViewControllerSegueIdentifier = "unwindToDisconnectedViewController"
+    var swipeRecognizer: UISwipeGestureRecognizer!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var explanation: UILabel!
     @IBOutlet weak var interactionType : UILabel!
     
+    
+    required init(coder aDecoder: NSCoder){
+        super.init(coder: aDecoder)
+        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
+    }
+    
+    func handleSwipes(sender: UISwipeGestureRecognizer){
+        if sender.direction == .Left{
+            println("Swiped Left")
+            // Dismiss any modal view controllers.
+            self.dismissViewControllerAnimated(true, completion: {});
+        }
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == disconnectedViewControllerSegueIdentifier {
+//            let vc = segue.destinationViewController as ConnectedViewController
+//            vc.connectedBean = connectedBean
+//            vc.connectedBean?.delegate = vc
+            println("detected return to disconnect")
+//            //Pass identifer of parse interactive object to connectedVC
+//            vc.foundInteractiveObjectID = connectedBeanObjectID
+        }
+        println("detected return to disconnect")
+    }
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /* Swipes that are perfomed from the right to the left are to be detected to end connection to interactive */
+        swipeRecognizer.direction = .Left
+        swipeRecognizer.numberOfTouchesRequired = 1
+        view.addGestureRecognizer(swipeRecognizer)
+        
+        // get object from parse to populate UI and know how to communicate with it
         getInteractiveObject(foundInteractiveObjectID!)
         
     }
     
-    func strToDataWithTrail(message:String) ->NSData {
-        let messageWithTrail = message + String(UnicodeScalar(extraDigit.x))
-        extraDigit.x = (extraDigit.x < 255 ? extraDigit.x + 1 : 0)
-        return NSData(data: messageWithTrail.dataUsingEncoding(NSUTF8StringEncoding)!)
+
+    
+    
+    func sendScratchDatatoBean(dataIn: Int){
+        var convetedInteger = NSInteger(dataIn)
+        let dataSend = NSData(bytes: &convetedInteger, length: sizeof(dataIn.dynamicType))
+        
+        var scratchNumber = 1;
+        
+        connectedBean?.setScratchBank(Int(scratchNumber), data:dataSend)
+        
+        println("datain: \(dataIn) sentdata: \(dataSend) length: \(sizeof(dataIn.dynamicType))")
         
     }
     
@@ -55,22 +102,11 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
                 [weak self] (data: CMDeviceMotion!, error: NSError!) in
                 
                 let rotation = atan2(data.gravity.x, data.gravity.y) - M_PI
-                println(rotation)
                 
                 var mappedRotation = ((rotation - 0) * (180 - 0) / (-6.5 - 0) + 0)
-                var integer1 = Int(mappedRotation)
-//                var rotationStringHex = NSString(format:"%2X", mappedRotation)
-//                var rotationStringInt = NSString(format:"%i", mappedRotation)
-//
-                var random = NSInteger(integer1) //(1-100)
-                let dataSend = NSData(bytes: &random, length: sizeof(integer1.dynamicType))
-    
-                var scratchNumber = 1;
-                self?.connectedBean?.setScratchBank(Int(scratchNumber), data:dataSend)
+                var mappedRotationInt:Int = Int(mappedRotation)
                 
-                println("rotation: \(rotation) mapped: \(mappedRotation) sentdata: \(dataSend)")
-                
-                
+                self?.sendScratchDatatoBean(mappedRotationInt)
             }
         } else {
             println("deviceMotion not available")
@@ -79,20 +115,13 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
     }
     
     
-    //workaround for lack of/broken class variables. This stores the change digit to append to strToDataWithTrail
-    struct extraDigit {
-        static var x:UInt8 = 0
-    }
-    
-    
-    
     func getInteractiveObject(foundInteractiveObjectID: String){
         var query = PFQuery(className: "installations")
         query.fromLocalDatastore()
         query.getObjectInBackgroundWithId(foundInteractiveObjectID) {
             (objectInfo: PFObject!, error: NSError!) -> Void in
             if (error == nil) {
-                self.populateObjectInfo(objectInfo)
+                self.populateInteractiveInfo(objectInfo)
             } else {
                 // There was an error.
                 UIAlertView(
@@ -108,9 +137,9 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
         }
     }
     
-    func populateObjectInfo(parseInfo: PFObject) {
+    func populateInteractiveInfo(parseInteractiveObject: PFObject) {
 
-        connectedObjectInfo = parseInfo
+        connectedObjectInfo = parseInteractiveObject
         println(connectedObjectInfo)
         updateUIWithInfo()
         startInteraction()
@@ -125,6 +154,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
         
     }
     
+    // determine the method stored for the interaction
     func startInteraction() {
         var nonOptional = connectedObjectInfo!
         
@@ -143,11 +173,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
         
     }
     
-    func sendScratchDatatoBean(){
-        
 
-        
-    }
 
 
     
