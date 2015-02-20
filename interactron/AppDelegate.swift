@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var locationManager: CLLocationManager?
     var lastProximity: CLProximity?
     var sentNotification = false
-//    let interactionNearbyNotificationKey = NSBundle.mainBundle().bundleIdentifier! + ".interactioniBeaconNotification"
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -58,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             )
         }
         
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "actOnSpecialNotification", name: mySpecialNotificationKey, object: nil)
+
         
         // Override point for customization after application launch.
         return true
@@ -103,19 +102,13 @@ extension AppDelegate: CLLocationManagerDelegate {
     }
     
     func sendLocalNotificationToStartInteraction(major: NSNumber!, minor: NSNumber!) {
-//        NSNotificationCenter.defaultCenter().postNotificationName(interactionNearbyNotificationKey, object: self)
-        // send the major/minor to help determine what interactive we will be connecting to
-        var interactionNearbyNotification = UILocalNotification()
-        interactionNearbyNotification.alertBody = "There's something you can control nearby."
-        interactionNearbyNotification.hasAction = true
-        interactionNearbyNotification.alertAction = "begin"
-        interactionNearbyNotification.userInfo = [
-            "Major" : major,
-            "Minor" : minor
-        ]
         
-        // first check to make sure the interactive is on the list
-        UIApplication.sharedApplication().scheduleLocalNotification(interactionNearbyNotification)
+        println("ready to send notification to VC for beacon")
+        
+        
+        var beacoNotificationDict: [String:NSNumber] = ["Major" : major, "Minor" : minor]
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("InteractiveBeaconDetected", object: self, userInfo: beacoNotificationDict)
         
     }
     

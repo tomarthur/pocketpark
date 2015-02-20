@@ -41,7 +41,12 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // get notification when user wants to end experience
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:", name: "EndInteraction", object: nil)
+        
+        // get notification when iBeacon of interactive is detected
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "checkForInteractiveWithBeacon:", name: "InteractiveBeaconDetected", object: nil)
         
         manager = PTDBeanManager(delegate: self)
         
@@ -49,12 +54,47 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         
         // Do any additional setup after loading the view, typically from a nib.
     }
+    func checkForInteractiveWithBeacon(notif: NSNotification) {
+        println("recieved beacon check request")
+        
+        if notif.name == "InteractiveBeaconDetected" {
+            if let info = notif.userInfo as? Dictionary<String,NSNumber> {
+                // Check if value present before using it
+                if let s = info["major"] {
+                    print(s)
+                }
+                else {
+                    print("no value for key\n")
+                }
+            }
+            else {
+                print("wrong userInfo type")
+            }
+        }
+    }
+    
+    func pushLocalInteractiveAvailableNotification() {
+        
+        var interactionNearbyNotification = UILocalNotification()
+        interactionNearbyNotification.alertBody = "There's something you can control nearby."
+        interactionNearbyNotification.hasAction = true
+        interactionNearbyNotification.alertAction = "begin"
+        
+        // first check to make sure the interactive is on the list
+        UIApplication.sharedApplication().scheduleLocalNotification(interactionNearbyNotification)
+        
+    }
     
     func endInteraction(notif: NSNotification) {
         println("recieved end of experience notification")
         
-        experiencedInteractivesToIgnore.append(connectedBean!.identifier!)
-        manager.disconnectBean(connectedBean, error:nil)
+        if notif.name == "EndInteraction" {
+            experiencedInteractivesToIgnore.append(connectedBean!.identifier!)
+            manager.disconnectBean(connectedBean, error:nil)
+        } else {
+            println("got notification but not endinteraction")
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -133,7 +173,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         //    - load connected view controller
         //    - load sub view controller with information about how to operate
         
-        // TO DO: FIX THIS
+        // TODO: FIX THIS
         // this is not restarting the find process if the parse data isn't complete
         if connectedBean == nil {
             if isInteractiveIgnored(bean.identifier) == false {
@@ -173,16 +213,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         }
         
         
-//        let dimensions = [
-//            // Define ranges to bucket data points into meaningful segments
-//            "beanName": bean.name,
-//            // Did the user filter the query?
-//            "rssi": bean.RSSI
-//        ]
-//        
-//        // Send the dimensions to Parse along with the 'search' event
-//        PFAnalytics.trackEvent("interactConnect", dimensions:dimensions)
-
+        // TODO: add analytics
     }
     
     func beanManager(beanManager: PTDBeanManager!, didDisconnectBean bean: PTDBean!, error: NSError!) {
@@ -195,8 +226,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         
         self.connectedBeanObjectID = nil
         self.connectedBean = nil
-        
-//        do I need to start looking for beans here again?
+
     }
     
     
@@ -274,7 +304,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     func startScanningForInteractives()
     {
-//        TO DO: FIX THIS
+//        TODO: FIX THIS
         println("start scanning")
         switch manager.state {
             case .Unsupported:
@@ -300,6 +330,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         return false
     }
     
+    // check to see if interactive is ignored because it's been played with
     func isInteractiveIgnored(foundInteractiveUUID: NSUUID) -> Bool {
         for ignoredUUID in experiencedInteractivesToIgnore
         {
