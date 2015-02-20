@@ -44,32 +44,23 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
     }
     
     func handleSwipes(sender: UISwipeGestureRecognizer){
-        if sender.direction == .Left{
-            println("Swiped Left")
+        if sender.direction == .Right{
+            println("Swiped Right, exit view")
+            NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil);
             // Dismiss any modal view controllers.
-            self.dismissViewControllerAnimated(true, completion: {});
+            self.dismissViewControllerAnimated(true, completion:nil);
         }
     }
     
+//    override func viewDidDisappear(animated: Bool) {
+//        <#code#>
+//    }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == disconnectedViewControllerSegueIdentifier {
-//            let vc = segue.destinationViewController as ConnectedViewController
-//            vc.connectedBean = connectedBean
-//            vc.connectedBean?.delegate = vc
-            println("detected return to disconnect")
-//            //Pass identifer of parse interactive object to connectedVC
-//            vc.foundInteractiveObjectID = connectedBeanObjectID
-        }
-        println("detected return to disconnect")
-    }
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         /* Swipes that are perfomed from the right to the left are to be detected to end connection to interactive */
-        swipeRecognizer.direction = .Left
+        swipeRecognizer.direction = .Right
         swipeRecognizer.numberOfTouchesRequired = 1
         view.addGestureRecognizer(swipeRecognizer)
         
@@ -77,9 +68,6 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
         getInteractiveObject(foundInteractiveObjectID!)
         
     }
-    
-
-    
     
     func sendScratchDatatoBean(dataIn: Int){
         var convetedInteger = NSInteger(dataIn)
@@ -141,12 +129,12 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
 
         connectedObjectInfo = parseInteractiveObject
         println(connectedObjectInfo)
-        updateUIWithInfo()
+        updateUIWithInteractiveInfo()
         startInteraction()
         
     }
     
-    func updateUIWithInfo(){
+    func updateUIWithInteractiveInfo(){
         var nonOptional = connectedObjectInfo!
         name.text = toString(nonOptional["name"])
         explanation.text = toString(nonOptional["explanation"])

@@ -19,6 +19,7 @@ import IJReachability
 class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     var knownInteractives = [String: String]()
+    var experiencedInteractivesToIgnore = [NSUUID]()
     var connectedBeanObjectID: String?
     var dataStoreReady = false
     
@@ -40,6 +41,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:", name: "EndInteraction", object: nil)
         
         manager = PTDBeanManager(delegate: self)
         
@@ -47,12 +49,22 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    func endInteraction(notif: NSNotification) {
+        println("recieved end of experience notification")
+        
+        experiencedInteractivesToIgnore.append(connectedBean!.identifier!)
+        manager.disconnectBean(connectedBean, error:nil)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
     
     // MARK: Navigation
     
@@ -112,7 +124,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     }
     
     func beanManager(beanManager: PTDBeanManager!, didDiscoverBean bean: PTDBean!, error: NSError!) {
-        println("DISCOVERED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
+        
         
         // check to see if the bean is on the interaction list
         // if it is on the list:
@@ -123,25 +135,43 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         
         // TO DO: FIX THIS
         // this is not restarting the find process if the parse data isn't complete
-        if isInteractiveKnown(toString(bean.name)) == true {
-            NSLog("Interactive is known!")
-            if connectedBean == nil {
-                if bean.state == .Discovered {
-                    NSLog("Attempting to connect!")
-                    connectedBeanObjectID = knownInteractives[bean.name]
-                    manager.connectToBean(bean, error: nil)
-                    
+        if connectedBean == nil {
+            if isInteractiveIgnored(bean.identifier) == false {
+                if isInteractiveKnown(toString(bean.name)) == true {
+                    println("DISCOVERED KNOWN BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
+            
+                    if bean.state == .Discovered {
+                        NSLog("Attempting to connect!")
+                        connectedBeanObjectID = knownInteractives[bean.name]
+                        manager.connectToBean(bean, error: nil)
+                    }
                 }
             }
+            else {
+                println("This bean is ignored")
+            }
+        } else {
+            println("DISCOVERED NOT KNOWN BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
         }
 
     }
     
     func BeanManager(beanManager: PTDBeanManager!, didConnectToBean bean: PTDBean!, error: NSError!) {
         println("CONNECTED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
+        if (error != nil){
+            UIAlertView(
+                title: "Unable to Connect",
+                message: "Unable to connect to the interactive.",
+                delegate: self,
+                cancelButtonTitle: "OK"
+                ).show()
+            return
+        }
+        
         if connectedBean == nil {
             connectedBean = bean
         }
+        
         
 //        let dimensions = [
 //            // Define ranges to bucket data points into meaningful segments
@@ -162,6 +192,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         presentedViewController?.dismissViewControllerAnimated(true, completion: { () in
             self.dismissViewControllerAnimated(true, completion: nil)
         })
+        
         self.connectedBeanObjectID = nil
         self.connectedBean = nil
         
@@ -223,7 +254,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                 // There was an error.
                 UIAlertView(
                     title: "No Interactives Known",
-                    message: "Unable to retrieve interactives list.",
+                    message: "Connect to internet to retrieve interactives list.",
                     delegate: self,
                     cancelButtonTitle: "OK"
                     ).show()
@@ -262,6 +293,17 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         for (key, value) in knownInteractives {
             println("\(key) -> \(value)")
             if (key == foundInteractiveIdentifier)
+            {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func isInteractiveIgnored(foundInteractiveUUID: NSUUID) -> Bool {
+        for ignoredUUID in experiencedInteractivesToIgnore
+        {
+            if (foundInteractiveUUID.isEqual(ignoredUUID))
             {
                 return true
             }
