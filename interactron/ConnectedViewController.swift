@@ -19,12 +19,10 @@ import CoreMotion
 
 class ConnectedViewController: UIViewController, PTDBeanDelegate {
     
-//    let refreshControl = UIRefreshControl()
-    
     // Bluetooth Interactive Control
     var connectedBean: PTDBean?
-    var connectedObjectInfo: PFObject?
-    var foundInteractiveObjectID: String?
+    var connectedObjectInfo: PFObject!
+    var foundInteractiveObjectID: String!
     var interactionMode: String?
     
     // Sensor Readings
@@ -44,7 +42,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
     }
     
     func handleSwipes(sender: UISwipeGestureRecognizer){
-        if sender.direction == .Right{
+        if sender.direction == .Down{
             println("Swiped Right, exit view")
             NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil);
             // Dismiss any modal view controllers.
@@ -52,22 +50,23 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
         }
     }
     
-//    override func viewDidDisappear(animated: Bool) {
-//        <#code#>
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         /* Swipes that are perfomed from the right to the left are to be detected to end connection to interactive */
-        swipeRecognizer.direction = .Right
+        swipeRecognizer.direction = .Down
         swipeRecognizer.numberOfTouchesRequired = 1
         view.addGestureRecognizer(swipeRecognizer)
         
         // get object from parse to populate UI and know how to communicate with it
         getInteractiveObject(foundInteractiveObjectID!)
         
+        var backgroundColor: UIColor
+        self.view.backgroundColor = .CBColdColor()
+        
     }
+    
     
     func sendScratchDatatoBean(dataIn: Int){
         var convetedInteger = NSInteger(dataIn)
@@ -155,13 +154,34 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
         if (modeString == "gyro-rotate"){
             println("activating gyro interaction mode")
             activateRotationMotion()
-        } else {
+        } else if (modeString == "shake"){
+            self.activateShakeDetect()
+        }else {
             println("invalid interaction mode")
         }
         
     }
     
-
+    func activateShakeDetect(){
+        shakeDetectMode = true
+    }
+    
+    var count = 0
+    var shakeDetectMode = false
+    
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
+        
+        if motion == .MotionShake && shakeDetectMode == true {
+            if count > 7 {
+                count = 0
+            }
+            
+            println("shake! \(count)")
+            self.sendScratchDatatoBean(count)
+            count++
+            
+        }
+    }
 
 
     

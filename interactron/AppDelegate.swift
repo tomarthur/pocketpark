@@ -57,8 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             )
         }
         
-
-        
         // Override point for customization after application launch.
         return true
     }
@@ -75,6 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        locationManager?.stopUpdatingLocation()
+        
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
@@ -95,19 +95,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
 extension AppDelegate: CLLocationManagerDelegate {
 
-    func sendLocalNotificationWithMessage(message: String!) {
-        let notification:UILocalNotification = UILocalNotification()
-        notification.alertBody = message
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
-    }
     
     func sendLocalNotificationToStartInteraction(major: NSNumber!, minor: NSNumber!) {
         
-        println("ready to send notification to VC for beacon")
-        
-        
         var beacoNotificationDict: [String:NSNumber] = ["Major" : major, "Minor" : minor]
-        
         NSNotificationCenter.defaultCenter().postNotificationName("InteractiveBeaconDetected", object: self, userInfo: beacoNotificationDict)
         
     }

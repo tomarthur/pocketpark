@@ -54,10 +54,18 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        self.startScanningForInteractives()
+        
+    }
+    
     func checkForInteractiveWithBeacon(notif: NSNotification) {
         println("recieved beacon check request")
         
         if notif.name == "InteractiveBeaconDetected" {
+            self.pushLocalInteractiveAvailableNotification()
             if let info = notif.userInfo as? Dictionary<String,NSNumber> {
                 // Check if value present before using it
                 if let s = info["major"] {
@@ -152,12 +160,14 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                 cancelButtonTitle: "OK"
                 ).show()
         case .PoweredOn:
-            // start checking for beans only after local data is loaded to check for beans
+            
+//             start checking for beans only after local data is loaded to check for beans
             if dataStoreReady == true{
                 beanManager.startScanningForBeans_error(nil)
             } else {
                 println("DataStore Not Ready")
             }
+            
         default:
             break
         }
@@ -165,39 +175,29 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     func beanManager(beanManager: PTDBeanManager!, didDiscoverBean bean: PTDBean!, error: NSError!) {
         
-        
-        // check to see if the bean is on the interaction list
-        // if it is on the list:
-        //    - stop ranging for iBeacons
-        //    - connect to it
-        //    - load connected view controller
-        //    - load sub view controller with information about how to operate
-        
         // TODO: FIX THIS
-        // this is not restarting the find process if the parse data isn't complete
+        
         if connectedBean == nil {
-            if isInteractiveIgnored(bean.identifier) == false {
-                if isInteractiveKnown(toString(bean.name)) == true {
+            if isInteractiveIgnored(bean.identifier) == false && isInteractiveKnown(toString(bean.name)) == true {
+                
                     println("DISCOVERED KNOWN BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
             
                     if bean.state == .Discovered {
                         NSLog("Attempting to connect!")
-                        connectedBeanObjectID = knownInteractives[bean.name]
+                
                         manager.connectToBean(bean, error: nil)
                     }
-                }
+            
+            } else {
+                println("BEAN DISCOVERED BUT IGNORED OR NOT KNOWN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
             }
-            else {
-                println("This bean is ignored")
-            }
-        } else {
-            println("DISCOVERED NOT KNOWN BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
+                
         }
-
     }
     
     func BeanManager(beanManager: PTDBeanManager!, didConnectToBean bean: PTDBean!, error: NSError!) {
         println("CONNECTED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
+        
         if (error != nil){
             UIAlertView(
                 title: "Unable to Connect",
@@ -209,6 +209,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         }
         
         if connectedBean == nil {
+            connectedBeanObjectID = knownInteractives[bean.name]
             connectedBean = bean
         }
         
@@ -297,7 +298,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                     self.knownInteractives[toString(PFVersion["blename"])] = toString(PFVersion.objectId)
                 }
                 self.dataStoreReady = true
-                self.startScanningForInteractives()
+                
             }
         }
     }
@@ -307,11 +308,10 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
 //        TODO: FIX THIS
         println("start scanning")
         switch manager.state {
-            case .Unsupported:
-                break
             case .PoweredOn:
                 self.manager.startScanningForBeans_error(nil)
             default:
+                println("BLE wasn't ready")
                 break
         }
         

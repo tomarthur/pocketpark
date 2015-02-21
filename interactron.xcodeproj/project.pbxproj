@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		45F934AA53805DFE6CF14ECF /* Pods_interactron.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DA5AB3A83F6A026DD60D83 /* Pods_interactron.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E263FE741A97E5EA00E5E7AA /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E263FE731A97E5EA00E5E7AA /* CustomColors.swift */; };
 		E2B0C1A11A92819E00CB61FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */; };
 		E2B0C1A31A92819E00CB61FC /* DisconnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */; };
 		E2B0C1A61A92819E00CB61FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2B0C1A41A92819E00CB61FC /* Main.storyboard */; };
@@ -32,7 +33,6 @@
 		E2B0C1EA1A928CF800CB61FC /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1E91A928CF800CB61FC /* ParseCrashReporting.framework */; };
 		E2B0C1EC1A928D2600CB61FC /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1EB1A928D2600CB61FC /* libstdc++.6.dylib */; };
 		E2B0C1EF1A92909A00CB61FC /* ConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1EE1A92909A00CB61FC /* ConnectedViewController.swift */; };
-		E2B0C1F31A92910D00CB61FC /* RotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B0C1F21A92910D00CB61FC /* RotationView.xib */; };
 		E2E2903F1A93FC4C001E4D46 /* InteractionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E2903E1A93FC4C001E4D46 /* InteractionContainer.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +49,7 @@
 /* Begin PBXFileReference section */
 		76DA5AB3A83F6A026DD60D83 /* Pods_interactron.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_interactron.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9091ACD305351E10E512004 /* Pods-interactron.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interactron.debug.xcconfig"; path = "Pods/Target Support Files/Pods-interactron/Pods-interactron.debug.xcconfig"; sourceTree = "<group>"; };
+		E263FE731A97E5EA00E5E7AA /* CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		E2B0C19B1A92819E00CB61FC /* interactron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = interactron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B0C19F1A92819E00CB61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,7 +79,6 @@
 		E2B0C1E91A928CF800CB61FC /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = interactron/Frameworks/ParseCrashReporting.framework; sourceTree = "<group>"; };
 		E2B0C1EB1A928D2600CB61FC /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		E2B0C1EE1A92909A00CB61FC /* ConnectedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedViewController.swift; sourceTree = "<group>"; };
-		E2B0C1F21A92910D00CB61FC /* RotationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RotationView.xib; sourceTree = "<group>"; };
 		E2E2903E1A93FC4C001E4D46 /* InteractionContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionContainer.swift; sourceTree = "<group>"; };
 		E97958671897AF38B5BCB553 /* Pods-interactron.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interactron.release.xcconfig"; path = "Pods/Target Support Files/Pods-interactron/Pods-interactron.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -217,7 +217,7 @@
 		E2B0C1F01A9290A600CB61FC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E2B0C1F21A92910D00CB61FC /* RotationView.xib */,
+				E263FE731A97E5EA00E5E7AA /* CustomColors.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -331,7 +331,6 @@
 				E2B0C1A61A92819E00CB61FC /* Main.storyboard in Resources */,
 				E2B0C1AB1A92819E00CB61FC /* LaunchScreen.xib in Resources */,
 				E2B0C1A81A92819E00CB61FC /* Images.xcassets in Resources */,
-				E2B0C1F31A92910D00CB61FC /* RotationView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2E2903F1A93FC4C001E4D46 /* InteractionContainer.swift in Sources */,
+				E263FE741A97E5EA00E5E7AA /* CustomColors.swift in Sources */,
 				E2B0C1A31A92819E00CB61FC /* DisconnectedViewController.swift in Sources */,
 				E2B0C1A11A92819E00CB61FC /* AppDelegate.swift in Sources */,
 				E2B0C1EF1A92909A00CB61FC /* ConnectedViewController.swift in Sources */,
