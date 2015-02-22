@@ -27,9 +27,10 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
     
     // Sensor Readings
     lazy var motionManager = CMMotionManager()
+    var swipeRecognizer: UISwipeGestureRecognizer!
     
     // UI
-    var swipeRecognizer: UISwipeGestureRecognizer!
+    
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var explanation: UILabel!
     @IBOutlet weak var interactionType : UILabel!
@@ -37,12 +38,13 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
     
     required init(coder aDecoder: NSCoder){
         super.init(coder: aDecoder)
-        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
+        
     }
     
     func handleSwipes(sender: UISwipeGestureRecognizer){
         if sender.direction == .Down{
             println("Swiped Right, exit view")
+            self.deactivateAllMotion()
             NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
             // Dismiss any modal view controllers.
             self.dismissViewControllerAnimated(true, completion:nil)
@@ -56,16 +58,19 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         println("loaded connected")
+        
+        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
+        self.view.addGestureRecognizer(swipeRecognizer)
         /* Swipes that are perfomed from the right to the left are to be detected to end connection to interactive */
         swipeRecognizer.direction = .Down
         swipeRecognizer.numberOfTouchesRequired = 1
-        view.addGestureRecognizer(swipeRecognizer)
+        
         
         // get object from parse to populate UI and know how to communicate with it
         getInteractiveObject(foundInteractiveObjectID!)
         
         var backgroundColor: UIColor
-        self.view.backgroundColor = .CBColdColor()
+        self.view.backgroundColor = .CBCoolColor()
         
     }
     
@@ -103,6 +108,11 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
         
     }
     
+    func deactivateAllMotion(){
+        
+        motionManager.stopDeviceMotionUpdates()
+        
+    }
     
     func getInteractiveObject(foundInteractiveObjectID: String){
         var query = PFQuery(className: "installations")
@@ -111,6 +121,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
             (objectInfo: PFObject!, error: NSError!) -> Void in
             if (error == nil) {
                 self.populateInteractiveInfo(objectInfo)
+                println(objectInfo)
             } else {
                 // There was an error.
                 UIAlertView(

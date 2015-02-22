@@ -19,7 +19,8 @@ import IJReachability
 class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    let connectedViewController:ConnectedViewController = ConnectedViewController(nibName: "ConnectedView", bundle: nil)
+
+
     
     var knownInteractives = [String: String]()
     var experiencedInteractivesToIgnore = [NSUUID]()
@@ -36,9 +37,9 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                 self.beanManagerDidUpdateState(manager)
             } else {
                 // present connected view when beacon connection established
-                
-                
 
+                let connectedViewController:ConnectedViewController = ConnectedViewController(nibName: "ConnectedView", bundle: nil)
+//                connectedViewController.awakeFromNib()
                 connectedViewController.connectedBean = connectedBean
                 connectedViewController.foundInteractiveObjectID = connectedBeanObjectID
 //                connectedViewController.connectedBean?.delegate = self
@@ -318,6 +319,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                 for PFVersion in PFVersions {
                     self.knownInteractives[toString(PFVersion["blename"])] = toString(PFVersion.objectId)
                 }
+                println("known interactives")
                 self.dataStoreReady = true
                 NSNotificationCenter.defaultCenter().postNotificationName("readyToFind", object: nil)
             }

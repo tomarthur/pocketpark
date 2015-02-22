@@ -6,6 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConnectedViewController" customModule="interactron" customModuleProvider="target">
             <connections>
+                <outlet property="explanation" destination="Lnm-1G-q03" id="oNA-tY-eDz"/>
+                <outlet property="interactionType" destination="PhB-Nm-lVm" id="MI1-id-cu2"/>
+                <outlet property="name" destination="teY-hH-hwY" id="ymQ-Tj-n6n"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Cw1-Eo-KmA"/>
             </connections>
         </placeholder>
