@@ -1,10 +1,16 @@
 PODS:
   - Bean-iOS-OSX-SDK (0.7.1)
   - IJReachability (0.1.0)
+  - Onboard (1.1)
+  - pop (1.0.7)
+  - Shimmer (1.0.2)
 
 DEPENDENCIES:
   - Bean-iOS-OSX-SDK (~> 0.6)
   - IJReachability (from `https://github.com/Isuru-Nanayakkara/IJReachability.git`)
+  - Onboard
+  - pop (~> 1.0)
+  - Shimmer
 
 EXTERNAL SOURCES:
   IJReachability:
@@ -18,5 +24,8 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Bean-iOS-OSX-SDK: 284aa4c8c929ff20f8cabc497375b49256aa459c
   IJReachability: 3eff33caca50869df09b257bcf712031a56a8575
+  Onboard: 81b7ead594a4bff74bee31c851153f87abb666fb
+  pop: 2f14a1ea61339767af9e66741b418c831b3844df
+  Shimmer: 057fcfe9c1c978d69d50b64fce93a61080cd08ec
 
 COCOAPODS: 0.36.0.beta.2

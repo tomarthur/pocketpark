@@ -44,9 +44,9 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
     func handleSwipes(sender: UISwipeGestureRecognizer){
         if sender.direction == .Down{
             println("Swiped Right, exit view")
-            NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil);
+            NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
             // Dismiss any modal view controllers.
-            self.dismissViewControllerAnimated(true, completion:nil);
+            self.dismissViewControllerAnimated(true, completion:nil)
         }
     }
     
@@ -155,6 +155,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
             println("activating gyro interaction mode")
             activateRotationMotion()
         } else if (modeString == "shake"){
+            println("activating shake detect interaction mode")
             self.activateShakeDetect()
         }else {
             println("invalid interaction mode")

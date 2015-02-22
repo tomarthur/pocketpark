@@ -50,8 +50,14 @@ code_sign() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Bean_iOS_OSX_SDK.framework'
   install_framework 'IJReachability.framework'
+  install_framework 'Onboard.framework'
+  install_framework 'Shimmer.framework'
+  install_framework 'pop.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Bean_iOS_OSX_SDK.framework'
   install_framework 'IJReachability.framework'
+  install_framework 'Onboard.framework'
+  install_framework 'Shimmer.framework'
+  install_framework 'pop.framework'
 fi

@@ -1,0 +1,6 @@
+framework module Onboard {
+  umbrella header "Pods-interactron-Onboard-umbrella.h"
+
+  export *
+  module * { export * }
+}

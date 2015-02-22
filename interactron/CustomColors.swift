@@ -7,7 +7,7 @@
 //
 
 extension UIColor {
-
+    
     // MARK: Temperature Colors
 
     class func CBHotColor() -> UIColor {

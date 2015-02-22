@@ -21,4 +21,8 @@ Interactron is available under the MIT license. See the LICENSE file for details
 
 Utilizes open source code:
 
+Bean-iOS-OSX-SDK is available under the MIT license. See the LICENSE file for details.
 Cool Beans is available under the MIT license. See the LICENSE file for details.
+Onboard is available under the MIT license. See the LICENSE file for details.
+Shimmer is available under the BSD license. See the LICENSE file for details.
+Pop is available under the BSD license. See the LICENSE file for details. 

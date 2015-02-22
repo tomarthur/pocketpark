@@ -18,10 +18,14 @@ import IJReachability
 
 class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    
     var knownInteractives = [String: String]()
     var experiencedInteractivesToIgnore = [NSUUID]()
     var connectedBeanObjectID: String?
     var dataStoreReady = false
+    var bluetoothReady = false
+    var isConnecting = false
     
     let connectedViewControllerSegueIdentifier = "goToConnectedView"
     
@@ -41,12 +45,17 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        
         
         // get notification when user wants to end experience
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:", name: "EndInteraction", object: nil)
         
         // get notification when iBeacon of interactive is detected
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "checkForInteractiveWithBeacon:", name: "InteractiveBeaconDetected", object: nil)
+        
+        // get notification when iBeacon of interactive is detected
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "startScanningForInteractives:", name: "readyToFind", object: nil)
         
         manager = PTDBeanManager(delegate: self)
         
@@ -57,7 +66,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     override func viewDidAppear(animated: Bool) {
         
-        self.startScanningForInteractives()
+//        self.startScanningForInteractives(nil)
         
     }
     
@@ -160,14 +169,9 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                 cancelButtonTitle: "OK"
                 ).show()
         case .PoweredOn:
-            
-//             start checking for beans only after local data is loaded to check for beans
-            if dataStoreReady == true{
-                beanManager.startScanningForBeans_error(nil)
-            } else {
-                println("DataStore Not Ready")
-            }
-            
+            bluetoothReady = true
+            NSNotificationCenter.defaultCenter().postNotificationName("readyToFind", object: nil)
+//            NSNotificationCenter.defaultCenter().postNotificationName("readyToFind", object: nil)
         default:
             break
         }
@@ -184,8 +188,10 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
             
                     if bean.state == .Discovered {
                         NSLog("Attempting to connect!")
-                
-                        manager.connectToBean(bean, error: nil)
+                        if (isConnecting == false){
+                            isConnecting = true
+                            manager.connectToBean(bean, error: nil)
+                        }
                     }
             
             } else {
@@ -211,6 +217,8 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         if connectedBean == nil {
             connectedBeanObjectID = knownInteractives[bean.name]
             connectedBean = bean
+            isConnecting = false
+            
         }
         
         
@@ -298,23 +306,20 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                     self.knownInteractives[toString(PFVersion["blename"])] = toString(PFVersion.objectId)
                 }
                 self.dataStoreReady = true
-                
+                NSNotificationCenter.defaultCenter().postNotificationName("readyToFind", object: nil)
             }
         }
     }
     
-    func startScanningForInteractives()
+    func startScanningForInteractives(notif: NSNotification)
     {
-//        TODO: FIX THIS
         println("start scanning")
-        switch manager.state {
-            case .PoweredOn:
-                self.manager.startScanningForBeans_error(nil)
-            default:
-                println("BLE wasn't ready")
-                break
-        }
         
+        if bluetoothReady == true && dataStoreReady == true {
+            
+                self.manager.startScanningForBeans_error(nil)
+
+        }
     }
     
     // quickly check dictionary to see if interactive is in the known
