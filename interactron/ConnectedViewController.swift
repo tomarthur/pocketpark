@@ -29,7 +29,6 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
     lazy var motionManager = CMMotionManager()
     
     // UI
-    let disconnectedViewControllerSegueIdentifier = "unwindToDisconnectedViewController"
     var swipeRecognizer: UISwipeGestureRecognizer!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var explanation: UILabel!
@@ -50,10 +49,13 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
         }
     }
     
-    
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        println("loaded connected")
         /* Swipes that are perfomed from the right to the left are to be detected to end connection to interactive */
         swipeRecognizer.direction = .Down
         swipeRecognizer.numberOfTouchesRequired = 1

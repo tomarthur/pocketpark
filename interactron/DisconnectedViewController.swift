@@ -19,6 +19,7 @@ import IJReachability
 class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let connectedViewController:ConnectedViewController = ConnectedViewController(nibName: "ConnectedView", bundle: nil)
     
     var knownInteractives = [String: String]()
     var experiencedInteractivesToIgnore = [NSUUID]()
@@ -27,7 +28,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     var bluetoothReady = false
     var isConnecting = false
     
-    let connectedViewControllerSegueIdentifier = "goToConnectedView"
     
     var manager: PTDBeanManager!
     var connectedBean: PTDBean? {
@@ -35,14 +35,27 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
             if connectedBean == nil {
                 self.beanManagerDidUpdateState(manager)
             } else {
-                // segue to connected view when beacon connection established
-                performSegueWithIdentifier(connectedViewControllerSegueIdentifier, sender: self)
+                // present connected view when beacon connection established
+                
+                
+
+                connectedViewController.connectedBean = connectedBean
+                connectedViewController.foundInteractiveObjectID = connectedBeanObjectID
+//                connectedViewController.connectedBean?.delegate = self
+                
+                println("this info")
+                println(connectedBean)
+                println(connectedBeanObjectID)
+                //Pass identifer of parse interactive object to connectedVC
+                
+                
+                presentViewController(connectedViewController, animated: true, completion: nil)
             }
         }
     }
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -125,16 +138,16 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     // MARK: Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == connectedViewControllerSegueIdentifier {
-            let vc = segue.destinationViewController as ConnectedViewController
-            vc.connectedBean = connectedBean
-            vc.connectedBean?.delegate = vc
-            println(connectedBeanObjectID)
-            //Pass identifer of parse interactive object to connectedVC
-            vc.foundInteractiveObjectID = connectedBeanObjectID
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == connectedViewControllerSegueIdentifier {
+//            let vc = segue.destinationViewController as ConnectedViewController
+//            vc.connectedBean = connectedBean
+//            vc.connectedBean?.delegate = vc
+//            println(connectedBeanObjectID)
+//            //Pass identifer of parse interactive object to connectedVC
+//            vc.foundInteractiveObjectID = connectedBeanObjectID
+//        }
+//    }
     
     // MARK: PTDBeanManagerDelegate
     

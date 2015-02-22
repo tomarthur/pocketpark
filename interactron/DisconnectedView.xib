@@ -4,17 +4,37 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DisconnectedViewController" customModule="interactron" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="8Sd-Eu-PK5" id="0fq-h0-HyH"/>
+                <outlet property="view" destination="iN0-l3-epB" id="OIf-ZH-1JW"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="8Sd-Eu-PK5" userLabel="Activity Indicator">
-                    <rect key="frame" x="267" y="300" width="37" height="37"/>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="8Sd-Eu-PK5" userLabel="Activity Indicator">
+                    <rect key="frame" x="282" y="300" width="37" height="37"/>
                 </activityIndicatorView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disconnected View" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwD-34-zrO">
+                    <rect key="frame" x="227" y="229" width="147" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="3eI-WV-xI8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="8Sd-Eu-PK5" firstAttribute="top" secondItem="hwD-34-zrO" secondAttribute="bottom" constant="50" id="0KX-sK-peA"/>
+                <constraint firstItem="hwD-34-zrO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PzX-db-KSW"/>
+                <constraint firstItem="hwD-34-zrO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="229" id="e46-qu-KzZ"/>
+                <constraint firstItem="8Sd-Eu-PK5" firstAttribute="centerX" secondItem="hwD-34-zrO" secondAttribute="centerX" id="i09-Q6-f0M"/>
+            </constraints>
         </view>
     </objects>
 </document>

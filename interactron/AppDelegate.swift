@@ -38,6 +38,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             )
         }
         
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        var mainViewController = DisconnectedViewController(nibName: "DisconnectedView", bundle: nil)
+        
+        if let window = window {
+            window.backgroundColor = UIColor.blackColor()
+            window.rootViewController = mainViewController
+            window.makeKeyAndVisible()
+        }
+        
         // Override point for customization after application launch.
         return true
     }

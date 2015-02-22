@@ -8,10 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		45F934AA53805DFE6CF14ECF /* Pods_interactron.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DA5AB3A83F6A026DD60D83 /* Pods_interactron.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E201EBD51A9991EE00FA87FF /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E201EBD31A9991EE00FA87FF /* OnboardingViewController.swift */; };
+		E201EBD61A9991EE00FA87FF /* OnboardingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E201EBD41A9991EE00FA87FF /* OnboardingContentViewController.swift */; };
+		E201EBDD1A99921200FA87FF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E201EBD81A99921200FA87FF /* Default-568h@2x.png */; };
+		E201EBDE1A99921200FA87FF /* street.png in Resources */ = {isa = PBXBuildFile; fileRef = E201EBD91A99921200FA87FF /* street.png */; };
+		E201EBDF1A99921200FA87FF /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = E201EBDA1A99921200FA87FF /* blue.png */; };
+		E201EBE01A99921200FA87FF /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = E201EBDB1A99921200FA87FF /* red.png */; };
+		E201EBE11A99921200FA87FF /* yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = E201EBDC1A99921200FA87FF /* yellow.png */; };
 		E263FE741A97E5EA00E5E7AA /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E263FE731A97E5EA00E5E7AA /* CustomColors.swift */; };
 		E2B0C1A11A92819E00CB61FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */; };
 		E2B0C1A31A92819E00CB61FC /* DisconnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */; };
-		E2B0C1A61A92819E00CB61FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2B0C1A41A92819E00CB61FC /* Main.storyboard */; };
 		E2B0C1A81A92819E00CB61FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B0C1A71A92819E00CB61FC /* Images.xcassets */; };
 		E2B0C1AB1A92819E00CB61FC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B0C1A91A92819E00CB61FC /* LaunchScreen.xib */; };
 		E2B0C1B71A92819E00CB61FC /* interactronTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1B61A92819E00CB61FC /* interactronTests.swift */; };
@@ -52,12 +58,18 @@
 /* Begin PBXFileReference section */
 		76DA5AB3A83F6A026DD60D83 /* Pods_interactron.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_interactron.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9091ACD305351E10E512004 /* Pods-interactron.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interactron.debug.xcconfig"; path = "Pods/Target Support Files/Pods-interactron/Pods-interactron.debug.xcconfig"; sourceTree = "<group>"; };
+		E201EBD31A9991EE00FA87FF /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		E201EBD41A9991EE00FA87FF /* OnboardingContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingContentViewController.swift; sourceTree = "<group>"; };
+		E201EBD81A99921200FA87FF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../Onboard/Swift/Default-568h@2x.png"; sourceTree = "<group>"; };
+		E201EBD91A99921200FA87FF /* street.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = street.png; path = ../../Onboard/Swift/OnboardSwift/street.png; sourceTree = "<group>"; };
+		E201EBDA1A99921200FA87FF /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue.png; path = ../../Onboard/Swift/OnboardSwift/blue.png; sourceTree = "<group>"; };
+		E201EBDB1A99921200FA87FF /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red.png; path = ../../Onboard/Swift/OnboardSwift/red.png; sourceTree = "<group>"; };
+		E201EBDC1A99921200FA87FF /* yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yellow.png; path = ../../Onboard/Swift/OnboardSwift/yellow.png; sourceTree = "<group>"; };
 		E263FE731A97E5EA00E5E7AA /* CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		E2B0C19B1A92819E00CB61FC /* interactron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = interactron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B0C19F1A92819E00CB61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectedViewController.swift; sourceTree = "<group>"; };
-		E2B0C1A51A92819E00CB61FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E2B0C1A71A92819E00CB61FC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E2B0C1AA1A92819E00CB61FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E2B0C1B01A92819E00CB61FC /* interactronTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = interactronTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +171,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E201EBD71A99920000FA87FF /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				E201EBD81A99921200FA87FF /* Default-568h@2x.png */,
+				E201EBD91A99921200FA87FF /* street.png */,
+				E201EBDA1A99921200FA87FF /* blue.png */,
+				E201EBDB1A99921200FA87FF /* red.png */,
+				E201EBDC1A99921200FA87FF /* yellow.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		E2B0C1921A92819E00CB61FC = {
 			isa = PBXGroup;
 			children = (
@@ -182,8 +206,8 @@
 		E2B0C19D1A92819E00CB61FC /* interactron */ = {
 			isa = PBXGroup;
 			children = (
+				E201EBD71A99920000FA87FF /* Images */,
 				E2B0C1A71A92819E00CB61FC /* Images.xcassets */,
-				E2B0C1A41A92819E00CB61FC /* Main.storyboard */,
 				E2B0C1F11A9290AC00CB61FC /* Controllers */,
 				E2B0C1F01A9290A600CB61FC /* Views */,
 				E2E290401A93FD27001E4D46 /* Models */,
@@ -236,6 +260,8 @@
 			children = (
 				E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */,
 				E2B0C1EE1A92909A00CB61FC /* ConnectedViewController.swift */,
+				E201EBD31A9991EE00FA87FF /* OnboardingViewController.swift */,
+				E201EBD41A9991EE00FA87FF /* OnboardingContentViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -338,9 +364,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2E4CD761A991EC400F24AAB /* DisconnectedView.xib in Resources */,
-				E2B0C1A61A92819E00CB61FC /* Main.storyboard in Resources */,
+				E201EBE11A99921200FA87FF /* yellow.png in Resources */,
 				E2E4CD781A991ED800F24AAB /* ConnectedView.xib in Resources */,
+				E201EBDE1A99921200FA87FF /* street.png in Resources */,
 				E2B0C1AB1A92819E00CB61FC /* LaunchScreen.xib in Resources */,
+				E201EBDD1A99921200FA87FF /* Default-568h@2x.png in Resources */,
+				E201EBE01A99921200FA87FF /* red.png in Resources */,
+				E201EBDF1A99921200FA87FF /* blue.png in Resources */,
 				E2B0C1A81A92819E00CB61FC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +454,8 @@
 				E263FE741A97E5EA00E5E7AA /* CustomColors.swift in Sources */,
 				E2B0C1A31A92819E00CB61FC /* DisconnectedViewController.swift in Sources */,
 				E2B0C1A11A92819E00CB61FC /* AppDelegate.swift in Sources */,
+				E201EBD51A9991EE00FA87FF /* OnboardingViewController.swift in Sources */,
+				E201EBD61A9991EE00FA87FF /* OnboardingContentViewController.swift in Sources */,
 				E2E4CD7A1A99393F00F24AAB /* InteractionBeaconManager.swift in Sources */,
 				E2B0C1EF1A92909A00CB61FC /* ConnectedViewController.swift in Sources */,
 			);
@@ -448,14 +480,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E2B0C1A41A92819E00CB61FC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E2B0C1A51A92819E00CB61FC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E2B0C1A91A92819E00CB61FC /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
