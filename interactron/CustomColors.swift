@@ -25,6 +25,18 @@ extension UIColor {
     class func CBColdColor() -> UIColor {
         return UIColor(rgba: "#54C7FC")
     }
+    
+    class func ITWelcomeColor() -> UIColor {
+        return UIColor(rgba: "#34495E")
+    }
+    
+    class func ITConnectedColor() -> UIColor {
+        return UIColor(rgba: "#2ECC71")
+    }
+    
+    class func ITSettingsColor() -> UIColor {
+        return UIColor(rgba: "#ECF0F1")
+    }
 
     // MARK: Helpers
 

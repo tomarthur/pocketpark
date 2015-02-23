@@ -15,7 +15,6 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
 
     
     func start () {
-        println("\n\nhere in interaction beacon manager\n\n")
         // iBeacon Regions and Notification to find Interactive Elements enabled by LightBlue Bean
         let uuid = NSUUID(UUIDString: "A4955441-C5B1-4B44-B512-1370F02D74DE")
         let beaconIdentifier = NSBundle.mainBundle().bundleIdentifier!

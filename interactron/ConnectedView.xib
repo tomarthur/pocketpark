@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConnectedViewController" customModule="interactron" customModuleProvider="target">
@@ -17,26 +18,46 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teY-hH-hwY" userLabel="Name">
-                    <rect key="frame" x="23" y="73" width="476" height="43"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teY-hH-hwY" userLabel="Name">
+                    <rect key="frame" x="8" y="38" width="588" height="43"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="bUx-rY-mlN"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="36"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lnm-1G-q03" userLabel="Explanation">
-                    <rect key="frame" x="23" y="124" width="476" height="58"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lnm-1G-q03" userLabel="Explanation">
+                    <rect key="frame" x="8" y="89" width="584" height="92"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="92" id="Yrb-Vf-tW0"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PhB-Nm-lVm" userLabel="InteractMode">
-                    <rect key="frame" x="23" y="190" width="476" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PhB-Nm-lVm" userLabel="InteractMode">
+                    <rect key="frame" x="8" y="571" width="476" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="476" id="tAY-8Q-uPB"/>
+                        <constraint firstAttribute="height" constant="21" id="xO0-nl-dq4"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="teY-hH-hwY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="1ep-hA-T3O"/>
+                <constraint firstItem="Lnm-1G-q03" firstAttribute="leading" secondItem="PhB-Nm-lVm" secondAttribute="leading" id="2xK-kd-5eB"/>
+                <constraint firstItem="teY-hH-hwY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="38" id="9nB-t0-xxS"/>
+                <constraint firstItem="PhB-Nm-lVm" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottomMargin" id="RZX-54-94y"/>
+                <constraint firstItem="Lnm-1G-q03" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="TkB-Th-fiP"/>
+                <constraint firstItem="Lnm-1G-q03" firstAttribute="top" secondItem="teY-hH-hwY" secondAttribute="bottom" constant="8" symbolic="YES" id="eG1-rK-mnf"/>
+                <constraint firstAttribute="trailing" secondItem="teY-hH-hwY" secondAttribute="trailing" constant="4" id="fsS-h1-qE8"/>
+                <constraint firstItem="teY-hH-hwY" firstAttribute="leading" secondItem="Lnm-1G-q03" secondAttribute="leading" id="wTp-np-0bT"/>
+            </constraints>
         </view>
     </objects>
 </document>

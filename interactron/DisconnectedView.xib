@@ -2,11 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DisconnectedViewController" customModule="interactron" customModuleProvider="target">
             <connections>
-                <outlet property="activityIndicator" destination="8Sd-Eu-PK5" id="0fq-h0-HyH"/>
+                <outlet property="activityIndicator" destination="8Sd-Eu-PK5" id="8vP-d1-bBy"/>
+                <outlet property="settingsButton" destination="LjP-eI-OkP" id="PPm-d4-4Sb"/>
+                <outlet property="status" destination="hwD-34-zrO" id="T84-04-a73"/>
                 <outlet property="view" destination="iN0-l3-epB" id="OIf-ZH-1JW"/>
             </connections>
         </placeholder>
@@ -15,26 +18,51 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="8Sd-Eu-PK5" userLabel="Activity Indicator">
-                    <rect key="frame" x="282" y="300" width="37" height="37"/>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="8Sd-Eu-PK5" userLabel="Activity Indicator">
+                    <rect key="frame" x="282" y="262" width="37" height="37"/>
                 </activityIndicatorView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disconnected View" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwD-34-zrO">
-                    <rect key="frame" x="227" y="229" width="147" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwD-34-zrO">
+                    <rect key="frame" x="153" y="317" width="294" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="21" id="3eI-WV-xI8"/>
+                        <constraint firstAttribute="width" constant="294" id="Bzd-ll-M1f"/>
+                        <constraint firstAttribute="height" constant="21" id="EiH-RD-QbW"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LjP-eI-OkP">
+                    <rect key="frame" x="8" y="563" width="22" height="22"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="settingsButtonPressed:" destination="-1" eventType="touchUpInside" id="kbE-MB-Di9"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="8Sd-Eu-PK5" firstAttribute="top" secondItem="hwD-34-zrO" secondAttribute="bottom" constant="50" id="0KX-sK-peA"/>
-                <constraint firstItem="hwD-34-zrO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PzX-db-KSW"/>
-                <constraint firstItem="hwD-34-zrO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="229" id="e46-qu-KzZ"/>
-                <constraint firstItem="8Sd-Eu-PK5" firstAttribute="centerX" secondItem="hwD-34-zrO" secondAttribute="centerX" id="i09-Q6-f0M"/>
+                <constraint firstItem="LjP-eI-OkP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="50N-ni-UFI"/>
+                <constraint firstAttribute="bottom" secondItem="LjP-eI-OkP" secondAttribute="bottom" constant="15" id="7qW-GW-zXV"/>
+                <constraint firstItem="hwD-34-zrO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="9S2-b1-8IR"/>
+                <constraint firstItem="8Sd-Eu-PK5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="262" id="D5P-p4-aPT"/>
+                <constraint firstItem="hwD-34-zrO" firstAttribute="top" secondItem="8Sd-Eu-PK5" secondAttribute="bottom" constant="18" id="Phh-AJ-yvj"/>
+                <constraint firstItem="hwD-34-zrO" firstAttribute="centerX" secondItem="8Sd-Eu-PK5" secondAttribute="centerX" id="yeF-HH-NZE"/>
             </constraints>
         </view>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35M-kG-Gdz">
+            <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
+            <constraints>
+                <constraint firstAttribute="width" constant="22" id="8LR-Qj-ZZt"/>
+                <constraint firstAttribute="height" constant="22" id="n1N-ZW-rZW"/>
+            </constraints>
+            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <state key="normal">
+                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+            </state>
+            <point key="canvasLocation" x="160" y="586"/>
+        </button>
     </objects>
 </document>

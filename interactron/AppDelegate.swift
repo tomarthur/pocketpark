@@ -43,7 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         var mainViewController = DisconnectedViewController(nibName: "DisconnectedView", bundle: nil)
         
         if let window = window {
-            window.backgroundColor = UIColor.blackColor()
+            var backgroundColor: UIColor
+            window.backgroundColor = .ITWelcomeColor()
             window.rootViewController = mainViewController
             window.makeKeyAndVisible()
         }

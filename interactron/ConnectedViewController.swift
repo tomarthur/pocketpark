@@ -54,6 +54,10 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +74,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
         getInteractiveObject(foundInteractiveObjectID!)
         
         var backgroundColor: UIColor
-        self.view.backgroundColor = .CBCoolColor()
+        self.view.backgroundColor = .ITConnectedColor()
         
     }
     

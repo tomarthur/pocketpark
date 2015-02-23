@@ -20,14 +20,19 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
 
-
-    
-    var knownInteractives = [String: String]()
-    var experiencedInteractivesToIgnore = [NSUUID]()
+    var nearbyBLEInteractives = [NSUUID:Int]()
+    var knownInteractivesFromParse = [String: String]()
+    var knownInteractivesFromParseFriendlyNames = [String: String]()
+    var previouslyExperiencedInteractivesToIgnore = [NSUUID]()
     var connectedBeanObjectID: String?
     var dataStoreReady = false
     var bluetoothReady = false
     var isConnecting = false
+    
+    @IBOutlet weak var status: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var settingsButton: UIButton!
+    
     
     
     var manager: PTDBeanManager!
@@ -35,39 +40,31 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         didSet {
             if connectedBean == nil {
                 self.beanManagerDidUpdateState(manager)
+                status.text = "Discovering New Experiences Nearby"
             } else {
+                
+            
                 // present connected view when beacon connection established
 
                 let connectedViewController:ConnectedViewController = ConnectedViewController(nibName: "ConnectedView", bundle: nil)
-//                connectedViewController.awakeFromNib()
+                
+                //Pass identifer of parse interactive object to connectedVC
                 connectedViewController.connectedBean = connectedBean
                 connectedViewController.foundInteractiveObjectID = connectedBeanObjectID
-//                connectedViewController.connectedBean?.delegate = self
-                
-                println("this info")
-                println(connectedBean)
-                println(connectedBeanObjectID)
-                //Pass identifer of parse interactive object to connectedVC
-                
-                
+
                 presentViewController(connectedViewController, animated: true, completion: nil)
             }
         }
     }
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        
         
         // get notification when user wants to end experience
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:", name: "EndInteraction", object: nil)
-        
         // get notification when iBeacon of interactive is detected
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "checkForInteractiveWithBeacon:", name: "InteractiveBeaconDetected", object: nil)
-        
         // get notification when iBeacon of interactive is detected
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "startScanningForInteractives:", name: "readyToFind", object: nil)
         
@@ -75,23 +72,25 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         
         queryParseForInteractiveObjects()
         
-        // Do any additional setup after loading the view, typically from a nib.
+        var backgroundColor: UIColor
+        self.view.backgroundColor = .ITWelcomeColor()
     }
     
     override func viewDidAppear(animated: Bool) {
         
-//        self.startScanningForInteractives(nil)
         
     }
     
     func checkForInteractiveWithBeacon(notif: NSNotification) {
+        // TODO: Implement iBeacon Check
         println("recieved beacon check request")
         
         if notif.name == "InteractiveBeaconDetected" {
-            self.pushLocalInteractiveAvailableNotification()
+            
             if let info = notif.userInfo as? Dictionary<String,NSNumber> {
                 // Check if value present before using it
                 if let s = info["major"] {
+                    self.pushLocalInteractiveAvailableNotification(toString(s))
                     print(s)
                 }
                 else {
@@ -104,10 +103,10 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         }
     }
     
-    func pushLocalInteractiveAvailableNotification() {
+    func pushLocalInteractiveAvailableNotification(friendlyName: String) {
         
         var interactionNearbyNotification = UILocalNotification()
-        interactionNearbyNotification.alertBody = "There's something you can control nearby."
+        interactionNearbyNotification.alertBody = "\(friendlyName) is ready to control nearby."
         interactionNearbyNotification.hasAction = true
         interactionNearbyNotification.alertAction = "begin"
         
@@ -120,7 +119,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         println("recieved end of experience notification")
         
         if notif.name == "EndInteraction" {
-            experiencedInteractivesToIgnore.append(connectedBean!.identifier!)
+            previouslyExperiencedInteractivesToIgnore.append(connectedBean!.identifier!)
             manager.disconnectBean(connectedBean, error:nil)
         } else {
             println("got notification but not endinteraction")
@@ -139,16 +138,29 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     // MARK: Navigation
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == connectedViewControllerSegueIdentifier {
-//            let vc = segue.destinationViewController as ConnectedViewController
-//            vc.connectedBean = connectedBean
-//            vc.connectedBean?.delegate = vc
-//            println(connectedBeanObjectID)
-//            //Pass identifer of parse interactive object to connectedVC
-//            vc.foundInteractiveObjectID = connectedBeanObjectID
-//        }
-//    }
+    @IBAction func settingsButtonPressed(sender: AnyObject) {
+        println("you pressed!!!!!")
+        
+        // present connected view when beacon connection established
+        
+        let settingsViewController:SettingsViewController = SettingsViewController(nibName: "SettingsView", bundle: nil)
+        
+        var backgroundColor: UIColor
+        settingsViewController.view.backgroundColor = .ITSettingsColor()
+        settingsViewController.modalTransitionStyle = .FlipHorizontal
+//        settingsViewController.modalPresentationStyle = .OverCurrentContext
+        presentViewController(settingsViewController, animated: true, completion: nil)
+
+    }
+    
+//    let connectedViewController:ConnectedViewController = ConnectedViewController(nibName: "ConnectedView", bundle: nil)
+//    
+//    //Pass identifer of parse interactive object to connectedVC
+//    connectedViewController.connectedBean = connectedBean
+//    connectedViewController.foundInteractiveObjectID = connectedBeanObjectID
+//    
+//    presentViewController(connectedViewController, animated: true, completion: nil)
+
     
     // MARK: PTDBeanManagerDelegate
     
@@ -185,9 +197,21 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         case .PoweredOn:
             bluetoothReady = true
             NSNotificationCenter.defaultCenter().postNotificationName("readyToFind", object: nil)
-//            NSNotificationCenter.defaultCenter().postNotificationName("readyToFind", object: nil)
         default:
             break
+        }
+    }
+    
+    func startScanningForInteractives(notif: NSNotification)
+    {
+        println("start scanning")
+        
+        if bluetoothReady == true && dataStoreReady == true {
+            
+            self.manager.startScanningForBeans_error(nil)
+            activityIndicator.startAnimating()
+            status.text = "Discovering Experiences Nearby"
+            
         }
     }
     
@@ -199,12 +223,15 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
             if isInteractiveIgnored(bean.identifier) == false && isInteractiveKnown(toString(bean.name)) == true {
                 
                     println("DISCOVERED KNOWN BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
-            
+
                     if bean.state == .Discovered {
+                        nearbyBLEInteractives[bean.identifier] = Int(bean.RSSI)
                         NSLog("Attempting to connect!")
                         if (isConnecting == false){
                             isConnecting = true
                             manager.connectToBean(bean, error: nil)
+                            // tell the user what we've found
+                            status.text = "Contacting \(knownInteractivesFromParseFriendlyNames[bean.name]!)"
                         }
                     }
             
@@ -220,8 +247,8 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         
         if (error != nil){
             UIAlertView(
-                title: "Unable to Connect",
-                message: "Unable to connect to the interactive.",
+                title: "Unable to Contact Interactive",
+                message: "The experience isn't able to to start. Please try again later.",
                 delegate: self,
                 cancelButtonTitle: "OK"
                 ).show()
@@ -229,7 +256,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         }
         
         if connectedBean == nil {
-            connectedBeanObjectID = knownInteractives[bean.name]
+            connectedBeanObjectID = knownInteractivesFromParse[bean.name]
             connectedBean = bean
             isConnecting = false
             
@@ -253,8 +280,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     }
     
     
-    
-    // MARK: Parse Data
+    // MARK: Handling Parse Data
     
     // get most recent interactives from parse cloud
     func queryParseForInteractiveObjects() {
@@ -317,7 +343,8 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
             } else {
                 var PFVersions = objects as [PFObject]
                 for PFVersion in PFVersions {
-                    self.knownInteractives[toString(PFVersion["blename"])] = toString(PFVersion.objectId)
+                    self.knownInteractivesFromParse[toString(PFVersion["blename"])] = toString(PFVersion.objectId)
+                    self.knownInteractivesFromParseFriendlyNames[toString(PFVersion["blename"])] = toString(PFVersion["name"])
                 }
                 println("known interactives")
                 self.dataStoreReady = true
@@ -326,21 +353,12 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         }
     }
     
-    func startScanningForInteractives(notif: NSNotification)
-    {
-        println("start scanning")
-        
-        if bluetoothReady == true && dataStoreReady == true {
-            
-                self.manager.startScanningForBeans_error(nil)
 
-        }
-    }
     
     // quickly check dictionary to see if interactive is in the known
     func isInteractiveKnown(foundInteractiveIdentifier: String) -> Bool{
         NSLog(foundInteractiveIdentifier)
-        for (key, value) in knownInteractives {
+        for (key, value) in knownInteractivesFromParse {
             println("\(key) -> \(value)")
             if (key == foundInteractiveIdentifier)
             {
@@ -352,7 +370,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     // check to see if interactive is ignored because it's been played with
     func isInteractiveIgnored(foundInteractiveUUID: NSUUID) -> Bool {
-        for ignoredUUID in experiencedInteractivesToIgnore
+        for ignoredUUID in previouslyExperiencedInteractivesToIgnore
         {
             if (foundInteractiveUUID.isEqual(ignoredUUID))
             {
