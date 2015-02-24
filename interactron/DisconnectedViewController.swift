@@ -20,7 +20,9 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
 
-    var nearbyBLEInteractives = [NSUUID:Int]()
+    
+    var nearbyBLEInteractives = [NSUUID:String]()
+    
     var knownInteractivesFromParse = [String: String]()
     var knownInteractivesFromParseFriendlyNames = [String: String]()
     var previouslyExperiencedInteractivesToIgnore = [NSUUID]()
@@ -144,23 +146,16 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         // present connected view when beacon connection established
         
         let settingsViewController:SettingsViewController = SettingsViewController(nibName: "SettingsView", bundle: nil)
+        println(nearbyBLEInteractives.count)
+        settingsViewController.nearbyBLEInteractives = nearbyBLEInteractives
         
         var backgroundColor: UIColor
         settingsViewController.view.backgroundColor = .ITSettingsColor()
         settingsViewController.modalTransitionStyle = .FlipHorizontal
-//        settingsViewController.modalPresentationStyle = .OverCurrentContext
+
         presentViewController(settingsViewController, animated: true, completion: nil)
 
     }
-    
-//    let connectedViewController:ConnectedViewController = ConnectedViewController(nibName: "ConnectedView", bundle: nil)
-//    
-//    //Pass identifer of parse interactive object to connectedVC
-//    connectedViewController.connectedBean = connectedBean
-//    connectedViewController.foundInteractiveObjectID = connectedBeanObjectID
-//    
-//    presentViewController(connectedViewController, animated: true, completion: nil)
-
     
     // MARK: PTDBeanManagerDelegate
     
@@ -219,26 +214,33 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         
         // TODO: FIX THIS
         
+        // add device to dictionary when discovered
+        
+        // periodically check if connected and connect to something we haven't before if it's around
+        
+        
+        if isInteractiveKnown(toString(bean.name)) == true {
+            println("DISCOVERED KNOWN BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
+            nearbyBLEInteractives[bean.identifier] = toString(bean.name)
+        }
+        
         if connectedBean == nil {
-            if isInteractiveIgnored(bean.identifier) == false && isInteractiveKnown(toString(bean.name)) == true {
-                
-                    println("DISCOVERED KNOWN BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
-
-                    if bean.state == .Discovered {
-                        nearbyBLEInteractives[bean.identifier] = Int(bean.RSSI)
-                        NSLog("Attempting to connect!")
-                        if (isConnecting == false){
-                            isConnecting = true
-                            manager.connectToBean(bean, error: nil)
-                            // tell the user what we've found
-                            status.text = "Contacting \(knownInteractivesFromParseFriendlyNames[bean.name]!)"
-                        }
-                    }
-            
-            } else {
-                println("BEAN DISCOVERED BUT IGNORED OR NOT KNOWN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
+            intiateConnectionAfterInteractionCheck(bean)
+        }
+        
+    }
+    
+    func intiateConnectionAfterInteractionCheck(bean: PTDBean!) {
+        if isInteractiveIgnored(bean.identifier) == false && isInteractiveKnown(toString(bean.name)) == true {
+            if bean.state == .Discovered {
+                NSLog("Attempting to connect!")
+                if (isConnecting == false){
+                    isConnecting = true
+                    manager.connectToBean(bean, error: nil)
+                    // tell the user what we've found
+                    status.text = "Contacting \(knownInteractivesFromParseFriendlyNames[bean.name]!)"
+                }
             }
-                
         }
     }
     

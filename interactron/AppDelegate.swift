@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     var window: UIWindow?
     var interactionBeaconManager = InteractionBeaconManager()
+    var dataManager = DataManager()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Parse framework for analytics, data and bug tracking

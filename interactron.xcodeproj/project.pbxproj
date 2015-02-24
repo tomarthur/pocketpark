@@ -16,8 +16,10 @@
 		E201EBE01A99921200FA87FF /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = E201EBDB1A99921200FA87FF /* red.png */; };
 		E201EBE11A99921200FA87FF /* yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = E201EBDC1A99921200FA87FF /* yellow.png */; };
 		E25A90961A9BB3DD0059CA48 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25A90951A9BB3DD0059CA48 /* SettingsView.xib */; };
-		E25A909B1A9BBC660059CA48 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25A909A1A9BBC660059CA48 /* SettingsViewController.swift */; };
+		E25A909D1A9BC4C40059CA48 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25A909C1A9BC4C40059CA48 /* SettingsViewController.swift */; };
+		E25A909F1A9BC4E70059CA48 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E25A909E1A9BC4E70059CA48 /* Settings.bundle */; };
 		E263FE741A97E5EA00E5E7AA /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E263FE731A97E5EA00E5E7AA /* CustomColors.swift */; };
+		E28B09261A9C011C003B3918 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B09251A9C011C003B3918 /* DataManager.swift */; };
 		E2B0C1A11A92819E00CB61FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */; };
 		E2B0C1A31A92819E00CB61FC /* DisconnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */; };
 		E2B0C1A81A92819E00CB61FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B0C1A71A92819E00CB61FC /* Images.xcassets */; };
@@ -68,8 +70,10 @@
 		E201EBDB1A99921200FA87FF /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red.png; path = ../../Onboard/Swift/OnboardSwift/red.png; sourceTree = "<group>"; };
 		E201EBDC1A99921200FA87FF /* yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yellow.png; path = ../../Onboard/Swift/OnboardSwift/yellow.png; sourceTree = "<group>"; };
 		E25A90951A9BB3DD0059CA48 /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
-		E25A909A1A9BBC660059CA48 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E25A909C1A9BC4C40059CA48 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E25A909E1A9BC4E70059CA48 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		E263FE731A97E5EA00E5E7AA /* CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
+		E28B09251A9C011C003B3918 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E2B0C19B1A92819E00CB61FC /* interactron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = interactron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B0C19F1A92819E00CB61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 			children = (
 				E263FE731A97E5EA00E5E7AA /* CustomColors.swift */,
 				E2E4CD791A99393F00F24AAB /* InteractionBeaconManager.swift */,
+				E28B09251A9C011C003B3918 /* DataManager.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -233,6 +238,7 @@
 		E2B0C19E1A92819E00CB61FC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E25A909E1A9BC4E70059CA48 /* Settings.bundle */,
 				E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */,
 				E2B0C1E01A9285D400CB61FC /* interactron-Bridging-Header.h */,
 				E2B0C19F1A92819E00CB61FC /* Info.plist */,
@@ -271,7 +277,7 @@
 		E2B0C1F11A9290AC00CB61FC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E25A909A1A9BBC660059CA48 /* SettingsViewController.swift */,
+				E25A909C1A9BC4C40059CA48 /* SettingsViewController.swift */,
 				E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */,
 				E2B0C1EE1A92909A00CB61FC /* ConnectedViewController.swift */,
 				E201EBD31A9991EE00FA87FF /* OnboardingViewController.swift */,
@@ -386,6 +392,7 @@
 				E201EBDD1A99921200FA87FF /* Default-568h@2x.png in Resources */,
 				E201EBE01A99921200FA87FF /* red.png in Resources */,
 				E201EBDF1A99921200FA87FF /* blue.png in Resources */,
+				E25A909F1A9BC4E70059CA48 /* Settings.bundle in Resources */,
 				E2B0C1A81A92819E00CB61FC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,14 +473,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2E2903F1A93FC4C001E4D46 /* InteractionContainer.swift in Sources */,
+				E28B09261A9C011C003B3918 /* DataManager.swift in Sources */,
 				E263FE741A97E5EA00E5E7AA /* CustomColors.swift in Sources */,
 				E2B0C1A31A92819E00CB61FC /* DisconnectedViewController.swift in Sources */,
+				E25A909D1A9BC4C40059CA48 /* SettingsViewController.swift in Sources */,
 				E2B0C1A11A92819E00CB61FC /* AppDelegate.swift in Sources */,
 				E201EBD51A9991EE00FA87FF /* OnboardingViewController.swift in Sources */,
 				E201EBD61A9991EE00FA87FF /* OnboardingContentViewController.swift in Sources */,
 				E2E4CD7A1A99393F00F24AAB /* InteractionBeaconManager.swift in Sources */,
 				E2B0C1EF1A92909A00CB61FC /* ConnectedViewController.swift in Sources */,
-				E25A909B1A9BBC660059CA48 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

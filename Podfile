@@ -6,6 +6,7 @@ target 'interactron' do
     pod 'Onboard'
     pod 'Shimmer'
     pod 'pop', '~> 1.0'
+    pod 'InAppSettingsKit', '~> 2.1'
     pod 'IJReachability', :git => 'https://github.com/Isuru-Nanayakkara/IJReachability.git'
 
 end

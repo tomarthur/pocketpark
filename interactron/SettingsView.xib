@@ -2,10 +2,12 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController" customModule="interactron" customModuleProvider="target">
             <connections>
+                <outlet property="settingsTable" destination="Pmu-gD-Wxa" id="YbP-JX-BhN"/>
                 <outlet property="view" destination="iN0-l3-epB" id="tfv-En-6Vy"/>
             </connections>
         </placeholder>
@@ -14,18 +16,18 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RIh-Nj-RGl">
-                    <rect key="frame" x="0.0" y="17" width="600" height="44"/>
-                    <items>
-                        <navigationItem title="Settings" id="bwP-ig-NUt"/>
-                    </items>
-                </navigationBar>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Pmu-gD-Wxa">
-                    <rect key="frame" x="0.0" y="61" width="600" height="539"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Pmu-gD-Wxa">
+                    <rect key="frame" x="0.0" y="8" width="600" height="592"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Pmu-gD-Wxa" secondAttribute="trailing" id="Bep-43-0YU"/>
+                <constraint firstItem="Pmu-gD-Wxa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IY1-D1-e88"/>
+                <constraint firstAttribute="bottom" secondItem="Pmu-gD-Wxa" secondAttribute="bottom" id="XgN-Gh-smG"/>
+                <constraint firstItem="Pmu-gD-Wxa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="zsh-CV-gRV"/>
+            </constraints>
         </view>
     </objects>
 </document>
