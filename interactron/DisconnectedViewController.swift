@@ -92,6 +92,8 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         // stop app from connecting while we are in manual control
         magicConnection = false
         
+        manager.disconnectBean(connectedBean, error:nil)
+        
         let settingsViewController:SettingsViewController = SettingsViewController(nibName: "SettingsView", bundle: nil)
         
         settingsViewController.nearbyBLEInteractives = nearbyBLEInteractives
@@ -212,7 +214,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     func intiateConnectionAfterInteractionCheck(bean: PTDBean!) {
         if appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
             if bean.state == .Discovered {
-                NSLog("Attempting to connect!")
+                println("Attempting to connect to \(toString(bean.name))")
                 if (isConnecting == false){
                     isConnecting = true
                     manager.connectToBean(bean, error: nil)
@@ -235,14 +237,13 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     // handles notification from beacon or settings page that a interaction is requested
     func initiateConnectionFromRequest(notification: NSNotification) {
-        if let interactionInfo = notification.userInfo as? Dictionary<String, String>{
-            if let id = interactionInfo["beaconInteractionID"] {
-                for (key, value) in nearbyBLEInteractives {
-                    if (key == id)
-                    {
-                        intiateConnectionAfterInteractionCheck(value)
-                    }
-                }
+        println("got request")
+        if let interactionInfo = notification.userInfo as? Dictionary<String, PTDBean>{
+            println(interactionInfo)
+            if let id = interactionInfo["beaconInteractionObject"] {
+                println(id)
+  
+                intiateConnectionAfterInteractionCheck(id)
             }
         }
     }

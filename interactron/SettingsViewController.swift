@@ -12,7 +12,10 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     var nearbyBLEInteractives = [String:PTDBean]()
+    var nearbyInteractivesFriendly = [String:PTDBean]()
+    var nearbyInteractivesFriendlyArray = [String]()
     var refreshControl: UIRefreshControl?
+    var tableCellsReady = false
     
     //    var tableView: UITableView?
     var swipeRecognizer: UISwipeGestureRecognizer!
@@ -90,6 +93,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         swipeRecognizer.direction = .Right
         swipeRecognizer.numberOfTouchesRequired = 1
         
+        prepareInteractiveTableViewCellInformation()
     }
     
     override func didReceiveMemoryWarning() {
@@ -106,7 +110,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             case 0:
                 return 1
             case 1:
-                return 5
+                return nearbyInteractivesFriendlyArray.count
             default:
                 return 0
         }
@@ -115,49 +119,85 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("identifier", forIndexPath: indexPath) as UITableViewCell
         
-        cell.textLabel?.text = "hello"
+        if (indexPath.section == 0) {
+            cell.textLabel?.text = "Magic Mode"
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+//            cell.detailTextLabel?.text = "Automatically connect to nearby objects when app is open"
+            var enabledSwitch = UISwitch(frame: CGRectZero) as UISwitch
+            enabledSwitch.on = true
+            cell.accessoryView = enabledSwitch
+        } else if (indexPath.section == 1){
+            cell.textLabel?.text = nearbyInteractivesFriendlyArray[indexPath.row]
+        }
         
         return cell
     }
     
-    func newLabelWithTitle(title: String) -> UILabel{
-        let label = UILabel()
-        label.text = title
-        label.backgroundColor = UIColor.clearColor()
-        label.sizeToFit()
-        return label
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        let text = cell?.textLabel?.text
+
+            requestInteractiveConnectionAndCloseView(text!)
+
+       
     }
-    
+
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView{
         
         switch section{
             case 0:
-                return newViewForHeaderOrFooterWithText("Experience Settings")
+                return newViewForHeaderWithText("Experience Settings")
             case 1:
-                return newViewForHeaderOrFooterWithText("Discovered Experiences")
+                return newViewForHeaderWithText("Discovered Experiences")
             default:
-                return newViewForHeaderOrFooterWithText("Oops...")
+                return newViewForHeaderWithText("Oops...")
         }
 
     }
     
-//    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView{
-//        switch section{
-//            case 0:
-//                return newViewForHeaderOrFooterWithText("Experience Settings")
-//            case 1:
-//                return newViewForHeaderOrFooterWithText("Discovered Experiences")
-//            default:
-//                return newViewForHeaderOrFooterWithText("Oops...")
-//        }
-//    }
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView{
+        switch section{
+            case 0:
+                return newViewForFooterWithText("Automatically connect to nearby objects when app is open")
+            case 1:
+                return newViewForFooterWithText("Interactive objects detected around you. Tap object name to begin experience.")
+            default:
+                return newViewForFooterWithText("Oops...")
+        }
+    }
     
-    func newViewForHeaderOrFooterWithText(text: String) -> UIView{
-        let headerLabel = newLabelWithTitle(text)
+    func newHeaderLabelWithTitle(title: String) -> UILabel{
+        let label = UILabel()
+        label.text = title
+        label.backgroundColor = UIColor.clearColor()
+        label.numberOfLines = 0
+        label.sizeToFit()
+        return label
+    }
+    
+    func newFooterLabelWithTitle(title: String) -> UILabel{
+        let label = UILabel()
+        label.text = title
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        label.font =  UIFont (name: "HelveticaNeue-Light", size: 12)
+        label.backgroundColor = UIColor.clearColor()
+        label.sizeToFit()
+        return label
+    }
+    
+    func newViewForHeaderWithText(text: String) -> UIView{
+        let headerLabel = newHeaderLabelWithTitle(text)
         
         /* let's make this look correct */
         headerLabel.frame.origin.x += 10
@@ -171,6 +211,23 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         headerView.addSubview(headerLabel)
         
         return headerView
+    }
+    
+    func newViewForFooterWithText(text: String) -> UIView{
+        let footerLabel = newFooterLabelWithTitle(text)
+        
+        /* let's make this look correct */
+        footerLabel.frame.origin.x += 10
+        footerLabel.frame.origin.y = 5
+        
+        let resultFrame = CGRect(x: 0, y: 0,
+            width: footerLabel.frame.size.width + 10,
+            height: footerLabel.frame.size.height)
+        
+        let footerView = UIView(frame: resultFrame)
+        footerView.addSubview(footerLabel)
+        
+        return footerView
     }
     
     func handleRefresh(paramSender: AnyObject) {
@@ -188,14 +245,29 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
 //        
 //    }
 //    
-//    @IBAction func pressedDone(sender: AnyObject) {
-//        
-//    }
     
-    func requestInteractiveConnection(nameOfInteractive: String){
+
+    func requestInteractiveConnectionAndCloseView(nameOfInteractive: String){
+        println("trying to send connect request for \(nameOfInteractive)")
+        let interactiveDesired = nearbyInteractivesFriendly[nameOfInteractive]
         self.dismissViewControllerAnimated(true, completion:nil)
-        var requestNotificationDict: [String:String] = ["beaconInteractionID" : nameOfInteractive]
+        var requestNotificationDict: [String:PTDBean!] = ["beaconInteractionObject" : interactiveDesired]
         NSNotificationCenter.defaultCenter().postNotificationName("startInteractionRequest", object: self, userInfo: requestNotificationDict)
+    }
+    
+    func prepareInteractiveTableViewCellInformation() {
+        println("making table cell info ready")
+        for (nearbyName, bean) in nearbyBLEInteractives {
+            for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
+                if nearbyName == parseBLEName {
+                    nearbyInteractivesFriendly[parseFriendlyName] = bean
+                    nearbyInteractivesFriendlyArray.append(parseFriendlyName)
+                    println(parseFriendlyName)
+                }
+            }
+        }
+        tableCellsReady = true
+
     }
     
     
