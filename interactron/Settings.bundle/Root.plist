@@ -6,7 +6,7 @@
 	<array>
 		<dict>
 			<key>FooterText</key>
-			<string>When Magic Mode is enabled, interactron will automatically connect to nearby installations when the app is open.</string>
+			<string>When automatic Mode is enabled, interactron will connect to nearby installations when the app is open.</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
@@ -16,9 +16,9 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Enable Magic Mode</string>
+			<string>Enable automatic Mode</string>
 			<key>Key</key>
-			<string>magic_mode_enabled</string>
+			<string>automatic_mode_enabled</string>
 			<key>DefaultValue</key>
 			<true/>
 		</dict>

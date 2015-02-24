@@ -92,6 +92,7 @@ class DataManager: NSObject {
                     for PFVersion in PFVersions {
                         self.knownInteractivesFromParse[toString(PFVersion["blename"])] = toString(PFVersion.objectId)
                         self.knownInteractivesFromParseFriendlyNames[toString(PFVersion["blename"])] = toString(PFVersion["name"])
+                        println(toString(PFVersion["blename"]))
                     }
 
                     self.dataStoreReady = true

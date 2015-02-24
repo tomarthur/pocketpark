@@ -21,6 +21,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     var swipeRecognizer: UISwipeGestureRecognizer!
     
     @IBOutlet weak var settingsTable: UITableView!
+    @IBOutlet var enabledSwitch: UISwitch!
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
@@ -42,16 +43,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
 
     override func viewDidLoad() {
-        println("Howdy from Settings View")
         super.viewDidLoad()
 
-        println(nearbyBLEInteractives.count)
-        for (key, value) in nearbyBLEInteractives {
-            println("\(key) -> \(value)")
-        }
-
-//        allTimes.append(NSDate())
-        
         // Setup Table
         if let settingsTableView = settingsTable {
             settingsTableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "identifier")
@@ -120,27 +113,50 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell = tableView.dequeueReusableCellWithIdentifier("identifier", forIndexPath: indexPath) as UITableViewCell
         
         if (indexPath.section == 0) {
-            cell.textLabel?.text = "Magic Mode"
+            cell.textLabel?.text = "Automatic Mode"
             cell.selectionStyle = UITableViewCellSelectionStyle.None
-//            cell.detailTextLabel?.text = "Automatically connect to nearby objects when app is open"
-            var enabledSwitch = UISwitch(frame: CGRectZero) as UISwitch
-            enabledSwitch.on = true
+            enabledSwitch = UISwitch(frame: CGRectZero) as UISwitch
+            if let automaticModeSetting = appDelegate.prefs.boolForKey("automaticConnectionUser") as Bool?{
+                enabledSwitch.on = automaticModeSetting
+            } else{
+                //Nothing stored in NSUserDefaults yet. Set a value.
+                enabledSwitch.on = true
+            }
+            
             cell.accessoryView = enabledSwitch
+            enabledSwitch.addTarget(self, action: Selector("switchIsChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+            
         } else if (indexPath.section == 1){
             cell.textLabel?.text = nearbyInteractivesFriendlyArray[indexPath.row]
         }
         
         return cell
     }
+
+    @IBAction func switchIsChanged (sender: UISwitch) {
+        if sender.on {
+            println("on")
+            appDelegate.prefs.setValue(true, forKey: "automaticConnectionUser")
+        } else {
+            println("off")
+            appDelegate.prefs.setValue(false, forKey: "automaticConnectionUser")
+        }
+        NSNotificationCenter.defaultCenter().postNotificationName("updatedMode", object: nil)
+    }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
-        let text = cell?.textLabel?.text
+        if indexPath.section == 1 {
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            let text = cell?.textLabel?.text
+            
+            if text != nil {
+                requestInteractiveConnectionAndCloseView(text!)
+            }
+            
+        }
 
-            requestInteractiveConnectionAndCloseView(text!)
-
-       
+    
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

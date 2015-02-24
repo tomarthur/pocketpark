@@ -25,7 +25,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
 
     var bluetoothIsReady = false
     var isConnecting = false
-    var magicConnection = true
+    var automaticConnection = true
     
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -36,12 +36,10 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         didSet {
             if connectedBean == nil {
                 self.beanManagerDidUpdateState(manager)
-                status.text = "Discovering New Experiences Nearby"
-            } else {
-                
-            
-                // present connected view when beacon connection established
+                updateStatusInterface()
 
+            } else {
+                // present connected view when beacon connection established
                 let connectedViewController:ConnectedViewController = ConnectedViewController(nibName: "ConnectedView", bundle: nil)
                 
                 //Pass identifer of parse interactive object to connectedVC
@@ -49,12 +47,20 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                 connectedViewController.foundInteractiveObjectID = connectedBeanObjectID
 
                 presentViewController(connectedViewController, animated: true, completion: nil)
+                activityIndicator.stopAnimating()
             }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let automaticModeSetting = appDelegate.prefs.boolForKey("automaticConnectionUser") as Bool?{
+            automaticConnection = automaticModeSetting
+        } else{
+            //Nothing stored in NSUserDefaults yet. Set a value.
+            appDelegate.prefs.setValue(true, forKey: "automaticConnectionUser")
+        }
         
         // get notification when user wants to end experience
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:", name: "EndInteraction", object: nil)
@@ -64,6 +70,9 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         
         // get notification when iBeacon of interactive is detected or manually selected on settings view
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromRequest:", name: "startInteractionRequest", object: nil)
+        
+        // get notification when exiting settings view with automatic mode on
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateMode:", name: "updatedMode", object: nil)
         
         manager = PTDBeanManager(delegate: self)
         
@@ -90,9 +99,11 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     @IBAction func settingsButtonPressed(sender: AnyObject) {
         // stop app from connecting while we are in manual control
-        magicConnection = false
+        automaticConnection = false
         
-        manager.disconnectBean(connectedBean, error:nil)
+        if connectedBean != nil {
+            manager.disconnectBean(connectedBean, error:nil)
+        }
         
         let settingsViewController:SettingsViewController = SettingsViewController(nibName: "SettingsView", bundle: nil)
         
@@ -105,6 +116,35 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         presentViewController(settingsViewController, animated: true, completion: nil)
 
     }
+    
+    func updateStatusInterface() {
+        if automaticConnection == true {
+            activityIndicator.startAnimating()
+            status.text = "Discovering Experiences Nearby"
+        } else {
+            activityIndicator.stopAnimating()
+            status.text = "Manual Mode: Press Info for Options"
+        }
+
+    }
+    
+    func updateMode(notification: NSNotification) {
+    
+        if let automaticModeSetting = appDelegate.prefs.boolForKey("automaticConnectionUser") as Bool?{
+            automaticConnection = automaticModeSetting
+        }
+        
+        if automaticConnection == true {
+            activityIndicator.startAnimating()
+            status.text = "Discovering Experiences Nearby"
+        } else {
+            activityIndicator.stopAnimating()
+            status.text = "Manual Mode: Press Info for Options"
+        }
+    
+    
+    }
+    
     
     // MARK: PTDBeanManagerDelegate
     
@@ -148,11 +188,9 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     func startScanningForInteractives(notif: NSNotification)
     {
-        if bluetoothIsReady == true && appDelegate.dataManager.dataStoreReady == true {
-            println("start scanning")
+        if appDelegate.dataManager.dataStoreReady == true && bluetoothIsReady == true {
             self.manager.startScanningForBeans_error(nil)
-            activityIndicator.startAnimating()
-            status.text = "Discovering Experiences Nearby"
+            updateStatusInterface()
         }
     }
     
@@ -165,7 +203,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
             nearbyBLEInteractives[bean.name] = bean
         }
         
-        if connectedBean == nil && magicConnection == true
+        if connectedBean == nil && automaticConnection == true
             && appDelegate.dataManager.isInteractiveIgnored(bean.identifier) == false {
                 
                 intiateConnectionAfterInteractionCheck(bean)
@@ -201,6 +239,10 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     func beanManager(beanManager: PTDBeanManager!, didDisconnectBean bean: PTDBean!, error: NSError!) {
         println("DISCONNECTED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
         
+        if (error != nil){
+           println("error disconnecting")
+        }
+        
         // Dismiss any modal view controllers.
         presentedViewController?.dismissViewControllerAnimated(true, completion: { () in
             self.dismissViewControllerAnimated(true, completion: nil)
@@ -217,10 +259,28 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                 println("Attempting to connect to \(toString(bean.name))")
                 if (isConnecting == false){
                     isConnecting = true
-                    manager.connectToBean(bean, error: nil)
+                    
+                    activityIndicator.startAnimating()
+                    
+                    var connectError : NSError?
+                    manager.connectToBean(bean, error: &connectError)
+                    // TODO: Where is this error going when the device isn't avaialble anylonger? 
+                    if (connectError != nil){
+                        UIAlertView(
+                            title: "Unable to Contact Interactive",
+                            message: "The experience isn't able to to start. Please try again later.",
+                            delegate: self,
+                            cancelButtonTitle: "OK"
+                            ).show()
+                        return
+                    }
+                    
                     // tell the user what we've found
+                    
                     status.text = "Contacting \(appDelegate.dataManager.knownInteractivesFromParseFriendlyNames[bean.name]!)"
                 }
+            } else {
+                println("ERROR: cant find that bean")
             }
         }
     }
@@ -237,12 +297,9 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     // handles notification from beacon or settings page that a interaction is requested
     func initiateConnectionFromRequest(notification: NSNotification) {
-        println("got request")
         if let interactionInfo = notification.userInfo as? Dictionary<String, PTDBean>{
             println(interactionInfo)
             if let id = interactionInfo["beaconInteractionObject"] {
-                println(id)
-  
                 intiateConnectionAfterInteractionCheck(id)
             }
         }
