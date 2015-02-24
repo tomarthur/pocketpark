@@ -16,6 +16,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     var nearbyInteractivesFriendlyArray = [String]()
     var refreshControl: UIRefreshControl?
     var tableCellsReady = false
+
     
     //    var tableView: UITableView?
     var swipeRecognizer: UISwipeGestureRecognizer!
@@ -60,8 +61,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             settingsTableView.addSubview(refreshControl!)
             view.addSubview(settingsTableView)
         }
-        
-
         
         // Create the navigation bar
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, UIScreen.mainScreen().bounds.width, 44)) // Offset by 20 pixels vertically to take the status bar into account
@@ -117,10 +116,12 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             enabledSwitch = UISwitch(frame: CGRectZero) as UISwitch
             
-            if let automaticModeSetting = NSUserDefaults.standardUserDefaults().boolForKey("automaticConnectionUser") as Bool?{
-                enabledSwitch.on = automaticModeSetting
+            if let automaticConnectionStatus = appDelegate.defaults.boolForKey(appDelegate.automaticConnectionKeyConstant) as Bool?
+            {
+  
+               enabledSwitch.on = automaticConnectionStatus
             }
-
+            
             
             cell.accessoryView = enabledSwitch
             enabledSwitch.addTarget(self, action: Selector("switchIsChanged:"), forControlEvents: UIControlEvents.ValueChanged)
@@ -133,12 +134,13 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
 
     @IBAction func switchIsChanged (sender: UISwitch) {
+        
         if sender.on {
             println("on")
-            NSUserDefaults.standardUserDefaults().setValue(true, forKey: "automaticConnectionUser")
+            appDelegate.defaults.setBool(true, forKey: appDelegate.automaticConnectionKeyConstant)
         } else {
             println("off")
-            NSUserDefaults.standardUserDefaults().setValue(false, forKey: "automaticConnectionUser")
+            appDelegate.defaults.setBool(false, forKey: appDelegate.automaticConnectionKeyConstant)
         }
         NSNotificationCenter.defaultCenter().postNotificationName("updatedMode", object: nil)
     }

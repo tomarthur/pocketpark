@@ -25,7 +25,8 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
 
     var bluetoothIsReady = false
     var isConnecting = false
-    var automaticConnection = true
+    var haltConnections = false
+    var automaticMode = false
     
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -78,7 +79,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         
     }
 
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -92,7 +92,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     @IBAction func settingsButtonPressed(sender: AnyObject) {
         // stop app from connecting while we are in manual control
-        automaticConnection = false
+        haltConnections = true
         
         if connectedBean != nil {
             manager.disconnectBean(connectedBean, error:nil)
@@ -111,31 +111,43 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     }
     
     func updateStatusInterface() {
-        if automaticConnection == true {
-            activityIndicator.startAnimating()
-            status.text = "Discovering Experiences Nearby"
-        } else {
-            activityIndicator.stopAnimating()
-            status.text = "Manual Mode: Press Info for Options"
+        
+        if let automaticConnectionStatus = appDelegate.defaults.boolForKey(appDelegate.automaticConnectionKeyConstant) as Bool?
+        {
+            if automaticConnectionStatus == true {
+                automaticMode = true
+                activityIndicator.startAnimating()
+                status.text = "Discovering Experiences Nearby"
+                
+            } else {
+                automaticMode = false
+                activityIndicator.stopAnimating()
+                status.text = "Manual Mode: Press Info for Options"
+                
+            }
         }
+
 
     }
     
     func updateMode(notification: NSNotification) {
-    
-        if let automaticModeSetting = NSUserDefaults.standardUserDefaults().boolForKey("automaticConnectionUser") as Bool?{
-            automaticConnection = automaticModeSetting
-        }
         
-        if automaticConnection == true {
-            activityIndicator.startAnimating()
-            status.text = "Discovering Experiences Nearby"
-        } else {
-            activityIndicator.stopAnimating()
-            status.text = "Manual Mode: Press Info for Options"
+        haltConnections = false
+        
+        if let automaticConnectionStatus = appDelegate.defaults.boolForKey(appDelegate.automaticConnectionKeyConstant) as Bool?
+        {
+            if automaticConnectionStatus == true {
+                automaticMode = true
+                activityIndicator.startAnimating()
+                status.text = "Discovering Experiences Nearby"
+                
+            } else {
+                automaticMode = false
+                activityIndicator.stopAnimating()
+                status.text = "Manual Mode: Press Info for Options"
+                
+            }
         }
-    
-    
     }
     
     
@@ -197,7 +209,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
             nearbyBLEInteractives[bean.name] = bean
         }
         
-        if connectedBean == nil && automaticConnection == true
+        if connectedBean == nil && haltConnections == false && automaticMode == true
             && appDelegate.dataManager.isInteractiveIgnored(bean.identifier) == false {
                 
                 intiateConnectionAfterInteractionCheck(bean)
