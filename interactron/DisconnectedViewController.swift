@@ -20,22 +20,15 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
 
-    
     var nearbyBLEInteractives = [NSUUID:String]()
-    
-    var knownInteractivesFromParse = [String: String]()
-    var knownInteractivesFromParseFriendlyNames = [String: String]()
-    var previouslyExperiencedInteractivesToIgnore = [NSUUID]()
     var connectedBeanObjectID: String?
-    var dataStoreReady = false
+
     var bluetoothReady = false
     var isConnecting = false
     
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var settingsButton: UIButton!
-    
-    
     
     var manager: PTDBeanManager!
     var connectedBean: PTDBean? {
@@ -71,8 +64,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "startScanningForInteractives:", name: "readyToFind", object: nil)
         
         manager = PTDBeanManager(delegate: self)
-        
-        queryParseForInteractiveObjects()
         
         var backgroundColor: UIColor
         self.view.backgroundColor = .ITWelcomeColor()
@@ -121,7 +112,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         println("recieved end of experience notification")
         
         if notif.name == "EndInteraction" {
-            previouslyExperiencedInteractivesToIgnore.append(connectedBean!.identifier!)
+            appDelegate.dataManager.previouslyExperiencedInteractivesToIgnore.append(connectedBean!.identifier!)
             manager.disconnectBean(connectedBean, error:nil)
         } else {
             println("got notification but not endinteraction")
@@ -201,7 +192,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     {
         println("start scanning")
         
-        if bluetoothReady == true && dataStoreReady == true {
+        if bluetoothReady == true && appDelegate.dataManager.dataStoreReady == true {
             
             self.manager.startScanningForBeans_error(nil)
             activityIndicator.startAnimating()
@@ -219,7 +210,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         // periodically check if connected and connect to something we haven't before if it's around
         
         
-        if isInteractiveKnown(toString(bean.name)) == true {
+        if appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
             println("DISCOVERED KNOWN BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
             nearbyBLEInteractives[bean.identifier] = toString(bean.name)
         }
@@ -231,14 +222,14 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     }
     
     func intiateConnectionAfterInteractionCheck(bean: PTDBean!) {
-        if isInteractiveIgnored(bean.identifier) == false && isInteractiveKnown(toString(bean.name)) == true {
+        if appDelegate.dataManager.isInteractiveIgnored(bean.identifier) == false && appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
             if bean.state == .Discovered {
                 NSLog("Attempting to connect!")
                 if (isConnecting == false){
                     isConnecting = true
                     manager.connectToBean(bean, error: nil)
                     // tell the user what we've found
-                    status.text = "Contacting \(knownInteractivesFromParseFriendlyNames[bean.name]!)"
+                    status.text = "Contacting \(appDelegate.dataManager.knownInteractivesFromParseFriendlyNames[bean.name]!)"
                 }
             }
         }
@@ -258,7 +249,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         }
         
         if connectedBean == nil {
-            connectedBeanObjectID = knownInteractivesFromParse[bean.name]
+            connectedBeanObjectID = appDelegate.dataManager.knownInteractivesFromParse[bean.name]
             connectedBean = bean
             isConnecting = false
             
@@ -282,105 +273,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     }
     
     
-    // MARK: Handling Parse Data
-    
-    // get most recent interactives from parse cloud
-    func queryParseForInteractiveObjects() {
-    
-        // check for network availablity before requesting interactives from parse
-        if (IJReachability.isConnectedToNetwork() == true) {
-            
-            // pull latest interactive objects from Parse
-            var query = PFQuery(className:"installations")
-            query.findObjectsInBackgroundWithBlock
-                {
-                    (objects: [AnyObject]!, error: NSError!) -> Void in
-                    if error == nil
-                    {
-                        PFObject.pinAllInBackground(objects)
-                    } else {
-                        NSLog("Unable to add interactives to local data store")
-                        NSLog("Error: %@ %@", error, error.userInfo!)
-                    }
-            }
-            
-            dictionaryOfInteractivesFromLocalDatastore()
-        } else {
-            
-            // There was an error.
-            UIAlertView(
-                title: "No Internet Connection",
-                message: "You have no network connection.",
-                delegate: self,
-                cancelButtonTitle: "OK"
-                ).show()
-            NSLog("Unable to access network, checking if localdatastore is avaialble")
-            
-            // still attempt to load data if it's available
-            dictionaryOfInteractivesFromLocalDatastore()
-            
-        }
-    }
-    
-    // make a dictionary of interactives pulled from parse local data
-    func dictionaryOfInteractivesFromLocalDatastore() {
 
-        // liststhe names of all known interactive elemments found in the localstorage from Parse
-        var query = PFQuery(className:"installations")
-        query.fromLocalDatastore()
-        query.findObjectsInBackgroundWithBlock
-        {
-            (objects: [AnyObject]!, error: NSError!) -> Void in
-            if error != nil {
-                // There was an error.
-                UIAlertView(
-                    title: "No Interactives Known",
-                    message: "Connect to internet to retrieve interactives list.",
-                    delegate: self,
-                    cancelButtonTitle: "OK"
-                    ).show()
-                NSLog("Error: %@ %@", error, error.userInfo!)
-                NSLog("Unable to find interactives in local data store")
-                
-            } else {
-                var PFVersions = objects as [PFObject]
-                for PFVersion in PFVersions {
-                    self.knownInteractivesFromParse[toString(PFVersion["blename"])] = toString(PFVersion.objectId)
-                    self.knownInteractivesFromParseFriendlyNames[toString(PFVersion["blename"])] = toString(PFVersion["name"])
-                }
-                println("known interactives")
-                self.dataStoreReady = true
-                NSNotificationCenter.defaultCenter().postNotificationName("readyToFind", object: nil)
-            }
-        }
-    }
-    
-
-    
-    // quickly check dictionary to see if interactive is in the known
-    func isInteractiveKnown(foundInteractiveIdentifier: String) -> Bool{
-        NSLog(foundInteractiveIdentifier)
-        for (key, value) in knownInteractivesFromParse {
-            println("\(key) -> \(value)")
-            if (key == foundInteractiveIdentifier)
-            {
-                return true
-            }
-        }
-        return false
-    }
-    
-    // check to see if interactive is ignored because it's been played with
-    func isInteractiveIgnored(foundInteractiveUUID: NSUUID) -> Bool {
-        for ignoredUUID in previouslyExperiencedInteractivesToIgnore
-        {
-            if (foundInteractiveUUID.isEqual(ignoredUUID))
-            {
-                return true
-            }
-        }
-        return false
-    }
 }
 
 

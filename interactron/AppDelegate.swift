@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
         interactionBeaconManager.start()
+        dataManager.start()
         
         // Local Notification Registration
         if(application.respondsToSelector("registerUserNotificationSettings:")) {
