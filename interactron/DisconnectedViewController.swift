@@ -65,6 +65,9 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         // get notification when iBeacon of interactive is detected or manually selected on settings view
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromRequest:", name: "startInteractionRequest", object: nil)
         
+        // get notification when iBeacon of interactive is detected or manually selected on settings view
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromNotification:", name: "startInteractionFromNotification", object: nil)
+        
         // get notification when exiting settings view with automatic mode on
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateMode:", name: "updatedMode", object: nil)
         
@@ -310,6 +313,45 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
             }
         }
     }
+    
+    // handles notification from beacon or settings page that a interaction is requested
+    func initiateConnectionFromNotification(notification: NSNotification) {
+        if let interactionInfo = notification.userInfo as? Dictionary<String, String>{
+            println(interactionInfo)
+            if let id = interactionInfo["beaconInteractionBLEName"] {
+                findBeaconObjectFromBLEName(id)
+            }
+        }
+    }
+    
+    func findBeaconObjectFromBLEName(bleName: String) {
+        
+        for (nearbyName, bean) in nearbyBLEInteractives {
+            if bleName == nearbyName {
+                intiateConnectionAfterInteractionCheck(bean)
+            }
+        }
+        
+    }
+    
+//        func prepareInteractiveTableViewCellInformation() {
+//        println("making table cell info ready")
+//        for (nearbyName, bean) in nearbyBLEInteractives {
+//        for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
+//        if nearbyName == parseBLEName {
+//        nearbyInteractivesFriendly[parseFriendlyName] = bean
+//        nearbyInteractivesFriendlyArray.append(parseFriendlyName)
+//        println(parseFriendlyName)
+//        }
+//        }
+//        }
+//        tableCellsReady = true
+//        
+//        }
+
+        
+        
+
     
 }
 

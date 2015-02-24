@@ -226,7 +226,6 @@
 				E2B0C1A71A92819E00CB61FC /* Images.xcassets */,
 				E2B0C1F11A9290AC00CB61FC /* Controllers */,
 				E2B0C1F01A9290A600CB61FC /* Views */,
-				E2E290401A93FD27001E4D46 /* Models */,
 				E25A90971A9BB3F40059CA48 /* Utilities */,
 				E2B0C19E1A92819E00CB61FC /* Supporting Files */,
 			);
@@ -282,13 +281,6 @@
 				E201EBD41A9991EE00FA87FF /* OnboardingContentViewController.swift */,
 			);
 			name = Controllers;
-			sourceTree = "<group>";
-		};
-		E2E290401A93FD27001E4D46 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

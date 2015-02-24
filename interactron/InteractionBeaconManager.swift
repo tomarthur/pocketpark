@@ -12,7 +12,8 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager?
     var lastProximity: CLProximity?
     var sentNotification = false
-
+    
+    var previouslySentNotifications = [String:NSDate]()
     
     func start () {
         // iBeacon Regions and Notification to find Interactive Elements enabled by LightBlue Bean
@@ -36,10 +37,21 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
 
     }
     
-    func sendLocalNotificationToStartInteraction(major: NSNumber!, minor: NSNumber!) {
+    // check if beacon is for a known interactive and that it isn't ignored
+    func sendLocalNotificationToStartInteraction(beaconString: String) {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         
-        var beacoNotificationDict: [String:NSNumber] = ["Major" : major, "Minor" : minor]
-//        NSNotificationCenter.defaultCenter().postNotificationName("InteractiveBeaconDetected", object: self, userInfo: beacoNotificationDict)
+        // TODO: Add timeout to prevent multiple notifications
+        
+        if appDelegate.dataManager.isInteractiveKnown(beaconString) == true {
+            
+            for (value, key) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames{
+                if (value == beaconString){
+                    self.pushLocalInteractiveAvailableNotification(key, bleName: value)
+                    previouslySentNotifications[beaconString] = NSDate()
+                }
+            }
+        }
         
     }
     
@@ -57,22 +69,15 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
                 }
                 
                 lastProximity = nearestBeacon.proximity
+                var beaconString = toString(nearestBeacon.major) + toString(nearestBeacon.minor)
                 
                 switch nearestBeacon.proximity {
                 case CLProximity.Far:
                     return
                 case CLProximity.Near:
-                    if (sentNotification == false) {
-                        sendLocalNotificationToStartInteraction(nearestBeacon.major, minor: nearestBeacon.minor)
-                        sentNotification = true
-                    }
+                        sendLocalNotificationToStartInteraction(beaconString)
                 case CLProximity.Immediate:
-                    if (sentNotification == false) {
-                        sendLocalNotificationToStartInteraction(nearestBeacon.major, minor: nearestBeacon.minor)
-                        sentNotification = true
-                        println(nearestBeacon.major)
-                        println(nearestBeacon.minor)
-                    }
+                        sendLocalNotificationToStartInteraction(beaconString)
                 case CLProximity.Unknown:
                     return
                 }
@@ -100,39 +105,23 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
             NSLog("You exited the region")
     }
     
-    func pushLocalInteractiveAvailableNotification(friendlyName: String) {
+    func pushLocalInteractiveAvailableNotification(friendlyName: String, bleName: String) {
         
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+
         var interactionNearbyNotification = UILocalNotification()
-        interactionNearbyNotification.alertBody = "\(friendlyName) is ready to control nearby."
+        interactionNearbyNotification.alertBody = "Play with \(friendlyName) nearby."
         interactionNearbyNotification.hasAction = true
         interactionNearbyNotification.alertAction = "begin"
+        interactionNearbyNotification.userInfo = [
+            "friendlyName" : friendlyName,
+            "bleName" : bleName
+        ]
         
         // first check to make sure the interactive is on the list
         UIApplication.sharedApplication().scheduleLocalNotification(interactionNearbyNotification)
-        
+
     }
     
-    
-//    func checkForInteractiveWithBeacon(notif: NSNotification) {
-//        // TODO: Implement iBeacon Check
-//        println("recieved beacon check request")
-//        
-//        if notif.name == "InteractiveBeaconDetected" {
-//            
-//            if let info = notif.userInfo as? Dictionary<String,NSNumber> {
-//                // Check if value present before using it
-//                if let s = info["major"] {
-//                    self.pushLocalInteractiveAvailableNotification(toString(s))
-//                    print(s)
-//                }
-//                else {
-//                    print("no value for key\n")
-//                }
-//            }
-//            else {
-//                print("wrong userInfo type")
-//            }
-//        }
-//    }
 }
 

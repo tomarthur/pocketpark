@@ -17,11 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow?
     var interactionBeaconManager = InteractionBeaconManager()
     var dataManager = DataManager()
-    let defaults = NSUserDefaults.standardUserDefaults()
-    let automaticConnectionKeyConstant = "automaticConnectionUser"
-    
 
     
+    let defaults = NSUserDefaults.standardUserDefaults()
+    let automaticConnectionKeyConstant = "automaticConnectionUser"
+    let settingsBundle = NSBundle.mainBundle().pathForResource("Root", ofType: "plist")
+//    let settings = NSDictionary(contentsOfFile: settingsBundle!)
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Parse framework for analytics, data and bug tracking
         ParseCrashReporting.enable()
@@ -34,29 +36,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         dataManager.start()
         interactionBeaconManager.start()
         
-
+        // check to see if user has set automatic mode
         if defaults.objectForKey(automaticConnectionKeyConstant) == nil {
             defaults.setBool(true, forKey: automaticConnectionKeyConstant)
+            // TODO: SETTINGS BUNDLE
         }
         
-        // Local Notification Registration
-        if(application.respondsToSelector("registerUserNotificationSettings:")) {
-            application.registerUserNotificationSettings(
-                UIUserNotificationSettings(
-                    forTypes: UIUserNotificationType.Alert | UIUserNotificationType.Sound,
-                    categories: nil
-                )
-            )
-        }
+        askForNotificationPermissionForApplication(application)
         
+        var disconnectedViewController = DisconnectedViewController(nibName: "DisconnectedView", bundle: nil)
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        
-        var mainViewController = DisconnectedViewController(nibName: "DisconnectedView", bundle: nil)
         
         if let window = window {
             var backgroundColor: UIColor
             window.backgroundColor = .ITWelcomeColor()
-            window.rootViewController = mainViewController
+            window.rootViewController = disconnectedViewController
             window.makeKeyAndVisible()
         }
         
@@ -72,11 +66,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        interactionBeaconManager.locationManager?.startUpdatingLocation()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-//        locationManager?.stopUpdatingLocation()
+        interactionBeaconManager.locationManager?.stopUpdatingLocation()
         
     }
 
@@ -88,4 +83,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+//    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+//        <#code#>
+//    }
+    
+    func askForNotificationPermissionForApplication(application: UIApplication){
+        // Local Notification Registration
+        if(application.respondsToSelector("registerUserNotificationSettings:")) {
+            application.registerUserNotificationSettings(
+                UIUserNotificationSettings(
+                    forTypes: UIUserNotificationType.Alert | UIUserNotificationType.Sound,
+                    categories: nil
+                )
+            )
+        }
+        
+    }
+    
+    func application(application: UIApplication,
+        didReceiveLocalNotification notification: UILocalNotification) {
+            
+            let friendlyName = notification.userInfo!["friendlyName"] as? String
+            let bleName = notification.userInfo!["bleName"] as? String
+
+            if friendlyName != nil && bleName != nil{
+                var requestNotificationDict: [String:String] = ["beaconInteractionBLEName" : bleName!]
+                NSNotificationCenter.defaultCenter().postNotificationName("startInteractionFromNotification", object: self, userInfo: requestNotificationDict)
+            } else {
+                /* This is not the notification that we composed */
+            }
+            
+            
+    }
 }

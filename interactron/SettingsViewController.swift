@@ -267,7 +267,9 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     func requestInteractiveConnectionAndCloseView(nameOfInteractive: String){
         println("trying to send connect request for \(nameOfInteractive)")
         let interactiveDesired = nearbyInteractivesFriendly[nameOfInteractive]
+        
         self.dismissViewControllerAnimated(true, completion:nil)
+        
         var requestNotificationDict: [String:PTDBean!] = ["beaconInteractionObject" : interactiveDesired]
         NSNotificationCenter.defaultCenter().postNotificationName("startInteractionRequest", object: self, userInfo: requestNotificationDict)
     }

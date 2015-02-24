@@ -6,7 +6,7 @@
 	<array>
 		<dict>
 			<key>FooterText</key>
-			<string>When automatic Mode is enabled, interactron will connect to nearby installations when the app is open.</string>
+			<string>When Automatic Mode is enabled, interactron will connect to nearby installations when the app is open.</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
