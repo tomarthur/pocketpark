@@ -17,8 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow?
     var interactionBeaconManager = InteractionBeaconManager()
     var dataManager = DataManager()
-    let prefs = NSUserDefaults.standardUserDefaults()
-    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Parse framework for analytics, data and bug tracking
         ParseCrashReporting.enable()
@@ -28,8 +26,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 clientKey: "dVeENxp57pgP3Zwqlez4U2G8O64B1tXQUBKsgTC1")
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
-        interactionBeaconManager.start()
         dataManager.start()
+        interactionBeaconManager.start()
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey("automaticConnectionUser") {
+            println("saved")
+        } else {
+            NSUserDefaults.standardUserDefaults().setValue(true, forKey: "automaticConnectionUser")
+        }
+        
         
         // Local Notification Registration
         if(application.respondsToSelector("registerUserNotificationSettings:")) {

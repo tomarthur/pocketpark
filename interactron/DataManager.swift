@@ -34,7 +34,7 @@ class DataManager: NSObject {
         
         // check for network availablity before requesting interactives from parse
         if (IJReachability.isConnectedToNetwork() == true) {
-            
+            println("getting to query")
             // pull latest interactive objects from Parse
             var query = PFQuery(className:"installations")
             query.findObjectsInBackgroundWithBlock
@@ -43,13 +43,14 @@ class DataManager: NSObject {
                     if error == nil
                     {
                         PFObject.pinAllInBackground(objects)
+                        self.dictionaryOfInteractivesFromLocalDatastore()
                     } else {
                         NSLog("Unable to add interactives to local data store")
                         NSLog("Error: %@ %@", error, error.userInfo!)
                     }
             }
             
-            dictionaryOfInteractivesFromLocalDatastore()
+            
         } else {
             
             // There was an error.
@@ -69,7 +70,7 @@ class DataManager: NSObject {
     
     // make a dictionary of interactives pulled from parse local data
     func dictionaryOfInteractivesFromLocalDatastore() {
-        
+        println("getting to dictionary")
         // liststhe names of all known interactive elemments found in the localstorage from Parse
         var query = PFQuery(className:"installations")
         query.fromLocalDatastore()
@@ -92,7 +93,7 @@ class DataManager: NSObject {
                     for PFVersion in PFVersions {
                         self.knownInteractivesFromParse[toString(PFVersion["blename"])] = toString(PFVersion.objectId)
                         self.knownInteractivesFromParseFriendlyNames[toString(PFVersion["blename"])] = toString(PFVersion["name"])
-                        println(toString(PFVersion["blename"]))
+                        println(PFVersion)
                     }
 
                     self.dataStoreReady = true

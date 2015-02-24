@@ -55,13 +55,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let automaticModeSetting = appDelegate.prefs.boolForKey("automaticConnectionUser") as Bool?{
-            automaticConnection = automaticModeSetting
-        } else{
-            //Nothing stored in NSUserDefaults yet. Set a value.
-            appDelegate.prefs.setValue(true, forKey: "automaticConnectionUser")
-        }
-        
         // get notification when user wants to end experience
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:", name: "EndInteraction", object: nil)
       
@@ -130,7 +123,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     func updateMode(notification: NSNotification) {
     
-        if let automaticModeSetting = appDelegate.prefs.boolForKey("automaticConnectionUser") as Bool?{
+        if let automaticModeSetting = NSUserDefaults.standardUserDefaults().boolForKey("automaticConnectionUser") as Bool?{
             automaticConnection = automaticModeSetting
         }
         
@@ -189,6 +182,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     func startScanningForInteractives(notif: NSNotification)
     {
         if appDelegate.dataManager.dataStoreReady == true && bluetoothIsReady == true {
+            println("Data is \(appDelegate.dataManager.dataStoreReady) and bluetooth is: \(bluetoothIsReady)")
             self.manager.startScanningForBeans_error(nil)
             updateStatusInterface()
         }

@@ -116,12 +116,11 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             cell.textLabel?.text = "Automatic Mode"
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             enabledSwitch = UISwitch(frame: CGRectZero) as UISwitch
-            if let automaticModeSetting = appDelegate.prefs.boolForKey("automaticConnectionUser") as Bool?{
+            
+            if let automaticModeSetting = NSUserDefaults.standardUserDefaults().boolForKey("automaticConnectionUser") as Bool?{
                 enabledSwitch.on = automaticModeSetting
-            } else{
-                //Nothing stored in NSUserDefaults yet. Set a value.
-                enabledSwitch.on = true
             }
+
             
             cell.accessoryView = enabledSwitch
             enabledSwitch.addTarget(self, action: Selector("switchIsChanged:"), forControlEvents: UIControlEvents.ValueChanged)
@@ -136,10 +135,10 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBAction func switchIsChanged (sender: UISwitch) {
         if sender.on {
             println("on")
-            appDelegate.prefs.setValue(true, forKey: "automaticConnectionUser")
+            NSUserDefaults.standardUserDefaults().setValue(true, forKey: "automaticConnectionUser")
         } else {
             println("off")
-            appDelegate.prefs.setValue(false, forKey: "automaticConnectionUser")
+            NSUserDefaults.standardUserDefaults().setValue(false, forKey: "automaticConnectionUser")
         }
         NSNotificationCenter.defaultCenter().postNotificationName("updatedMode", object: nil)
     }
