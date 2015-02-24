@@ -39,7 +39,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     func sendLocalNotificationToStartInteraction(major: NSNumber!, minor: NSNumber!) {
         
         var beacoNotificationDict: [String:NSNumber] = ["Major" : major, "Minor" : minor]
-        NSNotificationCenter.defaultCenter().postNotificationName("InteractiveBeaconDetected", object: self, userInfo: beacoNotificationDict)
+//        NSNotificationCenter.defaultCenter().postNotificationName("InteractiveBeaconDetected", object: self, userInfo: beacoNotificationDict)
         
     }
     
@@ -99,5 +99,40 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
             sentNotification = false
             NSLog("You exited the region")
     }
+    
+    func pushLocalInteractiveAvailableNotification(friendlyName: String) {
+        
+        var interactionNearbyNotification = UILocalNotification()
+        interactionNearbyNotification.alertBody = "\(friendlyName) is ready to control nearby."
+        interactionNearbyNotification.hasAction = true
+        interactionNearbyNotification.alertAction = "begin"
+        
+        // first check to make sure the interactive is on the list
+        UIApplication.sharedApplication().scheduleLocalNotification(interactionNearbyNotification)
+        
+    }
+    
+    
+//    func checkForInteractiveWithBeacon(notif: NSNotification) {
+//        // TODO: Implement iBeacon Check
+//        println("recieved beacon check request")
+//        
+//        if notif.name == "InteractiveBeaconDetected" {
+//            
+//            if let info = notif.userInfo as? Dictionary<String,NSNumber> {
+//                // Check if value present before using it
+//                if let s = info["major"] {
+//                    self.pushLocalInteractiveAvailableNotification(toString(s))
+//                    print(s)
+//                }
+//                else {
+//                    print("no value for key\n")
+//                }
+//            }
+//            else {
+//                print("wrong userInfo type")
+//            }
+//        }
+//    }
 }
 

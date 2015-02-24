@@ -10,28 +10,14 @@ import UIKit
 
 class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate {
     
-    var nearbyBLEInteractives = [NSUUID:String]()
-    
-    @IBOutlet weak var settingsTable: UITableView!
-//    let disconnectedViewController = UIApplication.sharedApplication(). as AppDelegate
-//    let disconnectedViewController = deleg
-////    delegate
-    
-    var allTimes = [NSDate]()
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    var nearbyBLEInteractives = [String:PTDBean]()
     var refreshControl: UIRefreshControl?
     
-    var tableView: UITableView?
+    //    var tableView: UITableView?
     var swipeRecognizer: UISwipeGestureRecognizer!
     
-    func handleSwipes(sender: UISwipeGestureRecognizer){
-        if sender.direction == .Right{
-            self.dismissViewControllerAnimated(true, completion:nil)
-        }
-    }
-    
-    func closeSettings(){
-        self.dismissViewControllerAnimated(true, completion:nil)
-    }
+    @IBOutlet weak var settingsTable: UITableView!
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
@@ -40,17 +26,28 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return .TopAttached
     }
+    
+    func handleSwipes(sender: UISwipeGestureRecognizer){
+        if sender.direction == .Right{
+            self.dismissViewControllerAnimated(true, completion:nil)
+        }
+    }
+    
+    func closeSettings(sender: UIBarButtonItem){
+        self.dismissViewControllerAnimated(true, completion:nil)
+    }
+    
 
     override func viewDidLoad() {
         println("Howdy from Settings View")
         super.viewDidLoad()
-        
+
         println(nearbyBLEInteractives.count)
         for (key, value) in nearbyBLEInteractives {
             println("\(key) -> \(value)")
         }
 
-        allTimes.append(NSDate())
+//        allTimes.append(NSDate())
         
         // Setup Table
         if let settingsTableView = settingsTable {
@@ -93,6 +90,11 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         swipeRecognizer.direction = .Right
         swipeRecognizer.numberOfTouchesRequired = 1
         
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -175,7 +177,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC))
         dispatch_after(popTime, dispatch_get_main_queue(), {
-            self.allTimes.append(NSDate())
+//            self.allTimes.append(NSDate())
             self.refreshControl!.endRefreshing()
 //            let indexPathOfNewRow = NSIndexPath(forRow: self.allTimes.count - 1, inSection: 1)
 //            self.settingsTable.insertRowsAtIndexPaths([indexPathOfNewRow], withRowAnimation: .Automatic)
@@ -189,6 +191,12 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
 //    @IBAction func pressedDone(sender: AnyObject) {
 //        
 //    }
+    
+    func requestInteractiveConnection(nameOfInteractive: String){
+        self.dismissViewControllerAnimated(true, completion:nil)
+        var requestNotificationDict: [String:String] = ["beaconInteractionID" : nameOfInteractive]
+        NSNotificationCenter.defaultCenter().postNotificationName("startInteractionRequest", object: self, userInfo: requestNotificationDict)
+    }
     
     
 }

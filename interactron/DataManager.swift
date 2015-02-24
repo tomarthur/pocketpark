@@ -93,7 +93,7 @@ class DataManager: NSObject {
                         self.knownInteractivesFromParse[toString(PFVersion["blename"])] = toString(PFVersion.objectId)
                         self.knownInteractivesFromParseFriendlyNames[toString(PFVersion["blename"])] = toString(PFVersion["name"])
                     }
-                    println("known interactives")
+
                     self.dataStoreReady = true
                     NSNotificationCenter.defaultCenter().postNotificationName("readyToFind", object: nil)
                 }
@@ -104,9 +104,7 @@ class DataManager: NSObject {
     
     // quickly check dictionary to see if interactive is in the known
     func isInteractiveKnown(foundInteractiveIdentifier: String) -> Bool{
-        NSLog(foundInteractiveIdentifier)
         for (key, value) in knownInteractivesFromParse {
-            println("\(key) -> \(value)")
             if (key == foundInteractiveIdentifier)
             {
                 return true
