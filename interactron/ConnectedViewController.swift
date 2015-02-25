@@ -15,9 +15,10 @@
 
 import UIKit
 import CoreMotion
+import AVFoundation
 
 
-class ConnectedViewController: UIViewController, PTDBeanDelegate {
+class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorderDelegate{
     
     // Bluetooth Interactive Control
     var connectedBean: PTDBean?
@@ -26,8 +27,13 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
     var interactionMode: String?
     
     // Sensor Readings
-    lazy var motionManager = CMMotionManager()
     var swipeRecognizer: UISwipeGestureRecognizer!
+    lazy var motionManager = CMMotionManager()
+    
+    var audioRecorder: AVAudioRecorder?
+    var loudnessTimer: NSTimer?
+    var lowPassResults: Double = 0.0
+    
     
     // UI
     
@@ -170,7 +176,8 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
         
         switch modeString{
             case "gyro-rotate":
-                activateRotationMotion()
+//                activateRotationMotion()
+                askForMicrophonePermission()
             case "shake":
                 activateShakeDetect()
             case "sound":
@@ -210,7 +217,110 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
             
         }
     }
+    
+    func askForMicrophonePermission() {
+        var error: NSError?
+        let session = AVAudioSession.sharedInstance()
+        
+        if session.setCategory(AVAudioSessionCategoryPlayAndRecord,
+            withOptions: .DuckOthers, error: &error) {
+                if session.setActive(true, error: nil){
+                    session.requestRecordPermission{[weak self](allowed: Bool) in
+                        if allowed {
+                            self?.startListeningToAudioLoudness()
+                        } else {
+                            println("user didn't give permission")
+                        }
+                    }
 
+                } else {
+                 println("Couldn't start audio session")
+                }
+        } else {
+            if let audioError = error{
+                println("An error occured in setting the audio" + "session category. Error = \(audioError)")
+            }
+            
+        }
+    }
 
+    func startListeningToAudioLoudness(){
+        var error: NSError?
+        
+        let audioRecordingURL = self.audioRecordingPath()
+        
+        audioRecorder = AVAudioRecorder(URL: audioRecordingURL,
+            settings: audioRecordingSettings(), error: &error)
+        
+        if let recorder = audioRecorder{
+            recorder.delegate = self
+            
+            if recorder.prepareToRecord() && recorder.record(){
+                recorder.meteringEnabled = true
+                
+                loudnessTimer = NSTimer.scheduledTimerWithTimeInterval(0.03, target: self, selector: "getLevels:", userInfo: nil, repeats: true)
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: "endAudioInteraction:",
+                    name: "EndInteraction", object: nil)
+                println("Successuly started record")
+            } else {
+                println("Failed to record.")
+                audioRecorder = nil
+            }
+        } else {
+            println("Failed to create audio recorder instance")
+        }
+    }
+    
+    func getLevels(timer: NSTimer){
+        if let recorder = audioRecorder{
+            recorder.updateMeters()
+            let alpha:Double = 0.05
+            var peakPowerForChannel:Double = pow(10, (0.05 * Double(recorder.peakPowerForChannel(0))))
+            lowPassResults = alpha * peakPowerForChannel + (1.0 - alpha) * lowPassResults
+
+            println("average input: \(recorder.averagePowerForChannel(0)) peak input:\(recorder.peakPowerForChannel(0)) lowPassResult \(lowPassResults)")
+        } else {
+            println("couldn't get recorder")
+        }
+
+    }
+    
+    func audioRecordingPath() -> NSURL {
+        return NSURL.fileURLWithPath("/dev/null")!
+    }
+    
+    func audioRecordingSettings() -> NSDictionary {
+        
+        return [
+            AVFormatIDKey: kAudioFormatAppleLossless,
+            AVSampleRateKey: 44100.0,
+            AVNumberOfChannelsKey: 1,
+            AVEncoderAudioQualityKey: AVAudioQuality.High.rawValue as NSNumber
+        ]
+
+    }
+    
+    func audioRecorderBeginInterruption(recorder: AVAudioRecorder!) {
+        println("interuption started")
+    }
+    
+    func audioRecorderEndInterruption(recorder: AVAudioRecorder!) {
+        println("interuption ended")
+    }
+    
+    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
+        
+    }
+    
+    func endAudioInteraction(notification: NSNotification){
+            loudnessTimer?.invalidate()
+        if let recorder = audioRecorder{
+                recorder.stop()
+        }
+        println("ended audio interaction")
+        
+    }
+    
+    
     
 }

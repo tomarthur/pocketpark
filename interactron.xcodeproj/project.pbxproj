@@ -44,6 +44,7 @@
 		E2B0C1EF1A92909A00CB61FC /* ConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1EE1A92909A00CB61FC /* ConnectedViewController.swift */; };
 		E2BAEDF41A9D69930042889B /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2BAEDF31A9D69930042889B /* Media.xcassets */; };
 		E2BAEDF81A9D6C680042889B /* bulb-1.png in Resources */ = {isa = PBXBuildFile; fileRef = E2BAEDF71A9D6C680042889B /* bulb-1.png */; };
+		E2BAEDFA1A9D89460042889B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BAEDF91A9D89460042889B /* AVFoundation.framework */; };
 		E2E4CD761A991EC400F24AAB /* DisconnectedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2E4CD751A991EC400F24AAB /* DisconnectedView.xib */; };
 		E2E4CD781A991ED800F24AAB /* ConnectedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2E4CD771A991ED800F24AAB /* ConnectedView.xib */; };
 		E2E4CD7A1A99393F00F24AAB /* InteractionBeaconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E4CD791A99393F00F24AAB /* InteractionBeaconManager.swift */; };
@@ -103,6 +104,7 @@
 		E2B0C1EE1A92909A00CB61FC /* ConnectedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedViewController.swift; sourceTree = "<group>"; };
 		E2BAEDF31A9D69930042889B /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E2BAEDF71A9D6C680042889B /* bulb-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bulb-1.png"; sourceTree = "<group>"; };
+		E2BAEDF91A9D89460042889B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		E2E4CD751A991EC400F24AAB /* DisconnectedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisconnectedView.xib; sourceTree = "<group>"; };
 		E2E4CD771A991ED800F24AAB /* ConnectedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectedView.xib; sourceTree = "<group>"; };
 		E2E4CD791A99393F00F24AAB /* InteractionBeaconManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionBeaconManager.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2BAEDFA1A9D89460042889B /* AVFoundation.framework in Frameworks */,
 				E2B0C1EC1A928D2600CB61FC /* libstdc++.6.dylib in Frameworks */,
 				E2B0C1C91A92855100CB61FC /* AudioToolbox.framework in Frameworks */,
 				E2B0C1DF1A92859500CB61FC /* libsqlite3.dylib in Frameworks */,
@@ -148,6 +151,7 @@
 		79D800E76E8A5F641A41773E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E2BAEDF91A9D89460042889B /* AVFoundation.framework */,
 				E2B0C1EB1A928D2600CB61FC /* libstdc++.6.dylib */,
 				E2B0C1E91A928CF800CB61FC /* ParseCrashReporting.framework */,
 				E2B0C1E31A92870800CB61FC /* Bolts.framework */,
