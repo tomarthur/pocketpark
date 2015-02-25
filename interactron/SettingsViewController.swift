@@ -12,8 +12,10 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     var nearbyBLEInteractives = [String:PTDBean]()
+    var nearbyBLEInteractivesLastSeen = [String:NSDate]()
     var nearbyInteractivesFriendly = [String:PTDBean]()
     var nearbyInteractivesFriendlyArray = [String]()
+    
     var refreshControl: UIRefreshControl?
     var tableCellsReady = false
 
@@ -47,6 +49,29 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
 
         // Setup Table
+        makeSettingsTableView()
+        makeNavigationBar()
+        setupSwipes()
+
+        
+        prepareInteractiveTableViewCellInformation()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        // TODO: Update dictionary when new things are discovered
+        println("Bye settings")
+    }
+    
+    func setupSwipes() {
+        // Swipe to go back
+        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
+        self.view.addGestureRecognizer(swipeRecognizer)
+        swipeRecognizer.direction = .Right
+        swipeRecognizer.numberOfTouchesRequired = 1
+        
+    }
+    
+    func makeSettingsTableView() {
         if let settingsTableView = settingsTable {
             settingsTableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "identifier")
             
@@ -62,6 +87,9 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             view.addSubview(settingsTableView)
         }
         
+    }
+    
+    func makeNavigationBar() {
         // Create the navigation bar
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, UIScreen.mainScreen().bounds.width, 44)) // Offset by 20 pixels vertically to take the status bar into account
         var backgroundColor: UIColor
@@ -75,19 +103,13 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "closeSettings:")
         backButton.tintColor = UIColor.whiteColor()
-//        backButton.tit = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        //        backButton.tit = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         navigationItem.leftBarButtonItem = backButton
         
         navigationBar.items = [navigationItem]
         self.view.addSubview(navigationBar)
+
         
-        // Swipe to go back
-        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
-        self.view.addGestureRecognizer(swipeRecognizer)
-        swipeRecognizer.direction = .Right
-        swipeRecognizer.numberOfTouchesRequired = 1
-        
-        prepareInteractiveTableViewCellInformation()
     }
     
     override func didReceiveMemoryWarning() {
@@ -111,7 +133,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("identifier", forIndexPath: indexPath) as UITableViewCell
+//        let cell = tableView.dequeueReusableCellWithIdentifier("identifier", forIndexPath: indexPath) as UITableViewCell
+        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Identifier")
         
         if (indexPath.section == 0) {
             cell.textLabel?.text = "Automatic Mode"
@@ -120,16 +143,16 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             
             if let automaticConnectionStatus = appDelegate.defaults.boolForKey(appDelegate.automaticConnectionKeyConstant) as Bool?
             {
-  
                enabledSwitch.on = automaticConnectionStatus
             }
-            
-            
+    
             cell.accessoryView = enabledSwitch
             enabledSwitch.addTarget(self, action: Selector("switchIsChanged:"), forControlEvents: UIControlEvents.ValueChanged)
             
         } else if (indexPath.section == 1){
             cell.textLabel?.text = nearbyInteractivesFriendlyArray[indexPath.row]
+            let lastSeenTime = getLastSeenTime(nearbyBLEInteractivesLastSeen[nearbyInteractivesFriendlyArray[indexPath.row]]!)
+            cell.detailTextLabel?.text = "Last discovered at \(lastSeenTime)"
         }
         
         return cell
@@ -177,7 +200,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             case 0:
                 return newViewForHeaderWithText("Experience Settings")
             case 1:
-                return newViewForHeaderWithText("Discovered Experiences")
+                return newViewForHeaderWithText("Nearby Experiences")
             default:
                 return newViewForHeaderWithText("Oops...")
         }
@@ -189,7 +212,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             case 0:
                 return newViewForFooterWithText("Automatically connect to nearby objects when app is open")
             case 1:
-                return newViewForFooterWithText("Interactive objects detected around you. Tap object name to begin experience.")
+                return newViewForFooterWithText("Interactive objects detected around you.\nTap object name to begin experience.")
             default:
                 return newViewForFooterWithText("Oops...")
         }
@@ -253,17 +276,13 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC))
         dispatch_after(popTime, dispatch_get_main_queue(), {
-//            self.allTimes.append(NSDate())
             self.refreshControl!.endRefreshing()
 //            let indexPathOfNewRow = NSIndexPath(forRow: self.allTimes.count - 1, inSection: 1)
 //            self.settingsTable.insertRowsAtIndexPaths([indexPathOfNewRow], withRowAnimation: .Automatic)
         
         })
     }
-//    func addSettingsToTableView {
-//        
-//    }
-//    
+
     
 
     func requestInteractiveConnectionAndCloseView(nameOfInteractive: String){
@@ -282,6 +301,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
                 if nearbyName == parseBLEName {
                     nearbyInteractivesFriendly[parseFriendlyName] = bean
+                    nearbyBLEInteractivesLastSeen[parseFriendlyName] = bean.lastDiscovered
                     nearbyInteractivesFriendlyArray.append(parseFriendlyName)
                     println(parseFriendlyName)
                 }
@@ -289,6 +309,15 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         tableCellsReady = true
 
+    }
+    
+    func getLastSeenTime(lastDiscoveredTime: NSDate) -> String {
+        let dateFormatter = NSDateFormatter()
+        let theTimeFormat = NSDateFormatterStyle.ShortStyle
+        
+        dateFormatter.timeStyle = theTimeFormat
+        
+        return dateFormatter.stringFromDate(lastDiscoveredTime)
     }
     
     
