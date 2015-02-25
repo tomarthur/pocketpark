@@ -258,7 +258,9 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
             if recorder.prepareToRecord() && recorder.record(){
                 recorder.meteringEnabled = true
                 
-                loudnessTimer = NSTimer.scheduledTimerWithTimeInterval(0.03, target: self, selector: "getLevels:", userInfo: nil, repeats: true)
+                let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+                dispatch_sync(queue, startTimer)
+                
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: "endAudioInteraction:",
                     name: "EndInteraction", object: nil)
                 println("Successuly started record")
@@ -269,6 +271,11 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
         } else {
             println("Failed to create audio recorder instance")
         }
+    }
+    
+    func startTimer() {
+        
+        loudnessTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "getLevels:", userInfo: nil, repeats: true)
     }
     
     func getLevels(timer: NSTimer){
@@ -313,7 +320,8 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
     }
     
     func endAudioInteraction(notification: NSNotification){
-            loudnessTimer?.invalidate()
+        
+        loudnessTimer?.invalidate()
         if let recorder = audioRecorder{
                 recorder.stop()
         }
