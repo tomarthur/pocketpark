@@ -37,24 +37,6 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
 
     }
     
-    // check if beacon is for a known interactive and that it isn't ignored
-    func sendLocalNotificationToStartInteraction(beaconString: String) {
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        
-        // TODO: Add timeout to prevent multiple notifications
-        
-        if appDelegate.dataManager.isInteractiveKnown(beaconString) == true {
-            
-            for (value, key) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames{
-                if (value == beaconString){
-                    self.pushLocalInteractiveAvailableNotification(key, bleName: value)
-                    previouslySentNotifications[beaconString] = NSDate()
-                }
-            }
-        }
-        
-    }
-    
     func locationManager(manager: CLLocationManager!,
         didRangeBeacons beacons: [AnyObject]!,
         inRegion region: CLBeaconRegion!) {
@@ -122,6 +104,54 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         UIApplication.sharedApplication().scheduleLocalNotification(interactionNearbyNotification)
 
     }
+    
+    // check if beacon is for a known interactive and that it isn't ignored
+    func sendLocalNotificationToStartInteraction(beaconString: String) {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        
+        // TODO: Add timeout to prevent multiple notifications
+        let appState : UIApplicationState = UIApplication.sharedApplication().applicationState
+        
+        if appState != UIApplicationState.Active
+            {
+                
+            if appDelegate.dataManager.isInteractiveKnown(beaconString) == true {
+                //if (beaconIsIgnored(beaconString) == false) {
+                    for (value, key) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames{
+                        if (value == beaconString){
+                            println("send local notification")
+                            
+                            self.pushLocalInteractiveAvailableNotification(key, bleName: value)
+                            previouslySentNotifications[beaconString] = NSDate()
+                        }
+                    }
+                //}
+            }
+        }
+        
+    }
+    
+//    func beaconIsIgnored(beaconString: String) -> Bool {
+//        let currentTime = NSDate()
+//        let calendar = NSCalendar.currentCalendar()
+//        let comps = NSDateComponents()
+//        
+//        comps.minute = 5
+//        
+//        let date2 = calendar.dateByAddingComponents(comps, toDate: NSDate(), options: NSCalendarOptions.allZeros)
+//        
+//        if dueDate.compare(date2!) == NSComparisonResult.OrderedDescending
+//        {
+//            NSLog("not due within a week");
+//        } else if dueDate.compare(date2!) == NSComparisonResult.OrderedAscending
+//        {
+//            NSLog("due within a week");
+//        } else
+//        {
+//            NSLog("due in exactly a week (to the second, this will rarely happen in practice)");
+//        }
+//        
+//    }
     
 }
 

@@ -22,13 +22,12 @@ class DataManager: NSObject {
         queryParseForInteractiveObjects()
     }
     
-    
     func retrieveUpdates() {
-        
+        queryParseForInteractiveObjects()
     }
     
     // MARK: Handling Parse Data
-    
+
     // get most recent interactives from parse cloud
     func queryParseForInteractiveObjects() {
         
@@ -101,8 +100,6 @@ class DataManager: NSObject {
                 }
         }
     }
-    
-    
     
     // quickly check dictionary to see if interactive is in the known
     func isInteractiveKnown(foundInteractiveIdentifier: String) -> Bool{

@@ -1,30 +1,21 @@
 //
 //  CustomColors.swift
-//  Cool Beans
+//  interactron
 //
-//  Created by Kyle on 11/13/14.
+//  Created by Tom Arthur on 2/16/15.
+//  Copyright (c) 2015 Tom Arthur. All rights reserved.
+//
+//  Adapted from:
+//  CustomColors.swift
+//  Cool Beans
+//  Created by Kyle on 11/14/14.
 //  Copyright (c) 2014 Kyle Weiner. All rights reserved.
+//  Cool Beans is MIT Licensed.
 //
 
 extension UIColor {
     
-    // MARK: Temperature Colors
-
-    class func CBHotColor() -> UIColor {
-        return UIColor(rgba: "#FF2851")
-    }
-
-    class func CBWarmColor() -> UIColor {
-        return UIColor(rgba: "#FF9600")
-    }
-
-    class func CBCoolColor() -> UIColor {
-        return UIColor(rgba: "#FFCD00")
-    }
-
-    class func CBColdColor() -> UIColor {
-        return UIColor(rgba: "#54C7FC")
-    }
+    // MARK: UI Colors
     
     class func ITWelcomeColor() -> UIColor {
         return UIColor(rgba: "#34495E")

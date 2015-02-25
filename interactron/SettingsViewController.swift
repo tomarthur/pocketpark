@@ -74,6 +74,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "closeSettings:")
+        backButton.tintColor = UIColor.whiteColor()
+//        backButton.tit = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         navigationItem.leftBarButtonItem = backButton
         
         navigationBar.items = [navigationItem]

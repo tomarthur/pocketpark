@@ -22,7 +22,6 @@
 		E28B09261A9C011C003B3918 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B09251A9C011C003B3918 /* DataManager.swift */; };
 		E2B0C1A11A92819E00CB61FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */; };
 		E2B0C1A31A92819E00CB61FC /* DisconnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */; };
-		E2B0C1A81A92819E00CB61FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B0C1A71A92819E00CB61FC /* Images.xcassets */; };
 		E2B0C1AB1A92819E00CB61FC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B0C1A91A92819E00CB61FC /* LaunchScreen.xib */; };
 		E2B0C1B71A92819E00CB61FC /* interactronTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1B61A92819E00CB61FC /* interactronTests.swift */; };
 		E2B0C1C71A92851900CB61FC /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1C61A92851900CB61FC /* Accounts.framework */; };
@@ -43,6 +42,8 @@
 		E2B0C1EA1A928CF800CB61FC /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1E91A928CF800CB61FC /* ParseCrashReporting.framework */; };
 		E2B0C1EC1A928D2600CB61FC /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1EB1A928D2600CB61FC /* libstdc++.6.dylib */; };
 		E2B0C1EF1A92909A00CB61FC /* ConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1EE1A92909A00CB61FC /* ConnectedViewController.swift */; };
+		E2BAEDF41A9D69930042889B /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2BAEDF31A9D69930042889B /* Media.xcassets */; };
+		E2BAEDF81A9D6C680042889B /* bulb-1.png in Resources */ = {isa = PBXBuildFile; fileRef = E2BAEDF71A9D6C680042889B /* bulb-1.png */; };
 		E2E4CD761A991EC400F24AAB /* DisconnectedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2E4CD751A991EC400F24AAB /* DisconnectedView.xib */; };
 		E2E4CD781A991ED800F24AAB /* ConnectedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2E4CD771A991ED800F24AAB /* ConnectedView.xib */; };
 		E2E4CD7A1A99393F00F24AAB /* InteractionBeaconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E4CD791A99393F00F24AAB /* InteractionBeaconManager.swift */; };
@@ -77,7 +78,6 @@
 		E2B0C19F1A92819E00CB61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectedViewController.swift; sourceTree = "<group>"; };
-		E2B0C1A71A92819E00CB61FC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E2B0C1AA1A92819E00CB61FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E2B0C1B01A92819E00CB61FC /* interactronTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = interactronTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B0C1B51A92819E00CB61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -101,6 +101,8 @@
 		E2B0C1E91A928CF800CB61FC /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = interactron/Frameworks/ParseCrashReporting.framework; sourceTree = "<group>"; };
 		E2B0C1EB1A928D2600CB61FC /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		E2B0C1EE1A92909A00CB61FC /* ConnectedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedViewController.swift; sourceTree = "<group>"; };
+		E2BAEDF31A9D69930042889B /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		E2BAEDF71A9D6C680042889B /* bulb-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bulb-1.png"; sourceTree = "<group>"; };
 		E2E4CD751A991EC400F24AAB /* DisconnectedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisconnectedView.xib; sourceTree = "<group>"; };
 		E2E4CD771A991ED800F24AAB /* ConnectedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectedView.xib; sourceTree = "<group>"; };
 		E2E4CD791A99393F00F24AAB /* InteractionBeaconManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionBeaconManager.swift; sourceTree = "<group>"; };
@@ -180,6 +182,8 @@
 		E201EBD71A99920000FA87FF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E2BAEDF31A9D69930042889B /* Media.xcassets */,
+				E2BAEDF71A9D6C680042889B /* bulb-1.png */,
 				E201EBD81A99921200FA87FF /* Default-568h@2x.png */,
 				E201EBD91A99921200FA87FF /* street.png */,
 				E201EBDA1A99921200FA87FF /* blue.png */,
@@ -223,7 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				E201EBD71A99920000FA87FF /* Images */,
-				E2B0C1A71A92819E00CB61FC /* Images.xcassets */,
 				E2B0C1F11A9290AC00CB61FC /* Controllers */,
 				E2B0C1F01A9290A600CB61FC /* Views */,
 				E25A90971A9BB3F40059CA48 /* Utilities */,
@@ -377,12 +380,13 @@
 				E201EBE11A99921200FA87FF /* yellow.png in Resources */,
 				E2E4CD781A991ED800F24AAB /* ConnectedView.xib in Resources */,
 				E201EBDE1A99921200FA87FF /* street.png in Resources */,
+				E2BAEDF41A9D69930042889B /* Media.xcassets in Resources */,
 				E2B0C1AB1A92819E00CB61FC /* LaunchScreen.xib in Resources */,
 				E201EBDD1A99921200FA87FF /* Default-568h@2x.png in Resources */,
+				E2BAEDF81A9D6C680042889B /* bulb-1.png in Resources */,
 				E201EBE01A99921200FA87FF /* red.png in Resources */,
 				E201EBDF1A99921200FA87FF /* blue.png in Resources */,
 				E25A909F1A9BC4E70059CA48 /* Settings.bundle in Resources */,
-				E2B0C1A81A92819E00CB61FC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,7 +601,7 @@
 					"${PODS_ROOT}/**",
 				);
 				INFOPLIST_FILE = interactron/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/interactron-Bridging-Header.h";
@@ -623,7 +627,7 @@
 					"${PODS_ROOT}/**",
 				);
 				INFOPLIST_FILE = interactron/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/interactron-Bridging-Header.h";

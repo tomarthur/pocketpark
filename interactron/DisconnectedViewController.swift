@@ -19,18 +19,19 @@ import IJReachability
 class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-
-    var nearbyBLEInteractives = [String:PTDBean]()
-    var connectedBeanObjectID: String?
-
+    
+    @IBOutlet weak var status: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var settingsButton: UIButton!
+    
     var bluetoothIsReady = false
     var isConnecting = false
     var haltConnections = false
     var automaticMode = false
     
-    @IBOutlet weak var status: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var settingsButton: UIButton!
+    var nearbyBLEInteractives = [String:PTDBean]()      // PTDBean objects detected in the area
+    var connectedBeanObjectID: String?                  // Parse objectId for connected bean
+    
     
     var manager: PTDBeanManager!
     var connectedBean: PTDBean? {
@@ -43,11 +44,12 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                 // present connected view when beacon connection established
                 let connectedViewController:ConnectedViewController = ConnectedViewController(nibName: "ConnectedView", bundle: nil)
                 
-                //Pass identifer of parse interactive object to connectedVC
+                //Pass identifers to connectedVC
                 connectedViewController.connectedBean = connectedBean
                 connectedViewController.foundInteractiveObjectID = connectedBeanObjectID
 
                 presentViewController(connectedViewController, animated: true, completion: nil)
+                
                 activityIndicator.stopAnimating()
             }
         }
@@ -57,23 +59,35 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         super.viewDidLoad()
         
         // get notification when user wants to end experience
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:", name: "EndInteraction", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:",
+            name: "EndInteraction", object: nil)
       
-        // get notification when iBeacon of interactive is detected
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "startScanningForInteractives:", name: "readyToFind", object: nil)
+        // when datastore and bluetooth are ready
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "startScanningForInteractives:",
+            name: "readyToFind", object: nil)
         
-        // get notification when iBeacon of interactive is detected or manually selected on settings view
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromRequest:", name: "startInteractionRequest", object: nil)
+        // TO DO: Combine following two alerts to one function
+        // when iBeacon of interactive is detected or manually selected on settings view
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromRequest:",
+            name: "startInteractionRequest", object: nil)
+        // when iBeacon of interactive is detected or manually selected on settings view
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromNotification:",
+            name: "startInteractionFromNotification", object: nil)
         
-        // get notification when iBeacon of interactive is detected or manually selected on settings view
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromNotification:", name: "startInteractionFromNotification", object: nil)
+        // when exiting settings view update behaviors
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateMode:",
+            name: "updatedMode", object: nil)
         
-        // get notification when exiting settings view with automatic mode on
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateMode:", name: "updatedMode", object: nil)
+        // when app is no longer in focus, disconnect
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:",
+            name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        
+        // when app is closing disconnect
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:",
+            name: UIApplicationWillTerminateNotification, object: nil)
         
         manager = PTDBeanManager(delegate: self)
         
-        var backgroundColor: UIColor
         self.view.backgroundColor = .ITWelcomeColor()
     }
     
@@ -97,18 +111,18 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         // stop app from connecting while we are in manual control
         haltConnections = true
         
+        // disconnect if connected
         if connectedBean != nil {
             manager.disconnectBean(connectedBean, error:nil)
         }
         
-        let settingsViewController:SettingsViewController = SettingsViewController(nibName: "SettingsView", bundle: nil)
+        let settingsViewController:SettingsViewController = SettingsViewController(
+            nibName: "SettingsView",bundle: nil)
         
+        // send current nearby BLE interactives
         settingsViewController.nearbyBLEInteractives = nearbyBLEInteractives
         
-        var backgroundColor: UIColor
-        settingsViewController.view.backgroundColor = .ITSettingsColor()
         settingsViewController.modalTransitionStyle = .FlipHorizontal
-
         presentViewController(settingsViewController, animated: true, completion: nil)
 
     }
@@ -205,19 +219,22 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     func beanManager(beanManager: PTDBeanManager!, didDiscoverBean bean: PTDBean!, error: NSError!) {
 
+        // add found interactive to dictionary
         if appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
-            println("DISCOVERED KNOWN BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
             
-            // add found device to dictionary for manual connections
             nearbyBLEInteractives[bean.name] = bean
         }
         
-        if connectedBean == nil && haltConnections == false && automaticMode == true
-            && appDelegate.dataManager.isInteractiveIgnored(bean.identifier) == false {
-                
-                intiateConnectionAfterInteractionCheck(bean)
+        // automatically connect if enabled, not ignored and app is in forground
+        let appState : UIApplicationState = UIApplication.sharedApplication().applicationState
+        if appState != UIApplicationState.Active
+        {
+            if connectedBean == nil && haltConnections == false && automaticMode == true
+                && appDelegate.dataManager.isInteractiveIgnored(bean.identifier) == false {
+                    
+                    intiateConnectionIfInteractionValid(bean)
+            }
         }
-        
     }
     
 
@@ -238,9 +255,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
             connectedBeanObjectID = appDelegate.dataManager.knownInteractivesFromParse[bean.name]
             connectedBean = bean
             isConnecting = false
-            
         }
-        
         
         // TODO: add analytics
     }
@@ -250,6 +265,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         
         if (error != nil){
            println("error disconnecting")
+           println(error)
         }
         
         // Dismiss any modal view controllers.
@@ -262,7 +278,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
 
     }
     
-    func intiateConnectionAfterInteractionCheck(bean: PTDBean!) {
+    func intiateConnectionIfInteractionValid(bean: PTDBean!) {
         if appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
             if bean.state == .Discovered {
                 println("Attempting to connect to \(toString(bean.name))")
@@ -294,11 +310,9 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         }
     }
     
-    
+    // end interaction by disconnecting and adding to temporary ignore list
     func endInteraction(notification: NSNotification) {
-        println("recieved end of experience notification")
-        
-        if notification.name == "EndInteraction" {
+        if connectedBean != nil {
             appDelegate.dataManager.previouslyExperiencedInteractivesToIgnore.append(connectedBean!.identifier!)
             manager.disconnectBean(connectedBean, error:nil)
         }
@@ -309,7 +323,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         if let interactionInfo = notification.userInfo as? Dictionary<String, PTDBean>{
             println(interactionInfo)
             if let id = interactionInfo["beaconInteractionObject"] {
-                intiateConnectionAfterInteractionCheck(id)
+                intiateConnectionIfInteractionValid(id)
             }
         }
     }
@@ -319,39 +333,19 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         if let interactionInfo = notification.userInfo as? Dictionary<String, String>{
             println(interactionInfo)
             if let id = interactionInfo["beaconInteractionBLEName"] {
-                findBeaconObjectFromBLEName(id)
+                findBeanObjectAndConnectFromBLEName(id)
             }
         }
     }
     
-    func findBeaconObjectFromBLEName(bleName: String) {
-        
+    func findBeanObjectAndConnectFromBLEName(bleName: String) {
         for (nearbyName, bean) in nearbyBLEInteractives {
             if bleName == nearbyName {
-                intiateConnectionAfterInteractionCheck(bean)
+                intiateConnectionIfInteractionValid(bean)
             }
         }
-        
     }
     
-//        func prepareInteractiveTableViewCellInformation() {
-//        println("making table cell info ready")
-//        for (nearbyName, bean) in nearbyBLEInteractives {
-//        for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
-//        if nearbyName == parseBLEName {
-//        nearbyInteractivesFriendly[parseFriendlyName] = bean
-//        nearbyInteractivesFriendlyArray.append(parseFriendlyName)
-//        println(parseFriendlyName)
-//        }
-//        }
-//        }
-//        tableCellsReady = true
-//        
-//        }
-
-        
-        
-
     
 }
 

@@ -36,12 +36,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         dataManager.start()
         interactionBeaconManager.start()
         
+        // stop location when app is open
+        interactionBeaconManager.locationManager?.stopUpdatingLocation()
+        
         // check to see if user has set automatic mode
         if defaults.objectForKey(automaticConnectionKeyConstant) == nil {
             defaults.setBool(true, forKey: automaticConnectionKeyConstant)
             // TODO: SETTINGS BUNDLE
         }
-        
+
         askForNotificationPermissionForApplication(application)
         
         var disconnectedViewController = DisconnectedViewController(nibName: "DisconnectedView", bundle: nil)
@@ -71,6 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        println("entering forground")
         interactionBeaconManager.locationManager?.stopUpdatingLocation()
         
     }
@@ -81,11 +85,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        interactionBeaconManager.locationManager?.startUpdatingLocation()
     }
-    
-//    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-//        <#code#>
-//    }
     
     func askForNotificationPermissionForApplication(application: UIApplication){
         // Local Notification Registration
@@ -103,16 +104,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(application: UIApplication,
         didReceiveLocalNotification notification: UILocalNotification) {
             
-            let friendlyName = notification.userInfo!["friendlyName"] as? String
-            let bleName = notification.userInfo!["bleName"] as? String
+//            let appState : UIApplicationState = UIApplication.sharedApplication().applicationState
+//
+//            if appState != UIApplicationState.Active
+//            {
+                let friendlyName = notification.userInfo!["friendlyName"] as? String
+                let bleName = notification.userInfo!["bleName"] as? String
 
-            if friendlyName != nil && bleName != nil{
-                var requestNotificationDict: [String:String] = ["beaconInteractionBLEName" : bleName!]
-                NSNotificationCenter.defaultCenter().postNotificationName("startInteractionFromNotification", object: self, userInfo: requestNotificationDict)
-            } else {
-                /* This is not the notification that we composed */
-            }
-            
+                if friendlyName != nil && bleName != nil{
+                    var requestNotificationDict: [String:String] = ["beaconInteractionBLEName" : bleName!]
+                    NSNotificationCenter.defaultCenter().postNotificationName("startInteractionFromNotification", object: self, userInfo: requestNotificationDict)
+                } else {
+                    /* This is not the notification that we composed */
+                }
+//            }
             
     }
 }
