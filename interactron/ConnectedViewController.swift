@@ -168,16 +168,26 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate {
     
     func interactionMode(modeString: String){
         
-        if (modeString == "gyro-rotate"){
-            println("activating gyro interaction mode")
-            activateRotationMotion()
-        } else if (modeString == "shake"){
-            println("activating shake detect interaction mode")
-            self.activateShakeDetect()
-        }else {
-            println("invalid interaction mode")
+        switch modeString{
+            case "gyro-rotate":
+                activateRotationMotion()
+            case "shake":
+                activateShakeDetect()
+            case "sound":
+                println("not yet implemented")
+            case "compass":
+                println("not yet implemented")
+            case "light":
+                println("not yet implemented")
+            case "tap":
+                println("not yet implemented")
+            case "tilt-portrait":
+                println("not yet implemented")
+            case "barometer":
+                println("not yet implemented")
+            default:
+                println("not yet implemented")
         }
-        
     }
     
     func activateShakeDetect(){
