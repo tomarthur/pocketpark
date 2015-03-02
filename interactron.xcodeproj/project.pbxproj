@@ -19,6 +19,7 @@
 		E25A909D1A9BC4C40059CA48 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25A909C1A9BC4C40059CA48 /* SettingsViewController.swift */; };
 		E25A909F1A9BC4E70059CA48 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E25A909E1A9BC4E70059CA48 /* Settings.bundle */; };
 		E263FE741A97E5EA00E5E7AA /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E263FE731A97E5EA00E5E7AA /* CustomColors.swift */; };
+		E2704FB01A9D9C3900860D74 /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2704FAF1A9D9C3900860D74 /* SensorManager.swift */; };
 		E28B09261A9C011C003B3918 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B09251A9C011C003B3918 /* DataManager.swift */; };
 		E2B0C1A11A92819E00CB61FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */; };
 		E2B0C1A31A92819E00CB61FC /* DisconnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */; };
@@ -74,6 +75,7 @@
 		E25A909C1A9BC4C40059CA48 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E25A909E1A9BC4E70059CA48 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		E263FE731A97E5EA00E5E7AA /* CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
+		E2704FAF1A9D9C3900860D74 /* SensorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorManager.swift; sourceTree = "<group>"; };
 		E28B09251A9C011C003B3918 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E2B0C19B1A92819E00CB61FC /* interactron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = interactron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B0C19F1A92819E00CB61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -200,9 +202,9 @@
 		E25A90971A9BB3F40059CA48 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				E263FE731A97E5EA00E5E7AA /* CustomColors.swift */,
 				E2E4CD791A99393F00F24AAB /* InteractionBeaconManager.swift */,
 				E28B09251A9C011C003B3918 /* DataManager.swift */,
+				E2704FAF1A9D9C3900860D74 /* SensorManager.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -242,10 +244,11 @@
 		E2B0C19E1A92819E00CB61FC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E25A909E1A9BC4E70059CA48 /* Settings.bundle */,
 				E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */,
+				E263FE731A97E5EA00E5E7AA /* CustomColors.swift */,
 				E2B0C1E01A9285D400CB61FC /* interactron-Bridging-Header.h */,
 				E2B0C19F1A92819E00CB61FC /* Info.plist */,
+				E25A909E1A9BC4E70059CA48 /* Settings.bundle */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				E2B0C1A11A92819E00CB61FC /* AppDelegate.swift in Sources */,
 				E201EBD51A9991EE00FA87FF /* OnboardingViewController.swift in Sources */,
 				E201EBD61A9991EE00FA87FF /* OnboardingContentViewController.swift in Sources */,
+				E2704FB01A9D9C3900860D74 /* SensorManager.swift in Sources */,
 				E2E4CD7A1A99393F00F24AAB /* InteractionBeaconManager.swift in Sources */,
 				E2B0C1EF1A92909A00CB61FC /* ConnectedViewController.swift in Sources */,
 			);

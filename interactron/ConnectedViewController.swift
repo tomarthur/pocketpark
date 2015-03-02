@@ -26,17 +26,18 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
     var foundInteractiveObjectID: String!
     var interactionMode: String?
     
-    // Sensor Readings
+    // Swipe
     var swipeRecognizer: UISwipeGestureRecognizer!
+    
+    // Motion
     lazy var motionManager = CMMotionManager()
     
+    // audio levels
     var audioRecorder: AVAudioRecorder?
     var loudnessTimer: NSTimer?
     var lowPassResults: Double = 0.0
     
-    
     // UI
-    
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var explanation: UILabel!
     @IBOutlet weak var interactionType : UILabel!

@@ -227,8 +227,8 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         
         // automatically connect if enabled, not ignored and app is in forground
         let appState : UIApplicationState = UIApplication.sharedApplication().applicationState
-        if appState != UIApplicationState.Active
-        {
+        if appState == UIApplicationState.Active {
+            println("got to connection point")
             if connectedBean == nil && haltConnections == false && automaticMode == true
                 && appDelegate.dataManager.isInteractiveIgnored(bean.identifier) == false {
                     
@@ -284,7 +284,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                 println("Attempting to connect to \(toString(bean.name))")
                 if (isConnecting == false){
                     isConnecting = true
-                    
+                    println("is connecting")
                     activityIndicator.startAnimating()
                     
                     var connectError : NSError?
