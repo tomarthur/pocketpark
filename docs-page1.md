@@ -14,7 +14,7 @@ Interactron is developed by Tom Arthur for ITP Thesis in 2015.
 
 
 ## Add an Interactive
-[Add interactive>](http://google.com)
+[Add interactive >](http://google.com)
 ## License
 
 Interactron was written by Tom Arthur
