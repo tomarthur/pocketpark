@@ -242,6 +242,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         println("CONNECTED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
         
         if (error != nil){
+            isConnecting = false
             UIAlertView(
                 title: "Unable to Contact Interactive",
                 message: "The experience isn't able to to start. Please try again later.",
@@ -268,13 +269,17 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
            println(error)
         }
         
+
         // Dismiss any modal view controllers.
         presentedViewController?.dismissViewControllerAnimated(true, completion: { () in
             self.dismissViewControllerAnimated(true, completion: nil)
         })
         
+        NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
+        
         self.connectedBeanObjectID = nil
         self.connectedBean = nil
+        isConnecting = false
 
     }
     
@@ -303,6 +308,13 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                     // tell the user what we've found
                     
                     status.text = "Contacting \(appDelegate.dataManager.knownInteractivesFromParseFriendlyNames[bean.name]!)"
+                } else {
+                    UIAlertView(
+                        title: "Unable to Contact Interactive",
+                        message: "The experience isn't able to to start. Please try again later.",
+                        delegate: self,
+                        cancelButtonTitle: "OK"
+                        ).show()
                 }
             } else {
                 println("ERROR: cant find that bean")

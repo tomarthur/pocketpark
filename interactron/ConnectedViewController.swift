@@ -177,12 +177,13 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
         
         switch modeString{
             case "gyro-rotate":
-//                activateRotationMotion()
-                askForMicrophonePermission()
+                activateRotationMotion()
+            
             case "shake":
-                activateShakeDetect()
+//                activateShakeDetect()
+                askForMicrophonePermission()
             case "sound":
-                println("not yet implemented")
+                askForMicrophonePermission()
             case "compass":
                 println("not yet implemented")
             case "light":
@@ -282,11 +283,18 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
     func getLevels(timer: NSTimer){
         if let recorder = audioRecorder{
             recorder.updateMeters()
-            let alpha:Double = 0.05
+            let alpha:Double = 0.09
             var peakPowerForChannel:Double = pow(10, (0.05 * Double(recorder.peakPowerForChannel(0))))
             lowPassResults = alpha * peakPowerForChannel + (1.0 - alpha) * lowPassResults
-
-            println("average input: \(recorder.averagePowerForChannel(0)) peak input:\(recorder.peakPowerForChannel(0)) lowPassResult \(lowPassResults)")
+            var newVal = lowPassResults * 2
+            // This is the key line in computing the low-pass filtered value
+//            micPower = ALPHA * instantaneousPower + (1.0 - ALPHA) * micPower;
+//            println("average input: \(recorder.averagePowerForChannel(0)) peak input:\(recorder.peakPowerForChannel(0)) lowPassResult \(lowPassResults)")
+            var averageVal = lowPassResults
+            var mappedValues = ((newVal - 0.03) * (255 - 0) / (2.00 - 0.03) + 0)
+            println("lowpass in \(newVal), mapped: \(mappedValues)")
+            sendScratchDatatoBean(Int(mappedValues))
+            newVal = 0
         } else {
             println("couldn't get recorder")
         }
