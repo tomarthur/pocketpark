@@ -131,6 +131,26 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         
     }
     
+    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        switch CLLocationManager.authorizationStatus(){
+        case .Authorized:
+            println("CL Authorized")
+        case .AuthorizedWhenInUse:
+            println("CL authorized when in use")
+        case .Denied:
+            println("CL Denied")
+        case .NotDetermined:
+            println("CL not determined")
+        case .Restricted:
+            println("CL restricted")
+        default:
+            println("CL unhandled error")
+            
+        }
+    }
+    
+    
+    
 //    func beaconIsIgnored(beaconString: String) -> Bool {
 //        let currentTime = NSDate()
 //        let calendar = NSCalendar.currentCalendar()

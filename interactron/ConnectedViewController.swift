@@ -18,7 +18,9 @@ import CoreMotion
 import AVFoundation
 
 
-class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorderDelegate{
+class ConnectedViewController: UIViewController, PTDBeanDelegate, CoreLocationDelegate, AVAudioRecorderDelegate{
+    
+    var sensorInterface = SensorManager()
     
     // Bluetooth Interactive Control
     var connectedBean: PTDBean?
@@ -98,7 +100,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
         
     }
     
-    func activateRotationMotion()
+    func activateRotationMotion(modeString: String)
     {
         if motionManager.deviceMotionAvailable{
             println("deviceMotion available")
@@ -106,16 +108,26 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
             motionManager.startDeviceMotionUpdatesToQueue(NSOperationQueue.mainQueue()) {
                 [weak self] (data: CMDeviceMotion!, error: NSError!) in
                 
-                let rotation = atan2(data.gravity.x, data.gravity.y) - M_PI
-                
-                var mappedRotation = ((rotation - 0) * (180 - 0) / (-6.5 - 0) + 0)
-                var mappedRotationInt:Int = Int(mappedRotation)
-                
-                self?.sendScratchDatatoBean(mappedRotationInt)
+                if modeString == "gyro-rotate" {
+                    let rotation = atan2(data.gravity.x, data.gravity.y) - M_PI
+                    
+                    var mappedRotation = ((rotation - 0) * (180 - 0) / (-6.5 - 0) + 0)
+                    var mappedRotationInt:Int = Int(mappedRotation)
+                    
+                    self?.sendScratchDatatoBean(mappedRotationInt)
+                } else if modeString == "magnetometer" {
+                    
+                }
+
             }
         } else {
             println("deviceMotion not available")
         }
+        
+    }
+    
+    func activateDeviceHeading(){
+        
         
     }
     
@@ -177,11 +189,10 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
         
         switch modeString{
             case "gyro-rotate":
-                activateRotationMotion()
+                activateRotationMotion(modeString)
             
             case "shake":
-//                activateShakeDetect()
-                askForMicrophonePermission()
+                activateShakeDetect()
             case "sound":
                 askForMicrophonePermission()
             case "compass":
@@ -287,9 +298,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
             var peakPowerForChannel:Double = pow(10, (0.05 * Double(recorder.peakPowerForChannel(0))))
             lowPassResults = alpha * peakPowerForChannel + (1.0 - alpha) * lowPassResults
             var newVal = lowPassResults * 2
-            // This is the key line in computing the low-pass filtered value
-//            micPower = ALPHA * instantaneousPower + (1.0 - ALPHA) * micPower;
-//            println("average input: \(recorder.averagePowerForChannel(0)) peak input:\(recorder.peakPowerForChannel(0)) lowPassResult \(lowPassResults)")
+
             var averageVal = lowPassResults
             var mappedValues = ((newVal - 0.03) * (255 - 0) / (2.00 - 0.03) + 0)
             println("lowpass in \(newVal), mapped: \(mappedValues)")
