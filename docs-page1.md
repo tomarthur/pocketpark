@@ -27,6 +27,7 @@ Interactron is developed by Tom Arthur for ITP Thesis in 2015.
 ## Add Your Interactive
 >.
 [Add interactive >](http://google.com)
+Awesome! Once you've added your installation at the link to the right, it should be available to use in app. You'll need to update the name of your bean 
 
 ## License
 
