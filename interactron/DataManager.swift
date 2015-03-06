@@ -15,6 +15,7 @@ class DataManager: NSObject {
     
     var knownInteractivesFromParse = [String: String]()
     var knownInteractivesFromParseFriendlyNames = [String: String]()
+    var knownInteractivesFromParseWithGeopoints = [String: PFGeoPoint]()
     var previouslyExperiencedInteractivesToIgnore = [NSUUID]()
     var dataStoreReady = false
     
@@ -99,6 +100,42 @@ class DataManager: NSObject {
                     NSNotificationCenter.defaultCenter().postNotificationName("readyToFind", object: nil)
                 }
         }
+    }
+    
+    func dictionaryOfInteractivesWithGeoPoints(){
+        println("getting the geo points")
+        // liststhe names of all known interactive elemments found in the localstorage from Parse
+        var query = PFQuery(className:"installations")
+        query.fromLocalDatastore()
+        
+        query.findObjectsInBackgroundWithBlock
+            {
+                (objects: [AnyObject]!, error: NSError!) -> Void in
+                if error != nil {
+                    // There was an error.
+                    UIAlertView(
+                        title: "No Geopoints Found",
+                        message: "Huh?.",
+                        delegate: self,
+                        cancelButtonTitle: "OK"
+                        ).show()
+                    NSLog("Error: %@ %@", error, error.userInfo!)
+                    NSLog("Unable to find geopoints")
+                    
+                } else {
+                    var PFVersions = objects as [PFObject]
+                    for PFVersion in PFVersions {
+      
+                        
+                        self.knownInteractivesFromParseWithGeopoints[toString(PFVersion["name"])] = PFVersion["location"] as PFGeoPoint
+                    }
+                    
+                    NSNotificationCenter.defaultCenter().postNotificationName("GeoPointDictionaryReady", object: nil)
+                }
+        }
+
+        
+        
     }
     
     // quickly check dictionary to see if interactive is in the known

@@ -20,6 +20,8 @@
 		E25A909F1A9BC4E70059CA48 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E25A909E1A9BC4E70059CA48 /* Settings.bundle */; };
 		E263FE741A97E5EA00E5E7AA /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E263FE731A97E5EA00E5E7AA /* CustomColors.swift */; };
 		E2704FB01A9D9C3900860D74 /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2704FAF1A9D9C3900860D74 /* SensorManager.swift */; };
+		E28069AA1AA976A20049321C /* InteractiveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28069A91AA976A20049321C /* InteractiveMapViewController.swift */; };
+		E28069AC1AA976B20049321C /* InteractiveMap.xib in Resources */ = {isa = PBXBuildFile; fileRef = E28069AB1AA976B20049321C /* InteractiveMap.xib */; };
 		E28B09261A9C011C003B3918 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B09251A9C011C003B3918 /* DataManager.swift */; };
 		E2B0C1A11A92819E00CB61FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */; };
 		E2B0C1A31A92819E00CB61FC /* DisconnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */; };
@@ -76,6 +78,8 @@
 		E25A909E1A9BC4E70059CA48 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		E263FE731A97E5EA00E5E7AA /* CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		E2704FAF1A9D9C3900860D74 /* SensorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorManager.swift; sourceTree = "<group>"; };
+		E28069A91AA976A20049321C /* InteractiveMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveMapViewController.swift; sourceTree = "<group>"; };
+		E28069AB1AA976B20049321C /* InteractiveMap.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InteractiveMap.xib; sourceTree = "<group>"; };
 		E28B09251A9C011C003B3918 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E2B0C19B1A92819E00CB61FC /* interactron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = interactron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B0C19F1A92819E00CB61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -277,6 +281,7 @@
 				E2E4CD751A991EC400F24AAB /* DisconnectedView.xib */,
 				E2E4CD771A991ED800F24AAB /* ConnectedView.xib */,
 				E25A90951A9BB3DD0059CA48 /* SettingsView.xib */,
+				E28069AB1AA976B20049321C /* InteractiveMap.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 		E2B0C1F11A9290AC00CB61FC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E28069A91AA976A20049321C /* InteractiveMapViewController.swift */,
 				E25A909C1A9BC4C40059CA48 /* SettingsViewController.swift */,
 				E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */,
 				E2B0C1EE1A92909A00CB61FC /* ConnectedViewController.swift */,
@@ -390,6 +396,7 @@
 				E2BAEDF41A9D69930042889B /* Media.xcassets in Resources */,
 				E2B0C1AB1A92819E00CB61FC /* LaunchScreen.xib in Resources */,
 				E201EBDD1A99921200FA87FF /* Default-568h@2x.png in Resources */,
+				E28069AC1AA976B20049321C /* InteractiveMap.xib in Resources */,
 				E2BAEDF81A9D6C680042889B /* bulb-1.png in Resources */,
 				E201EBE01A99921200FA87FF /* red.png in Resources */,
 				E201EBDF1A99921200FA87FF /* blue.png in Resources */,
@@ -476,6 +483,7 @@
 				E263FE741A97E5EA00E5E7AA /* CustomColors.swift in Sources */,
 				E2B0C1A31A92819E00CB61FC /* DisconnectedViewController.swift in Sources */,
 				E25A909D1A9BC4C40059CA48 /* SettingsViewController.swift in Sources */,
+				E28069AA1AA976A20049321C /* InteractiveMapViewController.swift in Sources */,
 				E2B0C1A11A92819E00CB61FC /* AppDelegate.swift in Sources */,
 				E201EBD51A9991EE00FA87FF /* OnboardingViewController.swift in Sources */,
 				E201EBD61A9991EE00FA87FF /* OnboardingContentViewController.swift in Sources */,

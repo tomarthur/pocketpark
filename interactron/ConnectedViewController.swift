@@ -18,11 +18,11 @@ import CoreMotion
 import AVFoundation
 
 
-class ConnectedViewController: UIViewController, PTDBeanDelegate, CoreLocationDelegate, AVAudioRecorderDelegate{
+class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorderDelegate{
     
     var sensorInterface = SensorManager()
     
-    // Bluetooth Interactive Control
+    // Bluetooth Control
     var connectedBean: PTDBean?
     var connectedObjectInfo: PFObject!
     var foundInteractiveObjectID: String!
@@ -34,7 +34,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, CoreLocationDe
     // Motion
     lazy var motionManager = CMMotionManager()
     
-    // audio levels
+    // Audio levels
     var audioRecorder: AVAudioRecorder?
     var loudnessTimer: NSTimer?
     var lowPassResults: Double = 0.0
@@ -44,20 +44,18 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, CoreLocationDe
     @IBOutlet weak var explanation: UILabel!
     @IBOutlet weak var interactionType : UILabel!
     
-    
-    required init(coder aDecoder: NSCoder){
-        super.init(coder: aDecoder)
-        
-    }
-    
     func handleSwipes(sender: UISwipeGestureRecognizer){
         if sender.direction == .Down{
             println("Swiped Right, exit view")
             self.deactivateAllMotion()
-            NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
-            // Dismiss any modal view controllers.
-            self.dismissViewControllerAnimated(true, completion:nil)
+            endInteraction()
+            
         }
+    }
+    
+    required init(coder aDecoder: NSCoder){
+        super.init(coder: aDecoder)
+        
     }
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
@@ -67,26 +65,37 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, CoreLocationDe
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         println("loaded connected")
         
-        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
-        self.view.addGestureRecognizer(swipeRecognizer)
-        /* Swipes that are perfomed from the right to the left are to be detected to end connection to interactive */
-        swipeRecognizer.direction = .Down
-        swipeRecognizer.numberOfTouchesRequired = 1
-        
-        
         // get object from parse to populate UI and know how to communicate with it
         getInteractiveObject(foundInteractiveObjectID!)
         
-        var backgroundColor: UIColor
-        self.view.backgroundColor = .ITConnectedColor()
+        /* Swipes that are perfomed from the top to the bottom are to be detected to end connection to interactive */
+        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
+        self.view.addGestureRecognizer(swipeRecognizer)
+        swipeRecognizer.direction = .Down
+        swipeRecognizer.numberOfTouchesRequired = 1
         
+        self.view.backgroundColor = .ITConnectedColor()
     }
     
+    override func viewWillDisappear(animated: Bool)
+    {
+        super.viewWillDisappear(animated)
+        println("view will disappear")
+    }
+    
+    
+    func endInteraction() {
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
+        // Dismiss view controllers.
+        self.dismissViewControllerAnimated(true, completion:nil)
+        
+    }
     
     func sendScratchDatatoBean(dataIn: Int){
         var convetedInteger = NSInteger(dataIn)
@@ -99,6 +108,83 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, CoreLocationDe
         println("datain: \(dataIn) sentdata: \(dataSend) length: \(sizeof(dataIn.dynamicType))")
         
     }
+    
+    
+    func getInteractiveObject(foundInteractiveObjectID: String){
+        var query = PFQuery(className: "installations")
+        query.fromLocalDatastore()
+        query.getObjectInBackgroundWithId(foundInteractiveObjectID) {
+            (objectInfo: PFObject!, error: NSError!) -> Void in
+            if (error == nil) {
+                self.populateInteractiveInfo(objectInfo)
+                println(objectInfo)
+            } else {
+                // There was an error.
+                UIAlertView(
+                    title: "Error",
+                    message: "Unable to retrieve interactive.",
+                    delegate: self,
+                    cancelButtonTitle: "OK"
+                    ).show()
+                self.endInteraction()
+                NSLog("Unable to find interactive in local data store")
+                NSLog("Error: %@ %@", error, error.userInfo!)
+            }
+        }
+    }
+    
+    func populateInteractiveInfo(parseInteractiveObject: PFObject) {
+
+        connectedObjectInfo = parseInteractiveObject
+        
+        updateUIWithInteractiveInfo()
+        startInteraction()
+        
+    }
+    
+    func updateUIWithInteractiveInfo(){
+        var nonOptional = connectedObjectInfo!
+        name.text = toString(nonOptional["name"])
+        explanation.text = toString(nonOptional["explanation"])
+        interactionType.text = toString(nonOptional["control"])
+        
+    }
+    
+    // determine the method stored for the interaction
+    func startInteraction() {
+        // TODO: Is this right?
+        var objectInfo = connectedObjectInfo!
+        interactionMode(toString(objectInfo["control"]))
+        
+    }
+    
+    func interactionMode(modeString: String){
+        
+        switch modeString{
+            case "gyro-rotate":
+                activateRotationMotion(modeString)
+            case "shake":
+                activateShakeDetect()
+            case "sound":
+                askForMicrophonePermission()
+            case "compass":
+                println("not yet implemented")
+            case "light":
+                println("not yet implemented")
+            case "tap":
+                println("not yet implemented")
+            case "tilt-portrait":
+                println("not yet implemented")
+            case "barometer":
+                println("not yet implemented")
+            default:
+                println("not yet implemented")
+        }
+    }
+    
+    ////////////////////////////////////////
+    // Motion
+    ////////////////////////////////////////
     
     func activateRotationMotion(modeString: String)
     {
@@ -118,7 +204,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, CoreLocationDe
                 } else if modeString == "magnetometer" {
                     
                 }
-
+                
             }
         } else {
             println("deviceMotion not available")
@@ -136,79 +222,11 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, CoreLocationDe
         motionManager.stopDeviceMotionUpdates()
         
     }
-    
-    func getInteractiveObject(foundInteractiveObjectID: String){
-        var query = PFQuery(className: "installations")
-        query.fromLocalDatastore()
-        query.getObjectInBackgroundWithId(foundInteractiveObjectID) {
-            (objectInfo: PFObject!, error: NSError!) -> Void in
-            if (error == nil) {
-                self.populateInteractiveInfo(objectInfo)
-                println(objectInfo)
-            } else {
-                // There was an error.
-                UIAlertView(
-                    title: "Error",
-                    message: "Unable to retrieve interactive.",
-                    delegate: self,
-                    cancelButtonTitle: "OK"
-                    ).show()
-                NSLog("Error: %@ %@", error, error.userInfo!)
-                NSLog("Unable to find interactive in local data store")
-            }
-        
-        }
-    }
-    
-    func populateInteractiveInfo(parseInteractiveObject: PFObject) {
 
-        connectedObjectInfo = parseInteractiveObject
-        println(connectedObjectInfo)
-        updateUIWithInteractiveInfo()
-        startInteraction()
-        
-    }
     
-    func updateUIWithInteractiveInfo(){
-        var nonOptional = connectedObjectInfo!
-        name.text = toString(nonOptional["name"])
-        explanation.text = toString(nonOptional["explanation"])
-        interactionType.text = toString(nonOptional["control"])
-        
-    }
-    
-    // determine the method stored for the interaction
-    func startInteraction() {
-        var nonOptional = connectedObjectInfo!
-        
-        interactionMode(toString(nonOptional["control"]))
-        
-    }
-    
-    func interactionMode(modeString: String){
-        
-        switch modeString{
-            case "gyro-rotate":
-                activateRotationMotion(modeString)
-            
-            case "shake":
-                activateShakeDetect()
-            case "sound":
-                askForMicrophonePermission()
-            case "compass":
-                println("not yet implemented")
-            case "light":
-                println("not yet implemented")
-            case "tap":
-                println("not yet implemented")
-            case "tilt-portrait":
-                println("not yet implemented")
-            case "barometer":
-                println("not yet implemented")
-            default:
-                println("not yet implemented")
-        }
-    }
+    ////////////////////////////////////////
+    // Shake
+    ////////////////////////////////////////
     
     func activateShakeDetect(){
         shakeDetectMode = true
@@ -231,25 +249,43 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, CoreLocationDe
         }
     }
     
+    
+    
+    ////////////////////////////////////////
+    // AUDIO
+    ////////////////////////////////////////
+    
     func askForMicrophonePermission() {
+        println("getting into permissions")
         var error: NSError?
         let session = AVAudioSession.sharedInstance()
-        
-        if session.setCategory(AVAudioSessionCategoryPlayAndRecord,
+ 
+        if session.setCategory(AVAudioSessionCategoryRecord,
             withOptions: .DuckOthers, error: &error) {
-                if session.setActive(true, error: nil){
-                    session.requestRecordPermission{[weak self](allowed: Bool) in
-                        if allowed {
-                            self?.startListeningToAudioLoudness()
-                        } else {
-                            println("user didn't give permission")
+                if session.setMode(AVAudioSessionModeMeasurement, error: &error){
+                    if session.setActive(true, error: nil){
+                        session.requestRecordPermission{[weak self](allowed: Bool) in
+                            if allowed {
+                                self?.startListeningToAudioLoudness()
+                            } else {
+                                UIAlertView(
+                                    title: "Microphone Required",
+                                    message: "Please grant access to the microphone to experience this interactive.",
+                                    delegate: self,
+                                    cancelButtonTitle: "OK"
+                                    ).show()
+                                println("user didn't give permission")
+                                self?.endInteraction()
+                            }
                         }
                     }
 
                 } else {
                  println("Couldn't start audio session")
+                endInteraction()
                 }
         } else {
+            endInteraction()
             if let audioError = error{
                 println("An error occured in setting the audio" + "session category. Error = \(audioError)")
             }
@@ -261,10 +297,10 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, CoreLocationDe
         var error: NSError?
         
         let audioRecordingURL = self.audioRecordingPath()
-        
+
         audioRecorder = AVAudioRecorder(URL: audioRecordingURL,
             settings: audioRecordingSettings(), error: &error)
-        
+
         if let recorder = audioRecorder{
             recorder.delegate = self
             
@@ -272,7 +308,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, CoreLocationDe
                 recorder.meteringEnabled = true
                 
                 let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-                dispatch_sync(queue, startTimer)
+                dispatch_sync(queue, startAudioUpdateTimer)
                 
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: "endAudioInteraction:",
                     name: "EndInteraction", object: nil)
@@ -286,11 +322,12 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, CoreLocationDe
         }
     }
     
-    func startTimer() {
+    func startAudioUpdateTimer() {
         
         loudnessTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "getLevels:", userInfo: nil, repeats: true)
     }
     
+
     func getLevels(timer: NSTimer){
         if let recorder = audioRecorder{
             recorder.updateMeters()
@@ -305,7 +342,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, CoreLocationDe
             sendScratchDatatoBean(Int(mappedValues))
             newVal = 0
         } else {
-            println("couldn't get recorder")
+
         }
 
     }
@@ -327,11 +364,9 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, CoreLocationDe
     
     func audioRecorderBeginInterruption(recorder: AVAudioRecorder!) {
         println("interuption started")
+        endInteraction()
     }
     
-    func audioRecorderEndInterruption(recorder: AVAudioRecorder!) {
-        println("interuption ended")
-    }
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
         
@@ -340,13 +375,13 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, CoreLocationDe
     func endAudioInteraction(notification: NSNotification){
         
         loudnessTimer?.invalidate()
+
         if let recorder = audioRecorder{
+
                 recorder.stop()
         }
-        println("ended audio interaction")
         
     }
-    
     
     
 }

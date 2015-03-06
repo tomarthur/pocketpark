@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DisconnectedViewController" customModule="interactron" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="8Sd-Eu-PK5" id="8vP-d1-bBy"/>
+                <outlet property="interactiveMap" destination="tYx-F3-4bD" id="7Zi-4Z-Iei"/>
                 <outlet property="settingsButton" destination="LjP-eI-OkP" id="PPm-d4-4Sb"/>
                 <outlet property="status" destination="hwD-34-zrO" id="T84-04-a73"/>
                 <outlet property="view" destination="iN0-l3-epB" id="OIf-ZH-1JW"/>
@@ -41,6 +42,15 @@
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="8Sd-Eu-PK5" userLabel="Activity Indicator">
                     <rect key="frame" x="282" y="244" width="37" height="37"/>
                 </activityIndicatorView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tYx-F3-4bD">
+                    <rect key="frame" x="561" y="563" width="31" height="30"/>
+                    <state key="normal" title="Map">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="mapButtonPressed:" destination="-1" eventType="touchUpInside" id="ivn-ji-RM4"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -48,8 +58,10 @@
                 <constraint firstItem="hwD-34-zrO" firstAttribute="top" secondItem="8Sd-Eu-PK5" secondAttribute="bottom" constant="8" symbolic="YES" id="LSQ-ad-Jyf"/>
                 <constraint firstItem="8Sd-Eu-PK5" firstAttribute="centerX" secondItem="hwD-34-zrO" secondAttribute="centerX" id="Q2v-kh-Hn9"/>
                 <constraint firstAttribute="bottom" secondItem="LjP-eI-OkP" secondAttribute="bottom" constant="15" id="S5O-qm-kJ3"/>
+                <constraint firstItem="tYx-F3-4bD" firstAttribute="top" secondItem="LjP-eI-OkP" secondAttribute="top" id="bO1-Wl-w8u"/>
                 <constraint firstItem="hwD-34-zrO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="inh-WL-BrY"/>
                 <constraint firstItem="LjP-eI-OkP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="tnf-cG-IbK"/>
+                <constraint firstItem="tYx-F3-4bD" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="v4m-il-Snh"/>
             </constraints>
         </view>
         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35M-kG-Gdz">

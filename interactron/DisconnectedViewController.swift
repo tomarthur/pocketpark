@@ -23,6 +23,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var interactiveMap: UIButton!
     
     var bluetoothIsReady = false
     var isConnecting = false
@@ -68,7 +69,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         
         // TO DO: Combine following two alerts to one function
         // when iBeacon of interactive is detected or manually selected on settings view
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromRequest:",
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromManualRequest:",
             name: "startInteractionRequest", object: nil)
         // when iBeacon of interactive is detected or manually selected on settings view
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromNotification:",
@@ -108,6 +109,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     // MARK: Navigation
     
     @IBAction func settingsButtonPressed(sender: AnyObject) {
+        
         // stop app from connecting while we are in manual control
         haltConnections = true
         
@@ -126,6 +128,24 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         presentViewController(settingsViewController, animated: true, completion: nil)
 
     }
+    
+    @IBAction func mapButtonPressed(sender: AnyObject) {
+        // stop app from connecting while we are in map
+        haltConnections = true
+        
+        // disconnect if connected
+        if connectedBean != nil {
+            manager.disconnectBean(connectedBean, error:nil)
+        }
+        
+        let interactiveMapViewController:InteractiveMapViewController = InteractiveMapViewController(
+            nibName: "InteractiveMap",bundle: nil)
+         
+        interactiveMapViewController.modalTransitionStyle = .FlipHorizontal
+        presentViewController(interactiveMapViewController, animated: true, completion: nil)
+        
+    }
+
     
     func updateStatusInterface() {
         
@@ -228,7 +248,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         // automatically connect if enabled, not ignored and app is in forground
         let appState : UIApplicationState = UIApplication.sharedApplication().applicationState
         if appState == UIApplicationState.Active {
-            println("got to connection point")
+
             if connectedBean == nil && haltConnections == false && automaticMode == true
                 && appDelegate.dataManager.isInteractiveIgnored(bean.identifier) == false {
                     
@@ -269,13 +289,12 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
            println(error)
         }
         
-
+        NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
+        
         // Dismiss any modal view controllers.
         presentedViewController?.dismissViewControllerAnimated(true, completion: { () in
             self.dismissViewControllerAnimated(true, completion: nil)
         })
-        
-        NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
         
         self.connectedBeanObjectID = nil
         self.connectedBean = nil
@@ -284,16 +303,23 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     }
     
     func intiateConnectionIfInteractionValid(bean: PTDBean!) {
+        
+        // check if the interactive is in the parse data store
         if appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
+            
+            // check if Bean SDK still has detected the bean
             if bean.state == .Discovered {
                 println("Attempting to connect to \(toString(bean.name))")
+                
+                // prevent attempts to connect to other interactives
                 if (isConnecting == false){
                     isConnecting = true
-                    println("is connecting")
+
                     activityIndicator.startAnimating()
-                    
                     var connectError : NSError?
+                    
                     manager.connectToBean(bean, error: &connectError)
+                    
                     // TODO: Where is this error going when the device isn't avaialble anylonger? 
                     if (connectError != nil){
                         UIAlertView(
@@ -306,7 +332,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                     }
                     
                     // tell the user what we've found
-                    
                     status.text = "Contacting \(appDelegate.dataManager.knownInteractivesFromParseFriendlyNames[bean.name]!)"
                 } else {
                     UIAlertView(
@@ -318,12 +343,24 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
                 }
             } else {
                 println("ERROR: cant find that bean")
+                UIAlertView(
+                    title: "Unable to Contact Interactive",
+                    message: "The experience isn't able to to start. Please try again later.",
+                    delegate: self,
+                    cancelButtonTitle: "OK"
+                    ).show()
             }
         }
     }
     
     // end interaction by disconnecting and adding to temporary ignore list
     func endInteraction(notification: NSNotification) {
+        println("end interaction notification in disconnected VC")
+        // Dismiss any modal view controllers.
+        presentedViewController?.dismissViewControllerAnimated(true, completion: { () in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
+        
         if connectedBean != nil {
             appDelegate.dataManager.previouslyExperiencedInteractivesToIgnore.append(connectedBean!.identifier!)
             manager.disconnectBean(connectedBean, error:nil)
@@ -331,7 +368,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     }
     
     // handles notification from beacon or settings page that a interaction is requested
-    func initiateConnectionFromRequest(notification: NSNotification) {
+    func initiateConnectionFromManualRequest(notification: NSNotification) {
         if let interactionInfo = notification.userInfo as? Dictionary<String, PTDBean>{
             println(interactionInfo)
             if let id = interactionInfo["beaconInteractionObject"] {
@@ -343,7 +380,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     // handles notification from beacon or settings page that a interaction is requested
     func initiateConnectionFromNotification(notification: NSNotification) {
         if let interactionInfo = notification.userInfo as? Dictionary<String, String>{
-            println(interactionInfo)
             if let id = interactionInfo["beaconInteractionBLEName"] {
                 findBeanObjectAndConnectFromBLEName(id)
             }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SensorManager: NSObject, AVAudioRecorderDelegate {
+class SensorManager: NSObject{
 
 //    lazy var motionManager = CMMotionManager()
 //    
