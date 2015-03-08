@@ -47,6 +47,14 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // when new interactive is discovered
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "addNewInteractive:",
+            name: "AddedNewInteractive", object: nil)
+        
+        // when datastore and bluetooth are ready
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTableView:",
+            name: "readyToFind", object: nil)
 
         // Setup Table
         makeSettingsTableView()
@@ -133,8 +141,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCellWithIdentifier("identifier", forIndexPath: indexPath) as UITableViewCell
-        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Identifier")
+        let cell = tableView.dequeueReusableCellWithIdentifier("identifier", forIndexPath: indexPath) as UITableViewCell
+//        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Identifier")
         
         if (indexPath.section == 0) {
             cell.textLabel?.text = "Automatic Mode"
@@ -198,9 +206,9 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         switch section{
             case 0:
-                return newViewForHeaderWithText("Experience Settings")
+                return newViewForHeaderWithText("Experience")
             case 1:
-                return newViewForHeaderWithText("Nearby Experiences")
+                return newViewForHeaderWithText("Nearby")
             default:
                 return newViewForHeaderWithText("Oops...")
         }
@@ -212,7 +220,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             case 0:
                 return newViewForFooterWithText("Automatically connect to nearby objects when app is open")
             case 1:
-                return newViewForFooterWithText("Interactive objects detected around you.\nTap object name to begin experience.")
+                return newViewForFooterWithText("Interactive objects discovered around you.\nTap to contact.")
             default:
                 return newViewForFooterWithText("Oops...")
         }
@@ -274,12 +282,11 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func handleRefresh(paramSender: AnyObject) {
         
+        appDelegate.dataManager.queryParseForInteractiveObjects()
+        
         let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC))
         dispatch_after(popTime, dispatch_get_main_queue(), {
             self.refreshControl!.endRefreshing()
-//            let indexPathOfNewRow = NSIndexPath(forRow: self.allTimes.count - 1, inSection: 1)
-//            self.settingsTable.insertRowsAtIndexPaths([indexPathOfNewRow], withRowAnimation: .Automatic)
-        
         })
     }
 
@@ -297,13 +304,16 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func prepareInteractiveTableViewCellInformation() {
         println("making table cell info ready")
+        tableCellsReady = false
+        
         for (nearbyName, bean) in nearbyBLEInteractives {
             for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
                 if nearbyName == parseBLEName {
                     nearbyInteractivesFriendly[parseFriendlyName] = bean
                     nearbyBLEInteractivesLastSeen[parseFriendlyName] = bean.lastDiscovered
-                    nearbyInteractivesFriendlyArray.append(parseFriendlyName)
-                    println(parseFriendlyName)
+                    if contains(nearbyInteractivesFriendlyArray, parseFriendlyName) == false {
+                        nearbyInteractivesFriendlyArray.append(parseFriendlyName)
+                    }
                 }
             }
         }
@@ -318,6 +328,24 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         dateFormatter.timeStyle = theTimeFormat
         
         return dateFormatter.stringFromDate(lastDiscoveredTime)
+    }
+    
+    // add new interactive when notified
+    func addNewInteractive(notification: NSNotification) {
+        println("notified of new interactive")
+        if let beanDictionary = notification.userInfo as? Dictionary<String, PTDBean>{
+
+                nearbyBLEInteractives = beanDictionary
+        }
+        
+        prepareInteractiveTableViewCellInformation()
+        settingsTable.reloadData()
+    }
+    
+    // update table view after parse data is updated
+    func updateTableView(notification: NSNotification){
+        prepareInteractiveTableViewCellInformation()
+        settingsTable.reloadData()
     }
     
     

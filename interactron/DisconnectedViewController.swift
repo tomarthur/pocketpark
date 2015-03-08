@@ -243,6 +243,8 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         if appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
             
             nearbyBLEInteractives[bean.name] = bean
+            NSNotificationCenter.defaultCenter().postNotificationName("AddedNewInteractive", object: self, userInfo: nearbyBLEInteractives)
+            
         }
         
         // automatically connect if enabled, not ignored and app is in forground
@@ -362,7 +364,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         })
         
         if connectedBean != nil {
-            appDelegate.dataManager.previouslyExperiencedInteractivesToIgnore.append(connectedBean!.identifier!)
+            appDelegate.dataManager.previouslyExperiencedInteractivesToIgnore[toString(connectedBean!.name)] = connectedBean!.identifier!
             manager.disconnectBean(connectedBean, error:nil)
         }
     }

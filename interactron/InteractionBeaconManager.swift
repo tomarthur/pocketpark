@@ -12,6 +12,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager?
     var lastProximity: CLProximity?
     var sentNotification = false
+    var auth = false
     
     var previouslySentNotifications = [String:NSDate]()
     
@@ -35,6 +36,24 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         locationManager!.startRangingBeaconsInRegion(beaconRegion)
         locationManager!.startUpdatingLocation()
 
+    }
+    
+    func requestAuthorization() {
+        
+        locationManager = CLLocationManager()
+        
+        if(locationManager!.respondsToSelector("requestAlwaysAuthorization")) {
+            locationManager!.requestAlwaysAuthorization()
+        }
+        
+        let status = CLLocationManager.authorizationStatus()
+        
+        if(status == CLAuthorizationStatus.Authorized) {
+            auth = true
+            start()
+        }
+
+        
     }
     
     func locationManager(manager: CLLocationManager!,
@@ -83,6 +102,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         didExitRegion region: CLRegion!) {
             manager.stopRangingBeaconsInRegion(region as CLBeaconRegion)
             manager.stopUpdatingLocation()
+            previouslySentNotifications.removeAll()
             sentNotification = false
             NSLog("You exited the region")
     }
@@ -92,7 +112,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
 
         var interactionNearbyNotification = UILocalNotification()
-        interactionNearbyNotification.alertBody = "Play with \(friendlyName) nearby."
+        interactionNearbyNotification.alertBody = "Control \(friendlyName) nearby."
         interactionNearbyNotification.hasAction = true
         interactionNearbyNotification.alertAction = "begin"
         interactionNearbyNotification.userInfo = [
@@ -116,7 +136,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
             {
                 
             if appDelegate.dataManager.isInteractiveKnown(beaconString) == true {
-                //if (beaconIsIgnored(beaconString) == false) {
+                if (beaconIsIgnored(beaconString) == false) {
                     for (value, key) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames{
                         if (value == beaconString){
                             println("send local notification")
@@ -125,7 +145,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
                             previouslySentNotifications[beaconString] = NSDate()
                         }
                     }
-                //}
+                }
             }
         }
         
@@ -151,27 +171,31 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     
     
     
-//    func beaconIsIgnored(beaconString: String) -> Bool {
-//        let currentTime = NSDate()
-//        let calendar = NSCalendar.currentCalendar()
-//        let comps = NSDateComponents()
-//        
-//        comps.minute = 5
-//        
-//        let date2 = calendar.dateByAddingComponents(comps, toDate: NSDate(), options: NSCalendarOptions.allZeros)
-//        
-//        if dueDate.compare(date2!) == NSComparisonResult.OrderedDescending
-//        {
-//            NSLog("not due within a week");
-//        } else if dueDate.compare(date2!) == NSComparisonResult.OrderedAscending
-//        {
-//            NSLog("due within a week");
-//        } else
-//        {
-//            NSLog("due in exactly a week (to the second, this will rarely happen in practice)");
-//        }
-//        
-//    }
+    func beaconIsIgnored(beaconString: String) -> Bool {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+
+        
+        let alreadyExperienced = appDelegate.dataManager.isBeaconIgnored(beaconString)
+        var recentlyNotified = false
+        
+        for (name, lastTime) in previouslySentNotifications {
+            if (name == beaconString){
+                let elapsedTime = NSDate().timeIntervalSinceDate(lastTime)
+
+                if Int(elapsedTime) < 3600 {
+                    recentlyNotified = true
+                }
+            }
+        }
+
+        if alreadyExperienced == true || recentlyNotified == true {
+            println("ignored \(beaconString) beacon")
+            return true
+        } else{
+            return false
+        }
+        
+    }
     
 }
 

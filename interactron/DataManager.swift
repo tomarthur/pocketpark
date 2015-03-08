@@ -16,7 +16,7 @@ class DataManager: NSObject {
     var knownInteractivesFromParse = [String: String]()
     var knownInteractivesFromParseFriendlyNames = [String: String]()
     var knownInteractivesFromParseWithGeopoints = [String: PFGeoPoint]()
-    var previouslyExperiencedInteractivesToIgnore = [NSUUID]()
+    var previouslyExperiencedInteractivesToIgnore = [String: NSUUID]()
     var dataStoreReady = false
     
     func start () {
@@ -127,7 +127,7 @@ class DataManager: NSObject {
                     for PFVersion in PFVersions {
       
                         
-                        self.knownInteractivesFromParseWithGeopoints[toString(PFVersion["name"])] = PFVersion["location"] as PFGeoPoint
+                        self.knownInteractivesFromParseWithGeopoints[toString(PFVersion["name"])] = PFVersion["location"] as? PFGeoPoint
                     }
                     
                     NSNotificationCenter.defaultCenter().postNotificationName("GeoPointDictionaryReady", object: nil)
@@ -151,9 +151,20 @@ class DataManager: NSObject {
     
     // check to see if interactive is ignored because it's been played with
     func isInteractiveIgnored(foundInteractiveUUID: NSUUID) -> Bool {
-        for ignoredUUID in previouslyExperiencedInteractivesToIgnore
+        for (blename, ignoredUUID) in previouslyExperiencedInteractivesToIgnore
         {
             if (foundInteractiveUUID.isEqual(ignoredUUID))
+            {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func isBeaconIgnored(foundInteractiveBeacon: String) -> Bool {
+        for (blename, ignoredUUID) in previouslyExperiencedInteractivesToIgnore
+        {
+            if (foundInteractiveBeacon.isEqual(blename))
             {
                 return true
             }
