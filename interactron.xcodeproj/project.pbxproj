@@ -23,6 +23,7 @@
 		E28069AA1AA976A20049321C /* InteractiveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28069A91AA976A20049321C /* InteractiveMapViewController.swift */; };
 		E28069AC1AA976B20049321C /* InteractiveMap.xib in Resources */ = {isa = PBXBuildFile; fileRef = E28069AB1AA976B20049321C /* InteractiveMap.xib */; };
 		E28B09261A9C011C003B3918 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B09251A9C011C003B3918 /* DataManager.swift */; };
+		E28B48351AAD276D00932102 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E28B48341AAD276D00932102 /* Media.xcassets */; };
 		E2B0C1A11A92819E00CB61FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */; };
 		E2B0C1A31A92819E00CB61FC /* DisconnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */; };
 		E2B0C1AB1A92819E00CB61FC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B0C1A91A92819E00CB61FC /* LaunchScreen.xib */; };
@@ -45,7 +46,6 @@
 		E2B0C1EA1A928CF800CB61FC /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1E91A928CF800CB61FC /* ParseCrashReporting.framework */; };
 		E2B0C1EC1A928D2600CB61FC /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1EB1A928D2600CB61FC /* libstdc++.6.dylib */; };
 		E2B0C1EF1A92909A00CB61FC /* ConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1EE1A92909A00CB61FC /* ConnectedViewController.swift */; };
-		E2BAEDF41A9D69930042889B /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2BAEDF31A9D69930042889B /* Media.xcassets */; };
 		E2BAEDF81A9D6C680042889B /* bulb-1.png in Resources */ = {isa = PBXBuildFile; fileRef = E2BAEDF71A9D6C680042889B /* bulb-1.png */; };
 		E2BAEDFA1A9D89460042889B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BAEDF91A9D89460042889B /* AVFoundation.framework */; };
 		E2E4CD761A991EC400F24AAB /* DisconnectedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2E4CD751A991EC400F24AAB /* DisconnectedView.xib */; };
@@ -81,6 +81,7 @@
 		E28069A91AA976A20049321C /* InteractiveMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveMapViewController.swift; sourceTree = "<group>"; };
 		E28069AB1AA976B20049321C /* InteractiveMap.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InteractiveMap.xib; sourceTree = "<group>"; };
 		E28B09251A9C011C003B3918 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		E28B48341AAD276D00932102 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = interactron/Media.xcassets; sourceTree = "<group>"; };
 		E2B0C19B1A92819E00CB61FC /* interactron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = interactron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B0C19F1A92819E00CB61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,7 +109,6 @@
 		E2B0C1E91A928CF800CB61FC /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = interactron/Frameworks/ParseCrashReporting.framework; sourceTree = "<group>"; };
 		E2B0C1EB1A928D2600CB61FC /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		E2B0C1EE1A92909A00CB61FC /* ConnectedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedViewController.swift; sourceTree = "<group>"; };
-		E2BAEDF31A9D69930042889B /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E2BAEDF71A9D6C680042889B /* bulb-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bulb-1.png"; sourceTree = "<group>"; };
 		E2BAEDF91A9D89460042889B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		E2E4CD751A991EC400F24AAB /* DisconnectedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisconnectedView.xib; sourceTree = "<group>"; };
@@ -192,7 +192,6 @@
 		E201EBD71A99920000FA87FF /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				E2BAEDF31A9D69930042889B /* Media.xcassets */,
 				E2BAEDF71A9D6C680042889B /* bulb-1.png */,
 				E201EBD81A99921200FA87FF /* Default-568h@2x.png */,
 				E201EBD91A99921200FA87FF /* street.png */,
@@ -216,6 +215,7 @@
 		E2B0C1921A92819E00CB61FC = {
 			isa = PBXGroup;
 			children = (
+				E28B48341AAD276D00932102 /* Media.xcassets */,
 				E2B0C19D1A92819E00CB61FC /* interactron */,
 				E2B0C1B31A92819E00CB61FC /* interactronTests */,
 				E2B0C19C1A92819E00CB61FC /* Products */,
@@ -390,10 +390,10 @@
 			files = (
 				E2E4CD761A991EC400F24AAB /* DisconnectedView.xib in Resources */,
 				E25A90961A9BB3DD0059CA48 /* SettingsView.xib in Resources */,
+				E28B48351AAD276D00932102 /* Media.xcassets in Resources */,
 				E201EBE11A99921200FA87FF /* yellow.png in Resources */,
 				E2E4CD781A991ED800F24AAB /* ConnectedView.xib in Resources */,
 				E201EBDE1A99921200FA87FF /* street.png in Resources */,
-				E2BAEDF41A9D69930042889B /* Media.xcassets in Resources */,
 				E2B0C1AB1A92819E00CB61FC /* LaunchScreen.xib in Resources */,
 				E201EBDD1A99921200FA87FF /* Default-568h@2x.png in Resources */,
 				E28069AC1AA976B20049321C /* InteractiveMap.xib in Resources */,

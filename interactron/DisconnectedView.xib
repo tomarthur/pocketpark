@@ -2,14 +2,11 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DisconnectedViewController" customModule="interactron" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="8Sd-Eu-PK5" id="8vP-d1-bBy"/>
-                <outlet property="interactiveMap" destination="tYx-F3-4bD" id="7Zi-4Z-Iei"/>
-                <outlet property="settingsButton" destination="LjP-eI-OkP" id="PPm-d4-4Sb"/>
                 <outlet property="status" destination="hwD-34-zrO" id="T84-04-a73"/>
                 <outlet property="view" destination="iN0-l3-epB" id="OIf-ZH-1JW"/>
             </connections>
@@ -22,46 +19,40 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwD-34-zrO">
                     <rect key="frame" x="153" y="289" width="294" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="21" id="6Iq-ZY-HY3"/>
-                        <constraint firstAttribute="width" constant="294" id="PM8-mr-xwu"/>
+                        <constraint firstAttribute="width" constant="294" id="QRT-wo-CSv"/>
+                        <constraint firstAttribute="height" constant="21" id="vsy-iL-Ing"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LjP-eI-OkP">
-                    <rect key="frame" x="8" y="563" width="22" height="22"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <state key="normal">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="settingsButtonPressed:" destination="-1" eventType="touchUpInside" id="kbE-MB-Di9"/>
-                    </connections>
-                </button>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="8Sd-Eu-PK5" userLabel="Activity Indicator">
                     <rect key="frame" x="282" y="244" width="37" height="37"/>
                 </activityIndicatorView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tYx-F3-4bD">
-                    <rect key="frame" x="561" y="563" width="31" height="30"/>
-                    <state key="normal" title="Map">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
+                <tabBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="GjZ-xC-L6Y">
+                    <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <items>
+                        <tabBarItem title="Nearby" image="Nearby" id="2JH-XT-EY9"/>
+                        <tabBarItem title="Info" image="Info" id="xEy-4J-uma" userLabel="Settings"/>
+                        <tabBarItem title="Settings" image="Settings" id="4Mb-v6-eCA" userLabel="Map"/>
+                    </items>
+                    <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="selectedImageTintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
-                        <action selector="mapButtonPressed:" destination="-1" eventType="touchUpInside" id="ivn-ji-RM4"/>
+                        <outlet property="delegate" destination="-1" id="zSg-Ol-vyS"/>
                     </connections>
-                </button>
+                </tabBar>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="8Sd-Eu-PK5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="244" id="KMg-Hj-jRe"/>
-                <constraint firstItem="hwD-34-zrO" firstAttribute="top" secondItem="8Sd-Eu-PK5" secondAttribute="bottom" constant="8" symbolic="YES" id="LSQ-ad-Jyf"/>
-                <constraint firstItem="8Sd-Eu-PK5" firstAttribute="centerX" secondItem="hwD-34-zrO" secondAttribute="centerX" id="Q2v-kh-Hn9"/>
-                <constraint firstAttribute="bottom" secondItem="LjP-eI-OkP" secondAttribute="bottom" constant="15" id="S5O-qm-kJ3"/>
-                <constraint firstItem="tYx-F3-4bD" firstAttribute="top" secondItem="LjP-eI-OkP" secondAttribute="top" id="bO1-Wl-w8u"/>
-                <constraint firstItem="hwD-34-zrO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="inh-WL-BrY"/>
-                <constraint firstItem="LjP-eI-OkP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="tnf-cG-IbK"/>
-                <constraint firstItem="tYx-F3-4bD" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="v4m-il-Snh"/>
+                <constraint firstItem="hwD-34-zrO" firstAttribute="top" secondItem="8Sd-Eu-PK5" secondAttribute="bottom" constant="8" symbolic="YES" id="Ao7-EN-8NA"/>
+                <constraint firstAttribute="trailing" secondItem="GjZ-xC-L6Y" secondAttribute="trailing" id="Di2-Zv-zTI"/>
+                <constraint firstItem="hwD-34-zrO" firstAttribute="centerX" secondItem="GjZ-xC-L6Y" secondAttribute="centerX" id="GgN-bn-vqi"/>
+                <constraint firstItem="8Sd-Eu-PK5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="244" id="P81-LC-61v"/>
+                <constraint firstItem="GjZ-xC-L6Y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="VUB-db-dpZ"/>
+                <constraint firstItem="8Sd-Eu-PK5" firstAttribute="centerX" secondItem="hwD-34-zrO" secondAttribute="centerX" id="Yzw-My-XBZ"/>
+                <constraint firstAttribute="bottom" secondItem="GjZ-xC-L6Y" secondAttribute="bottom" id="cTX-qm-cxZ"/>
             </constraints>
         </view>
         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35M-kG-Gdz">
@@ -77,4 +68,9 @@
             <point key="canvasLocation" x="160" y="586"/>
         </button>
     </objects>
+    <resources>
+        <image name="Info" width="24" height="24"/>
+        <image name="Nearby" width="24" height="24"/>
+        <image name="Settings" width="24" height="24"/>
+    </resources>
 </document>

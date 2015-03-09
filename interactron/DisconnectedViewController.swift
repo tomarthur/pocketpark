@@ -22,8 +22,8 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var settingsButton: UIButton!
-    @IBOutlet weak var interactiveMap: UIButton!
+//    @IBOutlet weak var settingsButton: UIButton!
+//    @IBOutlet weak var interactiveMap: UIButton!
     
     var bluetoothIsReady = false
     var isConnecting = false
@@ -59,6 +59,10 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Assign tab bar item with titles
+        let tabBarController = UITabBarController
+
+        
         // get notification when user wants to end experience
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:",
             name: "EndInteraction", object: nil)
@@ -90,6 +94,32 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         manager = PTDBeanManager(delegate: self)
         
         self.view.backgroundColor = .ITWelcomeColor()
+//        makeToolbar()
+    }
+    
+    func makeToolbar() {
+        
+////        let plusButton = UIBarButasdfadsftonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: nil, action: nil)
+//        var toolbarButtons = [plusButton];
+//        
+//        let toolbar = UIToolbar()
+//        toolbar.frame = CGRectMake(0, self.view.frame.size.height - 75, self.view.frame.size.width, 75)
+//        toolbar.sizeToFit()
+//        
+//        toolbar.setItems(toolbarButtons, animated: true)
+//        toolbar.backgroundColor = .ITSettingsColor()
+//        self.view.addSubview(toolbar)
+        
+//        var toolbar = t
+//        UIToolbar *toolbar = [[UIToolbar alloc] init];
+//        toolbar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
+//        NSMutableArray *items = [[NSMutableArray alloc] init];
+//        [items addObject:[[[UIBarButtonItem alloc] initWith....] autorelease]];
+//        [toolbar setItems:items animated:NO];
+//        [items release];
+//        [self.view addSubview:toolbar];
+//        [toolbar release];
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -159,7 +189,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
             } else {
                 automaticMode = false
                 activityIndicator.stopAnimating()
-                status.text = "Manual Mode: Press Info for Options"
+                status.text = "Manual Mode: Press Info for Options \n\(nearbyBLEInteractives.count) nearby"
                 
             }
         }
@@ -181,7 +211,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
             } else {
                 automaticMode = false
                 activityIndicator.stopAnimating()
-                status.text = "Manual Mode: Press Info for Options"
+                status.text = "Manual Mode: Press Info for Options \n\(nearbyBLEInteractives.count) nearby"
                 
             }
         }

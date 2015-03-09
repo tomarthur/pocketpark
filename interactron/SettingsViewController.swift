@@ -64,12 +64,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         prepareInteractiveTableViewCellInformation()
     }
-    
-    override func viewWillDisappear(animated: Bool) {
-        // TODO: Update dictionary when new things are discovered
-        println("Bye settings")
-    }
-    
+
     func setupSwipes() {
         // Swipe to go back
         swipeRecognizer = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
@@ -106,7 +101,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         navigationBar.delegate = self
         
         let navigationItem = UINavigationItem()
-        navigationItem.title = "Settings"
+        navigationItem.title = "Manual Control"
         navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "closeSettings:")
