@@ -7,7 +7,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DisconnectedViewController" customModule="interactron" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="8Sd-Eu-PK5" id="8vP-d1-bBy"/>
+                <outlet property="infoButton" destination="xEy-4J-uma" id="RB7-es-L8S"/>
+                <outlet property="nearbyButton" destination="2JH-XT-EY9" id="TD1-gm-oTd"/>
+                <outlet property="settingsManualControlButton" destination="4Mb-v6-eCA" id="n1l-9h-HoO"/>
                 <outlet property="status" destination="hwD-34-zrO" id="T84-04-a73"/>
+                <outlet property="tabBar" destination="GjZ-xC-L6Y" id="H99-um-HBA"/>
                 <outlet property="view" destination="iN0-l3-epB" id="OIf-ZH-1JW"/>
             </connections>
         </placeholder>
@@ -34,13 +38,13 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <items>
                         <tabBarItem title="Nearby" image="Nearby" id="2JH-XT-EY9"/>
-                        <tabBarItem title="Info" image="Info" id="xEy-4J-uma" userLabel="Settings"/>
-                        <tabBarItem title="Settings" image="Settings" id="4Mb-v6-eCA" userLabel="Map"/>
+                        <tabBarItem tag="1" title="Info" image="Info" id="xEy-4J-uma"/>
+                        <tabBarItem tag="2" title="Settings" image="Settings" id="4Mb-v6-eCA"/>
                     </items>
                     <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="selectedImageTintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
-                        <outlet property="delegate" destination="-1" id="zSg-Ol-vyS"/>
+                        <outlet property="delegate" destination="-1" id="AtU-9I-0co"/>
                     </connections>
                 </tabBar>
             </subviews>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate {
+class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate, UITabBarDelegate {
     
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     var nearbyBLEInteractives = [String:PTDBean]()
@@ -213,7 +213,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView{
         switch section{
             case 0:
-                return newViewForFooterWithText("Automatically connect to nearby objects when app is open")
+                return newViewForFooterWithText("Automatically connect to nearby objects when app is open.")
             case 1:
                 return newViewForFooterWithText("Interactive objects discovered around you.\nTap to contact.")
             default:

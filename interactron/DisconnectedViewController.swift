@@ -16,14 +16,19 @@
 import UIKit
 import IJReachability
 
-class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
+class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITabBarDelegate {
     
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-//    @IBOutlet weak var settingsButton: UIButton!
-//    @IBOutlet weak var interactiveMap: UIButton!
+    
+    
+    @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var settingsManualControlButton: UITabBarItem!
+    @IBOutlet weak var infoButton: UITabBarItem!
+    @IBOutlet weak var nearbyButton: UITabBarItem!
+    
     
     var bluetoothIsReady = false
     var isConnecting = false
@@ -56,11 +61,35 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         }
     }
     
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
+        
+        
+        println("did select item with tag \(item.tag)")
+        
+        switch item.tag {
+            case 0:
+                mapButtonPressed()
+                println("0")
+            case 1:
+                println("1")
+            case 2:
+                settingsButtonPressed()
+                println("2")
+            default:
+                break
+        }
+        
+    }
+    
+
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Assign tab bar item with titles
-        let tabBarController = UITabBarController
+        let tabBarController = UITabBarController()
+        tabBar.selectedItem = self.tabBar.items![1] as? UITabBarItem
 
         
         // get notification when user wants to end experience
@@ -97,30 +126,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
 //        makeToolbar()
     }
     
-    func makeToolbar() {
-        
-////        let plusButton = UIBarButasdfadsftonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: nil, action: nil)
-//        var toolbarButtons = [plusButton];
-//        
-//        let toolbar = UIToolbar()
-//        toolbar.frame = CGRectMake(0, self.view.frame.size.height - 75, self.view.frame.size.width, 75)
-//        toolbar.sizeToFit()
-//        
-//        toolbar.setItems(toolbarButtons, animated: true)
-//        toolbar.backgroundColor = .ITSettingsColor()
-//        self.view.addSubview(toolbar)
-        
-//        var toolbar = t
-//        UIToolbar *toolbar = [[UIToolbar alloc] init];
-//        toolbar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
-//        NSMutableArray *items = [[NSMutableArray alloc] init];
-//        [items addObject:[[[UIBarButtonItem alloc] initWith....] autorelease]];
-//        [toolbar setItems:items animated:NO];
-//        [items release];
-//        [self.view addSubview:toolbar];
-//        [toolbar release];
-        
-    }
+
     
     override func viewDidAppear(animated: Bool) {
         
@@ -137,8 +143,9 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
     }
     
     // MARK: Navigation
+
     
-    @IBAction func settingsButtonPressed(sender: AnyObject) {
+    func settingsButtonPressed() {
         
         // stop app from connecting while we are in manual control
         haltConnections = true
@@ -159,7 +166,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
 
     }
     
-    @IBAction func mapButtonPressed(sender: AnyObject) {
+    func mapButtonPressed() {
         // stop app from connecting while we are in map
         haltConnections = true
         
@@ -175,6 +182,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate {
         presentViewController(interactiveMapViewController, animated: true, completion: nil)
         
     }
+
 
     
     func updateStatusInterface() {
