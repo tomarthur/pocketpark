@@ -90,6 +90,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         // Assign tab bar item with titles
         let tabBarController = UITabBarController()
         tabBar.selectedItem = self.tabBar.items![1] as? UITabBarItem
+        tabBar.tintColor = .ITConnectedColor()
 
         
         // get notification when user wants to end experience
@@ -123,13 +124,12 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         manager = PTDBeanManager(delegate: self)
         
         self.view.backgroundColor = .ITWelcomeColor()
-//        makeToolbar()
     }
     
 
     
     override func viewDidAppear(animated: Bool) {
-        
+        tabBar.selectedItem = self.tabBar.items![1] as? UITabBarItem
         
     }
 
@@ -197,7 +197,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
             } else {
                 automaticMode = false
                 activityIndicator.stopAnimating()
-                status.text = "Manual Mode: Press Info for Options \n\(nearbyBLEInteractives.count) nearby"
+                status.text = "Automatic Contact Disabled. Press Nearby for Options.\n\(nearbyBLEInteractives.count)"
                 
             }
         }
@@ -219,7 +219,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
             } else {
                 automaticMode = false
                 activityIndicator.stopAnimating()
-                status.text = "Manual Mode: Press Info for Options \n\(nearbyBLEInteractives.count) nearby"
+                status.text = "Automatic Contact Disabled. Press Nearby for Options.\n\(nearbyBLEInteractives.count) nearby"
                 
             }
         }

@@ -20,11 +20,11 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwD-34-zrO">
-                    <rect key="frame" x="153" y="289" width="294" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwD-34-zrO">
+                    <rect key="frame" x="153" y="289" width="294" height="47"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="294" id="QRT-wo-CSv"/>
-                        <constraint firstAttribute="height" constant="21" id="vsy-iL-Ing"/>
+                        <constraint firstAttribute="height" constant="47" id="DWr-9M-o8V"/>
+                        <constraint firstAttribute="width" constant="294" id="K5p-1v-EX9"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -37,9 +37,9 @@
                     <rect key="frame" x="0.0" y="551" width="600" height="49"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <items>
-                        <tabBarItem title="Nearby" image="Nearby" id="2JH-XT-EY9"/>
-                        <tabBarItem tag="1" title="Info" image="Info" id="xEy-4J-uma"/>
-                        <tabBarItem tag="2" title="Settings" image="Settings" id="4Mb-v6-eCA"/>
+                        <tabBarItem title="Map" image="locations" id="2JH-XT-EY9"/>
+                        <tabBarItem tag="1" title="Info" image="Home" id="xEy-4J-uma"/>
+                        <tabBarItem tag="2" title="Nearby" image="Nearby" id="4Mb-v6-eCA"/>
                     </items>
                     <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="selectedImageTintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -50,31 +50,19 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="hwD-34-zrO" firstAttribute="top" secondItem="8Sd-Eu-PK5" secondAttribute="bottom" constant="8" symbolic="YES" id="Ao7-EN-8NA"/>
-                <constraint firstAttribute="trailing" secondItem="GjZ-xC-L6Y" secondAttribute="trailing" id="Di2-Zv-zTI"/>
-                <constraint firstItem="hwD-34-zrO" firstAttribute="centerX" secondItem="GjZ-xC-L6Y" secondAttribute="centerX" id="GgN-bn-vqi"/>
-                <constraint firstItem="8Sd-Eu-PK5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="244" id="P81-LC-61v"/>
-                <constraint firstItem="GjZ-xC-L6Y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="VUB-db-dpZ"/>
-                <constraint firstItem="8Sd-Eu-PK5" firstAttribute="centerX" secondItem="hwD-34-zrO" secondAttribute="centerX" id="Yzw-My-XBZ"/>
-                <constraint firstAttribute="bottom" secondItem="GjZ-xC-L6Y" secondAttribute="bottom" id="cTX-qm-cxZ"/>
+                <constraint firstItem="GjZ-xC-L6Y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="HGA-D6-shM"/>
+                <constraint firstItem="8Sd-Eu-PK5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="244" id="JX1-5f-PSQ"/>
+                <constraint firstAttribute="trailing" secondItem="GjZ-xC-L6Y" secondAttribute="trailing" id="XF2-Wf-zZu"/>
+                <constraint firstItem="hwD-34-zrO" firstAttribute="top" secondItem="8Sd-Eu-PK5" secondAttribute="bottom" constant="8" symbolic="YES" id="aBu-rN-hqt"/>
+                <constraint firstItem="GjZ-xC-L6Y" firstAttribute="centerX" secondItem="hwD-34-zrO" secondAttribute="centerX" id="bVS-nc-xGQ"/>
+                <constraint firstAttribute="bottom" secondItem="GjZ-xC-L6Y" secondAttribute="bottom" id="dIM-sv-mwn"/>
+                <constraint firstItem="hwD-34-zrO" firstAttribute="centerX" secondItem="8Sd-Eu-PK5" secondAttribute="centerX" id="nWw-wn-M4m"/>
             </constraints>
         </view>
-        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35M-kG-Gdz">
-            <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
-            <constraints>
-                <constraint firstAttribute="width" constant="22" id="8LR-Qj-ZZt"/>
-                <constraint firstAttribute="height" constant="22" id="n1N-ZW-rZW"/>
-            </constraints>
-            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <state key="normal">
-                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-            </state>
-            <point key="canvasLocation" x="160" y="586"/>
-        </button>
     </objects>
     <resources>
-        <image name="Info" width="24" height="24"/>
+        <image name="Home" width="14" height="24"/>
         <image name="Nearby" width="24" height="24"/>
-        <image name="Settings" width="24" height="24"/>
+        <image name="locations" width="20" height="24"/>
     </resources>
 </document>

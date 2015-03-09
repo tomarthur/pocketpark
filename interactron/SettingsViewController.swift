@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate, UITabBarDelegate {
+class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate {
     
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     var nearbyBLEInteractives = [String:PTDBean]()
@@ -19,6 +19,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     var refreshControl: UIRefreshControl?
     var tableCellsReady = false
 
+    @IBOutlet weak var tabBar: UITabBar!
     
     //    var tableView: UITableView?
     var swipeRecognizer: UISwipeGestureRecognizer!
@@ -47,6 +48,10 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        // Assign tab bar item with titles
+//        let tabBarController = UITabBarController()
+//        tabBar.selectedItem = self.tabBar.items![2] as? UITabBarItem
         
         // when new interactive is discovered
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "addNewInteractive:",

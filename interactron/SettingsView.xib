@@ -20,33 +20,14 @@
                     <rect key="frame" x="0.0" y="8" width="600" height="592"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </tableView>
-                <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cu1-3G-wKd">
-                    <rect key="frame" x="0.0" y="551" width="600" height="49"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <items>
-                        <tabBarItem title="Nearby" image="Nearby" id="feT-9A-MYU"/>
-                        <tabBarItem tag="1" title="Info" image="Info" id="1gZ-sI-QiN"/>
-                        <tabBarItem tag="2" title="Settings" image="Settings" id="Ift-3B-rAt"/>
-                    </items>
-                    <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <color key="selectedImageTintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="LEa-5p-jyo"/>
-                    </connections>
-                </tabBar>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Pmu-gD-Wxa" secondAttribute="trailing" id="Bep-43-0YU"/>
-                <constraint firstItem="Pmu-gD-Wxa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IY1-D1-e88"/>
-                <constraint firstAttribute="bottom" secondItem="Pmu-gD-Wxa" secondAttribute="bottom" id="XgN-Gh-smG"/>
-                <constraint firstItem="Pmu-gD-Wxa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="zsh-CV-gRV"/>
+                <constraint firstAttribute="trailing" secondItem="Pmu-gD-Wxa" secondAttribute="trailing" id="AHH-HX-1rF"/>
+                <constraint firstItem="Pmu-gD-Wxa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FKG-HJ-Dvo"/>
+                <constraint firstAttribute="bottom" secondItem="Pmu-gD-Wxa" secondAttribute="bottom" id="ZwT-lr-XBL"/>
+                <constraint firstItem="Pmu-gD-Wxa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="dsB-zM-GCt"/>
             </constraints>
         </view>
     </objects>
-    <resources>
-        <image name="Info" width="24" height="24"/>
-        <image name="Nearby" width="24" height="24"/>
-        <image name="Settings" width="24" height="24"/>
-    </resources>
 </document>

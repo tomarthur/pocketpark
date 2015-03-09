@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "gear_24.png"
+      "filename" : "locations.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "gear_48.png"
+      "filename" : "locations@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "gear_64.png"
+      "filename" : "locations@3x.png"
     }
   ],
   "info" : {
