@@ -207,10 +207,10 @@
 			isa = PBXGroup;
 			children = (
 				E261D4131AB008BA00957726 /* AppDelegate.swift */,
-				E261D3F31AB0088600957726 /* Utilities */,
-				E261D3F21AB0088200957726 /* Views */,
 				E261D3F11AB0087E00957726 /* Controllers */,
 				E261D3F01AB0087A00957726 /* Media */,
+				E261D3F31AB0088600957726 /* Utilities */,
+				E261D3F21AB0088200957726 /* Views */,
 				E261D3C21AB007DE00957726 /* Supporting Files */,
 			);
 			path = PocketPark;
@@ -462,7 +462,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=/usr/local/bin:$PATH\ncd /Users/tom/Documents/ITP/Semester\\ 4/Thesis/PocketThemePark/PocketPark/parse\n\nparse symbols \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n\nFILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi";
+			shellScript = "export PATH=/usr/local/bin:$PATH\ncd /Users/tom/Documents/ITP/Semester\\ 4/Thesis/PocketPark/parse\n\nparse symbols \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n\nFILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
