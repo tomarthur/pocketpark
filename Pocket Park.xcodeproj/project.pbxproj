@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04E068CD5B42582FDB445EC6 /* Pods_Pocket_Park.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC209EE5AEDB4D53192019B /* Pods_Pocket_Park.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		45F934AA53805DFE6CF14ECF /* Pods_interactron.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DA5AB3A83F6A026DD60D83 /* Pods_interactron.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E201EBD51A9991EE00FA87FF /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E201EBD31A9991EE00FA87FF /* OnboardingViewController.swift */; };
 		E201EBD61A9991EE00FA87FF /* OnboardingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E201EBD41A9991EE00FA87FF /* OnboardingContentViewController.swift */; };
@@ -15,10 +16,11 @@
 		E201EBDF1A99921200FA87FF /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = E201EBDA1A99921200FA87FF /* blue.png */; };
 		E201EBE01A99921200FA87FF /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = E201EBDB1A99921200FA87FF /* red.png */; };
 		E201EBE11A99921200FA87FF /* yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = E201EBDC1A99921200FA87FF /* yellow.png */; };
+		E23194AA1AAFDC3A001F9458 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23194A91AAFDC3A001F9458 /* CustomColors.swift */; };
+		E23194AC1AAFDC44001F9458 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E23194AB1AAFDC44001F9458 /* LaunchScreen.xib */; };
 		E25A90961A9BB3DD0059CA48 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25A90951A9BB3DD0059CA48 /* SettingsView.xib */; };
 		E25A909D1A9BC4C40059CA48 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25A909C1A9BC4C40059CA48 /* SettingsViewController.swift */; };
 		E25A909F1A9BC4E70059CA48 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E25A909E1A9BC4E70059CA48 /* Settings.bundle */; };
-		E263FE741A97E5EA00E5E7AA /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E263FE731A97E5EA00E5E7AA /* CustomColors.swift */; };
 		E2704FB01A9D9C3900860D74 /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2704FAF1A9D9C3900860D74 /* SensorManager.swift */; };
 		E28069AA1AA976A20049321C /* InteractiveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28069A91AA976A20049321C /* InteractiveMapViewController.swift */; };
 		E28069AC1AA976B20049321C /* InteractiveMap.xib in Resources */ = {isa = PBXBuildFile; fileRef = E28069AB1AA976B20049321C /* InteractiveMap.xib */; };
@@ -26,7 +28,6 @@
 		E28B48351AAD276D00932102 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E28B48341AAD276D00932102 /* Media.xcassets */; };
 		E2B0C1A11A92819E00CB61FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */; };
 		E2B0C1A31A92819E00CB61FC /* DisconnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */; };
-		E2B0C1AB1A92819E00CB61FC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B0C1A91A92819E00CB61FC /* LaunchScreen.xib */; };
 		E2B0C1B71A92819E00CB61FC /* interactronTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1B61A92819E00CB61FC /* interactronTests.swift */; };
 		E2B0C1C71A92851900CB61FC /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1C61A92851900CB61FC /* Accounts.framework */; };
 		E2B0C1C91A92855100CB61FC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1C81A92855100CB61FC /* AudioToolbox.framework */; };
@@ -63,8 +64,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		620C4F3B25FF44E13409FBFE /* Pods-Pocket Park.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pocket Park.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pocket Park/Pods-Pocket Park.debug.xcconfig"; sourceTree = "<group>"; };
 		76DA5AB3A83F6A026DD60D83 /* Pods_interactron.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_interactron.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9091ACD305351E10E512004 /* Pods-interactron.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interactron.debug.xcconfig"; path = "Pods/Target Support Files/Pods-interactron/Pods-interactron.debug.xcconfig"; sourceTree = "<group>"; };
+		C14A6BCDC3505A50B7B4CC39 /* Pods-Pocket Park.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pocket Park.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pocket Park/Pods-Pocket Park.release.xcconfig"; sourceTree = "<group>"; };
+		DEC209EE5AEDB4D53192019B /* Pods_Pocket_Park.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pocket_Park.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E201EBD31A9991EE00FA87FF /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E201EBD41A9991EE00FA87FF /* OnboardingContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingContentViewController.swift; sourceTree = "<group>"; };
 		E201EBD81A99921200FA87FF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../Onboard/Swift/Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -72,20 +75,21 @@
 		E201EBDA1A99921200FA87FF /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue.png; path = ../../Onboard/Swift/OnboardSwift/blue.png; sourceTree = "<group>"; };
 		E201EBDB1A99921200FA87FF /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red.png; path = ../../Onboard/Swift/OnboardSwift/red.png; sourceTree = "<group>"; };
 		E201EBDC1A99921200FA87FF /* yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yellow.png; path = ../../Onboard/Swift/OnboardSwift/yellow.png; sourceTree = "<group>"; };
+		E23194A81AAFDBF9001F9458 /* Pocket-Park-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pocket-Park-Bridging-Header.h"; sourceTree = "<group>"; };
+		E23194A91AAFDC3A001F9458 /* CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
+		E23194AB1AAFDC44001F9458 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		E25A90951A9BB3DD0059CA48 /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
 		E25A909C1A9BC4C40059CA48 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E25A909E1A9BC4E70059CA48 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		E263FE731A97E5EA00E5E7AA /* CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		E2704FAF1A9D9C3900860D74 /* SensorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorManager.swift; sourceTree = "<group>"; };
 		E28069A91AA976A20049321C /* InteractiveMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveMapViewController.swift; sourceTree = "<group>"; };
 		E28069AB1AA976B20049321C /* InteractiveMap.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InteractiveMap.xib; sourceTree = "<group>"; };
 		E28B09251A9C011C003B3918 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		E28B48341AAD276D00932102 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = interactron/Media.xcassets; sourceTree = "<group>"; };
+		E28B48341AAD276D00932102 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = PocketPark/Media.xcassets; sourceTree = "<group>"; };
 		E2B0C19B1A92819E00CB61FC /* Pocket Park.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Park.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B0C19F1A92819E00CB61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectedViewController.swift; sourceTree = "<group>"; };
-		E2B0C1AA1A92819E00CB61FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E2B0C1B01A92819E00CB61FC /* Pocket ParkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pocket ParkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B0C1B51A92819E00CB61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2B0C1B61A92819E00CB61FC /* interactronTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = interactronTests.swift; sourceTree = "<group>"; };
@@ -101,7 +105,6 @@
 		E2B0C1DA1A92858400CB61FC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E2B0C1DC1A92858E00CB61FC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		E2B0C1DE1A92859500CB61FC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		E2B0C1E01A9285D400CB61FC /* interactron-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "interactron-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		E2B0C1E31A92870800CB61FC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = interactron/Frameworks/Bolts.framework; sourceTree = "<group>"; };
 		E2B0C1E41A92870800CB61FC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = interactron/Frameworks/Parse.framework; sourceTree = "<group>"; };
 		E2B0C1E91A928CF800CB61FC /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = interactron/Frameworks/ParseCrashReporting.framework; sourceTree = "<group>"; };
@@ -112,7 +115,6 @@
 		E2E4CD751A991EC400F24AAB /* DisconnectedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisconnectedView.xib; sourceTree = "<group>"; };
 		E2E4CD771A991ED800F24AAB /* ConnectedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectedView.xib; sourceTree = "<group>"; };
 		E2E4CD791A99393F00F24AAB /* InteractionBeaconManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionBeaconManager.swift; sourceTree = "<group>"; };
-		E97958671897AF38B5BCB553 /* Pods-interactron.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interactron.release.xcconfig"; path = "Pods/Target Support Files/Pods-interactron/Pods-interactron.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				E2B0C1E71A92870800CB61FC /* Parse.framework in Frameworks */,
 				E2B0C1E61A92870800CB61FC /* Bolts.framework in Frameworks */,
 				45F934AA53805DFE6CF14ECF /* Pods_interactron.framework in Frameworks */,
+				04E068CD5B42582FDB445EC6 /* Pods_Pocket_Park.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +175,7 @@
 				E2B0C1DE1A92859500CB61FC /* libsqlite3.dylib */,
 				E2B0C1DC1A92858E00CB61FC /* libz.dylib */,
 				76DA5AB3A83F6A026DD60D83 /* Pods_interactron.framework */,
+				DEC209EE5AEDB4D53192019B /* Pods_Pocket_Park.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -179,8 +183,8 @@
 		BEF8A05E7406182F1E9F5660 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C9091ACD305351E10E512004 /* Pods-interactron.debug.xcconfig */,
-				E97958671897AF38B5BCB553 /* Pods-interactron.release.xcconfig */,
+				620C4F3B25FF44E13409FBFE /* Pods-Pocket Park.debug.xcconfig */,
+				C14A6BCDC3505A50B7B4CC39 /* Pods-Pocket Park.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -201,18 +205,19 @@
 		E25A90971A9BB3F40059CA48 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				E23194A91AAFDC3A001F9458 /* CustomColors.swift */,
 				E2E4CD791A99393F00F24AAB /* InteractionBeaconManager.swift */,
 				E28B09251A9C011C003B3918 /* DataManager.swift */,
 				E2704FAF1A9D9C3900860D74 /* SensorManager.swift */,
 			);
-			name = Utilities;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		E2B0C1921A92819E00CB61FC = {
 			isa = PBXGroup;
 			children = (
 				E28B48341AAD276D00932102 /* Media.xcassets */,
-				E2B0C19D1A92819E00CB61FC /* interactron */,
+				E2B0C19D1A92819E00CB61FC /* PocketPark */,
 				E2B0C1B31A92819E00CB61FC /* interactronTests */,
 				E2B0C19C1A92819E00CB61FC /* Products */,
 				BEF8A05E7406182F1E9F5660 /* Pods */,
@@ -229,7 +234,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E2B0C19D1A92819E00CB61FC /* interactron */ = {
+		E2B0C19D1A92819E00CB61FC /* PocketPark */ = {
 			isa = PBXGroup;
 			children = (
 				E201EBD71A99920000FA87FF /* Images */,
@@ -238,19 +243,19 @@
 				E25A90971A9BB3F40059CA48 /* Utilities */,
 				E2B0C19E1A92819E00CB61FC /* Supporting Files */,
 			);
-			path = interactron;
+			path = PocketPark;
 			sourceTree = "<group>";
 		};
 		E2B0C19E1A92819E00CB61FC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E23194A81AAFDBF9001F9458 /* Pocket-Park-Bridging-Header.h */,
 				E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */,
-				E263FE731A97E5EA00E5E7AA /* CustomColors.swift */,
-				E2B0C1E01A9285D400CB61FC /* interactron-Bridging-Header.h */,
 				E2B0C19F1A92819E00CB61FC /* Info.plist */,
 				E25A909E1A9BC4E70059CA48 /* Settings.bundle */,
 			);
 			name = "Supporting Files";
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		E2B0C1B31A92819E00CB61FC /* interactronTests */ = {
@@ -259,7 +264,8 @@
 				E2B0C1B61A92819E00CB61FC /* interactronTests.swift */,
 				E2B0C1B41A92819E00CB61FC /* Supporting Files */,
 			);
-			path = interactronTests;
+			name = interactronTests;
+			path = "Pocket ParkTests";
 			sourceTree = "<group>";
 		};
 		E2B0C1B41A92819E00CB61FC /* Supporting Files */ = {
@@ -273,13 +279,13 @@
 		E2B0C1F01A9290A600CB61FC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E2B0C1A91A92819E00CB61FC /* LaunchScreen.xib */,
+				E23194AB1AAFDC44001F9458 /* LaunchScreen.xib */,
 				E2E4CD751A991EC400F24AAB /* DisconnectedView.xib */,
 				E2E4CD771A991ED800F24AAB /* ConnectedView.xib */,
 				E25A90951A9BB3DD0059CA48 /* SettingsView.xib */,
 				E28069AB1AA976B20049321C /* InteractiveMap.xib */,
 			);
-			name = Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E2B0C1F11A9290AC00CB61FC /* Controllers */ = {
@@ -293,6 +299,7 @@
 				E201EBD41A9991EE00FA87FF /* OnboardingContentViewController.swift */,
 			);
 			name = Controllers;
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,10 +401,10 @@
 				E201EBE11A99921200FA87FF /* yellow.png in Resources */,
 				E2E4CD781A991ED800F24AAB /* ConnectedView.xib in Resources */,
 				E201EBDE1A99921200FA87FF /* street.png in Resources */,
-				E2B0C1AB1A92819E00CB61FC /* LaunchScreen.xib in Resources */,
 				E201EBDD1A99921200FA87FF /* Default-568h@2x.png in Resources */,
 				E28069AC1AA976B20049321C /* InteractiveMap.xib in Resources */,
 				E2BAEDF81A9D6C680042889B /* bulb-1.png in Resources */,
+				E23194AC1AAFDC44001F9458 /* LaunchScreen.xib in Resources */,
 				E201EBE01A99921200FA87FF /* red.png in Resources */,
 				E201EBDF1A99921200FA87FF /* blue.png in Resources */,
 				E25A909F1A9BC4E70059CA48 /* Settings.bundle in Resources */,
@@ -441,7 +448,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-interactron/Pods-interactron-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pocket Park/Pods-Pocket Park-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D55D74B7C60966C7A69A4980 /* Copy Pods Resources */ = {
@@ -456,7 +463,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-interactron/Pods-interactron-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pocket Park/Pods-Pocket Park-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E2B0C1ED1A928DA500CB61FC /* ShellScript */ = {
@@ -480,7 +487,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E28B09261A9C011C003B3918 /* DataManager.swift in Sources */,
-				E263FE741A97E5EA00E5E7AA /* CustomColors.swift in Sources */,
 				E2B0C1A31A92819E00CB61FC /* DisconnectedViewController.swift in Sources */,
 				E25A909D1A9BC4C40059CA48 /* SettingsViewController.swift in Sources */,
 				E28069AA1AA976A20049321C /* InteractiveMapViewController.swift in Sources */,
@@ -489,6 +495,7 @@
 				E201EBD61A9991EE00FA87FF /* OnboardingContentViewController.swift in Sources */,
 				E2704FB01A9D9C3900860D74 /* SensorManager.swift in Sources */,
 				E2E4CD7A1A99393F00F24AAB /* InteractionBeaconManager.swift in Sources */,
+				E23194AA1AAFDC3A001F9458 /* CustomColors.swift in Sources */,
 				E2B0C1EF1A92909A00CB61FC /* ConnectedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,17 +517,6 @@
 			targetProxy = E2B0C1B11A92819E00CB61FC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		E2B0C1A91A92819E00CB61FC /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E2B0C1AA1A92819E00CB61FC /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E2B0C1B81A92819E00CB61FC /* Debug */ = {
@@ -602,7 +598,7 @@
 		};
 		E2B0C1BB1A92819E00CB61FC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C9091ACD305351E10E512004 /* Pods-interactron.debug.xcconfig */;
+			baseConfigurationReference = 620C4F3B25FF44E13409FBFE /* Pods-Pocket Park.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -610,18 +606,19 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/interactron/Frameworks",
+					"$(PROJECT_DIR)/PocketPark/SupportingFiles",
+					"$(PROJECT_DIR)/PocketPark/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"${PODS_ROOT}/**",
 				);
-				INFOPLIST_FILE = interactron/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Pocket Park/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Pocket Park";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/interactron-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/PocketPark/SupportingFiles/Pocket-Park-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -629,7 +626,7 @@
 		};
 		E2B0C1BC1A92819E00CB61FC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E97958671897AF38B5BCB553 /* Pods-interactron.release.xcconfig */;
+			baseConfigurationReference = C14A6BCDC3505A50B7B4CC39 /* Pods-Pocket Park.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -637,18 +634,19 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/interactron/Frameworks",
+					"$(PROJECT_DIR)/PocketPark/Frameworks",
+					"$(PROJECT_DIR)/PocketPark/SupportingFiles",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"${PODS_ROOT}/**",
 				);
-				INFOPLIST_FILE = interactron/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Pocket Park/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Pocket Park";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/interactron-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/PocketPark/SupportingFiles/Pocket-Park-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

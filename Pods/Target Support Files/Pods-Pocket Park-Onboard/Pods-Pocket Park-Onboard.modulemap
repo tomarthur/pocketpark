@@ -1,0 +1,6 @@
+framework module Onboard {
+  umbrella header "Pods-Pocket Park-Onboard-umbrella.h"
+
+  export *
+  module * { export * }
+}
