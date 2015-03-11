@@ -8,5 +8,6 @@ target 'Pocket Park' do
     pod 'pop', '~> 1.0'
     pod 'InAppSettingsKit', '~> 2.1'
     pod 'IJReachability', :git => 'https://github.com/Isuru-Nanayakkara/IJReachability.git'
+    pod 'HockeySDK', '~> 3.6.2'
 
 end

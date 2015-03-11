@@ -10,4 +10,5 @@
 #import <ParseCrashReporting/ParseCrashReporting.h>
 #import <pop/POP.h>
 #import <FBShimmering/FBShimmeringView.h>
+#import "HockeySDK.h"
 

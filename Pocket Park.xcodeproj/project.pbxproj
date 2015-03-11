@@ -45,7 +45,6 @@
 		E2B0C1EA1A928CF800CB61FC /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1E91A928CF800CB61FC /* ParseCrashReporting.framework */; };
 		E2B0C1EC1A928D2600CB61FC /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B0C1EB1A928D2600CB61FC /* libstdc++.6.dylib */; };
 		E2B0C1EF1A92909A00CB61FC /* ConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C1EE1A92909A00CB61FC /* ConnectedViewController.swift */; };
-		E2BAEDF81A9D6C680042889B /* bulb-1.png in Resources */ = {isa = PBXBuildFile; fileRef = E2BAEDF71A9D6C680042889B /* bulb-1.png */; };
 		E2BAEDFA1A9D89460042889B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BAEDF91A9D89460042889B /* AVFoundation.framework */; };
 		E2E4CD761A991EC400F24AAB /* DisconnectedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2E4CD751A991EC400F24AAB /* DisconnectedView.xib */; };
 		E2E4CD781A991ED800F24AAB /* ConnectedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2E4CD771A991ED800F24AAB /* ConnectedView.xib */; };
@@ -109,7 +108,6 @@
 		E2B0C1E91A928CF800CB61FC /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = interactron/Frameworks/ParseCrashReporting.framework; sourceTree = "<group>"; };
 		E2B0C1EB1A928D2600CB61FC /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		E2B0C1EE1A92909A00CB61FC /* ConnectedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedViewController.swift; sourceTree = "<group>"; };
-		E2BAEDF71A9D6C680042889B /* bulb-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bulb-1.png"; sourceTree = "<group>"; };
 		E2BAEDF91A9D89460042889B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		E2E4CD751A991EC400F24AAB /* DisconnectedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisconnectedView.xib; sourceTree = "<group>"; };
 		E2E4CD771A991ED800F24AAB /* ConnectedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectedView.xib; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 		E201EBD71A99920000FA87FF /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				E2BAEDF71A9D6C680042889B /* bulb-1.png */,
 				E201EBD81A99921200FA87FF /* Default-568h@2x.png */,
 				E201EBD91A99921200FA87FF /* street.png */,
 				E201EBDA1A99921200FA87FF /* blue.png */,
@@ -217,9 +214,9 @@
 				E28B48341AAD276D00932102 /* Media.xcassets */,
 				E2B0C19D1A92819E00CB61FC /* PocketPark */,
 				E2B0C1B31A92819E00CB61FC /* PocketParkTests */,
-				E2B0C19C1A92819E00CB61FC /* Products */,
 				BEF8A05E7406182F1E9F5660 /* Pods */,
 				79D800E76E8A5F641A41773E /* Frameworks */,
+				E2B0C19C1A92819E00CB61FC /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -400,7 +397,6 @@
 				E201EBDE1A99921200FA87FF /* street.png in Resources */,
 				E201EBDD1A99921200FA87FF /* Default-568h@2x.png in Resources */,
 				E28069AC1AA976B20049321C /* InteractiveMap.xib in Resources */,
-				E2BAEDF81A9D6C680042889B /* bulb-1.png in Resources */,
 				E23194AC1AAFDC44001F9458 /* LaunchScreen.xib in Resources */,
 				E201EBE01A99921200FA87FF /* red.png in Resources */,
 				E201EBDF1A99921200FA87FF /* blue.png in Resources */,
@@ -474,7 +470,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=/usr/local/bin:$PATH\ncd /Users/tom/Documents/ITP/Semester\\ 4/Thesis/interactron/parse\n\nparse symbols \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"";
+			shellScript = "export PATH=/usr/local/bin:$PATH\ncd /Users/tom/Documents/ITP/Semester\\ 4/Thesis/interactron/parse\n\nparse symbols \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n\nFILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -49,6 +49,7 @@ code_sign() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Bean_iOS_OSX_SDK.framework'
+  install_framework 'HockeySDK.framework'
   install_framework 'IJReachability.framework'
   install_framework 'InAppSettingsKit.framework'
   install_framework 'Onboard.framework'
@@ -57,6 +58,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Bean_iOS_OSX_SDK.framework'
+  install_framework 'HockeySDK.framework'
   install_framework 'IJReachability.framework'
   install_framework 'InAppSettingsKit.framework'
   install_framework 'Onboard.framework'

@@ -1,5 +1,6 @@
 PODS:
   - Bean-iOS-OSX-SDK (0.7.1)
+  - HockeySDK (3.6.2)
   - IJReachability (0.1.0)
   - InAppSettingsKit (2.4.4)
   - Onboard (2.1.1)
@@ -8,6 +9,7 @@ PODS:
 
 DEPENDENCIES:
   - Bean-iOS-OSX-SDK (~> 0.6)
+  - HockeySDK (~> 3.6.2)
   - IJReachability (from `https://github.com/Isuru-Nanayakkara/IJReachability.git`)
   - InAppSettingsKit (~> 2.1)
   - Onboard
@@ -25,6 +27,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Bean-iOS-OSX-SDK: 284aa4c8c929ff20f8cabc497375b49256aa459c
+  HockeySDK: bfd1f5ac75938b07499c4ac12932244b72a2e70b
   IJReachability: 3eff33caca50869df09b257bcf712031a56a8575
   InAppSettingsKit: e78aee9fc41b44bcc5c70d7abd79cff730a0a0d3
   Onboard: 27cdf8db29740f0c17ed81371a003b9833a5e700

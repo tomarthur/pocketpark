@@ -27,6 +27,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 //    let settings = NSDictionary(contentsOfFile: settingsBundle!)
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        // configure Hockey App
+        BITHockeyManager.sharedHockeyManager().configureWithIdentifier("3697b3f570362d842ec8c975151e6bc3")
+        BITHockeyManager.sharedHockeyManager().startManager()
+        BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
+        
         // Parse framework for analytics, data and bug tracking
         ParseCrashReporting.enable()
         Parse.enableLocalDatastore()
@@ -37,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // get data from Parse
         dataManager.start()
         
+
         // stop location when app is open
         interactionBeaconManager.locationManager?.stopUpdatingLocation()
         
