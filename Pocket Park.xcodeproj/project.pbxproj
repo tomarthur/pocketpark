@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		04E068CD5B42582FDB445EC6 /* Pods_Pocket_Park.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC209EE5AEDB4D53192019B /* Pods_Pocket_Park.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		45F934AA53805DFE6CF14ECF /* Pods_interactron.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DA5AB3A83F6A026DD60D83 /* Pods_interactron.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E201EBD51A9991EE00FA87FF /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E201EBD31A9991EE00FA87FF /* OnboardingViewController.swift */; };
 		E201EBD61A9991EE00FA87FF /* OnboardingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E201EBD41A9991EE00FA87FF /* OnboardingContentViewController.swift */; };
 		E201EBDD1A99921200FA87FF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E201EBD81A99921200FA87FF /* Default-568h@2x.png */; };
@@ -139,7 +138,6 @@
 				E2B0C1C71A92851900CB61FC /* Accounts.framework in Frameworks */,
 				E2B0C1E71A92870800CB61FC /* Parse.framework in Frameworks */,
 				E2B0C1E61A92870800CB61FC /* Bolts.framework in Frameworks */,
-				45F934AA53805DFE6CF14ECF /* Pods_interactron.framework in Frameworks */,
 				04E068CD5B42582FDB445EC6 /* Pods_Pocket_Park.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,7 +216,7 @@
 			children = (
 				E28B48341AAD276D00932102 /* Media.xcassets */,
 				E2B0C19D1A92819E00CB61FC /* PocketPark */,
-				E2B0C1B31A92819E00CB61FC /* interactronTests */,
+				E2B0C1B31A92819E00CB61FC /* PocketParkTests */,
 				E2B0C19C1A92819E00CB61FC /* Products */,
 				BEF8A05E7406182F1E9F5660 /* Pods */,
 				79D800E76E8A5F641A41773E /* Frameworks */,
@@ -258,14 +256,13 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		E2B0C1B31A92819E00CB61FC /* interactronTests */ = {
+		E2B0C1B31A92819E00CB61FC /* PocketParkTests */ = {
 			isa = PBXGroup;
 			children = (
 				E2B0C1B61A92819E00CB61FC /* interactronTests.swift */,
 				E2B0C1B41A92819E00CB61FC /* Supporting Files */,
 			);
-			name = interactronTests;
-			path = "Pocket ParkTests";
+			path = PocketParkTests;
 			sourceTree = "<group>";
 		};
 		E2B0C1B41A92819E00CB61FC /* Supporting Files */ = {
@@ -614,7 +611,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"${PODS_ROOT}/**",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Pocket Park/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/PocketPark/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Pocket Park";
@@ -642,7 +639,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"${PODS_ROOT}/**",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Pocket Park/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/PocketPark/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Pocket Park";
@@ -663,7 +660,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = interactronTests/Info.plist;
+				INFOPLIST_FILE = PocketParkTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "Pocket ParkTests";
 				TEST_HOST = "$(TEST_HOST)";
@@ -678,7 +675,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = interactronTests/Info.plist;
+				INFOPLIST_FILE = PocketParkTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "Pocket ParkTests";
 				TEST_HOST = "$(TEST_HOST)";
