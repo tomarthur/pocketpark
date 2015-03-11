@@ -82,12 +82,12 @@
 		E28069AB1AA976B20049321C /* InteractiveMap.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InteractiveMap.xib; sourceTree = "<group>"; };
 		E28B09251A9C011C003B3918 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E28B48341AAD276D00932102 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = interactron/Media.xcassets; sourceTree = "<group>"; };
-		E2B0C19B1A92819E00CB61FC /* interactron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = interactron.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2B0C19B1A92819E00CB61FC /* Pocket Park.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Park.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B0C19F1A92819E00CB61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2B0C1A01A92819E00CB61FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2B0C1A21A92819E00CB61FC /* DisconnectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectedViewController.swift; sourceTree = "<group>"; };
 		E2B0C1AA1A92819E00CB61FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		E2B0C1B01A92819E00CB61FC /* interactronTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = interactronTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2B0C1B01A92819E00CB61FC /* Pocket ParkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pocket ParkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B0C1B51A92819E00CB61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2B0C1B61A92819E00CB61FC /* interactronTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = interactronTests.swift; sourceTree = "<group>"; };
 		E2B0C1C61A92851900CB61FC /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -227,8 +227,8 @@
 		E2B0C19C1A92819E00CB61FC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E2B0C19B1A92819E00CB61FC /* interactron.app */,
-				E2B0C1B01A92819E00CB61FC /* interactronTests.xctest */,
+				E2B0C19B1A92819E00CB61FC /* Pocket Park.app */,
+				E2B0C1B01A92819E00CB61FC /* Pocket ParkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -302,9 +302,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E2B0C19A1A92819E00CB61FC /* interactron */ = {
+		E2B0C19A1A92819E00CB61FC /* Pocket Park */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E2B0C1BA1A92819E00CB61FC /* Build configuration list for PBXNativeTarget "interactron" */;
+			buildConfigurationList = E2B0C1BA1A92819E00CB61FC /* Build configuration list for PBXNativeTarget "Pocket Park" */;
 			buildPhases = (
 				3A0600996334A03D00260A65 /* Check Pods Manifest.lock */,
 				E2B0C1971A92819E00CB61FC /* Sources */,
@@ -318,14 +318,14 @@
 			);
 			dependencies = (
 			);
-			name = interactron;
+			name = "Pocket Park";
 			productName = interactron;
-			productReference = E2B0C19B1A92819E00CB61FC /* interactron.app */;
+			productReference = E2B0C19B1A92819E00CB61FC /* Pocket Park.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E2B0C1AF1A92819E00CB61FC /* interactronTests */ = {
+		E2B0C1AF1A92819E00CB61FC /* Pocket ParkTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E2B0C1BD1A92819E00CB61FC /* Build configuration list for PBXNativeTarget "interactronTests" */;
+			buildConfigurationList = E2B0C1BD1A92819E00CB61FC /* Build configuration list for PBXNativeTarget "Pocket ParkTests" */;
 			buildPhases = (
 				E2B0C1AC1A92819E00CB61FC /* Sources */,
 				E2B0C1AD1A92819E00CB61FC /* Frameworks */,
@@ -336,9 +336,9 @@
 			dependencies = (
 				E2B0C1B21A92819E00CB61FC /* PBXTargetDependency */,
 			);
-			name = interactronTests;
+			name = "Pocket ParkTests";
 			productName = interactronTests;
-			productReference = E2B0C1B01A92819E00CB61FC /* interactronTests.xctest */;
+			productReference = E2B0C1B01A92819E00CB61FC /* Pocket ParkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -364,7 +364,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E2B0C1961A92819E00CB61FC /* Build configuration list for PBXProject "interactron" */;
+			buildConfigurationList = E2B0C1961A92819E00CB61FC /* Build configuration list for PBXProject "Pocket Park" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -377,8 +377,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E2B0C19A1A92819E00CB61FC /* interactron */,
-				E2B0C1AF1A92819E00CB61FC /* interactronTests */,
+				E2B0C19A1A92819E00CB61FC /* Pocket Park */,
+				E2B0C1AF1A92819E00CB61FC /* Pocket ParkTests */,
 			);
 		};
 /* End PBXProject section */
@@ -506,7 +506,7 @@
 /* Begin PBXTargetDependency section */
 		E2B0C1B21A92819E00CB61FC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E2B0C19A1A92819E00CB61FC /* interactron */;
+			target = E2B0C19A1A92819E00CB61FC /* Pocket Park */;
 			targetProxy = E2B0C1B11A92819E00CB61FC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -619,7 +619,7 @@
 				INFOPLIST_FILE = interactron/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pocket Park";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/interactron-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -645,7 +645,7 @@
 				INFOPLIST_FILE = interactron/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pocket Park";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/interactron-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -665,7 +665,7 @@
 				);
 				INFOPLIST_FILE = interactronTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pocket ParkTests";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/interactron.app/interactron";
 			};
 			name = Debug;
@@ -680,7 +680,7 @@
 				);
 				INFOPLIST_FILE = interactronTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pocket ParkTests";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/interactron.app/interactron";
 			};
 			name = Release;
@@ -688,7 +688,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E2B0C1961A92819E00CB61FC /* Build configuration list for PBXProject "interactron" */ = {
+		E2B0C1961A92819E00CB61FC /* Build configuration list for PBXProject "Pocket Park" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2B0C1B81A92819E00CB61FC /* Debug */,
@@ -697,7 +697,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E2B0C1BA1A92819E00CB61FC /* Build configuration list for PBXNativeTarget "interactron" */ = {
+		E2B0C1BA1A92819E00CB61FC /* Build configuration list for PBXNativeTarget "Pocket Park" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2B0C1BB1A92819E00CB61FC /* Debug */,
@@ -706,7 +706,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E2B0C1BD1A92819E00CB61FC /* Build configuration list for PBXNativeTarget "interactronTests" */ = {
+		E2B0C1BD1A92819E00CB61FC /* Build configuration list for PBXNativeTarget "Pocket ParkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2B0C1BE1A92819E00CB61FC /* Debug */,

@@ -302,10 +302,11 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         println("CONNECTED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
         
         if (error != nil){
+            println("error in didConnectToBean")
             isConnecting = false
             UIAlertView(
                 title: "Unable to Contact Interactive",
-                message: "The experience isn't able to to start. Please try again later.",
+                message: "(didConnect Error) The experience isn't able to to start. Please try again later.",
                 delegate: self,
                 cancelButtonTitle: "OK"
                 ).show()
@@ -348,7 +349,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         if appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
             
             // check if Bean SDK still has detected the bean
-            if bean.state == .Discovered {
+            if bean.state == .Discovered{
                 println("Attempting to connect to \(toString(bean.name))")
                 
                 // prevent attempts to connect to other interactives
@@ -360,31 +361,24 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
                     
                     manager.connectToBean(bean, error: &connectError)
                     
-                    // TODO: Where is this error going when the device isn't avaialble anylonger? 
-                    if (connectError != nil){
-                        UIAlertView(
-                            title: "Unable to Contact Interactive",
-                            message: "The experience isn't able to to start. Please try again later.",
-                            delegate: self,
-                            cancelButtonTitle: "OK"
-                            ).show()
-                        return
-                    }
+//                    // TODO: Where is this error going when the device isn't avaialble anylonger? 
+//                    if (connectError != nil){
+//                        UIAlertView(
+//                            title: "Unable to Contact Interactive",
+//                            message: "The experience isn't able to to start. Please try again later.",
+//                            delegate: self,
+//                            cancelButtonTitle: "OK"
+//                            ).show()
+//                        return
+//                    }
                     
                     // tell the user what we've found
                     status.text = "Contacting \(appDelegate.dataManager.knownInteractivesFromParseFriendlyNames[bean.name]!)"
-                } else {
-                    UIAlertView(
-                        title: "Unable to Contact Interactive",
-                        message: "The experience isn't able to to start. Please try again later.",
-                        delegate: self,
-                        cancelButtonTitle: "OK"
-                        ).show()
                 }
             } else {
                 println("ERROR: cant find that bean")
                 UIAlertView(
-                    title: "Unable to Contact Interactive",
+                    title: "Unable to Find Interactive",
                     message: "The experience isn't able to to start. Please try again later.",
                     delegate: self,
                     cancelButtonTitle: "OK"

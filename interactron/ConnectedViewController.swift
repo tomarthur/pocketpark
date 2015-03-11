@@ -145,7 +145,11 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
     func updateUIWithInteractiveInfo(){
         var nonOptional = connectedObjectInfo!
         name.text = toString(nonOptional["name"])
+        name.numberOfLines = 0; //will wrap text in new line
+        name.sizeToFit()
         explanation.text = toString(nonOptional["explanation"])
+        explanation.numberOfLines = 0; //will wrap text in new line
+        explanation.sizeToFit()
         interactionType.text = toString(nonOptional["control"])
         
     }
@@ -307,11 +311,12 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
             if recorder.prepareToRecord() && recorder.record(){
                 recorder.meteringEnabled = true
                 
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: "endAudioInteraction:",
+                    name: "EndInteraction", object: nil)
+                
                 let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
                 dispatch_sync(queue, startAudioUpdateTimer)
                 
-                NSNotificationCenter.defaultCenter().addObserver(self, selector: "endAudioInteraction:",
-                    name: "EndInteraction", object: nil)
                 println("Successuly started record")
             } else {
                 println("Failed to record.")
