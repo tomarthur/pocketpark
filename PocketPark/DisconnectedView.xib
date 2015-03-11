@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DisconnectedViewController" customModule="Pocket_Park" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="8Sd-Eu-PK5" id="8vP-d1-bBy"/>
+                <outlet property="infoButton" destination="xEy-4J-uma" id="RB7-es-L8S"/>
+                <outlet property="nearbyButton" destination="2JH-XT-EY9" id="TD1-gm-oTd"/>
+                <outlet property="settingsManualControlButton" destination="4Mb-v6-eCA" id="n1l-9h-HoO"/>
+                <outlet property="status" destination="hwD-34-zrO" id="T84-04-a73"/>
+                <outlet property="tabBar" destination="GjZ-xC-L6Y" id="H99-um-HBA"/>
+                <outlet property="view" destination="iN0-l3-epB" id="OIf-ZH-1JW"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwD-34-zrO">
+                    <rect key="frame" x="153" y="289" width="294" height="47"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="47" id="DWr-9M-o8V"/>
+                        <constraint firstAttribute="width" constant="294" id="K5p-1v-EX9"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="8Sd-Eu-PK5" userLabel="Activity Indicator">
+                    <rect key="frame" x="282" y="244" width="37" height="37"/>
+                </activityIndicatorView>
+                <tabBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="GjZ-xC-L6Y">
+                    <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <items>
+                        <tabBarItem title="Map" image="map" id="2JH-XT-EY9"/>
+                        <tabBarItem tag="1" title="Info" image="main" id="xEy-4J-uma"/>
+                        <tabBarItem tag="2" title="Nearby" image="nearby" id="4Mb-v6-eCA"/>
+                    </items>
+                    <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="selectedImageTintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="AtU-9I-0co"/>
+                    </connections>
+                </tabBar>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="GjZ-xC-L6Y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="HGA-D6-shM"/>
+                <constraint firstItem="8Sd-Eu-PK5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="244" id="JX1-5f-PSQ"/>
+                <constraint firstAttribute="trailing" secondItem="GjZ-xC-L6Y" secondAttribute="trailing" id="XF2-Wf-zZu"/>
+                <constraint firstItem="hwD-34-zrO" firstAttribute="top" secondItem="8Sd-Eu-PK5" secondAttribute="bottom" constant="8" symbolic="YES" id="aBu-rN-hqt"/>
+                <constraint firstItem="GjZ-xC-L6Y" firstAttribute="centerX" secondItem="hwD-34-zrO" secondAttribute="centerX" id="bVS-nc-xGQ"/>
+                <constraint firstAttribute="bottom" secondItem="GjZ-xC-L6Y" secondAttribute="bottom" id="dIM-sv-mwn"/>
+                <constraint firstItem="hwD-34-zrO" firstAttribute="centerX" secondItem="8Sd-Eu-PK5" secondAttribute="centerX" id="nWw-wn-M4m"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="main" width="14" height="24"/>
+        <image name="map" width="20" height="24"/>
+        <image name="nearby" width="22" height="22"/>
+    </resources>
+</document>

@@ -1,0 +1,1 @@
+PODS_POCKETPARK_IJREACHABILITY_OTHER_LDFLAGS = -framework "SystemConfiguration"

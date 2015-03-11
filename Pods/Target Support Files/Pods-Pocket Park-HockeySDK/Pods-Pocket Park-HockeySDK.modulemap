@@ -1,6 +1,0 @@
-framework module HockeySDK {
-  umbrella header "Pods-Pocket Park-HockeySDK-umbrella.h"
-
-  export *
-  module * { export * }
-}

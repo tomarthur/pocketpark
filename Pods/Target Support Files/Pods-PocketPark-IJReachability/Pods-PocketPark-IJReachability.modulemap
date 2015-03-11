@@ -1,0 +1,6 @@
+framework module IJReachability {
+  umbrella header "Pods-PocketPark-IJReachability-umbrella.h"
+
+  export *
+  module * { export * }
+}

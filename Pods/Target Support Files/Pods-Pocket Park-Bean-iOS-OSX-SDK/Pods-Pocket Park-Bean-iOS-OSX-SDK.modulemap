@@ -1,6 +1,0 @@
-framework module Bean_iOS_OSX_SDK {
-  umbrella header "Pods-Pocket Park-Bean-iOS-OSX-SDK-umbrella.h"
-
-  export *
-  module * { export * }
-}
