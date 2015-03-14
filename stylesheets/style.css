@@ -153,9 +153,7 @@ a:hover {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.content h1 {
-  font-family: otterfontmedium;
-}
+.content h1,
 .content h2,
 .content h3,
 .content h4,
@@ -295,7 +293,7 @@ a:hover {
 .content h1  {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-family: otterfontmedium;
+/*  font-family: otterfontmedium;*/
   padding-bottom: 0;
 }
 .content h2,
@@ -861,7 +859,7 @@ code .comment {
 .large-brief .content > h1:first-child + p,
 .content > p.brief {
   font-size: 1.3em;
-  font-family: Open Sans, sans-serif;
+  font-family: otterfontmedium, Open Sans, sans-serif;
   font-weight: 300;
 }
 .title-area {
