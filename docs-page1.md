@@ -4,13 +4,29 @@ This project is part of [Tom Arthur's](http://www.howtomworks.com) thesis at NYU
 
 ## How it Works
 
-<iframe src="https://player.vimeo.com/video/121631359?autoplay=1&color=c9ff23&title=0&byline=0&portrait=0" width="600" height="338" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<iframe src="https://player.vimeo.com/video/121631359?title=0&byline=0&portrait=0" width="400" height="225" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+Magic magic magic magic magic.
 
 ## Getting Started
 
-In process
+Three basic steps to enabling your projec to be part of the Theme Park of Everyday.
 
-## Technology Components 
+### Step 1: How do you want to interact
+### Step 2: Program your arduino
+### Step 3: Add your experinece to the app
+
+Accelerometer
+
+1. Create your thing
+
+
+## Add Your Interactive
+>.
+[Add interactive >](http://google.com)
+Awesome! Once you've added your installation at the link to the right, it should be available to use in app. You'll need to update the name of your bean 
+
+## Arduino Example Code
 
 In process
 
@@ -19,15 +35,6 @@ In process
 
 In process
 
-
-## Add Your Interactive
->.
-[Add interactive >](http://google.com)
-Awesome! Once you've added your installation at the link to the right, it should be available to use in app. You'll need to update the name of your bean 
-
-## Arduino Configuration
-
-In process
 
 
 ## Author
