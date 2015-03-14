@@ -634,7 +634,7 @@ body.no-literate .content pre > code:hover::-webkit-scrollbar-thumb {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-weight: bold;
-  font-family: otterfontmedium, montserrat, sans-serif;
+  font-family: montserrat, sans-serif;
   font-size: 13px;
 }
 .header h1,
