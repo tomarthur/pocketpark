@@ -1,6 +1,6 @@
-# Interactron
+# Pocket Theme Park
 
-Use your mobile device to discover and create serendipitous moments in the theme park of everyday.
+Use your mobile device to discover and create serendipitous fun in the **Theme Park of Everyday**.
 
 This project is part of [Tom Arthur's](http://www.howtomworks.com) thesis at NYU's Interactive Telecommunications Program.
 
