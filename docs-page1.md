@@ -1,10 +1,18 @@
-# Pocket Theme Park
+# Theme Park of Everyday
 
 Use your mobile device to discover and create serendipitous fun in the **Theme Park of Everyday**.
 
 This project is part of [Tom Arthur's](http://www.howtomworks.com) thesis at NYU's Interactive Telecommunications Program.
 
-## Usage
+## What is The Theme Park of Everyday?
+
+In process
+
+## What is Pocket Theme Park?
+
+In process
+
+## How do I add my own installation?
 
 In process
 

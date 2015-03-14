@@ -8,6 +8,18 @@ Instead, edit the stylus (.styl) files and compile it to CSS on your machine.
  * Fonts
  */
 @import url("//fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:300");
+@font-face {
+    font-family: 'otterfontmedium';
+    src: url('OtterFont-webfont.eot');
+    src: url('OtterFont-webfont.eot?#iefix') format('embedded-opentype'),
+         url('OtterFont-webfont.woff2') format('woff2'),
+         url('OtterFont-webfont.woff') format('woff'),
+         url('OtterFont-webfont.ttf') format('truetype'),
+         url('OtterFont-webfont.svg#otterfontmedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
 /* ----------------------------------------------------------------------------
  * Base
  */
@@ -152,7 +164,9 @@ a:hover {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.content h1,
+.content h1 {
+  font-family: 'otterfontmedium'
+}
 .content h2,
 .content h3,
 .content h4,
