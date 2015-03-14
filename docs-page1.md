@@ -1,26 +1,29 @@
 # Theme Park of Everyday
 
-Use your mobile device to discover and create serendipitous fun in the **Theme Park of Everyday**.
-
 This project is part of [Tom Arthur's](http://www.howtomworks.com) thesis at NYU's Interactive Telecommunications Program.
 
-## What is The Theme Park of Everyday?
+## How it Works
+
+<iframe src="https://player.vimeo.com/video/121631359?autoplay=1&color=c9ff23&title=0&byline=0&portrait=0" width="600" height="338" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+## Getting Started
 
 In process
 
-## What is Pocket Theme Park?
-
-In process
-
-## How do I add my own installation?
+## Technology Components 
 
 In process
 
 
-## Bean Configuration
+## Light Blue Bean Configuration
 
 In process
 
+
+## Add Your Interactive
+>.
+[Add interactive >](http://google.com)
+Awesome! Once you've added your installation at the link to the right, it should be available to use in app. You'll need to update the name of your bean 
 
 ## Arduino Configuration
 
@@ -29,27 +32,17 @@ In process
 
 ## Author
 
-Interactron is developed by Tom Arthur for ITP Thesis in 2015.
+Pocket Theme Park & PocketPark is developed by Tom Arthur for thesis at ITP in 2015.
 
+## Acknowledgements and License
 
-## Add Your Interactive
->.
-[Add interactive >](http://google.com)
-Awesome! Once you've added your installation at the link to the right, it should be available to use in app. You'll need to update the name of your bean 
+PocketPark iOS was written by Tom Arthur
+PocketPark is available under the MIT license. See the LICENSE file for details.
 
-## License
-
-Interactron was written by Tom Arthur
-Interactron is available under the MIT license. See the LICENSE file for details.
+Thanks to:
 
 Utilizes open source code:
 
-Bean-iOS-OSX-SDK is available under the MIT license. See the LICENSE file for details.
-
-Cool Beans is available under the MIT license. See the LICENSE file for details.
-
-Onboard is available under the MIT license. See the LICENSE file for details.
-
-Shimmer is available under the BSD license. See the LICENSE file for details.
-
-Pop is available under the BSD license. See the LICENSE file for details. 
+- Bean-iOS-OSX-SDK is available under the MIT license. See the LICENSE file for details.
+- Cool Beans is available under the MIT license. See the LICENSE file for details.
+- Onboard is available under the MIT license. See the LICENSE file for details.

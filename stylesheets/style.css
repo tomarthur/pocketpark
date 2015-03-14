@@ -293,7 +293,6 @@ a:hover {
 .content h1  {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-family: otterfontmedium;
   padding-bottom: 0;
 }
 .content h2,
