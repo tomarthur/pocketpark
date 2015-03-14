@@ -290,7 +290,12 @@ a:hover {
   color: #9090aa;
   text-shadow: 0 1px 0 rgba(255,255,255,0.5);
 }
-.content h1,
+.content h1  {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: otterfontmedium;
+  padding-bottom: 0;
+}
 .content h2,
 .content h3 {
   -webkit-font-smoothing: antialiased;
