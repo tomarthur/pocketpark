@@ -149,7 +149,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             enabledSwitch = UISwitch(frame: CGRectZero) as UISwitch
             
-            if let automaticConnectionStatus = appDelegate.defaults.boolForKey(appDelegate.automaticConnectionKeyConstant) as Bool?
+            if let automaticConnectionStatus = appDelegate.defaults.boolForKey(appDelegate.automaticConnectionKey) as Bool?
             {
                enabledSwitch.on = automaticConnectionStatus
             }
@@ -170,10 +170,10 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         if sender.on {
             println("on")
-            appDelegate.defaults.setBool(true, forKey: appDelegate.automaticConnectionKeyConstant)
+            appDelegate.defaults.setBool(true, forKey: appDelegate.automaticConnectionKey)
         } else {
             println("off")
-            appDelegate.defaults.setBool(false, forKey: appDelegate.automaticConnectionKeyConstant)
+            appDelegate.defaults.setBool(false, forKey: appDelegate.automaticConnectionKey)
         }
         NSNotificationCenter.defaultCenter().postNotificationName("updatedMode", object: nil)
     }

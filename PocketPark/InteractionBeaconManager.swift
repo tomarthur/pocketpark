@@ -12,47 +12,54 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager?
     var lastProximity: CLProximity?
     var sentNotification = false
-    var auth = false
     
     var previouslySentNotifications = [String:NSDate]()
     
     func start () {
-        // iBeacon Regions and Notification to find Interactive Elements enabled by LightBlue Bean
-        let uuid = NSUUID(UUIDString: "A4955441-C5B1-4B44-B512-1370F02D74DE")
-        let beaconIdentifier = NSBundle.mainBundle().bundleIdentifier!
-        let beaconRegion:CLBeaconRegion = CLBeaconRegion(proximityUUID: uuid,
-            identifier: beaconIdentifier)
 
         locationManager = CLLocationManager()
-
-        if(locationManager!.respondsToSelector("requestAlwaysAuthorization")) {
-            locationManager!.requestAlwaysAuthorization()
-        }
         locationManager!.delegate = self
-
         locationManager!.pausesLocationUpdatesAutomatically = true
 
-        locationManager!.startMonitoringForRegion(beaconRegion)
-        locationManager!.startRangingBeaconsInRegion(beaconRegion)
-        locationManager!.startUpdatingLocation()
+        if CLLocationManager.authorizationStatus() == .Authorized {
+           startUpdatingLocation()
+        }
 
+    }
+    
+    func startUpdatingLocation() {
+        
+        switch CLLocationManager.authorizationStatus() {
+        case .Authorized:
+            // iBeacon Regions and Notification to find Interactive Elements enabled by LightBlue Bean
+            let uuid = NSUUID(UUIDString: "A4955441-C5B1-4B44-B512-1370F02D74DE")
+            let beaconIdentifier = NSBundle.mainBundle().bundleIdentifier!
+            let beaconRegion:CLBeaconRegion = CLBeaconRegion(proximityUUID: uuid,
+                identifier: beaconIdentifier)
+            
+            locationManager!.startMonitoringForRegion(beaconRegion)
+            locationManager!.startUpdatingLocation()
+        case .NotDetermined:
+            locationManager!.requestAlwaysAuthorization()
+        case .Restricted, .Denied, .AuthorizedWhenInUse:
+            NSNotificationCenter.defaultCenter().postNotificationName("LocationDisabled", object: nil)
+            
+        }
     }
     
     func requestAuthorization() {
         
         locationManager = CLLocationManager()
         
-        if(locationManager!.respondsToSelector("requestAlwaysAuthorization")) {
-            locationManager!.requestAlwaysAuthorization()
-        }
-        
-        let status = CLLocationManager.authorizationStatus()
-        
-        if(status == CLAuthorizationStatus.Authorized) {
-            auth = true
+        switch CLLocationManager.authorizationStatus() {
+        case .Authorized:
             start()
+        case .NotDetermined:
+            locationManager!.requestAlwaysAuthorization()
+        case .Restricted, .Denied, .AuthorizedWhenInUse:
+             NSNotificationCenter.defaultCenter().postNotificationName("LocationDisabled", object: nil)
+            
         }
-
         
     }
     
@@ -154,15 +161,11 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         switch CLLocationManager.authorizationStatus(){
         case .Authorized:
-            println("CL Authorized")
-        case .AuthorizedWhenInUse:
-            println("CL authorized when in use")
-        case .Denied:
-            println("CL Denied")
+            startUpdatingLocation()
         case .NotDetermined:
-            println("CL not determined")
-        case .Restricted:
-            println("CL restricted")
+            println("CL not yet determined")
+        case .Restricted, .Denied, .AuthorizedWhenInUse:
+            NSNotificationCenter.defaultCenter().postNotificationName("LocationDisabled", object: nil)
         default:
             println("CL unhandled error")
             
@@ -174,7 +177,6 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     func beaconIsIgnored(beaconString: String) -> Bool {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
 
-        
         let alreadyExperienced = appDelegate.dataManager.isBeaconIgnored(beaconString)
         var recentlyNotified = false
         

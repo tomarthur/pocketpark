@@ -20,11 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     
     let defaults = NSUserDefaults.standardUserDefaults()
-    let automaticConnectionKeyConstant = "automaticConnectionUser"
-    let settingsBundle = NSBundle.mainBundle().pathForResource("Root", ofType: "plist")
+    let automaticConnectionKey = "automaticConnectionUser"
     let userHasOnboardedKey = "user_has_onboarded"
     
-//    let settings = NSDictionary(contentsOfFile: settingsBundle!)
+
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -39,36 +38,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         Parse.setApplicationId("yc2HKK3EGe1tDIlvTyY9x2dKhgGaVNai7dQWfvGG",
                 clientKey: "dVeENxp57pgP3Zwqlez4U2G8O64B1tXQUBKsgTC1")
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        PFUser.enableAutomaticUser()
+        PFUser.currentUser().incrementKey("RunCount")
+        PFUser.currentUser().saveInBackground()
         
         // get data from Parse
         dataManager.start()
+        // activate CL manager
+        interactionBeaconManager.start()
         
-
         // stop location when app is open
         interactionBeaconManager.locationManager?.stopUpdatingLocation()
-        
-        // check to see if user has set automatic mode
-        if defaults.objectForKey(automaticConnectionKeyConstant) == nil {
-            defaults.setBool(true, forKey: automaticConnectionKeyConstant)
-            // TODO: SETTINGS BUNDLE
-        }
-
-        
-        
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.backgroundColor = .ITWelcomeColor()
         
-        
         // Determine if the user has completed onboarding yet or not
         var userHasOnboardedAlready = NSUserDefaults.standardUserDefaults().boolForKey(userHasOnboardedKey);
+        
+        // Determine if the user has set automatic mode
+        if defaults.objectForKey(automaticConnectionKey) == nil {
+            defaults.setBool(true, forKey: automaticConnectionKey)
+        }
         
         // If the user has already onboarded, setup the normal root view controller for the application
         // without animation like you normally would if you weren't doing any onboarding
         if userHasOnboardedAlready {
             self.setupNormalRootVC(false);
         }
-        
             // Otherwise the user hasn't onboarded yet, so set the root view controller for the application to the
             // onboarding view controller generated and returned by this method.
         else {
@@ -77,7 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         self.window!.makeKeyAndVisible()
 
-        
         // Override point for customization after application launch.
         return true
     }
@@ -90,12 +86,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
         interactionBeaconManager.locationManager?.startUpdatingLocation()
+        
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-        println("entering forground")
+
         interactionBeaconManager.locationManager?.stopUpdatingLocation()
         
     }
@@ -140,16 +138,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func generateOnboardingViewController() -> OnboardingViewController {
         // generate the welcome page
-        let welcomePage: OnboardingContentViewController = OnboardingContentViewController(title: "Control the Physical World", body: "Pocket Theme Park is your gateway to interactive experiences embedded in the world.", image: UIImage(named:
+        let welcomePage: OnboardingContentViewController = OnboardingContentViewController(title: "Control the World", body: "Pocket Theme Park is your gateway to interactive experiences embedded in the world around you.", image: UIImage(named:
             "blue"), buttonText: nil) {
         }
-        
+
         // Generate the first page...
-        let firstPage: OnboardingContentViewController = OnboardingContentViewController(title: "Discover Installations Around You", body: "Enable location services to find installations nearby.", image: UIImage(named:
+        let firstPage: OnboardingContentViewController = OnboardingContentViewController(title: "Discover Installations Around You Automatically", body: "Enableing location services will help you find nearby installations.", image: UIImage(named:
             "blue"), buttonText: "Enable Location Services") {
-                
                 self.interactionBeaconManager.requestAuthorization()
-                // activate core location manager
         }
         
         // Generate the second page...
@@ -166,7 +162,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         
         // Create the onboarding controller with the pages and return it.
-        let onboardingVC: OnboardingViewController = OnboardingViewController(backgroundImage: UIImage(named: "street"), contents: [welcomePage, firstPage, secondPage, thirdPage])
+        let onboardingVC: OnboardingViewController = OnboardingViewController(backgroundImage: UIImage(named: "bg.jpg"), contents: [welcomePage, firstPage, secondPage, thirdPage])
         
         return onboardingVC
     }
@@ -184,20 +180,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func setupNormalRootVC(animated : Bool) {
         var disconnectedViewController = DisconnectedViewController(nibName: "DisconnectedView", bundle: nil)
         
-        // activate core location manager
-        interactionBeaconManager.start()
+        // start location services
+        interactionBeaconManager.startUpdatingLocation()
         
         // If we want to animate it, animate the transition - in this case we're fading, but you can do it
         // however you want.
         if animated {
-            UIView.transitionWithView(self.window!, duration: 0.5, options:.TransitionCrossDissolve, animations: { () -> Void in
+            UIView.transitionWithView(self.window!, duration: 1.0, options:.TransitionCrossDissolve, animations: { () -> Void in
                 self.window!.rootViewController = disconnectedViewController
                 }, completion:nil)
         }
-            
             // Otherwise we just want to set the root view controller normally.
         else {
             self.window?.rootViewController = disconnectedViewController;
         }
     }
-}
+    
+   }

@@ -42,7 +42,7 @@ class OnboardingViewController: UIViewController, UIPageViewControllerDataSource
         // create the background image view and set it to aspect fill so it isn't skewed
         var backgroundImageView: UIImageView = UIImageView(image: backgroundImage)
         backgroundImageView.frame = self.view.frame
-        backgroundImageView.contentMode = .ScaleAspectFit
+        backgroundImageView.contentMode = .ScaleToFill
         self.view.addSubview(backgroundImageView)
         
         var backgroundMaskView = UIView()

@@ -9,7 +9,7 @@
 import UIKit
 
 class OnboardingContentViewController: UIViewController {
-    let kDefaultOnboardingFont: String = "Helvetica-Light"
+    let kDefaultOnboardingFont: String = "OtterFont"
     let kDefaultTextColor: UIColor = UIColor.whiteColor()
     let kContentWidthMultiplier: CGFloat = 0.9
     let kDefaultImageViewSize: CGFloat = 100
@@ -17,8 +17,8 @@ class OnboardingContentViewController: UIViewController {
     let kDefaultUnderIconPadding: CGFloat = 30
     let kDefaultUnderTitlePadding: CGFloat = 30
     let kDefaultBottomPadding: CGFloat = 0;
-    let kDefaultTitleFontSize: CGFloat = 30
-    let kDefaultBodyFontSize: CGFloat = 20
+    let kDefaultTitleFontSize: CGFloat = 45
+    let kDefaultBodyFontSize: CGFloat = 30
     let kDefaultActionButtonHeight: CGFloat = 50
     let kDefaultMainPageControlHeight: CGFloat = 35
     let titleText: String
@@ -72,6 +72,7 @@ class OnboardingContentViewController: UIViewController {
         super.viewDidLoad()
 
         generateView()
+//        handleButtonPressed()
     }
     
     func generateView() {

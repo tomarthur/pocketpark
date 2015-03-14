@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DisconnectedViewController" customModule="Pocket_Park" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DisconnectedViewController" customModule="PocketPark" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="8Sd-Eu-PK5" id="8vP-d1-bBy"/>
                 <outlet property="infoButton" destination="xEy-4J-uma" id="RB7-es-L8S"/>
@@ -38,7 +38,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <items>
                         <tabBarItem title="Map" image="map" id="2JH-XT-EY9"/>
-                        <tabBarItem tag="1" title="Info" image="main" id="xEy-4J-uma"/>
+                        <tabBarItem tag="1" title="Pocket Theme Park" image="main" id="xEy-4J-uma"/>
                         <tabBarItem tag="2" title="Nearby" image="nearby" id="4Mb-v6-eCA"/>
                     </items>
                     <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -31,9 +31,10 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
     
     
     var bluetoothIsReady = false
+    var automaticMode = false
     var isConnecting = false
     var haltConnections = false
-    var automaticMode = false
+
     
     var nearbyBLEInteractives = [String:PTDBean]()      // PTDBean objects detected in the area
     var connectedBeanObjectID: String?                  // Parse objectId for connected bean
@@ -44,7 +45,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         didSet {
             if connectedBean == nil {
                 self.beanManagerDidUpdateState(manager)
-                updateStatusInterface()
+                updateMode(nil)
 
             } else {
                 // present connected view when beacon connection established
@@ -61,38 +62,17 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
                     "connectTime": toString(NSDate())
                 ]
                 
-                // Send the dimensions to Parse along with the 'search' event
+                // Send the dimensions to Parse along with the 'connect' event
                 PFAnalytics.trackEvent("connect", dimensions:connectInfo)
                 
-
                 presentViewController(connectedViewController, animated: true, completion: nil)
                 
                 activityIndicator.stopAnimating()
+               
             }
         }
     }
     
-    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
-        
-        
-        println("did select item with tag \(item.tag)")
-        
-        switch item.tag {
-            case 0:
-                mapButtonPressed()
-                println("0")
-            case 1:
-                println("1")
-            case 2:
-                settingsButtonPressed()
-                println("2")
-            default:
-                break
-        }
-        
-    }
-    
-
 
     
     override func viewDidLoad() {
@@ -103,14 +83,13 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         tabBar.selectedItem = self.tabBar.items![1] as? UITabBarItem
         tabBar.tintColor = .ITConnectedColor()
 
+        // when datastore and bluetooth are ready
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "startScanningForInteractives:",
+            name: "readyToFind", object: nil)
         
         // get notification when user wants to end experience
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:",
             name: "EndInteraction", object: nil)
-      
-        // when datastore and bluetooth are ready
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "startScanningForInteractives:",
-            name: "readyToFind", object: nil)
         
         // TO DO: Combine following two alerts to one function
         // when iBeacon of interactive is detected or manually selected on settings view
@@ -132,12 +111,15 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:",
             name: UIApplicationWillTerminateNotification, object: nil)
         
+        // when location disabled
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayLocationAlert:",
+            name: "LocationDisabled", object: nil)
+        
         manager = PTDBeanManager(delegate: self)
         
         self.view.backgroundColor = .ITWelcomeColor()
     }
     
-
     
     override func viewDidAppear(animated: Bool) {
         tabBar.selectedItem = self.tabBar.items![1] as? UITabBarItem
@@ -155,12 +137,27 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
     
     // MARK: Navigation
 
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
+        switch item.tag {
+        case 0:
+            // stop app from connecting while we are in map
+            haltConnections = true
+            mapButtonPressed()
+            println("0")
+        case 1:
+            println("1")
+        case 2:
+            // stop app from connecting while we are in manual control
+            haltConnections = true
+            settingsButtonPressed()
+            println("2")
+        default:
+            break
+        }
+        
+    }
     
     func settingsButtonPressed() {
-        
-        // stop app from connecting while we are in manual control
-        haltConnections = true
-        
         // disconnect if connected
         if connectedBean != nil {
             manager.disconnectBean(connectedBean, error:nil)
@@ -178,9 +175,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
     }
     
     func mapButtonPressed() {
-        // stop app from connecting while we are in map
-        haltConnections = true
-        
         // disconnect if connected
         if connectedBean != nil {
             manager.disconnectBean(connectedBean, error:nil)
@@ -194,42 +188,27 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         
     }
 
-
     
-    func updateStatusInterface() {
-        
-        if let automaticConnectionStatus = appDelegate.defaults.boolForKey(appDelegate.automaticConnectionKeyConstant) as Bool?
-        {
-            if automaticConnectionStatus == true {
-                automaticMode = true
-                activityIndicator.startAnimating()
-                status.text = "Discovering Experiences Nearby"
-                
-            } else {
-                automaticMode = false
-                activityIndicator.stopAnimating()
-                status.text = "Automatic Contact Disabled. Press Nearby for Options.\n\(nearbyBLEInteractives.count)"
-                
-            }
-        }
-
-
-    }
-    
-    func updateMode(notification: NSNotification) {
+    func updateMode(notification: NSNotification?) {
         
         haltConnections = false
         
-        if let automaticConnectionStatus = appDelegate.defaults.boolForKey(appDelegate.automaticConnectionKeyConstant) as Bool?
+        if let automaticConnectionStatus = appDelegate.defaults.boolForKey(appDelegate.automaticConnectionKey) as Bool?
         {
             if automaticConnectionStatus == true {
                 automaticMode = true
                 activityIndicator.startAnimating()
+                status.font = UIFont(name:"OtterFont", size: 25)
+                status.sizeToFit()
+                status.numberOfLines = 0
                 status.text = "Discovering Experiences Nearby"
                 
             } else {
                 automaticMode = false
                 activityIndicator.stopAnimating()
+                status.font =  UIFont(name:"OtterFont", size: 25)
+                status.sizeToFit()
+                status.numberOfLines = 0
                 status.text = "Automatic Contact Disabled. Press Nearby for Options.\n\(nearbyBLEInteractives.count) nearby"
                 
             }
@@ -282,7 +261,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         if appDelegate.dataManager.dataStoreReady == true && bluetoothIsReady == true {
             println("Data is \(appDelegate.dataManager.dataStoreReady) and bluetooth is: \(bluetoothIsReady)")
             self.manager.startScanningForBeans_error(nil)
-            updateStatusInterface()
+            updateMode(nil)
         }
     }
     
@@ -313,7 +292,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         println("CONNECTED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
         
         if (error != nil){
-            println("error in didConnectToBean")
             isConnecting = false
             UIAlertView(
                 title: "Unable to Contact Interactive",
@@ -329,8 +307,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
             connectedBean = bean
             isConnecting = false
         }
-        
-        // TODO: add analytics
     }
     
     func beanManager(beanManager: PTDBeanManager!, didDisconnectBean bean: PTDBean!, error: NSError!) {
@@ -371,17 +347,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
                     var connectError : NSError?
                     
                     manager.connectToBean(bean, error: &connectError)
-                    
-//                    // TODO: Where is this error going when the device isn't avaialble anylonger? 
-//                    if (connectError != nil){
-//                        UIAlertView(
-//                            title: "Unable to Contact Interactive",
-//                            message: "The experience isn't able to to start. Please try again later.",
-//                            delegate: self,
-//                            cancelButtonTitle: "OK"
-//                            ).show()
-//                        return
-//                    }
                     
                     // tell the user what we've found
                     status.text = "Contacting \(appDelegate.dataManager.knownInteractivesFromParseFriendlyNames[bean.name]!)"
@@ -438,6 +403,27 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
             }
         }
     }
+    
+    func displayLocationAlert(notification: NSNotification?) {
+        let alertController = UIAlertController(
+            title: "Background Location Access Disabled",
+            message: "In order to be notified about interactive experiences near you, please open this app's settings and set location access to 'Always'.",
+            preferredStyle: .Alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        let openAction = UIAlertAction(title: "Open Settings", style: .Default) { (action) in
+            if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
+                UIApplication.sharedApplication().openURL(url)
+            }
+        }
+        alertController.addAction(openAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+        
+    }
+
     
     
 }

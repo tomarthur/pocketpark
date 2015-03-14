@@ -145,6 +145,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
     func updateUIWithInteractiveInfo(){
         var nonOptional = connectedObjectInfo!
         name.text = toString(nonOptional["name"])
+        name.font = UIFont(name:"OtterFont", size: 45)
         name.numberOfLines = 0; //will wrap text in new line
         name.sizeToFit()
         explanation.text = toString(nonOptional["explanation"])
