@@ -3,5 +3,5 @@
   font-family: 'otterfontmedium';
   font-style: normal;
   font-weight: 700;
-  src: local('OtterFont'), url(http://tomarthur.github.io/pocketpark/fonts/OtterFont-webfont.ttf) format('truetype');
+  src: local('OtterFont'), url(http://tomarthur.github.io/pocketpark/fonts/OtterFont.ttf) format('truetype');
 }
