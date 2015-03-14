@@ -8,18 +8,7 @@ Instead, edit the stylus (.styl) files and compile it to CSS on your machine.
  * Fonts
  */
 @import url("//fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:300");
-@font-face {
-    font-family: 'otterfontmedium';
-    src: url('http://tomarthur.github.io/pocketpark/fonts/OtterFont-webfont.eot');
-    src: url('http://tomarthur.github.io/pocketpark/fonts/OtterFont-webfont.eot?#iefix') format('embedded-opentype'),
-         url('http://tomarthur.github.io/pocketpark/fonts/OtterFont-webfont.woff2') format('woff2'),
-         url('http://tomarthur.github.io/pocketpark/fonts/OtterFont-webfont.woff') format('woff'),
-         url('http://tomarthur.github.io/pocketpark/fonts/OtterFont-webfont.ttf') format('truetype'),
-         url('http://tomarthur.github.io/pocketpark/fonts/OtterFont-webfont.svg#otterfontmedium') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
+@import url('//tomarthur.github.io/pocketpark/stylesheets/otterfont.css');
 /* ----------------------------------------------------------------------------
  * Base
  */
@@ -164,9 +153,7 @@ a:hover {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.content h1 {
-  font-family: 'otterfontmedium'
-}
+.content h1,
 .content h2,
 .content h3,
 .content h4,
@@ -642,7 +629,7 @@ body.no-literate .content pre > code:hover::-webkit-scrollbar-thumb {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-weight: bold;
-  font-family: montserrat, sans-serif;
+  font-family: otterfont, montserrat, sans-serif;
   font-size: 13px;
 }
 .header h1,
