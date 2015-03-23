@@ -145,17 +145,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
 //        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Identifier")
         
         if (indexPath.section == 0) {
-            cell.textLabel?.text = "Automatic Mode"
+            cell.textLabel?.text = "Null"
             cell.selectionStyle = UITableViewCellSelectionStyle.None
-            enabledSwitch = UISwitch(frame: CGRectZero) as UISwitch
-            
-            if let automaticConnectionStatus = appDelegate.defaults.boolForKey(appDelegate.automaticConnectionKey) as Bool?
-            {
-               enabledSwitch.on = automaticConnectionStatus
-            }
-    
-            cell.accessoryView = enabledSwitch
-            enabledSwitch.addTarget(self, action: Selector("switchIsChanged:"), forControlEvents: UIControlEvents.ValueChanged)
             
         } else if (indexPath.section == 1){
             cell.textLabel?.text = nearbyInteractivesFriendlyArray[indexPath.row]
@@ -166,17 +157,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
 
-    @IBAction func switchIsChanged (sender: UISwitch) {
-        
-        if sender.on {
-            println("on")
-            appDelegate.defaults.setBool(true, forKey: appDelegate.automaticConnectionKey)
-        } else {
-            println("off")
-            appDelegate.defaults.setBool(false, forKey: appDelegate.automaticConnectionKey)
-        }
-        NSNotificationCenter.defaultCenter().postNotificationName("updatedMode", object: nil)
-    }
+
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -218,7 +199,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView{
         switch section{
             case 0:
-                return newViewForFooterWithText("Automatically connect to nearby objects when app is open.")
+                return newViewForFooterWithText("Null.")
             case 1:
                 return newViewForFooterWithText("Interactive objects discovered around you.\nTap to contact.")
             default:

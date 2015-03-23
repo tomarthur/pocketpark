@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     
     let defaults = NSUserDefaults.standardUserDefaults()
-    let automaticConnectionKey = "automaticConnectionUser"
     let userHasOnboardedKey = "user_has_onboarded"
     
 
@@ -55,11 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         // Determine if the user has completed onboarding yet or not
         var userHasOnboardedAlready = NSUserDefaults.standardUserDefaults().boolForKey(userHasOnboardedKey);
-        
-        // Determine if the user has set automatic mode
-        if defaults.objectForKey(automaticConnectionKey) == nil {
-            defaults.setBool(true, forKey: automaticConnectionKey)
-        }
         
         // If the user has already onboarded, setup the normal root view controller for the application
         // without animation like you normally would if you weren't doing any onboarding

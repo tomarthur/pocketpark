@@ -21,7 +21,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         locationManager!.delegate = self
         locationManager!.pausesLocationUpdatesAutomatically = true
 
-        if CLLocationManager.authorizationStatus() == .Authorized {
+        if CLLocationManager.authorizationStatus() == .AuthorizedAlways {
            startUpdatingLocation()
         }
 
@@ -30,7 +30,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     func startUpdatingLocation() {
         
         switch CLLocationManager.authorizationStatus() {
-        case .Authorized:
+        case .AuthorizedAlways:
             // iBeacon Regions and Notification to find Interactive Elements enabled by LightBlue Bean
             let uuid = NSUUID(UUIDString: "A4955441-C5B1-4B44-B512-1370F02D74DE")
             let beaconIdentifier = NSBundle.mainBundle().bundleIdentifier!
@@ -52,7 +52,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         locationManager = CLLocationManager()
         
         switch CLLocationManager.authorizationStatus() {
-        case .Authorized:
+        case .AuthorizedAlways:
             start()
         case .NotDetermined:
             locationManager!.requestAlwaysAuthorization()
@@ -160,7 +160,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         switch CLLocationManager.authorizationStatus(){
-        case .Authorized:
+        case .AuthorizedAlways:
             startUpdatingLocation()
         case .NotDetermined:
             println("CL not yet determined")

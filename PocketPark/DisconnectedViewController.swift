@@ -31,7 +31,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
     
     
     var bluetoothIsReady = false
-    var automaticMode = false
     var isConnecting = false
     var haltConnections = false
 
@@ -98,10 +97,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         // when iBeacon of interactive is detected or manually selected on settings view
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromNotification:",
             name: "startInteractionFromNotification", object: nil)
-        
-        // when exiting settings view update behaviors
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateMode:",
-            name: "updatedMode", object: nil)
         
         // when app is no longer in focus, disconnect
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:",
@@ -193,26 +188,13 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         
         haltConnections = false
         
-        if let automaticConnectionStatus = appDelegate.defaults.boolForKey(appDelegate.automaticConnectionKey) as Bool?
-        {
-            if automaticConnectionStatus == true {
-                automaticMode = true
-                activityIndicator.startAnimating()
-                status.font = UIFont(name:"OtterFont", size: 25)
-                status.sizeToFit()
-                status.numberOfLines = 0
-                status.text = "Discovering Experiences Nearby"
-                
-            } else {
-                automaticMode = false
-                activityIndicator.stopAnimating()
-                status.font =  UIFont(name:"OtterFont", size: 25)
-                status.sizeToFit()
-                status.numberOfLines = 0
-                status.text = "Automatic Contact Disabled. Press Nearby for Options.\n\(nearbyBLEInteractives.count) nearby"
-                
-            }
-        }
+
+        activityIndicator.startAnimating()
+        status.font = UIFont(name:"OtterFont", size: 25)
+        status.sizeToFit()
+        status.numberOfLines = 0
+        status.text = "Discovering Experiences Nearby"
+
     }
     
     
@@ -275,16 +257,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
             
         }
         
-        // automatically connect if enabled, not ignored and app is in forground
-        let appState : UIApplicationState = UIApplication.sharedApplication().applicationState
-        if appState == UIApplicationState.Active {
-
-            if connectedBean == nil && haltConnections == false && automaticMode == true
-                && appDelegate.dataManager.isInteractiveIgnored(bean.identifier) == false {
-                    
-                    intiateConnectionIfInteractionValid(bean)
-            }
-        }
     }
     
 
