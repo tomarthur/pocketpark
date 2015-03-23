@@ -20,33 +20,9 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     var refreshControl: UIRefreshControl?
     var tableCellsReady = false
 
-    @IBOutlet weak var tabBar: UITabBar!
-    
-    //    var tableView: UITableView?
-    var swipeRecognizer: UISwipeGestureRecognizer!
-    
     @IBOutlet weak var settingsTable: UITableView!
-    @IBOutlet var enabledSwitch: UISwitch!
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
-    }
     
-    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
-        return .TopAttached
-    }
-    
-    func handleSwipes(sender: UISwipeGestureRecognizer){
-        if sender.direction == .Right{
-            self.dismissViewControllerAnimated(true, completion:nil)
-        }
-    }
-    
-    func closeSettings(sender: UIBarButtonItem){
-        self.dismissViewControllerAnimated(true, completion:nil)
-    }
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,7 +40,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
 
         // Setup Table
         makeSettingsTableView()
-        setupSwipes()
 
         
         prepareInteractiveTableViewCellInformation()
@@ -72,14 +47,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         self.view.backgroundColor = .ITWelcomeColor()
     }
 
-    func setupSwipes() {
-        // Swipe to go back
-        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
-        self.view.addGestureRecognizer(swipeRecognizer)
-        swipeRecognizer.direction = .Right
-        swipeRecognizer.numberOfTouchesRequired = 1
-        
-    }
     
     func makeSettingsTableView() {
         if let settingsTableView = settingsTable {
@@ -124,6 +91,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
         cell = tableView.dequeueReusableCellWithIdentifier("identifier") as? InteractiveCardCell
+        
         var interactiveInfo = readyToDisplayInteractives[nearbyInteractivesFriendlyArray[indexPath.row]] as PFObject!
         var loc = interactiveInfo["location"] as PFGeoPoint
         var coordinate = CLLocationCoordinate2DMake(loc.latitude, loc.longitude)
@@ -139,18 +107,16 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if indexPath.section == 0 {
-            let cell = tableView.cellForRowAtIndexPath(indexPath)
-            let text = cell?.textLabel?.text
-            
-            if text != nil {
-                requestInteractiveConnectionAndCloseView(text!)
+//            let cell = tableView.dequeueReusableCellWithIdentifier("identifier") as? InteractiveCardCell
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as? InteractiveCardCell
+            let interactiveName = cell?.interactiveName.text
+        
+            if interactiveName != nil {
+                requestInteractiveConnectionAndCloseView(interactiveName!)
             }
             
         }
 
-    
-    }
 
     
     func handleRefresh(paramSender: AnyObject) {
@@ -178,20 +144,21 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     func prepareInteractiveTableViewCellInformation() {
         println("making table cell info ready")
         tableCellsReady = false
-//
+
         for (nearbyName, bean) in nearbyBLEInteractives {
-            for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
-                if nearbyName == parseBLEName {
+                for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
                     
-                    self.getInteractiveObject(appDelegate.dataManager.knownInteractivesFromParse[parseBLEName]!)
-                    nearbyInteractivesFriendly[parseFriendlyName] = bean
-                    nearbyBLEInteractivesLastSeen[parseFriendlyName] = bean.lastDiscovered
+                    if contains(nearbyInteractivesFriendlyArray, parseFriendlyName) == false {
+                        if nearbyName == parseBLEName {
+                            println("adding \(parseFriendlyName)")
+                            self.getInteractiveObject(appDelegate.dataManager.knownInteractivesFromParse[parseBLEName]!)
+                            nearbyInteractivesFriendly[parseFriendlyName] = bean
+                            nearbyBLEInteractivesLastSeen[parseFriendlyName] = bean.lastDiscovered
 
+                        }
+                    }
                 }
-            }
         }
-        tableCellsReady = true
-
     }
     
     func addToTableView(objectInfo: PFObject) {
@@ -200,8 +167,9 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         if contains(nearbyInteractivesFriendlyArray, objectName) == false {
             nearbyInteractivesFriendlyArray.append(objectName)
+            settingsTable.reloadData()
         }
-        settingsTable.reloadData()
+
     }
     
     func getLastSeenTime(lastDiscoveredTime: NSDate) -> String {
@@ -220,15 +188,12 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
 
                 nearbyBLEInteractives = beanDictionary
         }
-        
         prepareInteractiveTableViewCellInformation()
-        settingsTable.reloadData()
     }
     
     // update table view after parse data is updated
     func updateTableView(notification: NSNotification){
         prepareInteractiveTableViewCellInformation()
-        settingsTable.reloadData()
     }
     
     func getInteractiveObject(foundInteractiveObjectID: String){
@@ -239,7 +204,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             if (error == nil) {
                 // TO DO
                 self.addToTableView(objectInfo)
-                println(objectInfo)
             } else {
                 // There was an error.
                 UIAlertView(

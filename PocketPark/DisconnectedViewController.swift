@@ -242,7 +242,9 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
     {
         if appDelegate.dataManager.dataStoreReady == true && bluetoothIsReady == true {
             println("Data is \(appDelegate.dataManager.dataStoreReady) and bluetooth is: \(bluetoothIsReady)")
+            nearbyBLEInteractives.removeAll()
             self.manager.startScanningForBeans_error(nil)
+            
             updateMode(nil)
         }
     }

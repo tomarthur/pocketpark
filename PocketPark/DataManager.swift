@@ -93,7 +93,7 @@ class DataManager: NSObject {
                     for PFVersion in PFVersions {
                         self.knownInteractivesFromParse[toString(PFVersion["blename"])] = toString(PFVersion.objectId)
                         self.knownInteractivesFromParseFriendlyNames[toString(PFVersion["blename"])] = toString(PFVersion["name"])
-//                        println(PFVersion)
+                      
                     }
 
                     self.dataStoreReady = true
@@ -129,7 +129,7 @@ class DataManager: NSObject {
                         
                         self.knownInteractivesFromParseWithGeopoints[toString(PFVersion["name"])] = PFVersion["location"] as? PFGeoPoint
                     }
-                    
+
                     NSNotificationCenter.defaultCenter().postNotificationName("GeoPointDictionaryReady", object: nil)
                 }
         }
