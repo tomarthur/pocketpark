@@ -188,7 +188,13 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         let interactiveName = cell?.interactiveName.text
         
         if interactiveName != nil {
-//            requestInteractiveConnectionAndCloseView(interactiveName!)
+            
+            for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
+                if parseFriendlyName == interactiveName {
+                    findBeanObjectAndConnectFromBLEName(parseBLEName)
+                }
+                
+            }
         }
         
     }
@@ -427,6 +433,15 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     
     // initate request to connect
     func findBeanObjectAndConnectFromBLEName(bleName: String) {
+        for (nearbyName, bean) in nearbyBLEInteractives {
+            if bleName == nearbyName {
+                intiateConnectionIfInteractionValid(bean)
+            }
+        }
+    }
+    
+    // initate request to connect
+    func findBeanObjectAndConnectFromFriendlyName(bleName: String) {
         for (nearbyName, bean) in nearbyBLEInteractives {
             if bleName == nearbyName {
                 intiateConnectionIfInteractionValid(bean)

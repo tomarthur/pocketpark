@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutViewController" customModule="PocketPark" customModuleProvider="target">
@@ -13,7 +14,102 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXG-hC-1N7">
+                    <rect key="frame" x="112" y="31" width="376" height="62"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="376" id="cbD-h6-Bdb"/>
+                    </constraints>
+                    <attributedString key="attributedText">
+                        <fragment content="Pocket Theme Park">
+                            <attributes>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="48" name="OtterFont"/>
+                                <font key="NSOriginalFont" size="48" name="OtterFont"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pR-US-xAI">
+                    <rect key="frame" x="207" y="92" width="187" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="2uM-sF-qwj"/>
+                        <constraint firstAttribute="width" constant="187" id="bvg-P6-4nq"/>
+                    </constraints>
+                    <attributedString key="attributedText">
+                        <fragment content="Theme Park of Everyday">
+                            <attributes>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue-Light"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vjw-hJ-cn1">
+                    <rect key="frame" x="8" y="155" width="584" height="150"/>
+                    <attributedString key="attributedText">
+                        <fragment>
+                            <string key="content">A physical installation and collection of frameworks to discover and create serendipitous moments of surprise and wonder using mobile devices to control the physical world.</string>
+                            <attributes>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YWQ-TX-qbO">
+                    <rect key="frame" x="238" y="439" width="124" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="nIc-uS-lFC"/>
+                    </constraints>
+                    <state key="normal" title="Acknoledgements">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iBv-r6-lBr">
+                    <rect key="frame" x="248" y="401" width="105" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="6pb-71-eGy"/>
+                    </constraints>
+                    <state key="normal" title="Documentation">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjv-t0-2UD">
+                    <rect key="frame" x="208" y="477" width="185" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="2qB-Qu-5We"/>
+                    </constraints>
+                    <state key="normal" title="Make Your Own Interactive">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Vjw-hJ-cn1" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="3Hp-7e-SL8"/>
+                <constraint firstItem="Vjw-hJ-cn1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="9bB-8a-sbF"/>
+                <constraint firstItem="YWQ-TX-qbO" firstAttribute="centerX" secondItem="gjv-t0-2UD" secondAttribute="centerX" id="Bcg-Yu-qXk"/>
+                <constraint firstItem="iBv-r6-lBr" firstAttribute="centerX" secondItem="Vjw-hJ-cn1" secondAttribute="centerX" id="FAD-kD-y72"/>
+                <constraint firstItem="9pR-US-xAI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="92" id="Unp-ap-MGr"/>
+                <constraint firstItem="mXG-hC-1N7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="31" id="ZP7-Kt-DPV"/>
+                <constraint firstAttribute="bottom" secondItem="gjv-t0-2UD" secondAttribute="bottom" constant="93" id="ar8-82-zOR"/>
+                <constraint firstItem="gjv-t0-2UD" firstAttribute="top" secondItem="YWQ-TX-qbO" secondAttribute="bottom" constant="8" symbolic="YES" id="c26-tx-yKn"/>
+                <constraint firstItem="Vjw-hJ-cn1" firstAttribute="top" secondItem="9pR-US-xAI" secondAttribute="bottom" constant="42" id="lkV-JS-mOm"/>
+                <constraint firstItem="Vjw-hJ-cn1" firstAttribute="centerX" secondItem="9pR-US-xAI" secondAttribute="centerX" id="neE-x0-ybU"/>
+                <constraint firstItem="Vjw-hJ-cn1" firstAttribute="top" secondItem="mXG-hC-1N7" secondAttribute="bottom" constant="62" id="oHq-id-FDO"/>
+                <constraint firstItem="YWQ-TX-qbO" firstAttribute="centerX" secondItem="iBv-r6-lBr" secondAttribute="centerX" id="rDs-yC-Hsl"/>
+                <constraint firstItem="YWQ-TX-qbO" firstAttribute="top" secondItem="iBv-r6-lBr" secondAttribute="bottom" constant="8" symbolic="YES" id="v3j-2z-EC3"/>
+                <constraint firstItem="9pR-US-xAI" firstAttribute="centerX" secondItem="mXG-hC-1N7" secondAttribute="centerX" id="yIr-N7-aVz"/>
+                <constraint firstItem="iBv-r6-lBr" firstAttribute="top" secondItem="Vjw-hJ-cn1" secondAttribute="bottom" constant="96" id="zzg-Dt-wcR"/>
+            </constraints>
         </view>
     </objects>
 </document>
