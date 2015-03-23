@@ -13,6 +13,7 @@ import MapKit
 class InteractiveCardCell: UITableViewCell {
 
     @IBOutlet weak var interactiveCardView: UIView!
+    @IBOutlet weak var interactiveSubCardView: UIView!
     @IBOutlet weak var interactiveLocation: MKMapView!
     @IBOutlet weak var interactiveName: UILabel!
     @IBOutlet weak var interactiveDetails: UILabel!
@@ -20,14 +21,19 @@ class InteractiveCardCell: UITableViewCell {
     
     func loadItem(#title: String, desc: String, coordinates: CLLocationCoordinate2D){
         
-        interactiveCardView.layer.cornerRadius = 10
-        interactiveCardView.layer.masksToBounds = true
+        interactiveCardView.backgroundColor = UIColor.clearColor()
+        
+        interactiveSubCardView.layer.cornerRadius = 10
+        interactiveSubCardView.layer.masksToBounds = true
+
 
         interactiveName.text = title
         interactiveName.font = UIFont(name:"OtterFont", size: 45)
 
         interactiveName.textAlignment = .Center
         interactiveName.sizeToFit()
+        interactiveName.layer.cornerRadius = 10
+        interactiveName.layer.masksToBounds = true
         
         interactiveDetails.text = desc
         let spanX = 0.001
@@ -36,6 +42,8 @@ class InteractiveCardCell: UITableViewCell {
         interactiveLocation.setRegion(interactiveRegion, animated: false)
         interactiveLocation.scrollEnabled = false
         interactiveLocation.showsUserLocation = true
+        interactiveLocation.layer.cornerRadius = 10
+        interactiveLocation.layer.masksToBounds = true
         
         var annotation = MKPointAnnotation()
         annotation.coordinate = coordinates

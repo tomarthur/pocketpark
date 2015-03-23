@@ -64,6 +64,7 @@
                 <outlet property="interactiveDetails" destination="dIq-Ib-EOD" id="MA2-7W-P9L"/>
                 <outlet property="interactiveLocation" destination="2cx-1U-KLl" id="BdZ-dY-3r4"/>
                 <outlet property="interactiveName" destination="GSc-Gm-xtr" id="ELd-sL-1e0"/>
+                <outlet property="interactiveSubCardView" destination="TKz-Ty-OA9" id="ctQ-rQ-mko"/>
             </connections>
             <point key="canvasLocation" x="239" y="148.5"/>
         </tableViewCell>

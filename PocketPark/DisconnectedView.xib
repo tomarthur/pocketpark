@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="activityIndicator" destination="8Sd-Eu-PK5" id="8vP-d1-bBy"/>
                 <outlet property="infoButton" destination="xEy-4J-uma" id="RB7-es-L8S"/>
+                <outlet property="interactivesNearbyTable" destination="7Gx-aR-Vju" id="HUy-d5-3wH"/>
                 <outlet property="nearbyButton" destination="2JH-XT-EY9" id="TD1-gm-oTd"/>
                 <outlet property="settingsManualControlButton" destination="4Mb-v6-eCA" id="n1l-9h-HoO"/>
                 <outlet property="status" destination="hwD-34-zrO" id="T84-04-a73"/>
@@ -20,19 +21,14 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwD-34-zrO">
-                    <rect key="frame" x="153" y="289" width="294" height="47"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="47" id="WXb-b4-2UG"/>
-                        <constraint firstAttribute="width" constant="294" id="mHe-qB-6la"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="8Sd-Eu-PK5" userLabel="Activity Indicator">
-                    <rect key="frame" x="282" y="244" width="37" height="37"/>
-                </activityIndicatorView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Gx-aR-Vju">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="brx-Jz-VN7"/>
+                        <outlet property="delegate" destination="-1" id="vsJ-Vd-nqM"/>
+                    </connections>
+                </tableView>
                 <tabBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="GjZ-xC-L6Y">
                     <rect key="frame" x="0.0" y="551" width="600" height="49"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -47,26 +43,33 @@
                         <outlet property="delegate" destination="-1" id="AtU-9I-0co"/>
                     </connections>
                 </tabBar>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Gx-aR-Vju">
-                    <rect key="frame" x="150" y="123" width="300" height="300"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwD-34-zrO">
+                    <rect key="frame" x="153" y="289" width="294" height="47"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="300" id="V45-9c-J63"/>
-                        <constraint firstAttribute="width" constant="300" id="cul-sl-klq"/>
+                        <constraint firstAttribute="height" constant="47" id="WXb-b4-2UG"/>
+                        <constraint firstAttribute="width" constant="294" id="mHe-qB-6la"/>
                     </constraints>
-                </tableView>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="8Sd-Eu-PK5" userLabel="Activity Indicator">
+                    <rect key="frame" x="282" y="244" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3PD-hL-yfe"/>
                 <constraint firstItem="8Sd-Eu-PK5" firstAttribute="centerX" secondItem="hwD-34-zrO" secondAttribute="centerX" id="5yD-6H-jVF"/>
+                <constraint firstItem="7Gx-aR-Vju" firstAttribute="trailing" secondItem="GjZ-xC-L6Y" secondAttribute="trailing" id="7nR-v9-UGM"/>
                 <constraint firstItem="GjZ-xC-L6Y" firstAttribute="centerX" secondItem="hwD-34-zrO" secondAttribute="centerX" id="Aj9-eu-WRF"/>
                 <constraint firstItem="8Sd-Eu-PK5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="244" id="C2f-Om-vGv"/>
+                <constraint firstItem="7Gx-aR-Vju" firstAttribute="leading" secondItem="GjZ-xC-L6Y" secondAttribute="leading" id="Dag-dj-ZNK"/>
                 <constraint firstAttribute="trailing" secondItem="GjZ-xC-L6Y" secondAttribute="trailing" id="HLx-G9-Gpi"/>
                 <constraint firstAttribute="bottom" secondItem="GjZ-xC-L6Y" secondAttribute="bottom" id="dPh-qs-SSh"/>
-                <constraint firstItem="7Gx-aR-Vju" firstAttribute="centerX" secondItem="8Sd-Eu-PK5" secondAttribute="centerX" id="dTo-Cs-cXW"/>
-                <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="123" id="fnj-Y1-mhm"/>
                 <constraint firstItem="GjZ-xC-L6Y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ieS-Cv-DRI"/>
                 <constraint firstItem="hwD-34-zrO" firstAttribute="top" secondItem="8Sd-Eu-PK5" secondAttribute="bottom" constant="8" symbolic="YES" id="r7k-NE-kvX"/>
+                <constraint firstItem="7Gx-aR-Vju" firstAttribute="bottom" secondItem="GjZ-xC-L6Y" secondAttribute="bottom" id="y2C-zo-xZI"/>
             </constraints>
         </view>
     </objects>
