@@ -16,8 +16,7 @@ class InteractiveCardCell: UITableViewCell {
     @IBOutlet weak var interactiveLocation: MKMapView!
     @IBOutlet weak var interactiveName: UILabel!
     @IBOutlet weak var interactiveDetails: UILabel!
-    @IBOutlet weak var connectButton: UIButton!
-    
+
     
     func loadItem(#title: String, desc: String, coordinates: CLLocationCoordinate2D){
         

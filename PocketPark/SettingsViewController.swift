@@ -68,6 +68,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
 
         
         prepareInteractiveTableViewCellInformation()
+        
+        self.view.backgroundColor = .ITWelcomeColor()
     }
 
     func setupSwipes() {
