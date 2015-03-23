@@ -16,7 +16,7 @@
 import UIKit
 import IJReachability
 
-class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITabBarDelegate,  UITableViewDataSource, UITableViewDelegate {
+class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UITableViewDataSource, UITableViewDelegate {
     
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
@@ -24,10 +24,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
-    @IBOutlet weak var tabBar: UITabBar!
-    @IBOutlet weak var aboutManualControlButton: UITabBarItem!
-    @IBOutlet weak var infoButton: UITabBarItem!
-    @IBOutlet weak var nearbyButton: UITabBarItem!
+
 
     @IBOutlet weak var interactivesNearbyTable: UITableView!
     var refreshControl: UIRefreshControl?
@@ -120,19 +117,11 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         // Setup Table
         makeInteractivesTableView()
         
-        // Assign tab bar item with titles
-        let tabBarController = UITabBarController()
-        tabBar.selectedItem = self.tabBar.items![1] as? UITabBarItem
-        tabBar.tintColor = .ITConnectedColor()
-        
         self.view.backgroundColor = .ITWelcomeColor()
     }
     
     
-    override func viewDidAppear(animated: Bool) {
-        tabBar.selectedItem = self.tabBar.items![1] as? UITabBarItem
-        
-    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -286,58 +275,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         }
         
     }
-    
-    // MARK: Navigation
-
-    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
-        switch item.tag {
-        case 0:
-            // stop app from connecting while we are in map
-            haltConnections = true
-            mapButtonPressed()
-            println("0")
-        case 1:
-            println("1")
-        case 2:
-            // stop app from connecting while we are in manual control
-            haltConnections = true
-            aboutButtonPressed()
-            println("2")
-        default:
-            break
-        }
-        
-    }
-    
-    func aboutButtonPressed() {
-        // disconnect if connected
-        if connectedBean != nil {
-            manager.disconnectBean(connectedBean, error:nil)
-        }
-        
-        let aboutViewController:AboutViewController = AboutViewController(
-            nibName: "AboutView",bundle: nil)
-
-        
-        aboutViewController.modalTransitionStyle = .FlipHorizontal
-        presentViewController(aboutViewController, animated: false, completion: nil)
-
-    }
-    
-    func mapButtonPressed() {
-        // disconnect if connected
-        if connectedBean != nil {
-            manager.disconnectBean(connectedBean, error:nil)
-        }
-        
-        let interactiveMapViewController:InteractiveMapViewController = InteractiveMapViewController(
-            nibName: "InteractiveMap",bundle: nil)
-         
-        interactiveMapViewController.modalTransitionStyle = .FlipHorizontal
-        presentViewController(interactiveMapViewController, animated: false, completion: nil)
-        
-    }
-
     
     func updateMode(notification: NSNotification?) {
         
