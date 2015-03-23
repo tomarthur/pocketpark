@@ -95,7 +95,7 @@ class DataManager: NSObject {
                         self.knownInteractivesFromParseFriendlyNames[toString(PFVersion["blename"])] = toString(PFVersion["name"])
                       
                     }
-
+                    self.dictionaryOfInteractivesWithGeoPoints()
                     self.dataStoreReady = true
                     NSNotificationCenter.defaultCenter().postNotificationName("readyToFind", object: nil)
                 }

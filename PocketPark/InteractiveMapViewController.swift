@@ -9,27 +9,30 @@
 import UIKit
 import MapKit
 
-class InteractiveMapViewController: UIViewController, MKMapViewDelegate, UINavigationBarDelegate, UIToolbarDelegate {
+class InteractiveMapViewController: UIViewController, MKMapViewDelegate, UIToolbarDelegate {
     
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
-    
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var aboutButton: UITabBarItem!
+    @IBOutlet weak var mapButton: UITabBarItem!
+    @IBOutlet weak var nearbyButton: UITabBarItem!
     
-    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
-        return .TopAttached
-    }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
     
-    func closeMap(sender: UIBarButtonItem){
-        self.dismissViewControllerAnimated(true, completion:nil)
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Assign tab bar item with titles
+        let tabBarController = UITabBarController()
+        tabBar.selectedItem = self.tabBar.items![0] as? UITabBarItem
+        tabBar.tintColor = .ITConnectedColor()
+//        tabBar.st
         
         // when datastore and bluetooth are ready
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "addInteractiveGeoPoints:",
@@ -38,9 +41,7 @@ class InteractiveMapViewController: UIViewController, MKMapViewDelegate, UINavig
         // build the dictionary of geopoints
         appDelegate.dataManager.dictionaryOfInteractivesWithGeoPoints()
         
-        makeNavigationBar()
-        makeToolbar()
-        
+
         mapView.delegate = self
         mapView.showsUserLocation = true
         zoomUserLocation()
@@ -48,6 +49,38 @@ class InteractiveMapViewController: UIViewController, MKMapViewDelegate, UINavig
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        tabBar.selectedItem = self.tabBar.items![0] as? UITabBarItem
+        
+
+    }
+    
+
+    
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
+        switch item.tag {
+        case 0:
+            println("cow")
+        case 1:
+            // Dismiss any modal view controllers.
+            self.dismissViewControllerAnimated(false, completion:nil)
+            println("1")
+            // Dismiss any modal view controllers.
+            presentedViewController?.dismissViewControllerAnimated(true, completion: { () in
+                println("dismissing past")
+                self.dismissViewControllerAnimated(true, completion: nil)
+            })
+        case 2:
+            let aboutViewController:AboutViewController = AboutViewController(
+                nibName: "AboutView",bundle: nil)
+//            pushViewController(aboutViewController, animated: YES)
+            
+
+        default:
+            break
+        }
+        
+    }
 //    dictionaryOfInteractivesWithGeoPoints/
     
     func zoomUserLocation() {
@@ -86,36 +119,6 @@ class InteractiveMapViewController: UIViewController, MKMapViewDelegate, UINavig
             mapView.centerCoordinate = userLocation.location.coordinate
     }
     
-    func makeNavigationBar() {
-        // Create the navigation bar
-        let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, UIScreen.mainScreen().bounds.width, 44)) // Offset by 20 pixels vertically to take the status bar into account
-//        var backgroundColor: UIColor
-        navigationBar.barTintColor = .ITWelcomeColor()
-        navigationBar.translucent = true
-        navigationBar.delegate = self
-        
-        let navigationItem = UINavigationItem()
-        navigationItem.title = "Interactives"
-        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        
-        let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "closeMap:")
-        backButton.tintColor = UIColor.whiteColor()
-        //        backButton.tit = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        navigationItem.leftBarButtonItem = backButton
-        
-        navigationBar.items = [navigationItem]
-        self.view.addSubview(navigationBar)
-        
-        
-    }
-    
-    func makeToolbar(){
-        let toolBar = UIToolbar(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 44))
-        toolBar.barTintColor = .ITWelcomeColor()
-        toolBar.translucent = true
-        toolBar.delegate = self
-        
-    }
 
     
 //    @IBAction func zoomIn(sender: AnyObject) {

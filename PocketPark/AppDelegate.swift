@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // configure Hockey App
-        BITHockeyManager.sharedHockeyManager().configureWithIdentifier("3697b3f570362d842ec8c975151e6bc3")
+    BITHockeyManager.sharedHockeyManager().configureWithIdentifier("3697b3f570362d842ec8c975151e6bc3")
         BITHockeyManager.sharedHockeyManager().startManager()
         BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
         
@@ -173,6 +173,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func setupNormalRootVC(animated : Bool) {
         var disconnectedViewController = DisconnectedViewController(nibName: "DisconnectedView", bundle: nil)
+        var mapViewController = InteractiveMapViewController(nibName: "InteractiveMap", bundle:nil)
+        var aboutViewController = AboutViewController(nibName: "AboutView", bundle: nil)
+        
+        var tabs = UITabBarController()
+        UITabBar.appearance().tintColor = .ITConnectedColor()
+        UITabBar.appearance().barStyle = UIBarStyle.Black
+        tabs.viewControllers = [mapViewController, disconnectedViewController, aboutViewController]
+        
+        let mapImage = UIImage(named: "map")
+        let nearbyImage = UIImage(named: "nearby")
+        let aboutImage = UIImage(named: "main")
+        
+        mapViewController.tabBarItem = UITabBarItem(title: "Map", image: mapImage, tag: 0)
+        disconnectedViewController.tabBarItem = UITabBarItem(title: "Nearby", image: nearbyImage, tag: 1)
+        aboutViewController.tabBarItem = UITabBarItem(title: "About", image: aboutImage, tag: 2)
+        
+        tabs.selectedViewController = disconnectedViewController
+
+
         
         // start location services
         interactionBeaconManager.startUpdatingLocation()
@@ -181,12 +200,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // however you want.
         if animated {
             UIView.transitionWithView(self.window!, duration: 1.0, options:.TransitionCrossDissolve, animations: { () -> Void in
-                self.window!.rootViewController = disconnectedViewController
-                }, completion:nil)
+                self.window!.rootViewController = tabs
+                                }, completion:nil)
         }
             // Otherwise we just want to set the root view controller normally.
         else {
-            self.window?.rootViewController = disconnectedViewController;
+              self.window?.rootViewController = tabs
         }
     }
     

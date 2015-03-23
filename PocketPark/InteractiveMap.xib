@@ -6,7 +6,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InteractiveMapViewController" customModule="PocketPark" customModuleProvider="target">
             <connections>
+                <outlet property="aboutButton" destination="kk7-rg-gMc" id="Aiu-U0-Xyh"/>
+                <outlet property="mapButton" destination="YQZ-VB-9Wj" id="K1f-S9-0oV"/>
                 <outlet property="mapView" destination="sFQ-wW-5SQ" id="6Y4-rF-Gd8"/>
+                <outlet property="nearbyButton" destination="OF7-Sm-729" id="50S-bv-6Fi"/>
+                <outlet property="tabBar" destination="9da-dz-hte" id="cpS-xn-48s"/>
                 <outlet property="view" destination="iN0-l3-epB" id="UYk-Kx-ny9"/>
             </connections>
         </placeholder>
@@ -18,14 +22,36 @@
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="sFQ-wW-5SQ">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </mapView>
+                <tabBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="9da-dz-hte">
+                    <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <items>
+                        <tabBarItem title="Map" image="map" id="YQZ-VB-9Wj"/>
+                        <tabBarItem tag="1" title="Nearby" image="nearby" id="OF7-Sm-729"/>
+                        <tabBarItem tag="2" title="About" image="main" id="kk7-rg-gMc"/>
+                    </items>
+                    <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="selectedImageTintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="KQJ-dG-jXe"/>
+                    </connections>
+                </tabBar>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="sFQ-wW-5SQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="J9l-Ks-uVm"/>
-                <constraint firstAttribute="trailing" secondItem="sFQ-wW-5SQ" secondAttribute="trailing" id="TZl-CV-ig9"/>
-                <constraint firstAttribute="bottom" secondItem="sFQ-wW-5SQ" secondAttribute="bottom" id="TcV-gh-PVj"/>
-                <constraint firstItem="sFQ-wW-5SQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="YyJ-w3-qRl"/>
+                <constraint firstItem="9da-dz-hte" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7jB-I4-aKF"/>
+                <constraint firstItem="sFQ-wW-5SQ" firstAttribute="trailing" secondItem="9da-dz-hte" secondAttribute="trailing" id="9co-J8-0Ky"/>
+                <constraint firstItem="9da-dz-hte" firstAttribute="leading" secondItem="sFQ-wW-5SQ" secondAttribute="leading" id="GyI-HI-wrf"/>
+                <constraint firstItem="sFQ-wW-5SQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="LmP-TU-PgP"/>
+                <constraint firstItem="sFQ-wW-5SQ" firstAttribute="bottom" secondItem="9da-dz-hte" secondAttribute="bottom" id="RRP-Sq-FUP"/>
+                <constraint firstAttribute="trailing" secondItem="9da-dz-hte" secondAttribute="trailing" id="ZRW-Eh-cdi"/>
+                <constraint firstAttribute="bottom" secondItem="sFQ-wW-5SQ" secondAttribute="bottom" id="m6m-Hg-QX8"/>
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="main" width="14" height="24"/>
+        <image name="map" width="20" height="24"/>
+        <image name="nearby" width="22" height="22"/>
+    </resources>
 </document>

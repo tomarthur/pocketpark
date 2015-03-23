@@ -18,7 +18,7 @@
 		E261D3EE1AB0087400957726 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = E261D3E81AB0087400957726 /* red.png */; };
 		E261D3EF1AB0087400957726 /* yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = E261D3E91AB0087400957726 /* yellow.png */; };
 		E261D3FB1AB0089D00957726 /* InteractiveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D3F51AB0089D00957726 /* InteractiveMapViewController.swift */; };
-		E261D3FC1AB0089D00957726 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D3F61AB0089D00957726 /* SettingsViewController.swift */; };
+		E261D3FC1AB0089D00957726 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D3F61AB0089D00957726 /* AboutViewController.swift */; };
 		E261D3FD1AB0089D00957726 /* DisconnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D3F71AB0089D00957726 /* DisconnectedViewController.swift */; };
 		E261D3FE1AB0089D00957726 /* ConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D3F81AB0089D00957726 /* ConnectedViewController.swift */; };
 		E261D3FF1AB0089D00957726 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D3F91AB0089D00957726 /* OnboardingViewController.swift */; };
@@ -26,7 +26,7 @@
 		E261D4061AB008A600957726 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E261D4011AB008A600957726 /* LaunchScreen.xib */; };
 		E261D4071AB008A600957726 /* DisconnectedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E261D4021AB008A600957726 /* DisconnectedView.xib */; };
 		E261D4081AB008A600957726 /* ConnectedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E261D4031AB008A600957726 /* ConnectedView.xib */; };
-		E261D4091AB008A600957726 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E261D4041AB008A600957726 /* SettingsView.xib */; };
+		E261D4091AB008A600957726 /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E261D4041AB008A600957726 /* AboutView.xib */; };
 		E261D40A1AB008A600957726 /* InteractiveMap.xib in Resources */ = {isa = PBXBuildFile; fileRef = E261D4051AB008A600957726 /* InteractiveMap.xib */; };
 		E261D40F1AB008B000957726 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D40B1AB008B000957726 /* CustomColors.swift */; };
 		E261D4101AB008B000957726 /* InteractionBeaconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D40C1AB008B000957726 /* InteractionBeaconManager.swift */; };
@@ -83,7 +83,7 @@
 		E261D3E91AB0087400957726 /* yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow.png; sourceTree = "<group>"; };
 		E261D3F41AB0089C00957726 /* PocketPark-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PocketPark-Bridging-Header.h"; sourceTree = "<group>"; };
 		E261D3F51AB0089D00957726 /* InteractiveMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveMapViewController.swift; sourceTree = "<group>"; };
-		E261D3F61AB0089D00957726 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E261D3F61AB0089D00957726 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		E261D3F71AB0089D00957726 /* DisconnectedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisconnectedViewController.swift; sourceTree = "<group>"; };
 		E261D3F81AB0089D00957726 /* ConnectedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedViewController.swift; sourceTree = "<group>"; };
 		E261D3F91AB0089D00957726 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 		E261D4011AB008A600957726 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		E261D4021AB008A600957726 /* DisconnectedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisconnectedView.xib; sourceTree = "<group>"; };
 		E261D4031AB008A600957726 /* ConnectedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectedView.xib; sourceTree = "<group>"; };
-		E261D4041AB008A600957726 /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
+		E261D4041AB008A600957726 /* AboutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutView.xib; sourceTree = "<group>"; };
 		E261D4051AB008A600957726 /* InteractiveMap.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InteractiveMap.xib; sourceTree = "<group>"; };
 		E261D40B1AB008B000957726 /* CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		E261D40C1AB008B000957726 /* InteractionBeaconManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionBeaconManager.swift; sourceTree = "<group>"; };
@@ -225,6 +225,7 @@
 		E261D3C21AB007DE00957726 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E2A78F2E1AB272120096B7A8 /* OtterFont.ttf */,
 				E261D3F41AB0089C00957726 /* PocketPark-Bridging-Header.h */,
 				E261D3C31AB007DE00957726 /* Info.plist */,
 			);
@@ -266,7 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				E261D3F51AB0089D00957726 /* InteractiveMapViewController.swift */,
-				E261D3F61AB0089D00957726 /* SettingsViewController.swift */,
+				E261D3F61AB0089D00957726 /* AboutViewController.swift */,
 				E261D3F71AB0089D00957726 /* DisconnectedViewController.swift */,
 				E261D3F81AB0089D00957726 /* ConnectedViewController.swift */,
 				E261D3F91AB0089D00957726 /* OnboardingViewController.swift */,
@@ -282,7 +283,7 @@
 				E261D4021AB008A600957726 /* DisconnectedView.xib */,
 				E2332B721ABFA15E00455422 /* InteractiveCard.xib */,
 				E261D4031AB008A600957726 /* ConnectedView.xib */,
-				E261D4041AB008A600957726 /* SettingsView.xib */,
+				E261D4041AB008A600957726 /* AboutView.xib */,
 				E261D4051AB008A600957726 /* InteractiveMap.xib */,
 			);
 			name = Views;
@@ -291,7 +292,6 @@
 		E261D3F31AB0088600957726 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				E2A78F2E1AB272120096B7A8 /* OtterFont.ttf */,
 				E2332B741ABFA33A00455422 /* InteractiveCardCell.swift */,
 				E261D40B1AB008B000957726 /* CustomColors.swift */,
 				E261D40C1AB008B000957726 /* InteractionBeaconManager.swift */,
@@ -393,7 +393,7 @@
 				E2A78F2F1AB2736F0096B7A8 /* OtterFont.ttf in Resources */,
 				E2A78F311AB288A70096B7A8 /* bg.jpg in Resources */,
 				E261D3EA1AB0087400957726 /* Media.xcassets in Resources */,
-				E261D4091AB008A600957726 /* SettingsView.xib in Resources */,
+				E261D4091AB008A600957726 /* AboutView.xib in Resources */,
 				E261D4081AB008A600957726 /* ConnectedView.xib in Resources */,
 				E261D3EF1AB0087400957726 /* yellow.png in Resources */,
 				E2332B731ABFA15E00455422 /* InteractiveCard.xib in Resources */,
@@ -493,7 +493,7 @@
 				E261D3FE1AB0089D00957726 /* ConnectedViewController.swift in Sources */,
 				E261D4121AB008B000957726 /* SensorManager.swift in Sources */,
 				E261D4111AB008B000957726 /* DataManager.swift in Sources */,
-				E261D3FC1AB0089D00957726 /* SettingsViewController.swift in Sources */,
+				E261D3FC1AB0089D00957726 /* AboutViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

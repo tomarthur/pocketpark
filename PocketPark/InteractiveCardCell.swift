@@ -17,9 +17,10 @@ class InteractiveCardCell: UITableViewCell {
     @IBOutlet weak var interactiveLocation: MKMapView!
     @IBOutlet weak var interactiveName: UILabel!
     @IBOutlet weak var interactiveDetails: UILabel!
+    @IBOutlet weak var interactiveLastSeen: UILabel!
 
     
-    func loadItem(#title: String, desc: String, coordinates: CLLocationCoordinate2D){
+    func loadItem(#title: String, desc: String, lastSeen: String, coordinates: CLLocationCoordinate2D){
         
         interactiveCardView.backgroundColor = UIColor.clearColor()
         
@@ -29,6 +30,8 @@ class InteractiveCardCell: UITableViewCell {
 
         interactiveName.text = title
         interactiveName.font = UIFont(name:"OtterFont", size: 45)
+        interactiveName.minimumScaleFactor = 0.5
+        interactiveName.adjustsFontSizeToFitWidth = true
 
         interactiveName.textAlignment = .Center
         interactiveName.sizeToFit()
@@ -36,6 +39,15 @@ class InteractiveCardCell: UITableViewCell {
         interactiveName.layer.masksToBounds = true
         
         interactiveDetails.text = desc
+        interactiveDetails.textAlignment = .Center
+        interactiveDetails.adjustsFontSizeToFitWidth = true
+        
+        interactiveLastSeen.text = "Last discovered at \(lastSeen)"
+        interactiveLastSeen.textColor = UIColor.whiteColor()
+        interactiveLastSeen.textAlignment = .Center
+        interactiveLastSeen.font = UIFont(name: "HelveticaNeue-UltraLight", size: 12)
+        
+        
         let spanX = 0.001
         let spanY = 0.001
         var interactiveRegion = MKCoordinateRegion(center: coordinates, span: MKCoordinateSpanMake(spanX, spanY))

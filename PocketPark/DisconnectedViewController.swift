@@ -25,7 +25,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
     
     
     @IBOutlet weak var tabBar: UITabBar!
-    @IBOutlet weak var settingsManualControlButton: UITabBarItem!
+    @IBOutlet weak var aboutManualControlButton: UITabBarItem!
     @IBOutlet weak var infoButton: UITabBarItem!
     @IBOutlet weak var nearbyButton: UITabBarItem!
 
@@ -39,14 +39,13 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
 
     
     
-    var connectedBeanObjectID: String?                  // Parse objectId for connected bean
-    var nearbyBLEInteractives = [String:PTDBean]()      // PTDBean objects detected in the area
-    var nearbyBLEInteractivesLastSeen = [String:NSDate]()
-    var nearbyInteractivesFriendly = [String:PTDBean]()
-    var nearbyInteractivesFriendlyArray = [String]()
-    var readyToDisplayInteractives = [String:PFObject]()
-
+    var connectedBeanObjectID: String?                      // Parse objectId for connected bean
+    var nearbyBLEInteractives = [String:PTDBean]()          // PTDBean objects detected in the area
+    var nearbyBLEInteractivesLastSeen = [String:NSDate]()   // Time of last discovery
     
+    var nearbyInteractivesFriendlyArray = [String]()        // Table view content
+    var readyToDisplayInteractives = [String:PFObject]()    // Table view content
+
     
     var manager: PTDBeanManager!
     var connectedBean: PTDBean? {
@@ -63,20 +62,16 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
                 connectedViewController.connectedBean = connectedBean
                 connectedViewController.foundInteractiveObjectID = connectedBeanObjectID
                 
+                // Send the dimensions to Parse along with the 'connect' event
                 let connectInfo = [
                     // Define ranges to bucket data points into meaningful segments
                     "interactiveName": toString(connectedBean?.name),
                     // Did the user filter the query?
                     "connectTime": toString(NSDate())
                 ]
-                
-                // Send the dimensions to Parse along with the 'connect' event
                 PFAnalytics.trackEvent("connect", dimensions:connectInfo)
                 
                 presentViewController(connectedViewController, animated: true, completion: nil)
-                
-                activityIndicator.stopAnimating()
-               
             }
         }
     }
@@ -86,24 +81,25 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        manager = PTDBeanManager(delegate: self)
+        
+        // Notifications
 
-
-        // when datastore and bluetooth are ready
+        // when datastore and bluetooth are ready start scanning
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "startScanningForInteractives:",
             name: "readyToFind", object: nil)
+        
+        // when new interactive is discovered add to table view
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "addNewInteractive:",
+            name: "AddedNewInteractive", object: nil)
+        
+        // when iBeacon of interactive is detected
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromNotification:",
+            name: "startInteractionFromNotification", object: nil)
         
         // get notification when user wants to end experience
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:",
             name: "EndInteraction", object: nil)
-        
-        // TO DO: Combine following two alerts to one function
-//        // when iBeacon of interactive is detected or manually selected on settings view
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromManualRequest:",
-//            name: "startInteractionRequest", object: nil)
-        
-        // when iBeacon of interactive is detected or manually selected on settings view
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromNotification:",
-            name: "startInteractionFromNotification", object: nil)
         
         // when app is no longer in focus, disconnect
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:",
@@ -117,36 +113,12 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:",
             name: UIApplicationWillTerminateNotification, object: nil)
         
-        // when location disabled
+        // when location disabled warn user
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayLocationAlert:",
             name: "LocationDisabled", object: nil)
         
-        manager = PTDBeanManager(delegate: self)
-        
-        ////////////////////////////////
-        // FROM SETTINGS VIEW
-        ////////////////////////////////
-        
-        // build the dictionary of geopoints
-        appDelegate.dataManager.dictionaryOfInteractivesWithGeoPoints()
-        
-        
-//        // when new interactive is discovered
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "addNewInteractive:",
-//            name: "AddedNewInteractive", object: nil)
-        
-        // when datastore and bluetooth are ready
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTableView:",
-            name: "readyToFind", object: nil)
-        
         // Setup Table
-        makeSettingsTableView()
-        
-        
-        prepareInteractiveTableViewCellInformation()
-        
-        
-        ////////////////////////////////
+        makeInteractivesTableView()
         
         // Assign tab bar item with titles
         let tabBarController = UITabBarController()
@@ -173,9 +145,10 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
     
     // MARK: TableView
     
-    func makeSettingsTableView() {
+    func makeInteractivesTableView() {
         if let interactivesNearbyTableView = interactivesNearbyTable {
             interactivesNearbyTableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "identifier")
+            interactivesNearbyTableView.registerNib(UINib(nibName: "InteractiveCard", bundle: nil), forCellReuseIdentifier: "identifier")
             
             interactivesNearbyTableView.dataSource = self
             interactivesNearbyTableView.delegate = self
@@ -186,10 +159,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
             refreshControl!.addTarget(self, action: "handleRefresh:", forControlEvents: .ValueChanged)
             
             interactivesNearbyTableView.rowHeight = UITableViewAutomaticDimension
-            
             interactivesNearbyTableView.addSubview(refreshControl!)
-            
-            interactivesNearbyTableView.registerNib(UINib(nibName: "InteractiveCard", bundle: nil), forCellReuseIdentifier: "identifier")
             
             view.addSubview(interactivesNearbyTableView)
         }
@@ -212,15 +182,15 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         var interactiveInfo = readyToDisplayInteractives[nearbyInteractivesFriendlyArray[indexPath.row]] as PFObject!
         var loc = interactiveInfo["location"] as PFGeoPoint
         var coordinate = CLLocationCoordinate2DMake(loc.latitude, loc.longitude)
-        cell.loadItem(title: nearbyInteractivesFriendlyArray[indexPath.row], desc: toString(interactiveInfo["explanation"]), coordinates: coordinate)
+        var lastSeen = getLastSeenTime(nearbyBLEInteractivesLastSeen[toString(interactiveInfo["name"])]!)
+        
+        cell.loadItem(title: nearbyInteractivesFriendlyArray[indexPath.row], desc: toString(interactiveInfo["explanation"]), lastSeen: lastSeen, coordinates: coordinate)
+        
         cell.backgroundColor = UIColor.clearColor()
         cell.updateConstraints()
         
         return cell
-        
-        
     }
-    
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -235,7 +205,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
     }
     
     
-    
     func handleRefresh(paramSender: AnyObject) {
         
         appDelegate.dataManager.queryParseForInteractiveObjects()
@@ -244,38 +213,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         dispatch_after(popTime, dispatch_get_main_queue(), {
             self.refreshControl!.endRefreshing()
         })
-    }
-    
-    func prepareInteractiveTableViewCellInformation() {
-        println("making table cell info ready")
-        tableCellsReady = false
-        
-        for (nearbyName, bean) in nearbyBLEInteractives {
-            println(nearbyName)
-            for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
-                println(parseBLEName)
-                if contains(nearbyInteractivesFriendlyArray, parseFriendlyName) == false {
-                    if nearbyName == parseBLEName {
-                        println("adding \(parseFriendlyName)")
-                        self.getInteractiveObject(appDelegate.dataManager.knownInteractivesFromParse[parseBLEName]!)
-                        nearbyInteractivesFriendly[parseFriendlyName] = bean
-                        nearbyBLEInteractivesLastSeen[parseFriendlyName] = bean.lastDiscovered
-                        
-                    }
-                }
-            }
-        }
-    }
-    
-    func addToTableView(objectInfo: PFObject) {
-        var objectName = objectInfo["name"] as String
-        readyToDisplayInteractives[objectName] = objectInfo
-        println("adding to table view")
-        if contains(nearbyInteractivesFriendlyArray, objectName) == false {
-            nearbyInteractivesFriendlyArray.append(objectName)
-            interactivesNearbyTable.reloadData()
-        }
-        
     }
     
     func getLastSeenTime(lastDiscoveredTime: NSDate) -> String {
@@ -292,6 +229,31 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         prepareInteractiveTableViewCellInformation()
     }
     
+    // add new interactive to table view when notified
+    func addNewInteractive(notification: NSNotification) {
+        prepareInteractiveTableViewCellInformation()
+    }
+    
+    func prepareInteractiveTableViewCellInformation() {
+        
+        for (nearbyName, bean) in nearbyBLEInteractives {
+   
+            for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
+    
+                if contains(nearbyInteractivesFriendlyArray, parseFriendlyName) == false {
+                    if nearbyName == parseBLEName {
+
+                        self.getInteractiveObject(appDelegate.dataManager.knownInteractivesFromParse[parseBLEName]!)
+                        nearbyBLEInteractivesLastSeen[parseFriendlyName] = bean.lastDiscovered
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+
+    // get data from parse to insert into table view
     func getInteractiveObject(foundInteractiveObjectID: String){
         var query = PFQuery(className: "installations")
         query.fromLocalDatastore()
@@ -304,7 +266,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
                 // There was an error.
                 UIAlertView(
                     title: "Error",
-                    message: "Unable to retrieve interactive.",
+                    message: "Unable to retrieve interactive Information.",
                     delegate: self,
                     cancelButtonTitle: "OK"
                     ).show()
@@ -313,9 +275,17 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
             }
         }
     }
-
-
-
+    
+    func addToTableView(objectInfo: PFObject) {
+        var objectName = objectInfo["name"] as String
+        readyToDisplayInteractives[objectName] = objectInfo
+        println("adding to table view")
+        if contains(nearbyInteractivesFriendlyArray, objectName) == false {
+            nearbyInteractivesFriendlyArray.append(objectName)
+            interactivesNearbyTable.reloadData()
+        }
+        
+    }
     
     // MARK: Navigation
 
@@ -331,7 +301,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         case 2:
             // stop app from connecting while we are in manual control
             haltConnections = true
-//            settingsButtonPressed()
+            aboutButtonPressed()
             println("2")
         default:
             break
@@ -339,20 +309,18 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         
     }
     
-    func settingsButtonPressed() {
-//        // disconnect if connected
-//        if connectedBean != nil {
-//            manager.disconnectBean(connectedBean, error:nil)
-//        }
-//        
-//        let settingsViewController:SettingsViewController = SettingsViewController(
-//            nibName: "SettingsView",bundle: nil)
-//        
-//        // send current nearby BLE interactives
-//        settingsViewController.nearbyBLEInteractives = nearbyBLEInteractives
-//        
-//        settingsViewController.modalTransitionStyle = .FlipHorizontal
-//        presentViewController(settingsViewController, animated: true, completion: nil)
+    func aboutButtonPressed() {
+        // disconnect if connected
+        if connectedBean != nil {
+            manager.disconnectBean(connectedBean, error:nil)
+        }
+        
+        let aboutViewController:AboutViewController = AboutViewController(
+            nibName: "AboutView",bundle: nil)
+
+        
+        aboutViewController.modalTransitionStyle = .FlipHorizontal
+        presentViewController(aboutViewController, animated: false, completion: nil)
 
     }
     
@@ -366,21 +334,21 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
             nibName: "InteractiveMap",bundle: nil)
          
         interactiveMapViewController.modalTransitionStyle = .FlipHorizontal
-        presentViewController(interactiveMapViewController, animated: true, completion: nil)
+        presentViewController(interactiveMapViewController, animated: false, completion: nil)
         
     }
 
     
     func updateMode(notification: NSNotification?) {
         
-        haltConnections = false
-        
-
-        activityIndicator.startAnimating()
-        status.font = UIFont(name:"OtterFont", size: 25)
-        status.sizeToFit()
-        status.numberOfLines = 0
-        status.text = "Discovering Experiences Nearby"
+//        haltConnections = false
+//        
+//
+//        activityIndicator.startAnimating()
+//        status.font = UIFont(name:"OtterFont", size: 25)
+//        status.sizeToFit()
+//        status.numberOfLines = 0
+//        status.text = "Discovering Experiences Nearby"
 
     }
     
@@ -428,8 +396,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
     func startScanningForInteractives(notif: NSNotification)
     {
         if appDelegate.dataManager.dataStoreReady == true && bluetoothIsReady == true {
-            println("Data is \(appDelegate.dataManager.dataStoreReady) and bluetooth is: \(bluetoothIsReady)")
-//            nearbyBLEInteractives.removeAll()
+            println("Database is \(appDelegate.dataManager.dataStoreReady) and bluetooth is: \(bluetoothIsReady)")
             self.manager.startScanningForBeans_error(nil)
             
             updateMode(nil)
@@ -442,12 +409,10 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         if appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
             
             nearbyBLEInteractives[bean.name] = bean
-            NSNotificationCenter.defaultCenter().postNotificationName("AddedNewInteractive", object: self, userInfo: nearbyBLEInteractives)
-            
+            NSNotificationCenter.defaultCenter().postNotificationName("AddedNewInteractive", object: nil)
         }
         
     }
-    
 
     func BeanManager(beanManager: PTDBeanManager!, didConnectToBean bean: PTDBean!, error: NSError!) {
         println("CONNECTED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
@@ -491,37 +456,13 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
 
     }
     
-    func intiateConnectionIfInteractionValid(bean: PTDBean!) {
+    // MARK: Bean Interaction Elements
+    
+    // end interaction by disconnecting and adding to temporary ignore list
+    func clearCacheOfInteractives(notification: NSNotification) {
+        println("clearing dictionary of known interactives")
+        nearbyBLEInteractives.removeAll()
         
-        // check if the interactive is in the parse data store
-        if appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
-            
-            // check if Bean SDK still has detected the bean
-            if bean.state == .Discovered{
-                println("Attempting to connect to \(toString(bean.name))")
-                
-                // prevent attempts to connect to other interactives
-                if (isConnecting == false){
-                    isConnecting = true
-
-                    activityIndicator.startAnimating()
-                    var connectError : NSError?
-                    
-                    manager.connectToBean(bean, error: &connectError)
-                    
-                    // tell the user what we've found
-                    status.text = "Contacting \(appDelegate.dataManager.knownInteractivesFromParseFriendlyNames[bean.name]!)"
-                }
-            } else {
-                println("ERROR: cant find that bean")
-                UIAlertView(
-                    title: "Unable to Find Interactive",
-                    message: "The experience isn't able to to start. Please try again later.",
-                    delegate: self,
-                    cancelButtonTitle: "OK"
-                    ).show()
-            }
-        }
     }
     
     // end interaction by disconnecting and adding to temporary ignore list
@@ -538,23 +479,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         }
     }
     
-    // end interaction by disconnecting and adding to temporary ignore list
-    func clearCacheOfInteractives(notification: NSNotification) {
-        println("clearing dictionary of known interactives")
-
-        nearbyBLEInteractives.removeAll()
-    }
-    
-//    // handles notification from beacon or settings page that a interaction is requested
-//    func initiateConnectionFromManualRequest(notification: NSNotification) {
-//        if let interactionInfo = notification.userInfo as? Dictionary<String, PTDBean>{
-//            println(interactionInfo)
-//            if let id = interactionInfo["beaconInteractionObject"] {
-//                intiateConnectionIfInteractionValid(id)
-//            }
-//        }
-//    }
-    
     // handles notification from beacon or settings page that a interaction is requested
     func initiateConnectionFromNotification(notification: NSNotification) {
         if let interactionInfo = notification.userInfo as? Dictionary<String, String>{
@@ -564,6 +488,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         }
     }
     
+    // initate request to connect
     func findBeanObjectAndConnectFromBLEName(bleName: String) {
         for (nearbyName, bean) in nearbyBLEInteractives {
             if bleName == nearbyName {
@@ -572,6 +497,43 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         }
     }
     
+    // establish a connection after a final check that this is a valid bean
+    func intiateConnectionIfInteractionValid(bean: PTDBean!) {
+        
+        // check if the interactive is in the parse data store
+        if appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
+            
+            // check if Bean SDK still has detected the bean
+            if bean.state == .Discovered{
+                println("Attempting to connect to \(toString(bean.name))")
+                
+                // prevent attempts to connect to other interactives
+                if (isConnecting == false){
+                    isConnecting = true
+                    
+//                    activityIndicator.startAnimating()
+                    var connectError : NSError?
+                    
+                    manager.connectToBean(bean, error: &connectError)
+                    
+//                    // tell the user what we've found
+//                    status.text = "Contacting \(appDelegate.dataManager.knownInteractivesFromParseFriendlyNames[bean.name]!)"
+                }
+            } else {
+                println("ERROR: cant find that bean")
+                UIAlertView(
+                    title: "Unable to Find Interactive",
+                    message: "The experience isn't able to to start. Please try again later.",
+                    delegate: self,
+                    cancelButtonTitle: "OK"
+                    ).show()
+            }
+        }
+    }
+
+    // MARK: Location Notification
+    
+    // display aleart when user hasn't accepted location access or has turned it off
     func displayLocationAlert(notification: NSNotification?) {
         let alertController = UIAlertController(
             title: "Background Location Access Disabled",
@@ -587,12 +549,10 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
             }
         }
         alertController.addAction(openAction)
-        
         presentViewController(alertController, animated: true, completion: nil)
         
     }
 
-    
     
 }
 

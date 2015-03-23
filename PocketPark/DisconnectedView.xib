@@ -6,11 +6,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DisconnectedViewController" customModule="PocketPark" customModuleProvider="target">
             <connections>
+                <outlet property="aboutManualControlButton" destination="4Mb-v6-eCA" id="Tiq-3t-EJw"/>
                 <outlet property="activityIndicator" destination="8Sd-Eu-PK5" id="8vP-d1-bBy"/>
                 <outlet property="infoButton" destination="xEy-4J-uma" id="RB7-es-L8S"/>
                 <outlet property="interactivesNearbyTable" destination="7Gx-aR-Vju" id="HUy-d5-3wH"/>
                 <outlet property="nearbyButton" destination="2JH-XT-EY9" id="TD1-gm-oTd"/>
-                <outlet property="settingsManualControlButton" destination="4Mb-v6-eCA" id="n1l-9h-HoO"/>
                 <outlet property="status" destination="hwD-34-zrO" id="T84-04-a73"/>
                 <outlet property="tabBar" destination="GjZ-xC-L6Y" id="H99-um-HBA"/>
                 <outlet property="view" destination="iN0-l3-epB" id="OIf-ZH-1JW"/>
@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Gx-aR-Vju">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="brx-Jz-VN7"/>
@@ -34,8 +34,8 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <items>
                         <tabBarItem title="Map" image="map" id="2JH-XT-EY9"/>
-                        <tabBarItem tag="1" title="Pocket Theme Park" image="main" id="xEy-4J-uma"/>
-                        <tabBarItem tag="2" title="Nearby" image="nearby" id="4Mb-v6-eCA"/>
+                        <tabBarItem tag="1" title="Nearby" image="nearby" id="xEy-4J-uma"/>
+                        <tabBarItem tag="2" title="About" image="main" id="4Mb-v6-eCA"/>
                     </items>
                     <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="selectedImageTintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -46,8 +46,8 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwD-34-zrO">
                     <rect key="frame" x="153" y="289" width="294" height="47"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="47" id="WXb-b4-2UG"/>
-                        <constraint firstAttribute="width" constant="294" id="mHe-qB-6la"/>
+                        <constraint firstAttribute="width" constant="294" id="IOx-nI-B7W"/>
+                        <constraint firstAttribute="height" constant="47" id="n16-Bv-sZ0"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -59,17 +59,17 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3PD-hL-yfe"/>
-                <constraint firstItem="8Sd-Eu-PK5" firstAttribute="centerX" secondItem="hwD-34-zrO" secondAttribute="centerX" id="5yD-6H-jVF"/>
-                <constraint firstItem="7Gx-aR-Vju" firstAttribute="trailing" secondItem="GjZ-xC-L6Y" secondAttribute="trailing" id="7nR-v9-UGM"/>
-                <constraint firstItem="GjZ-xC-L6Y" firstAttribute="centerX" secondItem="hwD-34-zrO" secondAttribute="centerX" id="Aj9-eu-WRF"/>
-                <constraint firstItem="8Sd-Eu-PK5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="244" id="C2f-Om-vGv"/>
-                <constraint firstItem="7Gx-aR-Vju" firstAttribute="leading" secondItem="GjZ-xC-L6Y" secondAttribute="leading" id="Dag-dj-ZNK"/>
-                <constraint firstAttribute="trailing" secondItem="GjZ-xC-L6Y" secondAttribute="trailing" id="HLx-G9-Gpi"/>
-                <constraint firstAttribute="bottom" secondItem="GjZ-xC-L6Y" secondAttribute="bottom" id="dPh-qs-SSh"/>
-                <constraint firstItem="GjZ-xC-L6Y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ieS-Cv-DRI"/>
-                <constraint firstItem="hwD-34-zrO" firstAttribute="top" secondItem="8Sd-Eu-PK5" secondAttribute="bottom" constant="8" symbolic="YES" id="r7k-NE-kvX"/>
-                <constraint firstItem="7Gx-aR-Vju" firstAttribute="bottom" secondItem="GjZ-xC-L6Y" secondAttribute="bottom" id="y2C-zo-xZI"/>
+                <constraint firstItem="7Gx-aR-Vju" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Akz-mw-o9m"/>
+                <constraint firstItem="7Gx-aR-Vju" firstAttribute="trailing" secondItem="GjZ-xC-L6Y" secondAttribute="trailing" id="FQl-Tv-isP"/>
+                <constraint firstItem="8Sd-Eu-PK5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="244" id="GLe-bT-dbh"/>
+                <constraint firstAttribute="trailing" secondItem="7Gx-aR-Vju" secondAttribute="trailing" id="HMX-Eq-oN1"/>
+                <constraint firstItem="hwD-34-zrO" firstAttribute="top" secondItem="8Sd-Eu-PK5" secondAttribute="bottom" constant="8" symbolic="YES" id="K5A-GY-CoM"/>
+                <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Qa6-OI-uQ6"/>
+                <constraint firstItem="8Sd-Eu-PK5" firstAttribute="centerX" secondItem="hwD-34-zrO" secondAttribute="centerX" id="apD-aJ-EfY"/>
+                <constraint firstItem="GjZ-xC-L6Y" firstAttribute="centerX" secondItem="hwD-34-zrO" secondAttribute="centerX" id="eB2-jM-6Jx"/>
+                <constraint firstAttribute="bottom" secondItem="GjZ-xC-L6Y" secondAttribute="bottom" id="hG5-FS-D8U"/>
+                <constraint firstItem="GjZ-xC-L6Y" firstAttribute="leading" secondItem="7Gx-aR-Vju" secondAttribute="leading" id="poU-cl-sro"/>
+                <constraint firstItem="GjZ-xC-L6Y" firstAttribute="top" secondItem="7Gx-aR-Vju" secondAttribute="bottom" id="x91-hD-84x"/>
             </constraints>
         </view>
     </objects>
