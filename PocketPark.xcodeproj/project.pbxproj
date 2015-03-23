@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		64AD33E65AACFE97DD4F154C /* Pods_PocketPark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72FF697DF7888CE41C9FE5D /* Pods_PocketPark.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E2332B731ABFA15E00455422 /* InteractiveCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2332B721ABFA15E00455422 /* InteractiveCard.xib */; };
+		E2332B751ABFA33A00455422 /* InteractiveCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2332B741ABFA33A00455422 /* InteractiveCardCell.swift */; };
 		E261D3DB1AB007DE00957726 /* PocketParkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D3DA1AB007DE00957726 /* PocketParkTests.swift */; };
 		E261D3EA1AB0087400957726 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E261D3E41AB0087400957726 /* Media.xcassets */; };
 		E261D3EB1AB0087400957726 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E261D3E51AB0087400957726 /* Default-568h@2x.png */; };
@@ -66,6 +68,8 @@
 		4EFCB27833ADB71B977B491B /* Pods-PocketPark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PocketPark.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PocketPark/Pods-PocketPark.debug.xcconfig"; sourceTree = "<group>"; };
 		54ACA14C519829F352B98643 /* Pods-PocketPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PocketPark.release.xcconfig"; path = "Pods/Target Support Files/Pods-PocketPark/Pods-PocketPark.release.xcconfig"; sourceTree = "<group>"; };
 		B72FF697DF7888CE41C9FE5D /* Pods_PocketPark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PocketPark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2332B721ABFA15E00455422 /* InteractiveCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InteractiveCard.xib; sourceTree = "<group>"; };
+		E2332B741ABFA33A00455422 /* InteractiveCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveCardCell.swift; sourceTree = "<group>"; };
 		E261D3BF1AB007DE00957726 /* PocketPark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketPark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E261D3C31AB007DE00957726 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E261D3D41AB007DE00957726 /* PocketParkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketParkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -276,6 +280,7 @@
 			children = (
 				E261D4011AB008A600957726 /* LaunchScreen.xib */,
 				E261D4021AB008A600957726 /* DisconnectedView.xib */,
+				E2332B721ABFA15E00455422 /* InteractiveCard.xib */,
 				E261D4031AB008A600957726 /* ConnectedView.xib */,
 				E261D4041AB008A600957726 /* SettingsView.xib */,
 				E261D4051AB008A600957726 /* InteractiveMap.xib */,
@@ -287,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				E2A78F2E1AB272120096B7A8 /* OtterFont.ttf */,
+				E2332B741ABFA33A00455422 /* InteractiveCardCell.swift */,
 				E261D40B1AB008B000957726 /* CustomColors.swift */,
 				E261D40C1AB008B000957726 /* InteractionBeaconManager.swift */,
 				E261D40D1AB008B000957726 /* DataManager.swift */,
@@ -390,6 +396,7 @@
 				E261D4091AB008A600957726 /* SettingsView.xib in Resources */,
 				E261D4081AB008A600957726 /* ConnectedView.xib in Resources */,
 				E261D3EF1AB0087400957726 /* yellow.png in Resources */,
+				E2332B731ABFA15E00455422 /* InteractiveCard.xib in Resources */,
 				E261D3EB1AB0087400957726 /* Default-568h@2x.png in Resources */,
 				E261D4071AB008A600957726 /* DisconnectedView.xib in Resources */,
 				E261D4061AB008A600957726 /* LaunchScreen.xib in Resources */,
@@ -475,6 +482,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2332B751ABFA33A00455422 /* InteractiveCardCell.swift in Sources */,
 				E261D4141AB008BA00957726 /* AppDelegate.swift in Sources */,
 				E261D3FB1AB0089D00957726 /* InteractiveMapViewController.swift in Sources */,
 				E261D4001AB0089D00957726 /* OnboardingContentViewController.swift in Sources */,
