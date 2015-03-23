@@ -7,6 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutViewController" customModule="PocketPark" customModuleProvider="target">
             <connections>
+                <outlet property="acknoledgementsBUtton" destination="YWQ-TX-qbO" id="meM-qA-qsm"/>
+                <outlet property="createOwnButton" destination="gjv-t0-2UD" id="u4J-3c-Suc"/>
+                <outlet property="documenationButton" destination="iBv-r6-lBr" id="sdm-fH-kmj"/>
+                <outlet property="titleText" destination="mXG-hC-1N7" id="HA3-FD-jVh"/>
                 <outlet property="view" destination="iN0-l3-epB" id="IMK-bA-i1k"/>
             </connections>
         </placeholder>
@@ -72,6 +76,9 @@
                     <state key="normal" title="Acknoledgements">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="acknoledgementsButtonPressed:" destination="-1" eventType="touchUpInside" id="zsz-xZ-HWw"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iBv-r6-lBr">
                     <rect key="frame" x="248" y="401" width="105" height="30"/>
@@ -81,6 +88,9 @@
                     <state key="normal" title="Documentation">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="documenationButtonPressed:" destination="-1" eventType="touchUpInside" id="T9s-cM-80e"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjv-t0-2UD">
                     <rect key="frame" x="208" y="477" width="185" height="30"/>
@@ -90,6 +100,9 @@
                     <state key="normal" title="Make Your Own Interactive">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="createOwnButtonPressed:" destination="-1" eventType="touchUpInside" id="64r-yA-JHa"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

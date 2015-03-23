@@ -15,6 +15,8 @@
 
 import UIKit
 import IJReachability
+import MBProgressHUD
+
 
 class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UITableViewDataSource, UITableViewDelegate {
     
@@ -68,6 +70,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
                 ]
                 PFAnalytics.trackEvent("connect", dimensions:connectInfo)
                 
+                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
                 presentViewController(connectedViewController, animated: true, completion: nil)
             }
         }
@@ -147,7 +150,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
             refreshControl = UIRefreshControl()
             refreshControl!.addTarget(self, action: "handleRefresh:", forControlEvents: .ValueChanged)
             
-            interactivesNearbyTableView.rowHeight = UITableViewAutomaticDimension
+            interactivesNearbyTableView.rowHeight = 201
             interactivesNearbyTableView.addSubview(refreshControl!)
             
             view.addSubview(interactivesNearbyTableView)
@@ -174,9 +177,13 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         var lastSeen = getLastSeenTime(nearbyBLEInteractivesLastSeen[toString(interactiveInfo["name"])]!)
         
         cell.loadItem(title: nearbyInteractivesFriendlyArray[indexPath.row], desc: toString(interactiveInfo["explanation"]), lastSeen: lastSeen, coordinates: coordinate)
+        // set up your background color view
+        let colorView = UIView()
+        colorView.backgroundColor = UIColor.clearColor()
         
+        cell.selectedBackgroundView = colorView
         cell.backgroundColor = UIColor.clearColor()
-        cell.updateConstraints()
+//        cell.updateConstraints()
         
         return cell
     }
@@ -192,6 +199,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
             for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
                 if parseFriendlyName == interactiveName {
                     findBeanObjectAndConnectFromBLEName(parseBLEName)
+                    showLoadingSpinner(parseFriendlyName)
                 }
                 
             }
@@ -199,6 +207,10 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         
     }
     
+    func showLoadingSpinner(interactiveName: String) {
+        let loading = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        loading.labelText = "Contacting \(interactiveName)...";
+    }
     
     func handleRefresh(paramSender: AnyObject) {
         
@@ -361,6 +373,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         println("CONNECTED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
         
         if (error != nil){
+            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             isConnecting = false
             UIAlertView(
                 title: "Unable to Contact Interactive",
