@@ -33,6 +33,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
     
     // Motion
     lazy var motionManager = CMMotionManager()
+    var averageResults: Double = 0.0
     
     // Audio levels
     var audioRecorder: AVAudioRecorder?
@@ -209,10 +210,23 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
                     
                     self?.sendScratchDatatoBean(1, dataIn: mappedRotationInt)
                 } else if modeString == "force" {
+                    let yForce = data.userAcceleration.y * 8
+                    let yForceInt: Int = Int(yForce)
                     println("force rate")
-                    println("x \(data.userAcceleration.x)")
-                    println("x \(data.userAcceleration.y)")
-                    println("x \(data.userAcceleration.z)")
+                    
+                    let alpha:Double = 0.05
+                    var peakPowerForChannel:Double = pow(10, (0.05 * Double(yForce)))
+                    self!.averageResults = alpha * peakPowerForChannel + (1.0 - alpha) * self!.averageResults
+                    var newVal = self!.averageResults
+                    
+                    var averageVal = self!.averageResults
+                    
+//                    println("x \(data.userAcceleration.x)")
+                    println(averageVal)
+                    self?.sendScratchDatatoBean(1, dataIn: Int(averageVal))
+//                    println("z \(data.userAcceleration.z)")
+                    
+                
                 } else if modeString == "rotationRate" {
                     println("rotation rate")
                     println("x \(data.rotationRate.x)")
@@ -236,6 +250,10 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
         
     }
     
+    func easedForce(force: Double){
+        
+        
+    }
 
     
     func activateDeviceHeading(){
