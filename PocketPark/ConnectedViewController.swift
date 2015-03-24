@@ -97,11 +97,11 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
         
     }
     
-    func sendScratchDatatoBean(dataIn: Int){
+    func sendScratchDatatoBean(scratchBank: Int, dataIn: Int){
         var convetedInteger = NSInteger(dataIn)
         let dataSend = NSData(bytes: &convetedInteger, length: sizeof(dataIn.dynamicType))
         
-        var scratchNumber = 1;
+        var scratchNumber = scratchBank;
         
         connectedBean?.setScratchBank(Int(scratchNumber), data:dataSend)
         
@@ -172,15 +172,17 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
                 activateShakeDetect()
             case "sound":
                 askForMicrophonePermission()
-            case "compass":
-                println("not yet implemented")
+            case "force":
+                activateRotationMotion(modeString)
+            case "rotationRate":
+                activateRotationMotion(modeString)
             case "light":
                 println("not yet implemented")
             case "tap":
                 println("not yet implemented")
             case "tilt-portrait":
                 println("not yet implemented")
-            case "barometer":
+            case "compass":
                 println("not yet implemented")
             default:
                 println("not yet implemented")
@@ -205,9 +207,26 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
                     var mappedRotation = ((rotation - 0) * (180 - 0) / (-6.5 - 0) + 0)
                     var mappedRotationInt:Int = Int(mappedRotation)
                     
-                    self?.sendScratchDatatoBean(mappedRotationInt)
-                } else if modeString == "magnetometer" {
+                    self?.sendScratchDatatoBean(1, dataIn: mappedRotationInt)
+                } else if modeString == "force" {
+                    println("force rate")
+                    println("x \(data.userAcceleration.x)")
+                    println("x \(data.userAcceleration.y)")
+                    println("x \(data.userAcceleration.z)")
+                } else if modeString == "rotationRate" {
+                    println("rotation rate")
+                    println("x \(data.rotationRate.x)")
+                    println("y \(data.rotationRate.y)")
+                    println("z \(data.rotationRate.z)")
                     
+                    let zRotationInt:Int = Int(data.rotationRate.z)
+                    let absoluteZRotation:Int = abs(zRotationInt)
+                    println(absoluteZRotation)
+                    self?.sendScratchDatatoBean(1, dataIn: absoluteZRotation)
+                    
+                } else if modeString == "compass" {
+                    println("compass")
+                    println(data.magneticField)
                 }
                 
             }
@@ -216,6 +235,8 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
         }
         
     }
+    
+
     
     func activateDeviceHeading(){
         
@@ -237,20 +258,15 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
         shakeDetectMode = true
     }
     
-    var count = 0
     var shakeDetectMode = false
     
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
         
         if motion == .MotionShake && shakeDetectMode == true {
-            if count > 7 {
-                count = 0
-            }
-            
-            println("shake! \(count)")
-            self.sendScratchDatatoBean(count)
-            count++
-            
+
+            println("shake!")
+            self.sendScratchDatatoBean(1, dataIn: 1)
+            self.sendScratchDatatoBean(1, dataIn: 0)
         }
     }
     
@@ -345,7 +361,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
             var averageVal = lowPassResults
             var mappedValues = ((newVal - 0.03) * (255 - 0) / (2.00 - 0.03) + 0)
             println("lowpass in \(newVal), mapped: \(mappedValues)")
-            sendScratchDatatoBean(Int(mappedValues))
+            sendScratchDatatoBean(1, dataIn: Int(mappedValues))
             newVal = 0
         } else {
 

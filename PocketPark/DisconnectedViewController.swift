@@ -51,7 +51,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         didSet {
             if connectedBean == nil {
                 self.beanManagerDidUpdateState(manager)
-                updateMode(nil)
 
             } else {
                 // present connected view when beacon connection established
@@ -294,20 +293,14 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         
     }
     
-    func updateMode(notification: NSNotification?) {
-        
-//        haltConnections = false
+//    func deleteStaleCells() {
 //        
-//
-//        activityIndicator.startAnimating()
-//        status.font = UIFont(name:"OtterFont", size: 25)
-//        status.sizeToFit()
-//        status.numberOfLines = 0
-//        status.text = "Discovering Experiences Nearby"
+//        tableView.begin
+//        nearbyInteractivesFriendlyArray.removeAtIndex(indexPath.row)
+//        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//    }
+    
 
-    }
-    
-    
     // MARK: PTDBeanManagerDelegate
     
     func beanManagerDidUpdateState(beanManager: PTDBeanManager!) {
@@ -353,8 +346,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         if appDelegate.dataManager.dataStoreReady == true && bluetoothIsReady == true {
             println("Database is \(appDelegate.dataManager.dataStoreReady) and bluetooth is: \(bluetoothIsReady)")
             self.manager.startScanningForBeans_error(nil)
-            
-            updateMode(nil)
+
         }
     }
     
