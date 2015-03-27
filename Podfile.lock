@@ -1,5 +1,5 @@
 PODS:
-  - Bean-iOS-OSX-SDK (0.7.1)
+  - Bean-iOS-OSX-SDK (0.8.0)
   - HockeySDK (3.6.2)
   - IJReachability (0.1.0)
   - MBProgressHUD (0.9.1)
@@ -22,7 +22,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/Isuru-Nanayakkara/IJReachability.git
 
 SPEC CHECKSUMS:
-  Bean-iOS-OSX-SDK: 284aa4c8c929ff20f8cabc497375b49256aa459c
+  Bean-iOS-OSX-SDK: 5597d11be1fc7fa1c0c9b1d0eeae7b64663b07c0
   HockeySDK: bfd1f5ac75938b07499c4ac12932244b72a2e70b
   IJReachability: 3eff33caca50869df09b257bcf712031a56a8575
   MBProgressHUD: f3747dcbd45a9e855a6b0674550651e0b7ed250c

@@ -104,9 +104,9 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:",
             name: UIApplicationDidEnterBackgroundNotification, object: nil)
         
-        // when app is no longer in focus, clear cache of found items
-         NSNotificationCenter.defaultCenter().addObserver(self, selector: "clearCacheOfInteractives:",
-            name: UIApplicationDidEnterBackgroundNotification, object: nil)
+//        // when app is no longer in focus, clear cache of found items
+//         NSNotificationCenter.defaultCenter().addObserver(self, selector: "clearCacheOfInteractives:",
+//            name: UIApplicationDidEnterBackgroundNotification, object: nil)
         
         // when app is returning to focus
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshTable:",
@@ -180,9 +180,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         self.showViewController(alert, sender: nil)
     }
     
-
-    
-    
     func refreshTable(notification: NSNotification) {
         
         appDelegate.dataManager.queryParseForInteractiveObjects()
@@ -213,7 +210,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
             
             // Setup Refresh Control
             refreshControl = UIRefreshControl()
-            refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh installations")
             refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: .ValueChanged)
             interactivesNearbyTableView.addSubview(refreshControl)
             
@@ -251,8 +247,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         cell.selectedBackgroundView = colorView
         cell.selectionStyle = .None
         cell.backgroundColor = UIColor.clearColor()
-//        cell.updateConstraints()
-        
+
         return cell
     }
     
@@ -343,8 +338,9 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     }
     
 //    func deleteStaleCells() {
-//        
-//        tableView.begin
+//        let tableView =
+//        tableView.beginUpdates()
+//  
 //        nearbyInteractivesFriendlyArray.removeAtIndex(indexPath.row)
 //        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
 //    }
@@ -420,8 +416,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
                 message: "The experience isn't able to to start. Please try again later.",
                 preferredStyle: UIAlertControllerStyle.Alert)
             
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: nil))
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             
             self.showViewController(alert, sender: nil)
 
@@ -445,9 +440,11 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     
     // end interaction by disconnecting and adding to temporary ignore list
     func clearCacheOfInteractives(notification: NSNotification) {
-        println("clearing dictionary of known interactives")
-        nearbyBLEInteractives.removeAll()
-        nearbyInteractivesFriendlyArray.removeAll()
+        
+        // TO DO: FIX THIS
+//        println("clearing dictionary of known interactives")
+//        nearbyBLEInteractives.removeAll()
+//        nearbyInteractivesFriendlyArray.removeAll()
         
     }
     
@@ -461,7 +458,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         
         if connectedBean != nil {
             appDelegate.dataManager.previouslyExperiencedInteractivesToIgnore[toString(connectedBean!.name)] = connectedBean!.identifier!
-            manager.disconnectBean(connectedBean, error:nil)
+            manager.disconnectFromAllBeans(nil)
         }
     }
     
@@ -469,16 +466,17 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     // TO DO: Make this less convoluted
     func initiateConnectionFromNotification(notification: NSNotification) {
         if let interactionInfo = notification.userInfo as? Dictionary<String, String>{
-            
+            println("got notification in DCVC")
             if let id = interactionInfo["beaconInteractionBLEName"] {
-                
+                println("GOT GOT GOT GOT")
                 for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
                     
                     if parseBLEName == id {
-                        
+                        println("MATCH MATCH MATCH MATCH")
                         for (nearbyName, bean) in nearbyBLEInteractives {
                             
                             if id == nearbyName {
+                                println("sending start request")
                                 self.intiateConnectionIfInteractionValid(bean, friendlyName: parseFriendlyName)
                             }
                         }
@@ -504,7 +502,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
                     var connectError : NSError?
                     self.showLoadingSpinner(friendlyName)
                     manager.connectToBean(bean, error: &connectError)
-                    connectionRequestTimer = NSTimer.scheduledTimerWithTimeInterval(6.0, target: self, selector: Selector("connectionFailure"), userInfo: nil, repeats: false)
+                    connectionRequestTimer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: Selector("connectionFailure"), userInfo: nil, repeats: false)
 
                 }
             } else {
@@ -533,8 +531,10 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         PFAnalytics.trackEvent("connectFailure", dimensions:connectInfo)
         
         var disconnectError : NSError?
-        manager.disconnectFromAllBeans(error: &disconnectError)
-        
+        manager.disconnectFromAllBeans(&disconnectError)
+        isConnecting = false
+        self.connectedBeanObjectID = nil
+        self.connectedBean = nil
         
         println(disconnectError)
         

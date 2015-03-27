@@ -17,16 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow?
     var interactionBeaconManager = InteractionBeaconManager()   // Core Location
     var dataManager = DataManager()                             // Parse Data
+    var pushNotificationController:PushNotificationController?  // Push Notifications
 
     let defaults = NSUserDefaults.standardUserDefaults()
     let userHasOnboardedKey = "user_has_onboarded"
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        // configure Hockey App
-        BITHockeyManager.sharedHockeyManager().configureWithIdentifier("3697b3f570362d842ec8c975151e6bc3")
-        BITHockeyManager.sharedHockeyManager().startManager()
-        BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
         
         // Parse framework for analytics, data and bug tracking
         ParseCrashReporting.enable()
@@ -100,15 +96,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func askForNotificationPermissionForApplication(){
         // Local Notification Registration
+        
+        self.pushNotificationController = PushNotificationController()
+        
         if(UIApplication.sharedApplication().respondsToSelector("registerUserNotificationSettings:")) {
             UIApplication.sharedApplication().registerUserNotificationSettings(
                 UIUserNotificationSettings(
-                    forTypes: UIUserNotificationType.Alert | UIUserNotificationType.Sound,
+                    forTypes: UIUserNotificationType.Alert | UIUserNotificationType.Sound | UIUserNotificationType.Badge,
                     categories: nil
                 )
             )
+            UIApplication.sharedApplication().registerForRemoteNotifications()
         }
         
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        println("didRegisterForRemoteNotificationsWithDeviceToken")
+        
+        let currentInstallation = PFInstallation.currentInstallation()
+        
+        currentInstallation.setDeviceTokenFromData(deviceToken)
+        currentInstallation.saveInBackgroundWithBlock { (succeeded, e) -> Void in
+            //code
+        }
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        println("failed to register for remote notifications:  (error)")
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        println("didReceiveRemoteNotification")
+        PFPush.handlePush(userInfo)
     }
     
     func application(application: UIApplication,
@@ -121,6 +141,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             if friendlyName != nil && bleName != nil{
                 var requestNotificationDict: [String:String] = ["beaconInteractionBLEName" : bleName!]
                 NSNotificationCenter.defaultCenter().postNotificationName("startInteractionFromNotification", object: self, userInfo: requestNotificationDict)
+                println("sending request from app delegate \(bleName!)")
             } else {
                 /* This is not the notification that we composed */
             }
@@ -188,7 +209,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         tabs.selectedViewController = disconnectedViewController
         
-        // start location services
+        askForNotificationPermissionForApplication()
         interactionBeaconManager.startUpdatingLocation()
         
         // If we want to animate it, animate the transition - in this case we're fading, but you can do it
