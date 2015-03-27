@@ -28,7 +28,7 @@ class InteractiveMapViewController: UIViewController, MKMapViewDelegate, UIToolb
         
     }
     
-
+    
     
 
     
@@ -45,15 +45,18 @@ class InteractiveMapViewController: UIViewController, MKMapViewDelegate, UIToolb
     
     func addInteractiveGeoPoints(notification: NSNotification){
 
-        println("setting points")
+        println("grrrrr points")
         
         for (name, geopoint) in appDelegate.dataManager.knownInteractivesFromParseWithGeopoints {
-            
             var annotation = MKPointAnnotation()
-            println("setting points for \(name):  \(geopoint.latitude), \(geopoint.latitude)")
+
             annotation.coordinate = CLLocationCoordinate2DMake(geopoint.latitude, geopoint.longitude)
             annotation.title = name
+            
+            
             self.mapView.addAnnotation(annotation)
+            
+            
         }
         
     }

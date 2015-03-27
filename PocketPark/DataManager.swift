@@ -18,8 +18,10 @@ class DataManager: NSObject {
     var knownInteractivesFromParseWithGeopoints = [String: PFGeoPoint]()
     var previouslyExperiencedInteractivesToIgnore = [String: NSUUID]()
     var dataStoreReady = false
+    var networkTimer = NSTimer()
     
     func start () {
+        networkTimer = NSTimer.scheduledTimerWithTimeInterval(20.0, target: self, selector: Selector("networkDelay"), userInfo: nil, repeats: false)
         queryParseForInteractiveObjects()
     }
     
@@ -34,7 +36,6 @@ class DataManager: NSObject {
         
         // check for network availablity before requesting interactives from parse
         if (IJReachability.isConnectedToNetwork() == true) {
-//            println("getting to query")
             // pull latest interactive objects from Parse
             var query = PFQuery(className:"installations")
             query.findObjectsInBackgroundWithBlock
@@ -44,7 +45,10 @@ class DataManager: NSObject {
                     {
                         PFObject.pinAllInBackground(objects)
                         self.dictionaryOfInteractivesFromLocalDatastore()
+                        self.networkTimer.invalidate()
                     } else {
+                        NSNotificationCenter.defaultCenter().postNotificationName("parseError", object: nil)
+                        
                         NSLog("Unable to add interactives to local data store")
                         NSLog("Error: %@ %@", error, error.userInfo!)
                     }
@@ -52,25 +56,15 @@ class DataManager: NSObject {
             
             
         } else {
-            
-            // There was an error.
-            UIAlertView(
-                title: "No Internet Connection",
-                message: "You have no network connection.",
-                delegate: self,
-                cancelButtonTitle: "OK"
-                ).show()
-            NSLog("Unable to access network, checking if localdatastore is avaialble")
-            
+            NSNotificationCenter.defaultCenter().postNotificationName("noNetwork", object: nil)
+            self.networkTimer.invalidate()
             // still attempt to load data if it's available
             dictionaryOfInteractivesFromLocalDatastore()
-            
         }
     }
     
     // make a dictionary of interactives pulled from parse local data
     func dictionaryOfInteractivesFromLocalDatastore() {
-//        println("getting to dictionary")
         // liststhe names of all known interactive elemments found in the localstorage from Parse
         var query = PFQuery(className:"installations")
         query.fromLocalDatastore()
@@ -79,14 +73,7 @@ class DataManager: NSObject {
                 (objects: [AnyObject]!, error: NSError!) -> Void in
                 if error != nil {
                     // There was an error.
-                    UIAlertView(
-                        title: "No Interactives Known",
-                        message: "Connect to internet to retrieve interactives list.",
-                        delegate: self,
-                        cancelButtonTitle: "OK"
-                        ).show()
-                    NSLog("Error: %@ %@", error, error.userInfo!)
-                    NSLog("Unable to find interactives in local data store")
+                    NSNotificationCenter.defaultCenter().postNotificationName("parseError", object: nil)
                     
                 } else {
                     var PFVersions = objects as [PFObject]
@@ -103,8 +90,8 @@ class DataManager: NSObject {
     }
     
     func dictionaryOfInteractivesWithGeoPoints(){
-        println("getting the geo points")
-        // liststhe names of all known interactive elemments found in the localstorage from Parse
+
+        // lists names of all known interactive elemments found in the localstorage from Parse
         var query = PFQuery(className:"installations")
         query.fromLocalDatastore()
         
@@ -113,29 +100,15 @@ class DataManager: NSObject {
                 (objects: [AnyObject]!, error: NSError!) -> Void in
                 if error != nil {
                     // There was an error.
-                    UIAlertView(
-                        title: "No Geopoints Found",
-                        message: "Huh?.",
-                        delegate: self,
-                        cancelButtonTitle: "OK"
-                        ).show()
-                    NSLog("Error: %@ %@", error, error.userInfo!)
-                    NSLog("Unable to find geopoints")
-                    
+                    NSNotificationCenter.defaultCenter().postNotificationName("noGeopoints", object: nil)
                 } else {
                     var PFVersions = objects as [PFObject]
                     for PFVersion in PFVersions {
-      
-                        
                         self.knownInteractivesFromParseWithGeopoints[toString(PFVersion["name"])] = PFVersion["location"] as? PFGeoPoint
                     }
-
                     NSNotificationCenter.defaultCenter().postNotificationName("GeoPointDictionaryReady", object: nil)
                 }
         }
-
-        
-        
     }
     
     // quickly check dictionary to see if interactive is in the known
@@ -170,5 +143,9 @@ class DataManager: NSObject {
             }
         }
         return false
+    }
+    
+    func networkDelay() {
+        NSNotificationCenter.defaultCenter().postNotificationName("networkDelay", object: nil)
     }
 }

@@ -1,6 +1,6 @@
 //
 //  DisconnectedViewController.swfit
-//  interactron
+//  PocketPark
 //
 //  Created by Tom Arthur on 2/16/15.
 //  Copyright (c) 2015 Tom Arthur. All rights reserved.
@@ -25,18 +25,14 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    
-
-
     @IBOutlet weak var interactivesNearbyTable: UITableView!
-    var refreshControl: UIRefreshControl?
+    var refreshControl:UIRefreshControl!
+    var didAnimateCell:[NSIndexPath: Bool] = [:]
     
     var tableCellsReady = false
     var bluetoothIsReady = false
     var isConnecting = false
     var haltConnections = false
-
-    
     
     var connectedBeanObjectID: String?                      // Parse objectId for connected bean
     var nearbyBLEInteractives = [String:PTDBean]()          // PTDBean objects detected in the area
@@ -92,6 +88,9 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "addNewInteractive:",
             name: "AddedNewInteractive", object: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "findBeanObjectAndConnectFromFriendlyName:",
+            name: "connectFriendly", object: nil)
+        
         // when iBeacon of interactive is detected
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromNotification:",
             name: "startInteractionFromNotification", object: nil)
@@ -108,6 +107,10 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
          NSNotificationCenter.defaultCenter().addObserver(self, selector: "clearCacheOfInteractives:",
             name: UIApplicationDidEnterBackgroundNotification, object: nil)
         
+        // when app is returning to focus
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshTable:",
+            name: UIApplicationDidBecomeActiveNotification, object: nil)
+        
         // when app is closing disconnect
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:",
             name: UIApplicationWillTerminateNotification, object: nil)
@@ -116,14 +119,73 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayLocationAlert:",
             name: "LocationDisabled", object: nil)
         
-        // Setup Table
-        makeInteractivesTableView()
+        // alert when network isn't avaialble
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayNoNetworkAlert:",
+            name: "noNetwork", object: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayNetworkDelayAlert:",
+            name: "networkDelay", object: nil)
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayParseErrorAlert:",
+            name: "parseError", object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayNoGeopointsAlert:",
+            name: "noGeopoints", object: nil)
+        
+
+
         self.view.backgroundColor = .ITWelcomeColor()
     }
     
+    func displayNoNetworkAlert(notification: NSNotification) {
+        var alert = UIAlertController(title: "Unable to Connect",
+            message: "Please check your internet connection.",
+            preferredStyle: UIAlertControllerStyle.Alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+
+        self.showViewController(alert, sender: nil)
+    }
+    
+    func displayParseErrorAlert(notification: NSNotification) {
+        var alert = UIAlertController(title: "Unable to Retrieve installations",
+            message: "New nearby installations may not be detected.",
+            preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: nil))
+        
+        self.showViewController(alert, sender: nil)
+    }
+    
+    func displayNoGeopointsAlert(notification: NSNotification) {
+        var alert = UIAlertController(title: "Unable to find Instalation Locations",
+            message: "Map may not indicate all nearby installations.",
+            preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.showViewController(alert, sender: nil)
+    }
+    
+    func displayNetworkDelayAlert(notification: NSNotification) {
+        var alert = UIAlertController(title: "Delay in Finding Interactives",
+            message: "The internet connection may not be sufficient for updating nearby interactives.",
+            preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        
+        self.showViewController(alert, sender: nil)
+    }
     
 
+    
+    
+    func refreshTable(notification: NSNotification) {
+        
+        appDelegate.dataManager.queryParseForInteractiveObjects()
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -137,6 +199,8 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     // MARK: TableView
     
     func makeInteractivesTableView() {
+  
+
         if let interactivesNearbyTableView = interactivesNearbyTable {
             interactivesNearbyTableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "identifier")
             interactivesNearbyTableView.registerNib(UINib(nibName: "InteractiveCard", bundle: nil), forCellReuseIdentifier: "identifier")
@@ -147,12 +211,14 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
             
             // Setup Refresh Control
             refreshControl = UIRefreshControl()
-            refreshControl!.addTarget(self, action: "handleRefresh:", forControlEvents: .ValueChanged)
+            refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh installations")
+            refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: .ValueChanged)
+            interactivesNearbyTableView.addSubview(refreshControl)
+            
             
             interactivesNearbyTableView.rowHeight = 201
-            interactivesNearbyTableView.addSubview(refreshControl!)
-            
             view.addSubview(interactivesNearbyTableView)
+
         }
         
     }
@@ -187,6 +253,14 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         return cell
     }
     
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
+        forRowAtIndexPath indexPath: NSIndexPath) {
+            if didAnimateCell[indexPath] == nil || didAnimateCell[indexPath]! == false {
+                didAnimateCell[indexPath] = true
+                TipInCellAnimator.animate(cell)
+            }
+    }
+    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -217,7 +291,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         
         let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC))
         dispatch_after(popTime, dispatch_get_main_queue(), {
-            self.refreshControl!.endRefreshing()
+            self.refreshControl.endRefreshing()
         })
     }
     
@@ -268,16 +342,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
             if (error == nil) {
                 // TO DO
                 self.addToTableView(objectInfo)
-            } else {
-                // There was an error.
-                UIAlertView(
-                    title: "Error",
-                    message: "Unable to retrieve interactive Information.",
-                    delegate: self,
-                    cancelButtonTitle: "OK"
-                    ).show()
-                NSLog("Unable to find interactive in local data store")
-                NSLog("Error: %@ %@", error, error.userInfo!)
             }
         }
     }
@@ -305,38 +369,15 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     
     func beanManagerDidUpdateState(beanManager: PTDBeanManager!) {
         switch beanManager.state {
-        case .Unsupported:
-            UIAlertView(
-                title: "Error",
-                message: "This device does not support Bluetooth Low Energy.",
-                delegate: self,
-                cancelButtonTitle: "OK"
-                ).show()
-        case .Unknown:
-            UIAlertView(
-                title: "Error",
-                message: "This device does is not able to use Bluetooth Low Energy at this time.",
-                delegate: self,
-                cancelButtonTitle: "OK"
-                ).show()
-        case .Unauthorized:
-            UIAlertView(
-                title: "Error",
-                message: "Please give permission for Bluetooth in Settings.",
-                delegate: self,
-                cancelButtonTitle: "OK"
-                ).show()
-        case .PoweredOff:
-            UIAlertView(
-                title: "Error",
-                message: "Please turn on Bluetooth.",
-                delegate: self,
-                cancelButtonTitle: "OK"
-                ).show()
         case .PoweredOn:
             bluetoothIsReady = true
             NSNotificationCenter.defaultCenter().postNotificationName("readyToFind", object: nil)
         default:
+            var bluetoothUnavailableAlert = UIAlertController(title: "Bluetooth Unavailable",
+                message: "Bluetooth Low Energy is required to experience nearby installations.",
+                preferredStyle: UIAlertControllerStyle.Alert)
+            bluetoothUnavailableAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.showViewController(bluetoothUnavailableAlert, sender: nil)
             break
         }
     }
@@ -344,9 +385,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     func startScanningForInteractives(notif: NSNotification)
     {
         if appDelegate.dataManager.dataStoreReady == true && bluetoothIsReady == true {
-            println("Database is \(appDelegate.dataManager.dataStoreReady) and bluetooth is: \(bluetoothIsReady)")
             self.manager.startScanningForBeans_error(nil)
-
         }
     }
     
@@ -354,7 +393,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
 
         // add found interactive to dictionary
         if appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
-            
             nearbyBLEInteractives[bean.name] = bean
             NSNotificationCenter.defaultCenter().postNotificationName("AddedNewInteractive", object: nil)
         }
@@ -367,12 +405,14 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         if (error != nil){
             MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             isConnecting = false
-            UIAlertView(
-                title: "Unable to Contact Interactive",
-                message: "(didConnect Error) The experience isn't able to to start. Please try again later.",
-                delegate: self,
-                cancelButtonTitle: "OK"
-                ).show()
+            
+            var alert = UIAlertController(title: "Unable to Contact Interactive",
+                message: "The experience isn't able to to start. Please try again later.",
+                preferredStyle: UIAlertControllerStyle.Alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            
+            self.showViewController(alert, sender: nil)
             return
         }
         
@@ -386,21 +426,33 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     func beanManager(beanManager: PTDBeanManager!, didDisconnectBean bean: PTDBean!, error: NSError!) {
         println("DISCONNECTED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
         
-        if (error != nil){
-           println("error disconnecting")
-           println(error)
-        }
-        
-        NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
-        
-        // Dismiss any modal view controllers.
-        presentedViewController?.dismissViewControllerAnimated(true, completion: { () in
-            self.dismissViewControllerAnimated(true, completion: nil)
-        })
-        
         self.connectedBeanObjectID = nil
         self.connectedBean = nil
         isConnecting = false
+        
+        if (error != nil){
+            var alert = UIAlertController(title: "Unable to Contact Interactive",
+                message: "The experience isn't able to to start. Please try again later.",
+                preferredStyle: UIAlertControllerStyle.Alert)
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: nil))
+            
+            self.showViewController(alert, sender: nil)
+
+           println("error disconnecting")
+           println(error)
+        } else {
+            
+            // Dismiss any modal view controllers.
+            presentedViewController?.dismissViewControllerAnimated(true, completion: { () in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            })
+        }
+        
+         NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
+        
+
 
     }
     
@@ -410,6 +462,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     func clearCacheOfInteractives(notification: NSNotification) {
         println("clearing dictionary of known interactives")
         nearbyBLEInteractives.removeAll()
+        nearbyInteractivesFriendlyArray.removeAll()
         
     }
     
@@ -446,10 +499,10 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     }
     
     // initate request to connect
-    func findBeanObjectAndConnectFromFriendlyName(bleName: String) {
-        for (nearbyName, bean) in nearbyBLEInteractives {
-            if bleName == nearbyName {
-                intiateConnectionIfInteractionValid(bean)
+    func findBeanObjectAndConnectFromFriendlyName(friendlyName: String) {
+        for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
+            if parseFriendlyName == friendlyName {
+                findBeanObjectAndConnectFromBLEName(parseBLEName)
             }
         }
     }
@@ -463,7 +516,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
             // check if Bean SDK still has detected the bean
             if bean.state == .Discovered{
                 println("Attempting to connect to \(toString(bean.name))")
-                
+                self.showLoadingSpinner("none")
                 // prevent attempts to connect to other interactives
                 if (isConnecting == false){
                     isConnecting = true
@@ -478,12 +531,14 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
                 }
             } else {
                 println("ERROR: cant find that bean")
-                UIAlertView(
-                    title: "Unable to Find Interactive",
+                
+                var alert = UIAlertController(title: "Unable to Find Interactive",
                     message: "The experience isn't able to to start. Please try again later.",
-                    delegate: self,
-                    cancelButtonTitle: "OK"
-                    ).show()
+                    preferredStyle: UIAlertControllerStyle.Alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                
+                self.showViewController(alert, sender: nil)
             }
         }
     }

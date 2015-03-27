@@ -121,12 +121,12 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
                 println(objectInfo)
             } else {
                 // There was an error.
-                UIAlertView(
-                    title: "Error",
-                    message: "Unable to retrieve interactive.",
-                    delegate: self,
-                    cancelButtonTitle: "OK"
-                    ).show()
+                var unableToInteractAlert = UIAlertController(title: "Unable to Interact",
+                    message: "Unable to retrieve installation information.",
+                    preferredStyle: UIAlertControllerStyle.Alert)
+                unableToInteractAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                self.showViewController(unableToInteractAlert, sender: nil)
+                
                 self.endInteraction()
                 NSLog("Unable to find interactive in local data store")
                 NSLog("Error: %@ %@", error, error.userInfo!)
@@ -307,13 +307,11 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
                             if allowed {
                                 self?.startListeningToAudioLoudness()
                             } else {
-                                UIAlertView(
-                                    title: "Microphone Required",
-                                    message: "Please grant access to the microphone to experience this interactive.",
-                                    delegate: self,
-                                    cancelButtonTitle: "OK"
-                                    ).show()
-                                println("user didn't give permission")
+                                var unableToInteractAlert = UIAlertController(title: "Microphone Required",
+                                    message: "Please grant access to the microphone to experience this installation.",
+                                    preferredStyle: UIAlertControllerStyle.Alert)
+                                unableToInteractAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                                self?.showViewController(unableToInteractAlert, sender: nil)
                                 self?.endInteraction()
                             }
                         }

@@ -18,16 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var interactionBeaconManager = InteractionBeaconManager()   // Core Location
     var dataManager = DataManager()                             // Parse Data
 
-    
     let defaults = NSUserDefaults.standardUserDefaults()
     let userHasOnboardedKey = "user_has_onboarded"
     
-
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // configure Hockey App
-    BITHockeyManager.sharedHockeyManager().configureWithIdentifier("3697b3f570362d842ec8c975151e6bc3")
+        BITHockeyManager.sharedHockeyManager().configureWithIdentifier("3697b3f570362d842ec8c975151e6bc3")
         BITHockeyManager.sharedHockeyManager().startManager()
         BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
         
@@ -190,8 +187,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         aboutViewController.tabBarItem = UITabBarItem(title: "About", image: aboutImage, tag: 2)
         
         tabs.selectedViewController = disconnectedViewController
-
-
         
         // start location services
         interactionBeaconManager.startUpdatingLocation()

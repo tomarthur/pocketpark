@@ -1,6 +1,8 @@
 //
 //  InteractionBeaconManager.swift
-//  interactron
+//  Pocket Theme Park
+//
+//
 //
 //  Created by Tom Arthur on 2/21/15.
 //  Copyright (c) 2015 Tom Arthur. All rights reserved.
@@ -38,6 +40,10 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
                 identifier: beaconIdentifier)
             
             locationManager!.startMonitoringForRegion(beaconRegion)
+            
+            // TO DO: for demo only
+            locationManager!.startRangingBeaconsInRegion(beaconRegion)
+
             locationManager!.startUpdatingLocation()
         case .NotDetermined:
             locationManager!.requestAlwaysAuthorization()
@@ -83,8 +89,10 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
                 case CLProximity.Far:
                     return
                 case CLProximity.Near:
+                        println("near proximity")
                         sendLocalNotificationToStartInteraction(beaconString)
                 case CLProximity.Immediate:
+                        println("Immediate proximity")
                         sendLocalNotificationToStartInteraction(beaconString)
                 case CLProximity.Unknown:
                     return
