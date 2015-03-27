@@ -6,7 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DisconnectedViewController" customModule="PocketPark" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="uwe-B8-ebe" id="fcI-yr-lE9"/>
                 <outlet property="interactivesNearbyTable" destination="7Gx-aR-Vju" id="HUy-d5-3wH"/>
+                <outlet property="statusLabel" destination="pC8-Rc-qUF" id="n8J-zB-Zmu"/>
                 <outlet property="view" destination="iN0-l3-epB" id="OIf-ZH-1JW"/>
             </connections>
         </placeholder>
@@ -23,13 +25,21 @@
                         <outlet property="delegate" destination="-1" id="vsJ-Vd-nqM"/>
                     </connections>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="uwe-B8-ebe">
+                    <rect key="frame" x="282" y="290" width="37" height="37"/>
+                </activityIndicatorView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pC8-Rc-qUF" userLabel="Status">
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5xB-aY-Rhe"/>
-                <constraint firstItem="7Gx-aR-Vju" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ei4-JZ-U8Y"/>
-                <constraint firstAttribute="trailing" secondItem="7Gx-aR-Vju" secondAttribute="trailing" id="KA5-0V-aN3"/>
-                <constraint firstAttribute="bottom" secondItem="7Gx-aR-Vju" secondAttribute="bottom" id="hyN-Dc-zJ8"/>
+                <constraint firstAttribute="trailing" secondItem="7Gx-aR-Vju" secondAttribute="trailing" id="DMT-Xd-pBb"/>
+                <constraint firstAttribute="bottom" secondItem="7Gx-aR-Vju" secondAttribute="bottom" id="Ja5-nH-ZNg"/>
+                <constraint firstItem="7Gx-aR-Vju" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dIt-OX-L9e"/>
+                <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="s2o-ky-v2N"/>
             </constraints>
         </view>
     </objects>

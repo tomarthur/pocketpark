@@ -49,11 +49,11 @@
 		E261D4571AB00B0800957726 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E261D4561AB00B0800957726 /* CoreGraphics.framework */; };
 		E261D4591AB00B0F00957726 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E261D4581AB00B0F00957726 /* CFNetwork.framework */; };
 		E261D45B1AB00B1600957726 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E261D45A1AB00B1600957726 /* Accounts.framework */; };
+		E267FD7E1AC6079F00654B20 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E267FD7B1AC6079F00654B20 /* Bolts.framework */; };
+		E267FD7F1AC6079F00654B20 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E267FD7C1AC6079F00654B20 /* Parse.framework */; };
+		E267FD801AC6079F00654B20 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E267FD7D1AC6079F00654B20 /* ParseCrashReporting.framework */; };
 		E2A78F2F1AB2736F0096B7A8 /* OtterFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2A78F2E1AB272120096B7A8 /* OtterFont.ttf */; };
 		E2A78F311AB288A70096B7A8 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2A78F301AB288A70096B7A8 /* bg.jpg */; };
-		E2E26E6B1AC4FC5700DE5003 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2E26E681AC4FC5700DE5003 /* Bolts.framework */; };
-		E2E26E6C1AC4FC5700DE5003 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2E26E691AC4FC5700DE5003 /* Parse.framework */; };
-		E2E26E6D1AC4FC5700DE5003 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2E26E6A1AC4FC5700DE5003 /* ParseCrashReporting.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,11 +116,11 @@
 		E261D4561AB00B0800957726 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E261D4581AB00B0F00957726 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E261D45A1AB00B1600957726 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		E267FD7B1AC6079F00654B20 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = PocketPark/AddedFrameworks/Bolts.framework; sourceTree = "<group>"; };
+		E267FD7C1AC6079F00654B20 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = PocketPark/AddedFrameworks/Parse.framework; sourceTree = "<group>"; };
+		E267FD7D1AC6079F00654B20 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = PocketPark/AddedFrameworks/ParseCrashReporting.framework; sourceTree = "<group>"; };
 		E2A78F2E1AB272120096B7A8 /* OtterFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OtterFont.ttf; sourceTree = "<group>"; };
 		E2A78F301AB288A70096B7A8 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
-		E2E26E681AC4FC5700DE5003 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		E2E26E691AC4FC5700DE5003 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		E2E26E6A1AC4FC5700DE5003 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,13 +129,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E261D45B1AB00B1600957726 /* Accounts.framework in Frameworks */,
-				E2E26E6D1AC4FC5700DE5003 /* ParseCrashReporting.framework in Frameworks */,
+				E267FD801AC6079F00654B20 /* ParseCrashReporting.framework in Frameworks */,
 				E261D4591AB00B0F00957726 /* CFNetwork.framework in Frameworks */,
 				E261D4571AB00B0800957726 /* CoreGraphics.framework in Frameworks */,
 				E261D4551AB00B0100957726 /* CoreLocation.framework in Frameworks */,
 				E261D4531AB00AFC00957726 /* MobileCoreServices.framework in Frameworks */,
 				E261D4511AB00AF500957726 /* QuartzCore.framework in Frameworks */,
-				E2E26E6C1AC4FC5700DE5003 /* Parse.framework in Frameworks */,
+				E267FD7F1AC6079F00654B20 /* Parse.framework in Frameworks */,
 				E261D44F1AB00AEF00957726 /* Security.framework in Frameworks */,
 				E261D44D1AB00AE800957726 /* Social.framework in Frameworks */,
 				E261D44B1AB00AE100957726 /* SystemConfiguration.framework in Frameworks */,
@@ -145,7 +145,7 @@
 				E261D4431AB00ABC00957726 /* libstdc++.6.dylib in Frameworks */,
 				E261D4411AB00AB100957726 /* AVFoundation.framework in Frameworks */,
 				64AD33E65AACFE97DD4F154C /* Pods_PocketPark.framework in Frameworks */,
-				E2E26E6B1AC4FC5700DE5003 /* Bolts.framework in Frameworks */,
+				E267FD7E1AC6079F00654B20 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,9 +171,9 @@
 		C046217728DF1AD06B053BE4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E2E26E681AC4FC5700DE5003 /* Bolts.framework */,
-				E2E26E691AC4FC5700DE5003 /* Parse.framework */,
-				E2E26E6A1AC4FC5700DE5003 /* ParseCrashReporting.framework */,
+				E267FD7B1AC6079F00654B20 /* Bolts.framework */,
+				E267FD7C1AC6079F00654B20 /* Parse.framework */,
+				E267FD7D1AC6079F00654B20 /* ParseCrashReporting.framework */,
 				E261D45A1AB00B1600957726 /* Accounts.framework */,
 				E261D4581AB00B0F00957726 /* CFNetwork.framework */,
 				E261D4561AB00B0800957726 /* CoreGraphics.framework */,

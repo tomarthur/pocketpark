@@ -30,12 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         Parse.setApplicationId("yc2HKK3EGe1tDIlvTyY9x2dKhgGaVNai7dQWfvGG",
                 clientKey: "dVeENxp57pgP3Zwqlez4U2G8O64B1tXQUBKsgTC1")
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        
         PFUser.enableAutomaticUser()
         PFUser.currentUser().incrementKey("RunCount")
         PFUser.currentUser().saveInBackground()
         
-        // get data from Parse
+        // start Parse datamanager
         dataManager.start()
+        
         // activate CL manager
         interactionBeaconManager.start()
         
@@ -75,7 +77,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
         interactionBeaconManager.locationManager?.startUpdatingLocation()
-        
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -141,7 +142,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             if friendlyName != nil && bleName != nil{
                 var requestNotificationDict: [String:String] = ["beaconInteractionBLEName" : bleName!]
                 NSNotificationCenter.defaultCenter().postNotificationName("startInteractionFromNotification", object: self, userInfo: requestNotificationDict)
-                println("sending request from app delegate \(bleName!)")
             } else {
                 /* This is not the notification that we composed */
             }
@@ -223,6 +223,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         else {
               self.window?.rootViewController = tabs
         }
+        
     }
     
    }

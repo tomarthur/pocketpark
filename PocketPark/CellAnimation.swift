@@ -26,7 +26,7 @@ class TipInCellAnimator {
         let view = cell.contentView
         
         view.layer.transform = TipInCellAnimatorStartTransform
-        view.layer.opacity = 0.8
+        view.layer.opacity = 0.3
         
         UIView.animateWithDuration(0.4) {
             view.layer.transform = CATransform3DIdentity

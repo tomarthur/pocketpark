@@ -18,21 +18,17 @@ class InteractiveMapViewController: UIViewController, MKMapViewDelegate, UIToolb
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // when datastore and bluetooth are ready
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "addInteractiveGeoPoints:",
-            name: "GeoPointDictionaryReady", object: nil)
-
         mapView.delegate = self
         mapView.showsUserLocation = true
         zoomUserLocation()
         
     }
     
-    
-    
+    override func viewDidAppear(animated: Bool) {
+        
+        addInteractiveGeoPoints()
+    }
 
-    
-    
     func zoomUserLocation() {
 
         let spanX = 0.007
@@ -43,20 +39,18 @@ class InteractiveMapViewController: UIViewController, MKMapViewDelegate, UIToolb
         
     }
     
-    func addInteractiveGeoPoints(notification: NSNotification){
+    func addInteractiveGeoPoints(){
 
-        println("grrrrr points")
-        
-        for (name, geopoint) in appDelegate.dataManager.knownInteractivesFromParseWithGeopoints {
-            var annotation = MKPointAnnotation()
+            for (name, geopoint) in appDelegate.dataManager.knownInteractivesFromParseWithGeopoints {
+                var annotation = MKPointAnnotation()
 
-            annotation.coordinate = CLLocationCoordinate2DMake(geopoint.latitude, geopoint.longitude)
-            annotation.title = name
-            
-            
-            self.mapView.addAnnotation(annotation)
-            
-            
+                annotation.coordinate = CLLocationCoordinate2DMake(geopoint.latitude, geopoint.longitude)
+                annotation.title = name
+                
+                
+                self.mapView.addAnnotation(annotation)
+                
+                
         }
         
     }

@@ -22,28 +22,22 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
-    @IBOutlet weak var status: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var interactivesNearbyTable: UITableView!
     var refreshControl:UIRefreshControl!
     var didAnimateCell:[NSIndexPath: Bool] = [:]
+    var nearbyInteractivesFriendlyArray = [String]()        // Table view content
+    var readyToDisplayInteractives = [String:PFObject]()    // Table view content
     
-    var tableCellsReady = false
     var bluetoothIsReady = false
-    var isConnecting = false
-    var haltConnections = false
     
     var connectedBeanObjectID: String?                      // Parse objectId for connected bean
     var nearbyBLEInteractives = [String:PTDBean]()          // PTDBean objects detected in the area
     var nearbyBLEInteractivesLastSeen = [String:NSDate]()   // Time of last discovery
-    
-    var nearbyInteractivesFriendlyArray = [String]()        // Table view content
-    var readyToDisplayInteractives = [String:PFObject]()    // Table view content
-
     var connectionRequestTimer = NSTimer()
 
-    
     var manager: PTDBeanManager!
     var connectedBean: PTDBean? {
         didSet {
@@ -127,14 +121,12 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayNetworkDelayAlert:",
             name: "networkDelay", object: nil)
         
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayParseErrorAlert:",
             name: "parseError", object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayNoGeopointsAlert:",
             name: "noGeopoints", object: nil)
         
-
         makeInteractivesTableView()
         
         self.view.backgroundColor = .ITWelcomeColor()
@@ -180,11 +172,12 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         self.showViewController(alert, sender: nil)
     }
     
-    func refreshTable(notification: NSNotification) {
-        
-        appDelegate.dataManager.queryParseForInteractiveObjects()
-        
+    func showLoadingSpinner(interactiveName: String) {
+        let loading = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        loading.labelText = "Contacting \(interactiveName)";
     }
+    
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -198,7 +191,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     // MARK: TableView
     
     func makeInteractivesTableView() {
-  
 
         if let interactivesNearbyTableView = interactivesNearbyTable {
             interactivesNearbyTableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "identifier")
@@ -233,6 +225,15 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
 
         var cell: InteractiveCardCell! = tableView.dequeueReusableCellWithIdentifier("identifier") as? InteractiveCardCell
 
+        // make cell background clear
+        let colorView = UIView()
+        colorView.backgroundColor = UIColor.clearColor()
+        
+        cell.selectedBackgroundView = colorView
+        cell.selectionStyle = .None
+        cell.backgroundColor = UIColor.clearColor()
+        
+        // load content to cell
         
         var interactiveInfo = readyToDisplayInteractives[nearbyInteractivesFriendlyArray[indexPath.row]] as PFObject!
         var loc = interactiveInfo["location"] as PFGeoPoint
@@ -240,13 +241,8 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         var lastSeen = getLastSeenTime(nearbyBLEInteractivesLastSeen[toString(interactiveInfo["name"])]!)
         
         cell.loadItem(title: nearbyInteractivesFriendlyArray[indexPath.row], desc: toString(interactiveInfo["explanation"]), lastSeen: lastSeen, coordinates: coordinate)
-        // set up your background color view
-        let colorView = UIView()
-        colorView.backgroundColor = UIColor.clearColor()
         
-        cell.selectedBackgroundView = colorView
-        cell.selectionStyle = .None
-        cell.backgroundColor = UIColor.clearColor()
+
 
         return cell
     }
@@ -257,12 +253,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
                 didAnimateCell[indexPath] = true
                 TipInCellAnimator.animate(cell)
             }
-    }
-    
-    
-    func showLoadingSpinner(interactiveName: String) {
-        let loading = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        loading.labelText = "Contacting \(interactiveName)";
     }
     
     func handleRefresh(paramSender: AnyObject) {
@@ -284,13 +274,13 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         return dateFormatter.stringFromDate(lastDiscoveredTime)
     }
     
-    // update table view after parse data is updated
-    func updateTableView(notification: NSNotification){
+    // add new interactive to table view when notified
+    func addNewInteractive(notification: NSNotification) {
         prepareInteractiveTableViewCellInformation()
     }
     
-    // add new interactive to table view when notified
-    func addNewInteractive(notification: NSNotification) {
+    func refreshTable(notification: NSNotification) {
+//        appDelegate.dataManager.queryParseForInteractiveObjects()
         prepareInteractiveTableViewCellInformation()
     }
     
@@ -305,11 +295,29 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
 
                         self.getInteractiveObject(appDelegate.dataManager.knownInteractivesFromParse[parseBLEName]!)
                         nearbyBLEInteractivesLastSeen[parseFriendlyName] = bean.lastDiscovered
-                        
                     }
+                } else {
+                    nearbyBLEInteractivesLastSeen[parseFriendlyName] = bean.lastDiscovered
+                }// TO DO: add the check to remove stale stuff here
+            }
+        }
+        
+        for beanName in nearbyInteractivesFriendlyArray {
+            for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
+                if parseFriendlyName == beanName {
+                    let currentBeanBLEName = parseBLEName
+                    
+                    if nearbyBLEInteractives[currentBeanBLEName] == nil {
+                        println("Nope no \(currentBeanBLEName)")
+                    }
+                    
+
                 }
             }
         }
+        
+        
+        // check if is in array and not matched to nearbyBLE
     }
     
 
@@ -329,7 +337,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     func addToTableView(objectInfo: PFObject) {
         var objectName = objectInfo["name"] as String
         readyToDisplayInteractives[objectName] = objectInfo
-        println("adding to table view")
         if contains(nearbyInteractivesFriendlyArray, objectName) == false {
             nearbyInteractivesFriendlyArray.append(objectName)
             interactivesNearbyTable.reloadData()
@@ -366,12 +373,13 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     func startScanningForInteractives(notif: NSNotification)
     {
         if appDelegate.dataManager.dataStoreReady == true && bluetoothIsReady == true {
+            clearCacheOfInteractives()
             self.manager.startScanningForBeans_error(nil)
         }
     }
     
     func beanManager(beanManager: PTDBeanManager!, didDiscoverBean bean: PTDBean!, error: NSError!) {
-
+        
         // add found interactive to dictionary
         if appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
             nearbyBLEInteractives[bean.name] = bean
@@ -384,23 +392,13 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         println("CONNECTED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
         
         if (error != nil){
-            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-            isConnecting = false
-            
-            var alert = UIAlertController(title: "Unable to Contact Interactive",
-                message: "The experience isn't able to to start. Please try again later.",
-                preferredStyle: UIAlertControllerStyle.Alert)
-            
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            
-            self.showViewController(alert, sender: nil)
+            connectionFailure()
             return
         }
         
         if connectedBean == nil {
             connectedBeanObjectID = appDelegate.dataManager.knownInteractivesFromParse[bean.name]
             connectedBean = bean
-            isConnecting = false
         }
     }
     
@@ -409,48 +407,34 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         
         self.connectedBeanObjectID = nil
         self.connectedBean = nil
-        isConnecting = false
+        
+        // Dismiss any modal view controllers.
+        presentedViewController?.dismissViewControllerAnimated(true, completion: { () in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
         
         if (error != nil){
-            var alert = UIAlertController(title: "Unable to Contact Interactive",
-                message: "The experience isn't able to to start. Please try again later.",
-                preferredStyle: UIAlertControllerStyle.Alert)
-            
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            
-            self.showViewController(alert, sender: nil)
-
-           println("error disconnecting")
-           println(error)
-        } else {
-            
-            // Dismiss any modal view controllers.
-            presentedViewController?.dismissViewControllerAnimated(true, completion: { () in
-                self.dismissViewControllerAnimated(true, completion: nil)
-            })
+            println("error \(error)")
         }
         
          NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
-        
-
 
     }
     
     // MARK: Bean Interaction Elements
     
     // end interaction by disconnecting and adding to temporary ignore list
-    func clearCacheOfInteractives(notification: NSNotification) {
+    func clearCacheOfInteractives() {
         
-        // TO DO: FIX THIS
-//        println("clearing dictionary of known interactives")
-//        nearbyBLEInteractives.removeAll()
-//        nearbyInteractivesFriendlyArray.removeAll()
+//         TO DO: FIX THIS
+        println("clearing dictionary of known interactives")
+        nearbyBLEInteractives.removeAll()
+ 
         
     }
     
     // end interaction by disconnecting and adding to temporary ignore list
     func endInteraction(notification: NSNotification) {
-        println("end interaction notification in disconnected VC")
         // Dismiss any modal view controllers.
         presentedViewController?.dismissViewControllerAnimated(true, completion: { () in
             self.dismissViewControllerAnimated(true, completion: nil)
@@ -466,17 +450,16 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     // TO DO: Make this less convoluted
     func initiateConnectionFromNotification(notification: NSNotification) {
         if let interactionInfo = notification.userInfo as? Dictionary<String, String>{
-            println("got notification in DCVC")
+
             if let id = interactionInfo["beaconInteractionBLEName"] {
-                println("GOT GOT GOT GOT")
+
                 for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
                     
                     if parseBLEName == id {
-                        println("MATCH MATCH MATCH MATCH")
+
                         for (nearbyName, bean) in nearbyBLEInteractives {
                             
                             if id == nearbyName {
-                                println("sending start request")
                                 self.intiateConnectionIfInteractionValid(bean, friendlyName: parseFriendlyName)
                             }
                         }
@@ -490,37 +473,23 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     // establish a connection after a final check that this is a valid bean
     func intiateConnectionIfInteractionValid(bean: PTDBean!, friendlyName: String) {
         
-        // check if the interactive is in the parse data store
-        if appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
-            
-            // check if Bean SDK still has detected the bean
-            if bean.state == .Discovered{
-                
-                // prevent attempts to connect to other interactives
-                if (isConnecting == false){
-                    isConnecting = true
-                    var connectError : NSError?
-                    self.showLoadingSpinner(friendlyName)
-                    manager.connectToBean(bean, error: &connectError)
-                    connectionRequestTimer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: Selector("connectionFailure"), userInfo: nil, repeats: false)
+        // check if Bean SDK still has detected the bean
+        if bean.state == .Discovered{
 
-                }
-            } else {
-                println("ERROR: cant find that bean")
-                
-                var alert = UIAlertController(title: "Unable to Find Interactive",
-                    message: "The experience isn't able to to start. Please try again later.",
-                    preferredStyle: UIAlertControllerStyle.Alert)
-                
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                
-                self.showViewController(alert, sender: nil)
-            }
+            self.showLoadingSpinner(friendlyName)
+            
+            var connectError : NSError?
+            manager.connectToBean(bean, error: &connectError)
+            
+            connectionRequestTimer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: Selector("connectionFailure"), userInfo: nil, repeats: false)
+            
+        } else {
+            connectionFailure()
         }
+
     }
     
     func connectionFailure() {
-        
         // Send the dimensions to Parse along with the 'connect' event
         let connectInfo = [
             // Define ranges to bucket data points into meaningful segments
@@ -532,24 +501,19 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         
         var disconnectError : NSError?
         manager.disconnectFromAllBeans(&disconnectError)
-        isConnecting = false
+
         self.connectedBeanObjectID = nil
         self.connectedBean = nil
         
-        println(disconnectError)
-        
         MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
         
-        var alert = UIAlertController(title: "Unable to Find Interactive",
+        var alert = UIAlertController(title: "Unable to Contact Interactive",
             message: "The experience isn't able to to start. Please try again later.",
             preferredStyle: UIAlertControllerStyle.Alert)
-        
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        
         self.showViewController(alert, sender: nil)
         
-    
-        println("FAILURE FAILURE FAILURE")
+
     }
 
     // MARK: Location Notification
@@ -571,7 +535,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         }
         alertController.addAction(openAction)
         presentViewController(alertController, animated: true, completion: nil)
-        
     }
 
     
