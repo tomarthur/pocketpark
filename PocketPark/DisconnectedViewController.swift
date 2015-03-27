@@ -41,6 +41,8 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     var nearbyInteractivesFriendlyArray = [String]()        // Table view content
     var readyToDisplayInteractives = [String:PFObject]()    // Table view content
 
+    var connectionRequestTimer = NSTimer()
+
     
     var manager: PTDBeanManager!
     var connectedBean: PTDBean? {
@@ -49,6 +51,8 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
                 self.beanManagerDidUpdateState(manager)
 
             } else {
+                self.connectionRequestTimer.invalidate()
+                
                 // present connected view when beacon connection established
                 let connectedViewController:ConnectedViewController = ConnectedViewController(nibName: "ConnectedView", bundle: nil)
                 
@@ -87,9 +91,6 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         // when new interactive is discovered add to table view
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "addNewInteractive:",
             name: "AddedNewInteractive", object: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "findBeanObjectAndConnectFromFriendlyName:",
-            name: "connectFriendly", object: nil)
         
         // when iBeacon of interactive is detected
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromNotification:",
@@ -134,7 +135,8 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
             name: "noGeopoints", object: nil)
         
 
-
+        makeInteractivesTableView()
+        
         self.view.backgroundColor = .ITWelcomeColor()
     }
     
@@ -247,6 +249,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         colorView.backgroundColor = UIColor.clearColor()
         
         cell.selectedBackgroundView = colorView
+        cell.selectionStyle = .None
         cell.backgroundColor = UIColor.clearColor()
 //        cell.updateConstraints()
         
@@ -262,27 +265,9 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     }
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as? InteractiveCardCell
-        let interactiveName = cell?.interactiveName.text
-        
-        if interactiveName != nil {
-            
-            for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
-                if parseFriendlyName == interactiveName {
-                    findBeanObjectAndConnectFromBLEName(parseBLEName)
-                    showLoadingSpinner(parseFriendlyName)
-                }
-                
-            }
-        }
-        
-    }
-    
     func showLoadingSpinner(interactiveName: String) {
         let loading = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        loading.labelText = "Contacting \(interactiveName)...";
+        loading.labelText = "Contacting \(interactiveName)";
     }
     
     func handleRefresh(paramSender: AnyObject) {
@@ -481,53 +466,46 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     }
     
     // handles notification from beacon or settings page that a interaction is requested
+    // TO DO: Make this less convoluted
     func initiateConnectionFromNotification(notification: NSNotification) {
         if let interactionInfo = notification.userInfo as? Dictionary<String, String>{
+            
             if let id = interactionInfo["beaconInteractionBLEName"] {
-                findBeanObjectAndConnectFromBLEName(id)
+                
+                for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
+                    
+                    if parseBLEName == id {
+                        
+                        for (nearbyName, bean) in nearbyBLEInteractives {
+                            
+                            if id == nearbyName {
+                                self.intiateConnectionIfInteractionValid(bean, friendlyName: parseFriendlyName)
+                            }
+                        }
+                    }
+                }
             }
         }
     }
     
-    // initate request to connect
-    func findBeanObjectAndConnectFromBLEName(bleName: String) {
-        for (nearbyName, bean) in nearbyBLEInteractives {
-            if bleName == nearbyName {
-                intiateConnectionIfInteractionValid(bean)
-            }
-        }
-    }
-    
-    // initate request to connect
-    func findBeanObjectAndConnectFromFriendlyName(friendlyName: String) {
-        for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
-            if parseFriendlyName == friendlyName {
-                findBeanObjectAndConnectFromBLEName(parseBLEName)
-            }
-        }
-    }
-    
+
     // establish a connection after a final check that this is a valid bean
-    func intiateConnectionIfInteractionValid(bean: PTDBean!) {
+    func intiateConnectionIfInteractionValid(bean: PTDBean!, friendlyName: String) {
         
         // check if the interactive is in the parse data store
         if appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
             
             // check if Bean SDK still has detected the bean
             if bean.state == .Discovered{
-                println("Attempting to connect to \(toString(bean.name))")
-                self.showLoadingSpinner("none")
+                
                 // prevent attempts to connect to other interactives
                 if (isConnecting == false){
                     isConnecting = true
-                    
-//                    activityIndicator.startAnimating()
                     var connectError : NSError?
-                    
+                    self.showLoadingSpinner(friendlyName)
                     manager.connectToBean(bean, error: &connectError)
-                    
-//                    // tell the user what we've found
-//                    status.text = "Contacting \(appDelegate.dataManager.knownInteractivesFromParseFriendlyNames[bean.name]!)"
+                    connectionRequestTimer = NSTimer.scheduledTimerWithTimeInterval(6.0, target: self, selector: Selector("connectionFailure"), userInfo: nil, repeats: false)
+
                 }
             } else {
                 println("ERROR: cant find that bean")
@@ -541,6 +519,37 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
                 self.showViewController(alert, sender: nil)
             }
         }
+    }
+    
+    func connectionFailure() {
+        
+        // Send the dimensions to Parse along with the 'connect' event
+        let connectInfo = [
+            // Define ranges to bucket data points into meaningful segments
+            "interactiveName": toString(connectedBean?.name),
+            // Did the user filter the query?
+            "connectFailure": toString(NSDate())
+        ]
+        PFAnalytics.trackEvent("connectFailure", dimensions:connectInfo)
+        
+        var disconnectError : NSError?
+        manager.disconnectFromAllBeans(error: &disconnectError)
+        
+        
+        println(disconnectError)
+        
+        MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+        
+        var alert = UIAlertController(title: "Unable to Find Interactive",
+            message: "The experience isn't able to to start. Please try again later.",
+            preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        
+        self.showViewController(alert, sender: nil)
+        
+    
+        println("FAILURE FAILURE FAILURE")
     }
 
     // MARK: Location Notification

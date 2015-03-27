@@ -22,17 +22,17 @@ class InteractiveCardCell: UITableViewCell {
     @IBOutlet weak var interactiveLastSeen: UILabel!
     
     @IBAction func interactiveStartButton(sender: AnyObject) {
-        println("touched! \(interactiveName)")
         for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
             if parseFriendlyName == interactiveName.text {
-                println(parseBLEName)
                 var requestNotificationDict: [String:String] = ["beaconInteractionBLEName" : parseBLEName]
                 NSNotificationCenter.defaultCenter().postNotificationName("startInteractionFromNotification", object: self, userInfo: requestNotificationDict)
-                
             }
         }
     }
 
+    @IBAction func interactiveTouchDown(sender: AnyObject) {
+        
+    }
     
     func loadItem(#title: String, desc: String, lastSeen: String, coordinates: CLLocationCoordinate2D){
         

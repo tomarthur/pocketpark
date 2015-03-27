@@ -52,6 +52,7 @@
                         </state>
                         <connections>
                             <action selector="interactiveStartButton:" destination="THu-kj-yvl" eventType="touchUpInside" id="OJ9-gy-oRS"/>
+                            <action selector="interactiveTouchDown:" destination="THu-kj-yvl" eventType="touchDown" id="ciT-sy-miN"/>
                         </connections>
                     </button>
                 </subviews>
