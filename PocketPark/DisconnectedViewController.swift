@@ -133,6 +133,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     }
     
     func displayNoNetworkAlert(notification: NSNotification) {
+        println("SHOULD REPORT NETWORK PROBLEM")
         var alert = UIAlertController(title: "Unable to Connect",
             message: "Please check your internet connection.",
             preferredStyle: UIAlertControllerStyle.Alert)

@@ -25,21 +25,25 @@
                         <outlet property="delegate" destination="-1" id="vsJ-Vd-nqM"/>
                     </connections>
                 </tableView>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="uwe-B8-ebe">
-                    <rect key="frame" x="282" y="290" width="37" height="37"/>
-                </activityIndicatorView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pC8-Rc-qUF" userLabel="Status">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pC8-Rc-qUF" userLabel="Status">
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="uwe-B8-ebe">
+                    <rect key="frame" x="282" y="292" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="7Gx-aR-Vju" secondAttribute="trailing" id="DMT-Xd-pBb"/>
-                <constraint firstAttribute="bottom" secondItem="7Gx-aR-Vju" secondAttribute="bottom" id="Ja5-nH-ZNg"/>
-                <constraint firstItem="7Gx-aR-Vju" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dIt-OX-L9e"/>
-                <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="s2o-ky-v2N"/>
+                <constraint firstAttribute="bottom" secondItem="7Gx-aR-Vju" secondAttribute="bottom" id="1nh-hf-BLg"/>
+                <constraint firstItem="7Gx-aR-Vju" firstAttribute="centerX" secondItem="uwe-B8-ebe" secondAttribute="centerX" id="CNw-qT-FEE"/>
+                <constraint firstItem="pC8-Rc-qUF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="MWo-5I-DKV"/>
+                <constraint firstItem="pC8-Rc-qUF" firstAttribute="top" secondItem="7Gx-aR-Vju" secondAttribute="top" id="RU1-pd-A0X"/>
+                <constraint firstItem="uwe-B8-ebe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="292" id="VMa-31-WZe"/>
+                <constraint firstItem="pC8-Rc-qUF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="coa-16-mHx"/>
+                <constraint firstItem="7Gx-aR-Vju" firstAttribute="leading" secondItem="pC8-Rc-qUF" secondAttribute="leading" id="lkW-gG-yGY"/>
+                <constraint firstAttribute="trailing" secondItem="7Gx-aR-Vju" secondAttribute="trailing" id="mgE-fC-LmG"/>
             </constraints>
         </view>
     </objects>

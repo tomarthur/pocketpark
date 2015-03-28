@@ -56,6 +56,7 @@ class DataManager: NSObject {
             
             
         } else {
+            println("No network")
             NSNotificationCenter.defaultCenter().postNotificationName("noNetwork", object: nil)
             self.networkTimer.invalidate()
             // still attempt to load data if it's available
