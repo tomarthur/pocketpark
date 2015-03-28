@@ -191,7 +191,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func setupNormalRootVC(animated : Bool) {
         var disconnectedViewController = DisconnectedViewController(nibName: "DisconnectedView", bundle: nil)
-        var mapViewController = InteractiveMapViewController(nibName: "InteractiveMap", bundle:nil)
+        var mapViewController = InteractiveMapViewController(nibName: "InteractiveMap", bundle: nil)
         var aboutViewController = AboutViewController(nibName: "AboutView", bundle: nil)
         
         var tabs = UITabBarController()
@@ -215,7 +215,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // If we want to animate it, animate the transition - in this case we're fading, but you can do it
         // however you want.
         if animated {
-            UIView.transitionWithView(self.window!, duration: 1.0, options:.TransitionCrossDissolve, animations: { () -> Void in
+            UIView.transitionWithView(self.window!, duration: 0.5, options:.TransitionCrossDissolve, animations: { () -> Void in
                 self.window!.rootViewController = tabs
                                 }, completion:nil)
         }

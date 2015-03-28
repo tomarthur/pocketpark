@@ -18,7 +18,7 @@ import IJReachability
 import MBProgressHUD
 
 
-class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UITableViewDataSource, UITableViewDelegate {
+class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITableViewDataSource, UITableViewDelegate {
     
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
@@ -74,11 +74,18 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     }
     
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        println("in view did load, disconnected view controller!")
+        appDelegate.dataManager.checkNetwork()
+        
+        self.refreshBLEObjects = NSTimer.scheduledTimerWithTimeInterval(refreshTime, target: self, selector: Selector("stopStartScan"), userInfo: nil, repeats: true)
+
+        
         manager = PTDBeanManager(delegate: self)
+        
+        makeInteractivesTableView()
         
         // Notifications
 
@@ -102,9 +109,9 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:",
             name: UIApplicationDidEnterBackgroundNotification, object: nil)
         
-//        // when app is no longer in focus, clear cache of found items
-//         NSNotificationCenter.defaultCenter().addObserver(self, selector: "clearCacheOfInteractives:",
-//            name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        // when app is no longer in focus, clear cache of found items
+         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pauseTimer:",
+            name: UIApplicationDidEnterBackgroundNotification, object: nil)
         
         // when app is returning to focus
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshTable:",
@@ -131,9 +138,12 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayNoGeopointsAlert:",
             name: "noGeopoints", object: nil)
         
-        makeInteractivesTableView()
         
         self.view.backgroundColor = .ITWelcomeColor()
+    }
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return .TopAttached
     }
     
     func displayNoNetworkAlert(notification: NSNotification) {
@@ -381,16 +391,25 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     
     func startScanningForInteractives(notif: NSNotification)
     {
+        println("startScanningForInteractives: \(appDelegate.dataManager.dataStoreReady), bluetoothIsReady?: \(bluetoothIsReady), datatore/bluetooth not ready")
         if appDelegate.dataManager.dataStoreReady == true && bluetoothIsReady == true {
             self.manager.startScanningForBeans_error(nil)
-            refreshBLEObjects = NSTimer.scheduledTimerWithTimeInterval(refreshTime, target: self, selector: Selector("stopStartScan"), userInfo: nil, repeats: true)
         }
     }
     
     func stopStartScan()
     {
+        if appDelegate.dataManager.dataStoreReady == false || bluetoothIsReady == false {
+            println("datastoreReady?: \(appDelegate.dataManager.dataStoreReady), bluetoothIsReady?: \(bluetoothIsReady), datatore/bluetooth not ready, returning")
+            return
+        }
+        
+        
+        println("stopStartScan... stoping scan")
         self.manager.stopScanningForBeans_error(nil)
+        println("stopStartScan... clearing interactives dictionary")
         clearCacheOfInteractives()
+        println("stopStartScan... starting scan")
         self.manager.startScanningForBeans_error(nil)
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delayRemoveAfterRefresh * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
             self.removeStaleData()
@@ -435,10 +454,16 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     func beanManager(beanManager: PTDBeanManager!, didDiscoverBean bean: PTDBean!, error: NSError!) {
         
         // add found interactive to dictionary
+        println("Did discover bean: \(bean)")
         if appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
+            println("Did discover, in true")
             nearbyBLEInteractives[bean.name] = bean
             var requestNotificationDict: [String:PTDBean] = ["NewBean" : bean!]
             NSNotificationCenter.defaultCenter().postNotificationName("AddNewInteractive", object: nil, userInfo: requestNotificationDict)
+        }
+        else
+        {
+            println("Did discover, in false")
         }
         
     }
@@ -486,6 +511,11 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         nearbyBLEInteractives.removeAll()
  
         
+    }
+    
+    func pauseTimer(notification: NSNotification) {
+        println("timer stopped")
+        refreshBLEObjects.invalidate()
     }
     
     // end interaction by disconnecting and adding to temporary ignore list

@@ -204,8 +204,11 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
                 
                 if modeString == "gyro-rotate" {
                     let rotation = atan2(data.gravity.x, data.gravity.y) - M_PI
-                    
-                    var mappedRotation = ((rotation - 0) * (180 - 0) / (-6.5 - 0) + 0)
+                    println("data.gravity x:\(data.gravity.x), y:\(data.gravity.y), z:\(data.gravity.z)")
+//                    println("Rotation in: \(rotation)")
+//                    var mappedRotation = ((rotation - 0) * (180 - 0) / (-6.5 - 0) + 0)
+                    var mappedRotation = (-(data.gravity.x) + 1)*90
+                    println("mappedRotation: \(mappedRotation)")
                     var mappedRotationInt:Int = Int(mappedRotation)
                     
                     self?.sendScratchDatatoBean(1, dataIn: mappedRotationInt)
