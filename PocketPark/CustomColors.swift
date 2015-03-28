@@ -18,7 +18,7 @@ extension UIColor {
     // MARK: UI Colors
     
     class func ITWelcomeColor() -> UIColor {
-        return UIColor(rgba: "#34495E")
+          return UIColor(rgba: "#34495E")
     }
     
     class func ITConnectedColor() -> UIColor {
@@ -28,7 +28,11 @@ extension UIColor {
     class func ITSettingsColor() -> UIColor {
         return UIColor(rgba: "#ECF0F1")
     }
-
+    
+    class func ITSBlueBackgroundColor() -> UIColor {
+        return UIColor(rgba: "#3498DB")
+    }
+    
     // MARK: Helpers
 
     // Credit: https://github.com/yeahdongcn/UIColor-Hex-Swift/

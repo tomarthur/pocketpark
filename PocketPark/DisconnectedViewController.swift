@@ -37,6 +37,10 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     var nearbyBLEInteractives = [String:PTDBean]()          // PTDBean objects detected in the area
     var nearbyBLEInteractivesLastSeen = [String:NSDate]()   // Time of last discovery
     var connectionRequestTimer = NSTimer()
+    
+    let refreshTime = 30.0
+    let delayRemoveAfterRefresh = 10.0
+    var refreshBLEObjects = NSTimer()
 
     var manager: PTDBeanManager!
     var connectedBean: PTDBean? {
@@ -84,7 +88,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         
         // when new interactive is discovered add to table view
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "addNewInteractive:",
-            name: "AddedNewInteractive", object: nil)
+            name: "AddNewInteractive", object: nil)
         
         // when iBeacon of interactive is detected
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromNotification:",
@@ -277,31 +281,35 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     
     // add new interactive to table view when notified
     func addNewInteractive(notification: NSNotification) {
-        prepareInteractiveTableViewCellInformation()
+        if let notificationInfo = notification.userInfo as? Dictionary<String, PTDBean>{
+            
+            if let id = notificationInfo["NewBean"] {
+                prepareInteractiveTableViewCellInformation(id)
+            }
+        }
     }
     
     func refreshTable(notification: NSNotification) {
-//        appDelegate.dataManager.queryParseForInteractiveObjects()
-        prepareInteractiveTableViewCellInformation()
+        appDelegate.dataManager.queryParseForInteractiveObjects()
+//        prepareInteractiveTableViewCellInformation()
     }
     
-    func prepareInteractiveTableViewCellInformation() {
-        
-        for (nearbyName, bean) in nearbyBLEInteractives {
-   
-            for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
-    
-                if contains(nearbyInteractivesFriendlyArray, parseFriendlyName) == false {
-                    if nearbyName == parseBLEName {
+    func prepareInteractiveTableViewCellInformation (bean:PTDBean) {
+        println("in prepareInteractiveTableViewCellInformation")
+        println("bean name: \(bean.name)")
 
-                        self.getInteractiveObject(appDelegate.dataManager.knownInteractivesFromParse[parseBLEName]!)
-                        nearbyBLEInteractivesLastSeen[parseFriendlyName] = bean.lastDiscovered
-                    }
-                } else {
-                    nearbyBLEInteractivesLastSeen[parseFriendlyName] = bean.lastDiscovered
-                }// TO DO: add the check to remove stale stuff here
-            }
+        if let parseFriendlyName = appDelegate.dataManager.knownInteractivesFromParseFriendlyNames [bean.name] {
+
+            if contains(nearbyInteractivesFriendlyArray, parseFriendlyName) == false {
+                let objectID = appDelegate.dataManager.knownInteractivesFromParse[bean.name]
+                println("objectID: \(objectID)")
+                getInteractiveObject(objectID!)
+                nearbyBLEInteractivesLastSeen[parseFriendlyName] = bean.lastDiscovered
+            } else {
+                nearbyBLEInteractivesLastSeen[parseFriendlyName] = bean.lastDiscovered
+            }// TO DO: add the check to remove stale stuff here
         }
+
         
         for beanName in nearbyInteractivesFriendlyArray {
             for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
@@ -374,9 +382,54 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
     func startScanningForInteractives(notif: NSNotification)
     {
         if appDelegate.dataManager.dataStoreReady == true && bluetoothIsReady == true {
-            clearCacheOfInteractives()
             self.manager.startScanningForBeans_error(nil)
+            refreshBLEObjects = NSTimer.scheduledTimerWithTimeInterval(refreshTime, target: self, selector: Selector("stopStartScan"), userInfo: nil, repeats: true)
         }
+    }
+    
+    func stopStartScan()
+    {
+        self.manager.stopScanningForBeans_error(nil)
+        clearCacheOfInteractives()
+        self.manager.startScanningForBeans_error(nil)
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delayRemoveAfterRefresh * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
+            self.removeStaleData()
+        })
+  
+    }
+    
+    func removeStaleData()
+    {
+        var removedItems = 0
+        for (index,friendlyName) in enumerate(nearbyInteractivesFriendlyArray)
+        {
+            var BLEName = getBLEName(friendlyName)
+            if !BLEName.isEmpty
+            {
+                let found = nearbyBLEInteractives[BLEName] != nil
+
+                if found == false
+                {
+                    readyToDisplayInteractives[friendlyName] = nil
+                    nearbyInteractivesFriendlyArray.removeAtIndex(index - removedItems)
+                    removedItems++
+                }
+            }
+        }
+        interactivesNearbyTable.reloadData()
+    }
+    
+    func getBLEName(FriendlyName:String) -> String
+    {
+        var keysArr = appDelegate.dataManager.knownInteractivesFromParseFriendlyNames.keys.array
+        for key in keysArr
+        {
+            if appDelegate.dataManager.knownInteractivesFromParseFriendlyNames[key]==FriendlyName
+            {
+                return key
+            }
+        }
+        return ""
     }
     
     func beanManager(beanManager: PTDBeanManager!, didDiscoverBean bean: PTDBean!, error: NSError!) {
@@ -384,7 +437,8 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate,  UIT
         // add found interactive to dictionary
         if appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
             nearbyBLEInteractives[bean.name] = bean
-            NSNotificationCenter.defaultCenter().postNotificationName("AddedNewInteractive", object: nil)
+            var requestNotificationDict: [String:PTDBean] = ["NewBean" : bean!]
+            NSNotificationCenter.defaultCenter().postNotificationName("AddNewInteractive", object: nil, userInfo: requestNotificationDict)
         }
         
     }
