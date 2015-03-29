@@ -113,6 +113,10 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromNotification:",
             name: "startInteractionFromNotification", object: nil)
         
+        // when iBeacon of interactive is detected
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromNotification:",
+            name: "startInteractionFromTap", object: nil)
+        
         // get notification when user wants to end experience
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:",
             name: "EndInteraction", object: nil)
@@ -236,6 +240,11 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     func showLoadingSpinner(interactiveName: String) {
         let loading = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         loading.labelText = "Contacting \(interactiveName)";
+    }
+    
+    func showContactingSpinner(interactiveName: String) {
+        let loading = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        loading.labelText = "Discovering \(interactiveName)";
     }
     
     override func didReceiveMemoryWarning() {
@@ -582,9 +591,8 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         }
     }
     
-    // handles notification from beacon or settings page that a interaction is requested
-    // TO DO: Make this less convoluted
-    func initiateConnectionFromNotification(notification: NSNotification) {
+
+    func initiateConnectionFromTap(notification: NSNotification) {
         if let interactionInfo = notification.userInfo as? Dictionary<String, String>{
 
             if let id = interactionInfo["beaconInteractionBLEName"] {
@@ -601,6 +609,34 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
                         }
                     }
                 }
+            }
+        }
+    }
+    
+    func initiateConnectionFromNotification(notification: NSNotification) {
+        if let interactionInfo = notification.userInfo as? Dictionary<String, String>{
+            
+            if let id = interactionInfo["beaconInteractionBLEName"] {
+                
+                for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
+                    
+                    if parseBLEName == id {
+                        showContactingSpinner(parseFriendlyName)
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delayRemoveAfterRefresh * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
+                            self.completeConnectionFromNotificationAfterDelay(parseBLEName, friendlyNameIn: parseFriendlyName)
+                        })
+                    } else {
+                        println("Didn't work")
+                    }
+                }
+            }
+        }
+    }
+    
+    func completeConnectionFromNotificationAfterDelay(bleName: String, friendlyNameIn: String) {
+        for (nearbyName, bean) in nearbyBLEInteractives {
+            if bleName == nearbyName {
+                self.intiateConnectionIfInteractionValid(bean, friendlyName: friendlyNameIn)
             }
         }
     }

@@ -25,7 +25,7 @@ class InteractiveCardCell: UITableViewCell {
         for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
             if parseFriendlyName == interactiveName.text {
                 var requestNotificationDict: [String:String] = ["beaconInteractionBLEName" : parseBLEName]
-                NSNotificationCenter.defaultCenter().postNotificationName("startInteractionFromNotification", object: self, userInfo: requestNotificationDict)
+                NSNotificationCenter.defaultCenter().postNotificationName("startInteractionTap", object: self, userInfo: requestNotificationDict)
             }
         }
     }
