@@ -49,6 +49,7 @@
 		E261D4571AB00B0800957726 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E261D4561AB00B0800957726 /* CoreGraphics.framework */; };
 		E261D4591AB00B0F00957726 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E261D4581AB00B0F00957726 /* CFNetwork.framework */; };
 		E261D45B1AB00B1600957726 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E261D45A1AB00B1600957726 /* Accounts.framework */; };
+		E2624DCD1AC7BBF5006848D6 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2624DCC1AC7BBF5006848D6 /* UIViewExtensions.swift */; };
 		E267FD7E1AC6079F00654B20 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E267FD7B1AC6079F00654B20 /* Bolts.framework */; };
 		E267FD7F1AC6079F00654B20 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E267FD7C1AC6079F00654B20 /* Parse.framework */; };
 		E267FD801AC6079F00654B20 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E267FD7D1AC6079F00654B20 /* ParseCrashReporting.framework */; };
@@ -116,6 +117,7 @@
 		E261D4561AB00B0800957726 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E261D4581AB00B0F00957726 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E261D45A1AB00B1600957726 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		E2624DCC1AC7BBF5006848D6 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		E267FD7B1AC6079F00654B20 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = PocketPark/AddedFrameworks/Bolts.framework; sourceTree = "<group>"; };
 		E267FD7C1AC6079F00654B20 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = PocketPark/AddedFrameworks/Parse.framework; sourceTree = "<group>"; };
 		E267FD7D1AC6079F00654B20 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = PocketPark/AddedFrameworks/ParseCrashReporting.framework; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				E261D40D1AB008B000957726 /* DataManager.swift */,
 				E261D40E1AB008B000957726 /* SensorManager.swift */,
 				E24494831AC5F8000004AD6D /* PushNotificationController.swift */,
+				E2624DCC1AC7BBF5006848D6 /* UIViewExtensions.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2332B751ABFA33A00455422 /* InteractiveCardCell.swift in Sources */,
+				E2624DCD1AC7BBF5006848D6 /* UIViewExtensions.swift in Sources */,
 				E261D4141AB008BA00957726 /* AppDelegate.swift in Sources */,
 				E261D3FB1AB0089D00957726 /* InteractiveMapViewController.swift in Sources */,
 				E261D4001AB0089D00957726 /* OnboardingContentViewController.swift in Sources */,

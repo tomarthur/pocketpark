@@ -32,10 +32,11 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     var readyToDisplayInteractives = [String:PFObject]()    // Table view content
     
     var bluetoothIsReady = false
+    var statusShown = true
     
     var connectedBeanObjectID: String?                      // Parse objectId for connected bean
     var nearbyBLEInteractives = [String:PTDBean]()          // PTDBean objects detected in the area
-    var nearbyBLEInteractivesLastSeen = [String:NSDate]()   // Time of last discovery
+//    var nearbyBLEInteractivesLastSeen = [String:NSDate]()   // Time of last discovery
     var connectionRequestTimer = NSTimer()
     
     let refreshTime = 30.0
@@ -86,7 +87,6 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         manager = PTDBeanManager(delegate: self)
         
         makeInteractivesTableView()
-        
         
         // Notifications
 
@@ -209,14 +209,24 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         
         self.showViewController(alert, sender: nil)
     }
+
+    func showStatus(currentStatus: String) {
+        
+        activityIndicator.startAnimating()
+        statusLabel.text = currentStatus
+        statusLabel.fadeIn()
+    }
+    
+    func hideStatus() {
+        activityIndicator.stopAnimating()
+        statusLabel.fadeOut()
+    }
     
     func showLoadingSpinner(interactiveName: String) {
         let loading = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         loading.labelText = "Contacting \(interactiveName)";
     }
     
-
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -249,6 +259,16 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         }
         
     }
+
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 50
+    }
+
+    func tableView(tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        view.tintColor = .clearColor()
+        view.backgroundColor = .clearColor()
+//        contentView.backgroundColor.clea
+    }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -275,11 +295,8 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         var interactiveInfo = readyToDisplayInteractives[nearbyInteractivesFriendlyArray[indexPath.row]] as PFObject!
         var loc = interactiveInfo["location"] as PFGeoPoint
         var coordinate = CLLocationCoordinate2DMake(loc.latitude, loc.longitude)
-        var lastSeen = getLastSeenTime(nearbyBLEInteractivesLastSeen[toString(interactiveInfo["name"])]!)
         
-        cell.loadItem(title: nearbyInteractivesFriendlyArray[indexPath.row], desc: toString(interactiveInfo["explanation"]), lastSeen: lastSeen, coordinates: coordinate)
-        
-
+        cell.loadItem(title: nearbyInteractivesFriendlyArray[indexPath.row], desc: toString(interactiveInfo["explanation"]), coordinates: coordinate)
 
         return cell
     }
@@ -291,6 +308,8 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
                 TipInCellAnimator.animate(cell)
             }
     }
+
+
     
     func handleRefresh(paramSender: AnyObject) {
         
@@ -323,42 +342,21 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     
     func refreshTable(notification: NSNotification) {
         appDelegate.dataManager.queryParseForInteractiveObjects()
-//        prepareInteractiveTableViewCellInformation()
     }
     
     func prepareInteractiveTableViewCellInformation (bean:PTDBean) {
         println("in prepareInteractiveTableViewCellInformation")
         println("bean name: \(bean.name)")
-
+        hideStatus()
         if let parseFriendlyName = appDelegate.dataManager.knownInteractivesFromParseFriendlyNames [bean.name] {
 
             if contains(nearbyInteractivesFriendlyArray, parseFriendlyName) == false {
                 let objectID = appDelegate.dataManager.knownInteractivesFromParse[bean.name]
                 println("objectID: \(objectID)")
                 getInteractiveObject(objectID!)
-                nearbyBLEInteractivesLastSeen[parseFriendlyName] = bean.lastDiscovered
             } else {
-                nearbyBLEInteractivesLastSeen[parseFriendlyName] = bean.lastDiscovered
-            }// TO DO: add the check to remove stale stuff here
         }
-
-        
-        for beanName in nearbyInteractivesFriendlyArray {
-            for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
-                if parseFriendlyName == beanName {
-                    let currentBeanBLEName = parseBLEName
-                    
-                    if nearbyBLEInteractives[currentBeanBLEName] == nil {
-                        println("Nope no \(currentBeanBLEName)")
-                    }
-                    
-
-                }
-            }
-        }
-        
-        
-        // check if is in array and not matched to nearbyBLE
+    }
     }
     
 
@@ -380,18 +378,14 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         readyToDisplayInteractives[objectName] = objectInfo
         if contains(nearbyInteractivesFriendlyArray, objectName) == false {
             nearbyInteractivesFriendlyArray.append(objectName)
-            interactivesNearbyTable.reloadData()
+            interactivesNearbyTable.beginUpdates()
+            let lastIndexPath = NSIndexPath(forRow: nearbyInteractivesFriendlyArray.count - 1, inSection: 0)
+            interactivesNearbyTable.insertRowsAtIndexPaths([lastIndexPath], withRowAnimation: .None)
+            interactivesNearbyTable.endUpdates()
         }
         
     }
     
-//    func deleteStaleCells() {
-//        let tableView =
-//        tableView.beginUpdates()
-//  
-//        nearbyInteractivesFriendlyArray.removeAtIndex(indexPath.row)
-//        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-//    }
     
 
     // MARK: PTDBeanManagerDelegate
@@ -413,8 +407,8 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     
     func startScanningForInteractives(notif: NSNotification)
     {
-        println("startScanningForInteractives: \(appDelegate.dataManager.dataStoreReady), bluetoothIsReady?: \(bluetoothIsReady), datatore/bluetooth not ready")
         if appDelegate.dataManager.dataStoreReady == true && bluetoothIsReady == true {
+            showStatus("Nearby installations appear automatically when discovered.\nCheck out the map for all locations.")
             self.manager.startScanningForBeans_error(nil)
         }
     }
@@ -425,7 +419,6 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
             println("datastoreReady?: \(appDelegate.dataManager.dataStoreReady), bluetoothIsReady?: \(bluetoothIsReady), datatore/bluetooth not ready, returning")
             return
         }
-        
         
         println("stopStartScan... stoping scan")
         self.manager.stopScanningForBeans_error(nil)
@@ -439,8 +432,15 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
   
     }
     
+    func deleteRowsAtIndexPaths(indexPaths: [AnyObject],
+        withRowAnimation animation: UITableViewRowAnimation) {
+            
+    }
+    
     func removeStaleData()
     {
+        interactivesNearbyTable.beginUpdates()
+        var rowsToDelete = [NSIndexPath]()
         var removedItems = 0
         for (index,friendlyName) in enumerate(nearbyInteractivesFriendlyArray)
         {
@@ -452,12 +452,24 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
                 if found == false
                 {
                     readyToDisplayInteractives[friendlyName] = nil
+                    
+                    rowsToDelete.append(NSIndexPath(forRow: index, inSection: 0))
+                    didAnimateCell[rowsToDelete.last!] = false
                     nearbyInteractivesFriendlyArray.removeAtIndex(index - removedItems)
                     removedItems++
                 }
             }
         }
-        interactivesNearbyTable.reloadData()
+        
+        if rowsToDelete.count > 0 {
+            interactivesNearbyTable.deleteRowsAtIndexPaths(rowsToDelete, withRowAnimation: UITableViewRowAnimation.Fade)
+            rowsToDelete.removeAll()
+        }
+        
+        if nearbyBLEInteractives.count == 0 {
+            showStatus("Nearby installations appear automatically when discovered.\nCheck out the map for all locations.")
+        }
+        interactivesNearbyTable.endUpdates()
     }
     
     func getBLEName(FriendlyName:String) -> String
@@ -528,7 +540,6 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     // end interaction by disconnecting and adding to temporary ignore list
     func clearCacheOfInteractives() {
         
-//         TO DO: FIX THIS
         println("clearing dictionary of known interactives")
         nearbyBLEInteractives.removeAll()
  

@@ -26,27 +26,32 @@
                     </connections>
                 </tableView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="uwe-B8-ebe">
-                    <rect key="frame" x="282" y="258" width="37" height="37"/>
+                    <rect key="frame" x="282" y="193" width="37" height="37"/>
                 </activityIndicatorView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pC8-Rc-qUF" userLabel="Status">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Installations appear automatically when discovered nearby. Check out the map for all locations." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="pC8-Rc-qUF" userLabel="Status">
+                    <rect key="frame" x="155" y="238" width="290" height="95"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="290" id="eMQ-ys-oTn"/>
+                        <constraint firstAttribute="height" constant="95" id="kVt-fO-0Bp"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="7Gx-aR-Vju" secondAttribute="bottom" id="Bdo-yS-vcF"/>
-                <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="pC8-Rc-qUF" secondAttribute="top" id="BgI-gz-ww9"/>
-                <constraint firstItem="7Gx-aR-Vju" firstAttribute="centerX" secondItem="uwe-B8-ebe" secondAttribute="centerX" id="JPf-Id-aI6"/>
-                <constraint firstAttribute="trailing" secondItem="7Gx-aR-Vju" secondAttribute="trailing" id="KJH-6z-6ac"/>
-                <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="VW5-bJ-jJP"/>
+                <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0wQ-lP-OY2"/>
+                <constraint firstItem="pC8-Rc-qUF" firstAttribute="centerX" secondItem="uwe-B8-ebe" secondAttribute="centerX" id="3Fs-08-Qiv"/>
+                <constraint firstAttribute="trailing" secondItem="7Gx-aR-Vju" secondAttribute="trailing" id="AM3-bp-g7g"/>
+                <constraint firstItem="7Gx-aR-Vju" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ATv-oE-3fe"/>
+                <constraint firstAttribute="bottom" secondItem="7Gx-aR-Vju" secondAttribute="bottom" id="GS5-6N-2XL"/>
+                <constraint firstItem="pC8-Rc-qUF" firstAttribute="top" secondItem="uwe-B8-ebe" secondAttribute="bottom" constant="8" symbolic="YES" id="N0Z-bb-W1F"/>
+                <constraint firstItem="pC8-Rc-qUF" firstAttribute="centerX" secondItem="7Gx-aR-Vju" secondAttribute="centerX" id="NDo-81-SCL"/>
                 <constraint firstItem="uwe-B8-ebe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="292" id="WcL-rO-MM0"/>
+                <constraint firstItem="uwe-B8-ebe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="193" id="Zay-3t-ED4"/>
                 <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cTE-a6-HPB"/>
-                <constraint firstItem="7Gx-aR-Vju" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iRo-Aj-tEb"/>
                 <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="pC8-Rc-qUF" secondAttribute="top" id="qlG-lu-fAC"/>
-                <constraint firstItem="uwe-B8-ebe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="258" id="qyP-zv-P8b"/>
-                <constraint firstItem="7Gx-aR-Vju" firstAttribute="leading" secondItem="pC8-Rc-qUF" secondAttribute="leading" id="wpB-RL-8fS"/>
                 <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ykb-QM-YBO"/>
             </constraints>
             <variation key="default">

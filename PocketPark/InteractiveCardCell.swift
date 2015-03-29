@@ -34,7 +34,7 @@ class InteractiveCardCell: UITableViewCell {
         
     }
     
-    func loadItem(#title: String, desc: String, lastSeen: String, coordinates: CLLocationCoordinate2D){
+    func loadItem(#title: String, desc: String, coordinates: CLLocationCoordinate2D){
         
         interactiveCardView.backgroundColor = UIColor.clearColor()
         
@@ -56,10 +56,10 @@ class InteractiveCardCell: UITableViewCell {
         interactiveDetails.textAlignment = .Center
         interactiveDetails.adjustsFontSizeToFitWidth = true
         
-        interactiveLastSeen.text = "Last discovered at \(lastSeen)"
+        interactiveLastSeen.text = "Tap To Contact"
         interactiveLastSeen.textColor = UIColor.whiteColor()
         interactiveLastSeen.textAlignment = .Center
-        interactiveLastSeen.font = UIFont(name: "HelveticaNeue-UltraLight", size: 12)
+        interactiveLastSeen.font = UIFont(name: "HelveticaNeue-Light", size: 12)
         
         
         let spanX = 0.0004
