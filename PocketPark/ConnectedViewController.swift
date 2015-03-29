@@ -47,7 +47,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
     
     func handleSwipes(sender: UISwipeGestureRecognizer){
         if sender.direction == .Down{
-            println("Swiped Right, exit view")
+            
             self.deactivateAllMotion()
             endInteraction()
             

@@ -19,13 +19,13 @@ class InteractiveCardCell: UITableViewCell {
     @IBOutlet weak var interactiveLocation: MKMapView!
     @IBOutlet weak var interactiveName: UILabel!
     @IBOutlet weak var interactiveDetails: UILabel!
-    @IBOutlet weak var interactiveLastSeen: UILabel!
+//    @IBOutlet weak var interactiveLastSeen: UILabel!
     
     @IBAction func interactiveStartButton(sender: AnyObject) {
         for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
             if parseFriendlyName == interactiveName.text {
                 var requestNotificationDict: [String:String] = ["beaconInteractionBLEName" : parseBLEName]
-                NSNotificationCenter.defaultCenter().postNotificationName("startInteractionTap", object: self, userInfo: requestNotificationDict)
+                NSNotificationCenter.defaultCenter().postNotificationName("StartInteractionFromTap", object: self, userInfo: requestNotificationDict)
             }
         }
     }
@@ -56,10 +56,10 @@ class InteractiveCardCell: UITableViewCell {
         interactiveDetails.textAlignment = .Center
         interactiveDetails.adjustsFontSizeToFitWidth = true
         
-        interactiveLastSeen.text = "Tap To Contact"
-        interactiveLastSeen.textColor = UIColor.whiteColor()
-        interactiveLastSeen.textAlignment = .Center
-        interactiveLastSeen.font = UIFont(name: "HelveticaNeue-Light", size: 12)
+//        interactiveLastSeen.text = "Tap To Contact"
+//        interactiveLastSeen.textColor = UIColor.whiteColor()
+//        interactiveLastSeen.textAlignment = .Center
+//        interactiveLastSeen.font = UIFont(name: "HelveticaNeue-Light", size: 12)
         
         
         let spanX = 0.0004

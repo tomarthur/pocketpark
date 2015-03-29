@@ -90,6 +90,8 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        showStatus("Preparing to discover installations nearby.")
 
         appDelegate.dataManager.checkNetwork()
         
@@ -114,8 +116,8 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
             name: "startInteractionFromNotification", object: nil)
         
         // when iBeacon of interactive is detected
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromNotification:",
-            name: "startInteractionFromTap", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "initiateConnectionFromTap:",
+            name: "StartInteractionFromTap", object: nil)
         
         // get notification when user wants to end experience
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "endInteraction:",
@@ -266,7 +268,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
             
             interactivesNearbyTableView.dataSource = self
             interactivesNearbyTableView.delegate = self
-            interactivesNearbyTableView.contentInset = UIEdgeInsetsMake(60,0,0,0)
+            interactivesNearbyTableView.contentInset = UIEdgeInsetsMake(67,0,0,0)
             
             // Setup Refresh Control
             refreshControl = UIRefreshControl()
@@ -467,7 +469,9 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     func startScanningForInteractives(notif: NSNotification)
     {
         if appDelegate.dataManager.dataStoreReady == true && bluetoothIsReady == true && runningInForground() == true {
-//            showStatus("Nearby installations appear automatically when discovered.\nCheck out the map for all locations.")
+            if nearbyBLEInteractives.count == 0 {
+            showStatus("Nearby installations appear automatically when discovered.\nCheck out the map for all locations.")
+            }
             self.manager.startScanningForBeans_error(nil)
         }
     }
