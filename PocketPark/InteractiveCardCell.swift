@@ -19,6 +19,7 @@ class InteractiveCardCell: UITableViewCell {
     @IBOutlet weak var interactiveLocation: MKMapView!
     @IBOutlet weak var interactiveName: UILabel!
     @IBOutlet weak var interactiveDetails: UILabel!
+    @IBOutlet weak var startInteractiveButton: UIButton!
 //    @IBOutlet weak var interactiveLastSeen: UILabel!
     
     @IBAction func interactiveStartButton(sender: AnyObject) {
@@ -30,9 +31,7 @@ class InteractiveCardCell: UITableViewCell {
         }
     }
 
-    @IBAction func interactiveTouchDown(sender: AnyObject) {
-        
-    }
+
     
     func loadItem(#title: String, desc: String, coordinates: CLLocationCoordinate2D){
         
@@ -56,11 +55,7 @@ class InteractiveCardCell: UITableViewCell {
         interactiveDetails.textAlignment = .Center
         interactiveDetails.adjustsFontSizeToFitWidth = true
         
-//        interactiveLastSeen.text = "Tap To Contact"
-//        interactiveLastSeen.textColor = UIColor.whiteColor()
-//        interactiveLastSeen.textAlignment = .Center
-//        interactiveLastSeen.font = UIFont(name: "HelveticaNeue-Light", size: 12)
-        
+        startInteractiveButton.accessibilityLabel = ("Contact nearby installation \(title)")
         
         let spanX = 0.0004
         let spanY = 0.0004
@@ -73,6 +68,7 @@ class InteractiveCardCell: UITableViewCell {
         interactiveLocation.showsUserLocation = true
         interactiveLocation.layer.cornerRadius = 10
         interactiveLocation.layer.masksToBounds = true
+        interactiveLocation.accessibilityElementsHidden = true
         
         var annotation = MKPointAnnotation()
         annotation.coordinate = coordinates

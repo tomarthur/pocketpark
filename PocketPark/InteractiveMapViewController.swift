@@ -20,13 +20,15 @@ class InteractiveMapViewController: UIViewController, UIToolbarDelegate, UINavig
 
         mapView.delegate = self
         mapView.showsUserLocation = true
-        zoomUserLocation()
         makeNavigationBar()
     }
     
     override func viewWillAppear(animated: Bool) {
         makeNavigationBar()
+       zoomUserLocation()
     }
+    
+    
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent

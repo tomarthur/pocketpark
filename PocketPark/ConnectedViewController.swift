@@ -43,7 +43,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
     // UI
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var explanation: UILabel!
-    @IBOutlet weak var interactionType : UILabel!
+    @IBOutlet weak var swipeToEndButton: UIButton!
     
     func handleSwipes(sender: UISwipeGestureRecognizer){
         if sender.direction == .Down{
@@ -52,6 +52,11 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
             endInteraction()
             
         }
+    }
+    
+    @IBAction func endButtonPress(sender: AnyObject) {
+        self.deactivateAllMotion()
+        endInteraction()
     }
     
     required init(coder aDecoder: NSCoder){
@@ -152,7 +157,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
         explanation.text = toString(nonOptional["explanation"])
         explanation.numberOfLines = 0; //will wrap text in new line
         explanation.sizeToFit()
-        interactionType.text = toString(nonOptional["control"])
+//        interactionType.text = toString(nonOptional["control"])
         
     }
     

@@ -202,8 +202,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
             message: "New nearby installations may not be detected.",
             preferredStyle: UIAlertControllerStyle.Alert)
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         
         self.showViewController(alert, sender: nil)
     }
@@ -240,11 +239,13 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     }
     
     func showLoadingSpinner(interactiveName: String) {
+        MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
         let loading = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         loading.labelText = "Contacting \(interactiveName)";
     }
     
     func showContactingSpinner(interactiveName: String) {
+        MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
         let loading = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         loading.labelText = "Discovering \(interactiveName)";
     }
@@ -342,15 +343,6 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
             self.refreshControl.endRefreshing()
         })
     }
-    
-//    func getLastSeenTime(lastDiscoveredTime: NSDate) -> String {
-//        let dateFormatter = NSDateFormatter()
-//        let theTimeFormat = NSDateFormatterStyle.ShortStyle
-//        
-//        dateFormatter.timeStyle = theTimeFormat
-//        
-//        return dateFormatter.stringFromDate(lastDiscoveredTime)
-//    }
     
     // add new interactive to table view when notified
     func addNewInteractive(notification: NSNotification) {

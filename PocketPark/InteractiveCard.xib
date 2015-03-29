@@ -18,6 +18,9 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TestTestTest TestTestTest TestTestTest TestTestTest TestTestTest TestTestTest TestTestTest TestTestTest " lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="dIq-Ib-EOD" userLabel="Details">
                                 <rect key="frame" x="6" y="129" width="309" height="41"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="8iV-C6-Nwj"/>
                                 </constraints>
@@ -27,18 +30,24 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstItem="dIq-Ib-EOD" firstAttribute="leading" secondItem="TKz-Ty-OA9" secondAttribute="leading" constant="6" id="52G-ib-WKC"/>
                             <constraint firstAttribute="bottom" secondItem="dIq-Ib-EOD" secondAttribute="bottom" constant="5" id="BuR-Ca-ZyE"/>
                             <constraint firstItem="dIq-Ib-EOD" firstAttribute="centerX" secondItem="TKz-Ty-OA9" secondAttribute="centerX" id="W2x-ed-Gi8"/>
                         </constraints>
                     </view>
-                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2cx-1U-KLl">
+                    <mapView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cx-1U-KLl">
                         <rect key="frame" x="15" y="5" width="320" height="129"/>
                     </mapView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interactive Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="GSc-Gm-xtr">
                         <rect key="frame" x="15" y="5" width="320" height="129"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.38" colorSpace="calibratedRGB"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <bool key="isElement" value="NO"/>
+                        </accessibility>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="27"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="highlightedColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -50,7 +59,6 @@
                         </state>
                         <connections>
                             <action selector="interactiveStartButton:" destination="THu-kj-yvl" eventType="touchUpInside" id="OJ9-gy-oRS"/>
-                            <action selector="interactiveTouchDown:" destination="THu-kj-yvl" eventType="touchDown" id="ciT-sy-miN"/>
                         </connections>
                     </button>
                 </subviews>
@@ -80,6 +88,7 @@
                 <outlet property="interactiveLocation" destination="2cx-1U-KLl" id="BdZ-dY-3r4"/>
                 <outlet property="interactiveName" destination="GSc-Gm-xtr" id="ELd-sL-1e0"/>
                 <outlet property="interactiveSubCardView" destination="TKz-Ty-OA9" id="ctQ-rQ-mko"/>
+                <outlet property="startInteractiveButton" destination="WUT-52-4ZW" id="dNV-tL-rF3"/>
             </connections>
             <point key="canvasLocation" x="239" y="137"/>
         </tableViewCell>
