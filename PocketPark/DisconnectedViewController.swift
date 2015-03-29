@@ -36,12 +36,12 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     
     var connectedBeanObjectID: String?                      // Parse objectId for connected bean
     var nearbyBLEInteractives = [String:PTDBean]()          // PTDBean objects detected in the area
-//    var nearbyBLEInteractivesLastSeen = [String:NSDate]()   // Time of last discovery
     var connectionRequestTimer = NSTimer()
     
     let refreshTime = 30.0
-    let delayRemoveAfterRefresh = 10.0
+    let delayRemoveAfterRefresh = 2.0
     var refreshBLEObjects = NSTimer()
+    var refreshTimerActive = false
 
     var manager: PTDBeanManager!
     var connectedBean: PTDBean? {
@@ -74,15 +74,26 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         }
     }
     
+    func startRefreshTimer () {
+        if (refreshTimerActive == false) {
+            refreshTimerActive = true
+            refreshBLEObjects = NSTimer.scheduledTimerWithTimeInterval(refreshTime, target: self, selector: Selector("stopStartScan"), userInfo: nil, repeats: true)
+        } else {
+            println("already started timer")
+        }
+    }
+    
+    func invalidatRefreshTimer () {
+        refreshBLEObjects.invalidate()
+        refreshTimerActive = false
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        println("in view did load, disconnected view controller!")
+
         appDelegate.dataManager.checkNetwork()
         
-        self.refreshBLEObjects = NSTimer.scheduledTimerWithTimeInterval(refreshTime, target: self, selector: Selector("stopStartScan"), userInfo: nil, repeats: true)
-
+        startRefreshTimer()
         
         manager = PTDBeanManager(delegate: self)
         
@@ -321,14 +332,14 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         })
     }
     
-    func getLastSeenTime(lastDiscoveredTime: NSDate) -> String {
-        let dateFormatter = NSDateFormatter()
-        let theTimeFormat = NSDateFormatterStyle.ShortStyle
-        
-        dateFormatter.timeStyle = theTimeFormat
-        
-        return dateFormatter.stringFromDate(lastDiscoveredTime)
-    }
+//    func getLastSeenTime(lastDiscoveredTime: NSDate) -> String {
+//        let dateFormatter = NSDateFormatter()
+//        let theTimeFormat = NSDateFormatterStyle.ShortStyle
+//        
+//        dateFormatter.timeStyle = theTimeFormat
+//        
+//        return dateFormatter.stringFromDate(lastDiscoveredTime)
+//    }
     
     // add new interactive to table view when notified
     func addNewInteractive(notification: NSNotification) {
@@ -341,12 +352,11 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     }
     
     func refreshTable(notification: NSNotification) {
-        appDelegate.dataManager.queryParseForInteractiveObjects()
+        startRefreshTimer()
+        stopStartScan()
     }
     
     func prepareInteractiveTableViewCellInformation (bean:PTDBean) {
-        println("in prepareInteractiveTableViewCellInformation")
-        println("bean name: \(bean.name)")
         hideStatus()
         if let parseFriendlyName = appDelegate.dataManager.knownInteractivesFromParseFriendlyNames [bean.name] {
 
@@ -386,6 +396,46 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         
     }
     
+    func deleteRowsAtIndexPaths(indexPaths: [AnyObject],
+        withRowAnimation animation: UITableViewRowAnimation) {
+            
+    }
+    
+    func removeStaleData()
+    {
+        interactivesNearbyTable.beginUpdates()
+        var rowsToDelete = [NSIndexPath]()
+        var removedItems = 0
+        for (index,friendlyName) in enumerate(nearbyInteractivesFriendlyArray)
+        {
+            var BLEName = getBLEName(friendlyName)
+            if !BLEName.isEmpty
+            {
+                let found = nearbyBLEInteractives[BLEName] != nil
+                
+                if found == false
+                {
+                    readyToDisplayInteractives[friendlyName] = nil
+                    rowsToDelete.append(NSIndexPath(forRow: index, inSection: 0))
+                    didAnimateCell[rowsToDelete.last!] = false
+                    nearbyInteractivesFriendlyArray.removeAtIndex(index - removedItems)
+                    removedItems++
+                }
+            }
+        }
+        
+        if rowsToDelete.count > 0 {
+            interactivesNearbyTable.deleteRowsAtIndexPaths(rowsToDelete, withRowAnimation: UITableViewRowAnimation.Fade)
+            rowsToDelete.removeAll()
+        }
+        
+        if nearbyBLEInteractives.count == 0 {
+            showStatus("Nearby installations appear automatically when discovered.\nCheck out the map for all locations.")
+        }
+        interactivesNearbyTable.endUpdates()
+    }
+
+    
     
 
     // MARK: PTDBeanManagerDelegate
@@ -407,70 +457,42 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     
     func startScanningForInteractives(notif: NSNotification)
     {
-        if appDelegate.dataManager.dataStoreReady == true && bluetoothIsReady == true {
-            showStatus("Nearby installations appear automatically when discovered.\nCheck out the map for all locations.")
+        if appDelegate.dataManager.dataStoreReady == true && bluetoothIsReady == true && runningInForground() == true {
+//            showStatus("Nearby installations appear automatically when discovered.\nCheck out the map for all locations.")
             self.manager.startScanningForBeans_error(nil)
         }
     }
     
+    func runningInForground() -> Bool {
+        var state = UIApplication.sharedApplication().applicationState
+        
+        if (state == .Active) {
+            println("SCAN!!!!!")
+            return true
+        } else {
+            println("NO SCAN IN BACKROUND")
+            return false
+        }
+        
+    }
+    
     func stopStartScan()
     {
-        if appDelegate.dataManager.dataStoreReady == false || bluetoothIsReady == false {
-            println("datastoreReady?: \(appDelegate.dataManager.dataStoreReady), bluetoothIsReady?: \(bluetoothIsReady), datatore/bluetooth not ready, returning")
+        if appDelegate.dataManager.dataStoreReady == false || bluetoothIsReady == false || runningInForground() == false {
+            println("no scan becuase things aren't ready")
             return
         }
         
-        println("stopStartScan... stoping scan")
-        self.manager.stopScanningForBeans_error(nil)
-        println("stopStartScan... clearing interactives dictionary")
+//        self.manager.stopScanningForBeans_error(nil)
         clearCacheOfInteractives()
-        println("stopStartScan... starting scan")
         self.manager.startScanningForBeans_error(nil)
+        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delayRemoveAfterRefresh * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
             self.removeStaleData()
         })
   
     }
     
-    func deleteRowsAtIndexPaths(indexPaths: [AnyObject],
-        withRowAnimation animation: UITableViewRowAnimation) {
-            
-    }
-    
-    func removeStaleData()
-    {
-        interactivesNearbyTable.beginUpdates()
-        var rowsToDelete = [NSIndexPath]()
-        var removedItems = 0
-        for (index,friendlyName) in enumerate(nearbyInteractivesFriendlyArray)
-        {
-            var BLEName = getBLEName(friendlyName)
-            if !BLEName.isEmpty
-            {
-                let found = nearbyBLEInteractives[BLEName] != nil
-
-                if found == false
-                {
-                    readyToDisplayInteractives[friendlyName] = nil
-                    
-                    rowsToDelete.append(NSIndexPath(forRow: index, inSection: 0))
-                    didAnimateCell[rowsToDelete.last!] = false
-                    nearbyInteractivesFriendlyArray.removeAtIndex(index - removedItems)
-                    removedItems++
-                }
-            }
-        }
-        
-        if rowsToDelete.count > 0 {
-            interactivesNearbyTable.deleteRowsAtIndexPaths(rowsToDelete, withRowAnimation: UITableViewRowAnimation.Fade)
-            rowsToDelete.removeAll()
-        }
-        
-        if nearbyBLEInteractives.count == 0 {
-            showStatus("Nearby installations appear automatically when discovered.\nCheck out the map for all locations.")
-        }
-        interactivesNearbyTable.endUpdates()
-    }
     
     func getBLEName(FriendlyName:String) -> String
     {
@@ -488,16 +510,10 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     func beanManager(beanManager: PTDBeanManager!, didDiscoverBean bean: PTDBean!, error: NSError!) {
         
         // add found interactive to dictionary
-        println("Did discover bean: \(bean)")
         if appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
-            println("Did discover, in true")
             nearbyBLEInteractives[bean.name] = bean
             var requestNotificationDict: [String:PTDBean] = ["NewBean" : bean!]
             NSNotificationCenter.defaultCenter().postNotificationName("AddNewInteractive", object: nil, userInfo: requestNotificationDict)
-        }
-        else
-        {
-            println("Did discover, in false")
         }
         
     }
@@ -540,7 +556,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     // end interaction by disconnecting and adding to temporary ignore list
     func clearCacheOfInteractives() {
         
-        println("clearing dictionary of known interactives")
+//        println("clearing dictionary of known interactives")
         nearbyBLEInteractives.removeAll()
  
         
@@ -548,7 +564,9 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     
     func pauseTimer(notification: NSNotification) {
         println("timer stopped")
-        refreshBLEObjects.invalidate()
+        invalidatRefreshTimer()
+        manager.stopScanningForBeans_error(nil)
+
     }
     
     // end interaction by disconnecting and adding to temporary ignore list

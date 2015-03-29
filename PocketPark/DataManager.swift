@@ -34,7 +34,7 @@ class DataManager: NSObject {
     // get most recent interactives from parse cloud
     func queryParseForInteractiveObjects() {
         
-        println("calling queryParseForInteractiveObjects")
+//        println("calling queryParseForInteractiveObjects")
         // check for network availablity before requesting interactives from parse
         if (IJReachability.isConnectedToNetwork() == true) {
             // pull latest interactive objects from Parse
@@ -68,15 +68,15 @@ class DataManager: NSObject {
     
     func checkNetwork()
     {
-        println("in data manager, check network")
+//        println("in data manager, check network")
         if (IJReachability.isConnectedToNetwork() == false)
         {
-            println("in data manager, check network false")
+//            println("in data manager, check network false")
             NSNotificationCenter.defaultCenter().postNotificationName("noNetwork", object: nil)
         }
         else
         {
-            println("in data manager, check network true")
+//            println("in data manager, check network true")
         }
     }
     
@@ -101,14 +101,6 @@ class DataManager: NSObject {
                     }
                     self.dictionaryOfInteractivesWithGeoPoints()
                     self.dataStoreReady = true
-                    
-                    println("in begining, printing parse data dictionary, count: \(self.knownInteractivesFromParse.count)")
-                    
-                    for key in self.knownInteractivesFromParse
-                    {
-                        println("key: \(key)")
-                    }
-                    
                     
                     NSNotificationCenter.defaultCenter().postNotificationName("readyToFind", object: nil)
                 }
