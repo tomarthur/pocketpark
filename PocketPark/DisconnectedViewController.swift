@@ -18,7 +18,7 @@ import IJReachability
 import MBProgressHUD
 
 
-class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITableViewDataSource, UITableViewDelegate {
+class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UITableViewDataSource, UITableViewDelegate, PTDBeanManagerDelegate {
     
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
@@ -87,6 +87,7 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         
         makeInteractivesTableView()
         
+        
         // Notifications
 
         // when datastore and bluetooth are ready start scanning
@@ -140,6 +141,28 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
         
         
         self.view.backgroundColor = .ITWelcomeColor()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        makeNavigationBar()
+    }
+    
+    func makeNavigationBar () {
+        
+        // Create the navigation bar
+        let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 44)) // Offset by 20 pixels vertically to take the status bar into account
+        navigationBar.barStyle = .Black
+        navigationBar.delegate = self;
+        
+        // Create a navigation item with a title
+        let navigationItem = UINavigationItem()
+        navigationItem.title = "Theme Park of Everyday"
+        navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "OtterFont", size: 25)!]
+        
+        navigationBar.items = [navigationItem]
+        
+        // Make the navigation bar a subview of the current view controller
+        self.view.addSubview(navigationBar)
     }
     
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
@@ -213,13 +236,12 @@ class DisconnectedViewController: UIViewController, PTDBeanManagerDelegate, UITa
             
             interactivesNearbyTableView.dataSource = self
             interactivesNearbyTableView.delegate = self
-            interactivesNearbyTableView.contentInset = UIEdgeInsetsMake(10,0,0,0)
+            interactivesNearbyTableView.contentInset = UIEdgeInsetsMake(60,0,0,0)
             
             // Setup Refresh Control
             refreshControl = UIRefreshControl()
             refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: .ValueChanged)
             interactivesNearbyTableView.addSubview(refreshControl)
-            
             
             interactivesNearbyTableView.rowHeight = 201
             view.addSubview(interactivesNearbyTableView)

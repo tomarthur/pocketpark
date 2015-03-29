@@ -18,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Gx-aR-Vju">
-                    <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="brx-Jz-VN7"/>
@@ -26,17 +26,8 @@
                     </connections>
                 </tableView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="uwe-B8-ebe">
-                    <rect key="frame" x="282" y="257.5" width="37" height="37"/>
+                    <rect key="frame" x="282" y="258" width="37" height="37"/>
                 </activityIndicatorView>
-                <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="FAN-QQ-ti6">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="5mC-6t-aA4"/>
-                    </constraints>
-                    <items>
-                        <navigationItem title="Title" id="pH0-Bc-yCB"/>
-                    </items>
-                </navigationBar>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pC8-Rc-qUF" userLabel="Status">
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -45,34 +36,25 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="pC8-Rc-qUF" secondAttribute="centerX" id="0UZ-IB-uhf"/>
-                <constraint firstItem="FAN-QQ-ti6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="58p-Df-cjN"/>
-                <constraint firstItem="uwe-B8-ebe" firstAttribute="top" secondItem="pC8-Rc-qUF" secondAttribute="bottom" constant="-19.5" id="Ac7-W3-AV7"/>
-                <constraint firstItem="FAN-QQ-ti6" firstAttribute="trailing" secondItem="7Gx-aR-Vju" secondAttribute="trailing" id="J8M-rU-K3L"/>
-                <constraint firstAttribute="centerX" secondItem="uwe-B8-ebe" secondAttribute="centerX" id="MRk-nt-gk0"/>
-                <constraint firstAttribute="centerY" secondItem="uwe-B8-ebe" secondAttribute="centerY" constant="24" id="OEP-JO-S4K"/>
-                <constraint firstItem="FAN-QQ-ti6" firstAttribute="top" secondItem="pC8-Rc-qUF" secondAttribute="top" id="PYT-uA-FzH"/>
-                <constraint firstItem="FAN-QQ-ti6" firstAttribute="centerX" secondItem="uwe-B8-ebe" secondAttribute="centerX" id="W8S-Gl-gel"/>
+                <constraint firstAttribute="bottom" secondItem="7Gx-aR-Vju" secondAttribute="bottom" id="Bdo-yS-vcF"/>
+                <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="pC8-Rc-qUF" secondAttribute="top" id="BgI-gz-ww9"/>
+                <constraint firstItem="7Gx-aR-Vju" firstAttribute="centerX" secondItem="uwe-B8-ebe" secondAttribute="centerX" id="JPf-Id-aI6"/>
+                <constraint firstAttribute="trailing" secondItem="7Gx-aR-Vju" secondAttribute="trailing" id="KJH-6z-6ac"/>
+                <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="VW5-bJ-jJP"/>
                 <constraint firstItem="uwe-B8-ebe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="292" id="WcL-rO-MM0"/>
-                <constraint firstItem="pC8-Rc-qUF" firstAttribute="leading" secondItem="FAN-QQ-ti6" secondAttribute="leading" id="aDM-AD-xDa"/>
-                <constraint firstAttribute="trailing" secondItem="FAN-QQ-ti6" secondAttribute="trailing" id="aUd-Jx-jK5"/>
                 <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cTE-a6-HPB"/>
-                <constraint firstItem="FAN-QQ-ti6" firstAttribute="leading" secondItem="7Gx-aR-Vju" secondAttribute="leading" id="dKm-pa-LaE"/>
-                <constraint firstAttribute="bottom" secondItem="7Gx-aR-Vju" secondAttribute="bottom" id="jNo-n3-ihM"/>
-                <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="44" id="jtm-ri-ed4"/>
-                <constraint firstItem="FAN-QQ-ti6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="k9V-66-nxD"/>
+                <constraint firstItem="7Gx-aR-Vju" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iRo-Aj-tEb"/>
                 <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="pC8-Rc-qUF" secondAttribute="top" id="qlG-lu-fAC"/>
+                <constraint firstItem="uwe-B8-ebe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="258" id="qyP-zv-P8b"/>
+                <constraint firstItem="7Gx-aR-Vju" firstAttribute="leading" secondItem="pC8-Rc-qUF" secondAttribute="leading" id="wpB-RL-8fS"/>
                 <constraint firstItem="7Gx-aR-Vju" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ykb-QM-YBO"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="PYT-uA-FzH"/>
-                    <exclude reference="W8S-Gl-gel"/>
                     <exclude reference="cTE-a6-HPB"/>
                     <exclude reference="qlG-lu-fAC"/>
                     <exclude reference="ykb-QM-YBO"/>
                     <exclude reference="WcL-rO-MM0"/>
-                    <exclude reference="aDM-AD-xDa"/>
                 </mask>
             </variation>
         </view>

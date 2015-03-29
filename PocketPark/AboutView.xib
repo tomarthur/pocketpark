@@ -10,8 +10,6 @@
                 <outlet property="createOwnButton" destination="gjv-t0-2UD" id="XGO-lA-jBh"/>
                 <outlet property="explanationText" destination="Vjw-hJ-cn1" id="82n-1f-9Ai"/>
                 <outlet property="feedbackButton" destination="xlD-NF-h3n" id="9i7-kt-jb1"/>
-                <outlet property="subtitleText" destination="9pR-US-xAI" id="93C-hb-IJV"/>
-                <outlet property="titleText" destination="mXG-hC-1N7" id="HA3-FD-jVh"/>
                 <outlet property="view" destination="iN0-l3-epB" id="IMK-bA-i1k"/>
             </connections>
         </placeholder>
@@ -20,46 +18,11 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXG-hC-1N7">
-                    <rect key="frame" x="112" y="31" width="376" height="62"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="376" id="90f-7C-kmz"/>
-                    </constraints>
-                    <attributedString key="attributedText">
-                        <fragment content="Pocket Theme Park">
-                            <attributes>
-                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <font key="NSFont" size="48" name="OtterFont"/>
-                                <font key="NSOriginalFont" size="48" name="OtterFont"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                            </attributes>
-                        </fragment>
-                    </attributedString>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pR-US-xAI">
-                    <rect key="frame" x="207" y="92" width="187" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="187" id="Ava-Jh-JL5"/>
-                        <constraint firstAttribute="height" constant="21" id="Z2o-my-Od9"/>
-                    </constraints>
-                    <attributedString key="attributedText">
-                        <fragment content="Theme Park of Everyday">
-                            <attributes>
-                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <font key="NSFont" size="17" name="HelveticaNeue-Light"/>
-                                <font key="NSOriginalFont" size="17" name="HelveticaNeue-Light"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                            </attributes>
-                        </fragment>
-                    </attributedString>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YWQ-TX-qbO">
                     <rect key="frame" x="11" y="494" width="579" height="50"/>
                     <color key="backgroundColor" red="0.49803921569999998" green="0.54901960780000003" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="a0l-eW-blF"/>
+                        <constraint firstAttribute="height" constant="50" id="rlA-7v-8KL"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                     <state key="normal" title="Acknowledgements">
@@ -74,7 +37,7 @@
                     <rect key="frame" x="11" y="436" width="579" height="50"/>
                     <color key="backgroundColor" red="0.20392156859999999" green="0.59607843140000005" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="UrE-wE-8hz"/>
+                        <constraint firstAttribute="height" constant="50" id="LmP-mG-KBZ"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" title="@PocketThemePark">
@@ -89,7 +52,7 @@
                     <rect key="frame" x="11" y="378" width="579" height="50"/>
                     <color key="backgroundColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="Pex-hJ-oXF"/>
+                        <constraint firstAttribute="height" constant="50" id="1Yw-EL-yHd"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <state key="normal" title="Create Your Own Installation">
@@ -100,15 +63,15 @@
                         <action selector="createOwnButtonPressed:" destination="-1" eventType="touchUpInside" id="Dp0-X7-qpF"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vjw-hJ-cn1">
-                    <rect key="frame" x="21" y="134" width="558" height="216"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Vjw-hJ-cn1">
+                    <rect key="frame" x="35" y="95" width="530" height="229"/>
                     <attributedString key="attributedText">
                         <fragment>
                             <string key="content">Pocket Theme Park enables serendipitous moments of surprise and wonder by enabling your device to control the physical world. Create your own installations and help build the Theme Park of Everyday.</string>
                             <attributes>
                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <font key="NSFont" size="17" name="HelveticaNeue-Light"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                <font key="NSFont" size="20" name="HelveticaNeue-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
                     </attributedString>
@@ -117,26 +80,21 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="gjv-t0-2UD" firstAttribute="top" secondItem="Vjw-hJ-cn1" secondAttribute="bottom" constant="28" id="0bg-cf-zHN"/>
-                <constraint firstItem="Vjw-hJ-cn1" firstAttribute="top" secondItem="mXG-hC-1N7" secondAttribute="bottom" constant="41" id="4Nx-t3-nQR"/>
-                <constraint firstItem="9pR-US-xAI" firstAttribute="centerX" secondItem="mXG-hC-1N7" secondAttribute="centerX" id="9Tz-bg-U3U"/>
-                <constraint firstItem="9pR-US-xAI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="92" id="ASl-bA-PxN"/>
-                <constraint firstAttribute="bottom" secondItem="YWQ-TX-qbO" secondAttribute="bottom" constant="56" id="DQP-kb-QdS"/>
-                <constraint firstAttribute="trailing" secondItem="Vjw-hJ-cn1" secondAttribute="trailing" constant="21" id="EJ6-LZ-8dK"/>
-                <constraint firstItem="xlD-NF-h3n" firstAttribute="top" secondItem="gjv-t0-2UD" secondAttribute="bottom" constant="8" symbolic="YES" id="EPM-eA-T3s"/>
-                <constraint firstItem="xlD-NF-h3n" firstAttribute="leading" secondItem="gjv-t0-2UD" secondAttribute="leading" id="JsP-gE-xgE"/>
-                <constraint firstItem="xlD-NF-h3n" firstAttribute="trailing" secondItem="YWQ-TX-qbO" secondAttribute="trailing" id="Nai-Ib-9kT"/>
-                <constraint firstItem="Vjw-hJ-cn1" firstAttribute="top" secondItem="9pR-US-xAI" secondAttribute="bottom" constant="21" id="OPg-Fv-NVs"/>
-                <constraint firstItem="9pR-US-xAI" firstAttribute="centerX" secondItem="Vjw-hJ-cn1" secondAttribute="centerX" id="PGb-up-lhc"/>
-                <constraint firstItem="YWQ-TX-qbO" firstAttribute="leading" secondItem="xlD-NF-h3n" secondAttribute="leading" id="SrK-JM-20B"/>
-                <constraint firstItem="YWQ-TX-qbO" firstAttribute="top" secondItem="xlD-NF-h3n" secondAttribute="bottom" constant="8" symbolic="YES" id="bbH-j4-Slr"/>
-                <constraint firstItem="mXG-hC-1N7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="31" id="dqt-Aj-Fyb"/>
-                <constraint firstItem="gjv-t0-2UD" firstAttribute="centerX" secondItem="Vjw-hJ-cn1" secondAttribute="centerX" id="hq3-wo-20k"/>
-                <constraint firstItem="Vjw-hJ-cn1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="21" id="kdu-nT-h1h"/>
-                <constraint firstItem="xlD-NF-h3n" firstAttribute="trailing" secondItem="gjv-t0-2UD" secondAttribute="trailing" id="lue-TQ-0UM"/>
-                <constraint firstItem="gjv-t0-2UD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="11" id="r72-t0-tHt"/>
-                <constraint firstItem="xlD-NF-h3n" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="xoq-iG-ZF9"/>
+                <constraint firstItem="xlD-NF-h3n" firstAttribute="trailing" secondItem="YWQ-TX-qbO" secondAttribute="trailing" id="1hU-6n-4hU"/>
+                <constraint firstItem="gjv-t0-2UD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="11" id="CNH-e7-3J7"/>
+                <constraint firstAttribute="bottom" secondItem="YWQ-TX-qbO" secondAttribute="bottom" constant="56" id="IRo-Bd-9E5"/>
+                <constraint firstItem="xlD-NF-h3n" firstAttribute="trailing" secondItem="gjv-t0-2UD" secondAttribute="trailing" id="PJg-hG-Kfj"/>
+                <constraint firstItem="xlD-NF-h3n" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Qnk-8y-qle"/>
+                <constraint firstItem="Vjw-hJ-cn1" firstAttribute="centerX" secondItem="gjv-t0-2UD" secondAttribute="centerX" id="Vua-Sk-aen"/>
+                <constraint firstItem="Vjw-hJ-cn1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="95" id="WTB-OQ-rM9"/>
+                <constraint firstItem="YWQ-TX-qbO" firstAttribute="top" secondItem="xlD-NF-h3n" secondAttribute="bottom" constant="8" symbolic="YES" id="cgQ-dH-c9a"/>
+                <constraint firstItem="gjv-t0-2UD" firstAttribute="leading" secondItem="xlD-NF-h3n" secondAttribute="leading" id="eyp-RF-gjE"/>
+                <constraint firstItem="Vjw-hJ-cn1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="35" id="jVK-LC-wbk"/>
+                <constraint firstItem="gjv-t0-2UD" firstAttribute="top" secondItem="Vjw-hJ-cn1" secondAttribute="bottom" constant="54" id="oAM-Fq-8CJ"/>
+                <constraint firstItem="YWQ-TX-qbO" firstAttribute="leading" secondItem="xlD-NF-h3n" secondAttribute="leading" id="phS-8n-HOX"/>
+                <constraint firstItem="xlD-NF-h3n" firstAttribute="top" secondItem="gjv-t0-2UD" secondAttribute="bottom" constant="8" symbolic="YES" id="xt2-hy-CeO"/>
             </constraints>
+            <point key="canvasLocation" x="382" y="336"/>
         </view>
     </objects>
 </document>
