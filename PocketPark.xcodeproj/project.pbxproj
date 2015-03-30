@@ -33,7 +33,6 @@
 		E261D40F1AB008B000957726 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D40B1AB008B000957726 /* CustomColors.swift */; };
 		E261D4101AB008B000957726 /* InteractionBeaconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D40C1AB008B000957726 /* InteractionBeaconManager.swift */; };
 		E261D4111AB008B000957726 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D40D1AB008B000957726 /* DataManager.swift */; };
-		E261D4121AB008B000957726 /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D40E1AB008B000957726 /* SensorManager.swift */; };
 		E261D4141AB008BA00957726 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D4131AB008BA00957726 /* AppDelegate.swift */; };
 		E261D4411AB00AB100957726 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E261D4401AB00AB100957726 /* AVFoundation.framework */; };
 		E261D4431AB00ABC00957726 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E261D4421AB00ABC00957726 /* libstdc++.6.dylib */; };
@@ -101,7 +100,6 @@
 		E261D40B1AB008B000957726 /* CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		E261D40C1AB008B000957726 /* InteractionBeaconManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionBeaconManager.swift; sourceTree = "<group>"; };
 		E261D40D1AB008B000957726 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		E261D40E1AB008B000957726 /* SensorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorManager.swift; sourceTree = "<group>"; };
 		E261D4131AB008BA00957726 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E261D4401AB00AB100957726 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		E261D4421AB00ABC00957726 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
@@ -303,7 +301,6 @@
 				E261D40B1AB008B000957726 /* CustomColors.swift */,
 				E261D40C1AB008B000957726 /* InteractionBeaconManager.swift */,
 				E261D40D1AB008B000957726 /* DataManager.swift */,
-				E261D40E1AB008B000957726 /* SensorManager.swift */,
 				E24494831AC5F8000004AD6D /* PushNotificationController.swift */,
 				E2624DCC1AC7BBF5006848D6 /* UIViewExtensions.swift */,
 			);
@@ -504,7 +501,6 @@
 				E261D4101AB008B000957726 /* InteractionBeaconManager.swift in Sources */,
 				E261D3FF1AB0089D00957726 /* OnboardingViewController.swift in Sources */,
 				E261D3FE1AB0089D00957726 /* ConnectedViewController.swift in Sources */,
-				E261D4121AB008B000957726 /* SensorManager.swift in Sources */,
 				E22299FA1AC4E4DE0002457B /* CellAnimation.swift in Sources */,
 				E261D4111AB008B000957726 /* DataManager.swift in Sources */,
 				E24494841AC5F8000004AD6D /* PushNotificationController.swift in Sources */,

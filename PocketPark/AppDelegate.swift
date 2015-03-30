@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CoreLocation
+
 
 
 
@@ -15,6 +15,7 @@ import CoreLocation
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
+    
     var interactionBeaconManager = InteractionBeaconManager()   // Core Location
     var dataManager = DataManager()                             // Parse Data
     var pushNotificationController:PushNotificationController?  // Push Notifications
@@ -76,13 +77,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-        interactionBeaconManager.locationManager?.startUpdatingLocation()
+        interactionBeaconManager.startMonitoringForRegionOnly()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 
-        interactionBeaconManager.locationManager?.stopUpdatingLocation()
+        interactionBeaconManager.stopUpdatingLocation()
         
     }
 
@@ -92,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        interactionBeaconManager.locationManager?.startUpdatingLocation()
+        interactionBeaconManager.startMonitoringForRegionOnly()
     }
     
     func askForNotificationPermissionForApplication(){
@@ -140,6 +141,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             let bleName = notification.userInfo!["bleName"] as? String
 
             if friendlyName != nil && bleName != nil{
+                
+                if let tabBarController = self.window!.rootViewController as? UITabBarController {
+                    tabBarController.selectedIndex = 1
+                }
+                
                 var requestNotificationDict: [String:String] = ["beaconInteractionBLEName" : bleName!]
                 NSNotificationCenter.defaultCenter().postNotificationName("startInteractionFromNotification", object: self, userInfo: requestNotificationDict)
             } else {
@@ -190,11 +196,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func setupNormalRootVC(animated : Bool) {
+        var tabs = UITabBarController()
         var disconnectedViewController = DisconnectedViewController(nibName: "DisconnectedView", bundle: nil)
         var mapViewController = InteractiveMapViewController(nibName: "InteractiveMap", bundle: nil)
         var aboutViewController = AboutViewController(nibName: "AboutView", bundle: nil)
         
-        var tabs = UITabBarController()
         UITabBar.appearance().tintColor = .ITConnectedColor()
         UITabBar.appearance().barStyle = UIBarStyle.Black
         tabs.viewControllers = [mapViewController, disconnectedViewController, aboutViewController]

@@ -14,21 +14,33 @@ class InteractiveMapViewController: UIViewController, UIToolbarDelegate, UINavig
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     @IBOutlet weak var mapView: MKMapView!
+    var placesObjects = [AnyObject]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addInteractiveGeoPoints()
+        zoomUserLocation()
 
         mapView.delegate = self
         mapView.showsUserLocation = true
-        makeNavigationBar()
+        mapView.setUserTrackingMode(.Follow, animated: true);
     }
     
     override func viewWillAppear(animated: Bool) {
         makeNavigationBar()
-       zoomUserLocation()
+
     }
     
+    override func viewDidAppear(animated: Bool) {
+        
+        
+    }
+
     
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return .TopAttached
+    }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
@@ -52,14 +64,6 @@ class InteractiveMapViewController: UIViewController, UIToolbarDelegate, UINavig
         self.view.addSubview(navigationBar)
     }
     
-    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
-        return .TopAttached
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        
-        addInteractiveGeoPoints()
-    }
 
     func zoomUserLocation() {
 
@@ -71,20 +75,50 @@ class InteractiveMapViewController: UIViewController, UIToolbarDelegate, UINavig
         
     }
     
+
+    
     func addInteractiveGeoPoints(){
-
-            for (name, geopoint) in appDelegate.dataManager.knownInteractivesFromParseWithGeopoints {
-                var annotation = MKPointAnnotation()
-
-                annotation.coordinate = CLLocationCoordinate2DMake(geopoint.latitude, geopoint.longitude)
-                annotation.title = name
-                
-                
-                self.mapView.addAnnotation(annotation)
-                
-                
-        }
+        // User's location
+        let userGeoPoint = PFGeoPoint(latitude:mapView.userLocation.coordinate.latitude, longitude:mapView.userLocation.coordinate.latitude)
         
+        // Create a query for places
+        var query = PFQuery(className: "installations")
+        query.fromLocalDatastore()
+        // Interested in locations near user.
+        query.whereKey("location", nearGeoPoint:userGeoPoint)
+        // Limit what could be a lot of points.
+        query.limit = 10
+        // Final list of objects
+        
+        query.findObjectsInBackgroundWithBlock
+            {
+                (objects: [AnyObject]!, error: NSError!) -> Void in
+                if error == nil
+                {
+                    self.placesObjects = objects
+                    for object in self.placesObjects {
+                        var annotation = MKPointAnnotation()
+                        let currentPFObject = object as PFObject
+                        
+                        if let locationGeopoint = currentPFObject["location"] as? PFGeoPoint {
+                            annotation.coordinate = CLLocationCoordinate2DMake(locationGeopoint.latitude, locationGeopoint.longitude)
+                            annotation.title = currentPFObject["name"] as String
+                            
+                            if let locationDetail = currentPFObject["locationString"] as? String {
+                                annotation.subtitle = locationDetail
+                            }
+                             self.mapView.addAnnotation(annotation)
+                        }
+                        
+                        
+                    }
+
+                } else {
+                    NSNotificationCenter.defaultCenter().postNotificationName("parseError", object: nil)
+                    NSLog("Unable to find geopoints")
+                    NSLog("Error: %@ %@", error, error.userInfo!)
+                }
+        }
     }
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation

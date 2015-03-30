@@ -20,8 +20,6 @@ import AVFoundation
 
 class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorderDelegate{
     
-    var sensorInterface = SensorManager()
-    
     // Bluetooth Control
     var connectedBean: PTDBean?
     var connectedObjectInfo: PFObject!

@@ -29,9 +29,16 @@ class AboutViewController: UIViewController, UINavigationBarDelegate {
         self.view.backgroundColor = .ITWelcomeColor()
     }
     
+    func returnToNearbyVC(notification: NSNotification) {
+        
+
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
         makeNavigationBar()
     }
+    
     
     func makeNavigationBar () {
         

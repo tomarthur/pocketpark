@@ -53,6 +53,39 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
+    func startMonitoringForRegionOnly() {
+        switch CLLocationManager.authorizationStatus() {
+        case .AuthorizedAlways:
+            stopUpdatingLocation()
+            // iBeacon Regions and Notification to find Interactive Elements enabled by LightBlue Bean
+            let uuid = NSUUID(UUIDString: "A4955441-C5B1-4B44-B512-1370F02D74DE")
+            let beaconIdentifier = NSBundle.mainBundle().bundleIdentifier!
+            let beaconRegion:CLBeaconRegion = CLBeaconRegion(proximityUUID: uuid,
+                identifier: beaconIdentifier)
+            
+            locationManager!.startMonitoringForRegion(beaconRegion)
+            
+        case .NotDetermined:
+            locationManager!.requestAlwaysAuthorization()
+        case .Restricted, .Denied, .AuthorizedWhenInUse:
+            NSNotificationCenter.defaultCenter().postNotificationName("LocationDisabled", object: nil)
+        }
+        
+    }
+    
+    func stopUpdatingLocation() {
+        
+        locationManager!.stopUpdatingLocation()
+    }
+    
+    func stopRangingBeacons() {
+        let uuid = NSUUID(UUIDString: "A4955441-C5B1-4B44-B512-1370F02D74DE")
+        let beaconIdentifier = NSBundle.mainBundle().bundleIdentifier!
+        let beaconRegion:CLBeaconRegion = CLBeaconRegion(proximityUUID: uuid,
+            identifier: beaconIdentifier)
+        
+        locationManager!.stopRangingBeaconsInRegion(beaconRegion as CLBeaconRegion)
+    }
     func requestAuthorization() {
         
         locationManager = CLLocationManager()
