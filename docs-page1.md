@@ -57,7 +57,7 @@ How do you want the user to control your installation? Your selection can be pla
 	
 ##### Future Device Inputs
 Have an idea for a new input?
->[Tweet @PocketPark >](https://twitter.com/PocketPark)
+>[Tweet @PocketPark >](https://twitter.com/PocketThemePark)
 
 ### Step 2: Set What Happens
 What do you want to happen when your installation gets sensor data from the iOS Device? Use the code examples to control servos, relays, solenoids, LEDs, anything!
@@ -124,7 +124,7 @@ That's it! Go test your installation. After registration it should be immediatel
 
 Tweet, post a GitHub Issue or email with questions or if you're having trouble.
 
-> [Tweet @PocketPark >](https://twitter.com/PocketPark)
+> [Tweet @PocketPark >](https://twitter.com/PocketThemePark)
 
 > [Github Issues >](https://twitter.com/PocketPark)
 
