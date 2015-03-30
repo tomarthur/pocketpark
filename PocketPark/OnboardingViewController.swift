@@ -9,6 +9,9 @@
 import UIKit
 
 class OnboardingViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+    
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    
     let pageViewController: UIPageViewController = UIPageViewController(transitionStyle: UIPageViewControllerTransitionStyle.Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
     let pageControl: UIPageControl = UIPageControl()
     let kPageControlHeight: CGFloat = 35
@@ -145,6 +148,7 @@ class OnboardingViewController: UIViewController, UIPageViewControllerDataSource
                 break
             }
         }
+
         return indexOfVC
     }
     
@@ -169,6 +173,20 @@ class OnboardingViewController: UIViewController, UIPageViewControllerDataSource
         }
         
         let newViewController = pageViewController.viewControllers[0] as UIViewController
+        
+        println(indexOfViewController(newViewController))
+        
+        switch indexOfViewController(newViewController){
+            case 2:
+                println("request auth")
+                appDelegate.interactionBeaconManager.requestAuthorization()
+            case 3:
+                println("request auth 2")
+                appDelegate.askForNotificationPermissionForApplication()
+            default:
+                break
+        }
+        
         pageControl.currentPage = indexOfViewController(newViewController)
     }
 }

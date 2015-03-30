@@ -72,7 +72,6 @@ class OnboardingContentViewController: UIViewController {
         super.viewDidLoad()
 
         generateView()
-//        handleButtonPressed()
     }
     
     func generateView() {
@@ -104,7 +103,8 @@ class OnboardingContentViewController: UIViewController {
         
         var bodyLabel: UILabel = UILabel(frame: CGRectMake(0, CGRectGetMaxY(titleLabel.frame) + self.underTitlePadding, contentWidth, 0))
         bodyLabel.text = self.body
-        bodyLabel.font = UIFont(name: self.fontName, size: self.bodyFontSize)
+//        bodyLabel.font = UIFont(name: self.fontName, size: self.bodyFontSize)
+        UIFont (name: "HelveticaNeue-Light", size: self.bodyFontSize)
         bodyLabel.textColor = self.titleTextColor
         bodyLabel.numberOfLines = 0
         bodyLabel.textAlignment = .Center
