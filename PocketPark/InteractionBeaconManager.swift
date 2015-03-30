@@ -10,6 +10,7 @@
 
 import Foundation
 
+
 class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager?
     var lastProximity: CLProximity?
@@ -86,6 +87,16 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         
         locationManager!.stopRangingBeaconsInRegion(beaconRegion as CLBeaconRegion)
     }
+    
+    func haveLocationPermission() -> Bool {
+        switch CLLocationManager.authorizationStatus() {
+        case .AuthorizedAlways:
+            return true
+        default:
+            return false
+        }
+    }
+    
     func requestAuthorization() {
         
         locationManager = CLLocationManager()
@@ -93,6 +104,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         switch CLLocationManager.authorizationStatus() {
         case .AuthorizedAlways:
             start()
+
         case .NotDetermined:
             locationManager!.requestAlwaysAuthorization()
         case .Restricted, .Denied, .AuthorizedWhenInUse:
@@ -122,10 +134,10 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
                 case CLProximity.Far:
                     return
                 case CLProximity.Near:
-                        println("near proximity")
+                        //println("near proximity")
                         sendLocalNotificationToStartInteraction(beaconString)
                 case CLProximity.Immediate:
-                        println("Immediate proximity")
+                        //println("Immediate proximity")
                         sendLocalNotificationToStartInteraction(beaconString)
                 case CLProximity.Unknown:
                     return
@@ -187,7 +199,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
                 if (beaconIsIgnored(beaconString) == false) {
                     for (value, key) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames{
                         if (value == beaconString){
-                            println("send local notification")
+                            //println("send local notification")
                             
                             self.pushLocalInteractiveAvailableNotification(key, bleName: value)
                             previouslySentNotifications[beaconString] = NSDate()
@@ -203,12 +215,10 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         switch CLLocationManager.authorizationStatus(){
         case .AuthorizedAlways:
             startUpdatingLocation()
-        case .NotDetermined:
-            println("CL not yet determined")
         case .Restricted, .Denied, .AuthorizedWhenInUse:
             NSNotificationCenter.defaultCenter().postNotificationName("LocationDisabled", object: nil)
         default:
-            println("CL unhandled error")
+            return
             
         }
     }
@@ -232,7 +242,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         }
 
         if alreadyExperienced == true || recentlyNotified == true {
-            println("ignored \(beaconString) beacon")
+            //println("ignored \(beaconString) beacon")
             return true
         } else{
             return false

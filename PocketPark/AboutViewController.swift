@@ -118,20 +118,5 @@ class AboutViewController: UIViewController, UINavigationBarDelegate {
 //        presentViewController(alertController, animated: true, completion: nil)
     }
     
-    func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError) {
-        switch result.value {
-        case MFMailComposeResultCancelled.value:
-            println("Mail cancelled")
-        case MFMailComposeResultSaved.value:
-            println("Mail saved")
-        case MFMailComposeResultSent.value:
-            println("Mail sent")
-        case MFMailComposeResultFailed.value:
-            println("Mail sent failure: \(error.localizedDescription)")
-        default:
-            break
-        }
-        self.dismissViewControllerAnimated(false, completion: nil)
-    }
-    
+       
 }

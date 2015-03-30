@@ -18,7 +18,8 @@
 
 // based on http://doing-it-wrong.mikeweller.com/2012/07/youre-doing-it-wrong-1-nslogdebug-ios.html
 #if DEBUG == 1
-    #define PTDLog NSLog
+    #define PTDLog(...)
+//    #define PTDLog NSLog
 #else
     #define PTDLog(...)
 #endif

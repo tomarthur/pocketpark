@@ -8,9 +8,6 @@
 
 import UIKit
 
-
-
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
@@ -113,8 +110,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
     }
     
+    func notificationPermission() -> Bool {
+        
+        let currentSettings = UIApplication.sharedApplication().currentUserNotificationSettings()
+        let required:UIUserNotificationType = UIUserNotificationType.Alert | UIUserNotificationType.Sound | UIUserNotificationType.Badge; // Add other permissions as required
+        let notification = UILocalNotification()
+        
+        if (currentSettings.types & required) != nil {
+           return  true
+        }else{
+            return false
+        }
+    }
+    
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        println("didRegisterForRemoteNotificationsWithDeviceToken")
+//        println("didRegisterForRemoteNotificationsWithDeviceToken")
         
         let currentInstallation = PFInstallation.currentInstallation()
         
@@ -125,11 +135,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        println("failed to register for remote notifications:  (error)")
+//        println("failed to register for remote notifications:  (error)")
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        println("didReceiveRemoteNotification")
+        //println("didReceiveRemoteNotification")
         PFPush.handlePush(userInfo)
     }
     

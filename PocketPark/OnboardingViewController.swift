@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MBProgressHUD
+import JGProgressHUD
 
 class OnboardingViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
@@ -19,6 +21,7 @@ class OnboardingViewController: UIViewController, UIPageViewControllerDataSource
     var backgroundImage: UIImage?
     var contents: [OnboardingContentViewController] = []
     var shouldMaskBackground: Bool = true
+    let delayRemoveAfterRefresh = 1.0
     
     init(backgroundImage: UIImage?, contents: [OnboardingContentViewController]) {
         self.backgroundImage = backgroundImage
@@ -174,15 +177,37 @@ class OnboardingViewController: UIViewController, UIPageViewControllerDataSource
         
         let newViewController = pageViewController.viewControllers[0] as UIViewController
         
-        println(indexOfViewController(newViewController))
+        //println(indexOfViewController(newViewController))
         
         switch indexOfViewController(newViewController){
             case 2:
-                println("request auth")
-                appDelegate.interactionBeaconManager.requestAuthorization()
+                //println("request auth")
+                if appDelegate.interactionBeaconManager.haveLocationPermission() == false {
+                   appDelegate.interactionBeaconManager.requestAuthorization()
+                } else {
+                    
+                    let HUD = JGProgressHUD(style: JGProgressHUDStyle.Dark)
+                    HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
+                    HUD.textLabel.text = "Location approved!"
+                    HUD.showInView(self.view)
+                    HUD.dismissAfterDelay(1.0)
+                    
+                }
+            
             case 3:
-                println("request auth 2")
-                appDelegate.askForNotificationPermissionForApplication()
+                //println("request auth 2")
+                if appDelegate.notificationPermission() == false{
+                    appDelegate.askForNotificationPermissionForApplication()
+                } else {
+                    
+                    let HUD = JGProgressHUD(style: JGProgressHUDStyle.Dark)
+                    HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
+                    HUD.textLabel.text = "You'll be notified!"
+                    HUD.showInView(self.view)
+                    HUD.dismissAfterDelay(1.0)
+                    
+                }
+            
             default:
                 break
         }

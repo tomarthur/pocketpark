@@ -6,5 +6,5 @@ target 'PocketPark' do
     pod 'Onboard'
     pod 'IJReachability', :git => 'https://github.com/Isuru-Nanayakkara/IJReachability.git'
     pod 'MBProgressHUD', '~> 0.9.1'
-
+    pod 'JGProgressHUD'
 end

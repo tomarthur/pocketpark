@@ -74,6 +74,7 @@
 		E2332B721ABFA15E00455422 /* InteractiveCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InteractiveCard.xib; sourceTree = "<group>"; };
 		E2332B741ABFA33A00455422 /* InteractiveCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveCardCell.swift; sourceTree = "<group>"; };
 		E24494831AC5F8000004AD6D /* PushNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationController.swift; sourceTree = "<group>"; };
+		E25940A31AC8FF040064AB90 /* PKHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PKHUD.framework; path = ../../../../../Desktop/PKHUD.framework; sourceTree = "<group>"; };
 		E261D3BF1AB007DE00957726 /* PocketPark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketPark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E261D3C31AB007DE00957726 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E261D3D41AB007DE00957726 /* PocketParkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketParkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +172,7 @@
 		C046217728DF1AD06B053BE4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E25940A31AC8FF040064AB90 /* PKHUD.framework */,
 				E267FD7B1AC6079F00654B20 /* Bolts.framework */,
 				E267FD7C1AC6079F00654B20 /* Parse.framework */,
 				E267FD7D1AC6079F00654B20 /* ParseCrashReporting.framework */,
@@ -618,6 +620,7 @@
 					"$(PROJECT_DIR)/PocketPark/AddedFrameworks",
 					"$(PROJECT_DIR)/Pods/**",
 					"$(PROJECT_DIR)/PocketPark",
+					/Users/tom/Desktop,
 				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = (
@@ -659,6 +662,7 @@
 					"$(PROJECT_DIR)/PocketPark/AddedFrameworks",
 					"$(PROJECT_DIR)/Pods/**",
 					"$(PROJECT_DIR)/PocketPark",
+					/Users/tom/Desktop,
 				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = (

@@ -7,669 +7,780 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02163CF21F258942CE1AD972 /* Pods-PocketPark-Onboard-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AE45CCEF8E19A08B4D5908E6 /* Pods-PocketPark-Onboard-dummy.m */; };
-		02828BF5AF472B1705ADDA28 /* PTDBean.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753DF3807823C06DA96AC6E /* PTDBean.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0951006D1362DD897AFFA164 /* PTDBeanRadioConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B35C537C534376D3B332AD06 /* PTDBeanRadioConfig.m */; };
-		0CC7FCF0BF6B1FEE03822492 /* GattSerialMessageRxAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F35B29B6BF414A9E85DEAA6 /* GattSerialMessageRxAssembler.m */; };
-		1350E3505C59A887CDA91390 /* Pods-PocketPark-IJReachability-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B5E82E03ED62549D9A3CBA7 /* Pods-PocketPark-IJReachability-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		15F53DCFC3FFE4523D4A4E75 /* Pods-PocketPark-Onboard-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 626F2CE869B5626840044934 /* Pods-PocketPark-Onboard-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1660643584D5DCB42A900264 /* GattSerialMessageRxAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = AA015DB6FB6EF2A429D794DD /* GattSerialMessageRxAssembler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		177946CAA78BF33872CCA8E6 /* GattCharacteristicHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DE5CBD17C0BB5FE58FB071 /* GattCharacteristicHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		195CA72DBA4793E2FC4C2563 /* BleProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F873C8D175011B6372515EB /* BleProfile.m */; };
-		1B9F7F6C321BF4FF913CD24C /* Pods-PocketPark-Bean-iOS-OSX-SDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F3DF4361A5ED2722A61D58 /* Pods-PocketPark-Bean-iOS-OSX-SDK-dummy.m */; };
-		1DB0C6B7558FE490874F59D5 /* AppMessageTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = B4B93112D831E17D66A8128F /* AppMessageTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1DD5FB82F0A303A52B4946B6 /* Pods-PocketPark-MBProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D8DD437C5C7B554C92F58942 /* Pods-PocketPark-MBProgressHUD-dummy.m */; };
-		1F1C1EEEFF540C337D8A5D52 /* PTDBEAN_Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BE531D28D2678A6C2A61E2 /* PTDBEAN_Helper.m */; };
-		2297CED01F00FA5274B478B4 /* GattSerialProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 734649B57DFACEE497C6553D /* GattSerialProfile.m */; };
-		25543DC6B3F786BDF7CB03B9 /* BEAN_Globals.h in Headers */ = {isa = PBXBuildFile; fileRef = F576E399405E4ED05B3749C4 /* BEAN_Globals.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2578818320B2879F888638B4 /* GattSerialTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 252CEC90C67671965E633F69 /* GattSerialTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2C0D6D89639661FFF7836731 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7324D33B06B764479706651B /* Foundation.framework */; };
-		2F02664796C1E0E0188C8940 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ADDC634918C7663BDE8B22 /* OnboardingViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		34B20C9A03ADC7C2F1886614 /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73227423BB23ACEB2720D533 /* OnboardingContentViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		46EC096A58FB37D28C21A1AD /* GattSerialProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = E525F13B37791C93F2607A02 /* GattSerialProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4FAFAACB0CDBB52D27217070 /* AppMessagingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B636A907521BCA080D6695 /* AppMessagingLayer.m */; };
-		5087CA546EDEC4D74A49864B /* Pods-PocketPark-IJReachability-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA8EC489418B7F6763A937F /* Pods-PocketPark-IJReachability-dummy.m */; };
-		50DE3C904043D7786C9BD4DF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A2A7B2420150F56BA1385B /* SystemConfiguration.framework */; };
-		51340E30601227CA3F859721 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7324D33B06B764479706651B /* Foundation.framework */; };
-		53B0D034F9F43A6DF1F26EF7 /* GattTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = E427B8D7913FDDE4582F88DF /* GattTransport.m */; };
-		5420FCDB23451D39EEBBE9B5 /* 201411040000_BEAN_imgB.bin in Resources */ = {isa = PBXBuildFile; fileRef = 618BE02B9433EDD7288A8B8A /* 201411040000_BEAN_imgB.bin */; };
-		6364B61B373AD75D2A7C9189 /* PTDBeanRemoteFirmwareVersionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 626DCCA4268C09AAF4DEA48F /* PTDBeanRemoteFirmwareVersionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		695B762322860223B6EB43E8 /* 201411040000_BEAN_imgA.bin in Resources */ = {isa = PBXBuildFile; fileRef = 07242AAA533E74B8C9741A2A /* 201411040000_BEAN_imgA.bin */; };
-		6D13844CAAE2B16ED0DE2BA0 /* CBPeripheral+isConnected_Universal.m in Sources */ = {isa = PBXBuildFile; fileRef = 29909EE23CBAE662A88D0F48 /* CBPeripheral+isConnected_Universal.m */; };
-		6DC76D2920103B0AB9E0ADDA /* Pods-PocketPark-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A91D42DFB861D3B6D6F6DCD /* Pods-PocketPark-dummy.m */; };
-		6F7BB0D05F736EEA5538DFCA /* PTDBeanRadioConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = E79AC572778C1239F399EDE6 /* PTDBeanRadioConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7715B18272C7505EB72643B0 /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 72E4F48265ADD11BD7D4080F /* MBProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		78041DCB82F036E63778BD9F /* OnboardingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AD8E321325324E1AF776123 /* OnboardingViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		798F9954CECF0AA8EF04DB10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7324D33B06B764479706651B /* Foundation.framework */; };
-		875F0DE9459CD6FF55B2EA04 /* OnboardingContentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ADA19798B0B0C31D6646A6E /* OnboardingContentViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		87AA03BF26735252E67C7552 /* IJReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF1A9B9E9ACCE2064D2522C /* IJReachability.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		8918010E36F1FD6C8EBE921E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3F7571F8767D4FAD2356443 /* CoreGraphics.framework */; };
-		8AB00C28D4476C32D4ABF307 /* NSData+CRC.m in Sources */ = {isa = PBXBuildFile; fileRef = D40DD0BA54B1088673F01547 /* NSData+CRC.m */; };
-		8EABC485C97E96D65A892802 /* CBPeripheral+UniqueId.h in Headers */ = {isa = PBXBuildFile; fileRef = 67EC34C5AEB81D7EECC039C4 /* CBPeripheral+UniqueId.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		91C2A0E262881ABD4E3BBFD6 /* GattSerialMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 7598DECF134179055702F63D /* GattSerialMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		92AFDE01F5968530E3F6A837 /* OadProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A8B75327D068D82E0297F1 /* OadProfile.m */; };
-		93A63D95C38C5CD6CA27AE75 /* oad.h in Headers */ = {isa = PBXBuildFile; fileRef = F90939E9F7F54447CDAC5AB2 /* oad.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9D13230E5071237EFE89BA16 /* CBPeripheral+UniqueId.m in Sources */ = {isa = PBXBuildFile; fileRef = 47ABDEAA1E45AB6834FFB298 /* CBPeripheral+UniqueId.m */; };
-		A1B5F8027317EF442873DC03 /* PTDBean+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = FCCACFAC5041E58B3E738C32 /* PTDBean+Protected.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A2A729D00BEF1DCB9979CF2E /* GattCharacteristicObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F8572AFBA9D2F2902EAE67 /* GattCharacteristicObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A41612859967F72DE85B222C /* GattSerialMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 137DB34465C67E99CD6ACFC2 /* GattSerialMessage.m */; };
-		A9A374DBC02636265D1AE0FE /* DevInfoProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBC6D625069D87016B32CCA /* DevInfoProfile.m */; };
-		ABE48918147784D1F58D685A /* AppMessagingLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 926DFEAA33BECE4A79001F8B /* AppMessagingLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AC77D15B549AFD672AC380D0 /* GattTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = BB1606842C769724681FA869 /* GattTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AE241C81BED57DFF4AC2C477 /* GattSerialTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 669CB886C0A736AF9B9FB852 /* GattSerialTransport.m */; };
-		B0C1AA6FB5D3A52CCF125DFD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7324D33B06B764479706651B /* Foundation.framework */; };
-		B3A2AC3FDC28CCC3DF634DE7 /* CBPeripheral+RSSI_Universal.m in Sources */ = {isa = PBXBuildFile; fileRef = 491BCE7ABACFADFD4429D44C /* CBPeripheral+RSSI_Universal.m */; };
-		B6997D058E4BE20963E8EE53 /* PTDBeanManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E0B1DC93520E5114FCA2B2B /* PTDBeanManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B711D508AAC4642DB1340A61 /* PTDBleDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 07983A96EF285D85008CAEF8 /* PTDBleDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B8F158786AD8BF3158608702 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7324D33B06B764479706651B /* Foundation.framework */; };
-		C640D259A566B13B7A666368 /* Profile_Protocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 313E8E850C1B71E5C78E7605 /* Profile_Protocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C7EF5BA75D46DDDA47FA5236 /* BatteryProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D80EBB83A18BDA113490D0 /* BatteryProfile.m */; };
-		C96B31B9783D03316CE17493 /* CBPeripheral+isConnected_Universal.h in Headers */ = {isa = PBXBuildFile; fileRef = 90333D5FF3E2279B0A03FBF2 /* CBPeripheral+isConnected_Universal.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CA650FAC6E47CE1F015A16C1 /* OadProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 56B03ED74C0B36751630EF5C /* OadProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CBDDBE3E09C96760DD61C7A8 /* BleProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 84C1F83809976BF7B4DE8464 /* BleProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D0CD31B68C3C427CB4953BF1 /* DevInfoProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 852B7BB8B54D32146CD73B22 /* DevInfoProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D64A35B8A627605C0DB25848 /* PTDBeanManager+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = C9037D603B9C69BB5317F761 /* PTDBeanManager+Protected.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D9A458A23F797E892C078448 /* BEAN_Helper.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F8A0D1661261D80A6705F4 /* BEAN_Helper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DA64E373F031998067E49CE2 /* GattPacket.h in Headers */ = {isa = PBXBuildFile; fileRef = 43967181B02B703ECD5DB4EF /* GattPacket.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DB6B5BC7CA3E0E3C386243C3 /* ProfileDelegate_Protocol.h in Headers */ = {isa = PBXBuildFile; fileRef = D2BE5BD939BA035024D3ADF4 /* ProfileDelegate_Protocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E19F58B1D0C0CA3897BF69CE /* NSData+CRC.h in Headers */ = {isa = PBXBuildFile; fileRef = E8B3CC49FB26FA8D6CE4B76B /* NSData+CRC.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E516864DF73A2352BDAB7139 /* BatteryProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E22E14CF2F56EA7C59360E /* BatteryProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E7F032BAB627DE99289F9CC0 /* PTDBeanManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7DB85BC1B0B6120C7DF6B /* PTDBeanManager.m */; };
-		ED5FAC2875140BCF28936E4C /* Pods-PocketPark-MBProgressHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E1F0D4A6F434004EE95FE071 /* Pods-PocketPark-MBProgressHUD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ED9555615CD648869A042279 /* Pods-PocketPark-Bean-iOS-OSX-SDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C0B85BC21C0CE346B954EBA0 /* Pods-PocketPark-Bean-iOS-OSX-SDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EFF69D16FEDC603662755248 /* AppMessages.h in Headers */ = {isa = PBXBuildFile; fileRef = C4E20B9E54D6ED532DD546D2 /* AppMessages.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F082969C1D540FD8E6BD073A /* BEAN_Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA896FBC9F1D94F22A8CF89 /* BEAN_Helper.m */; };
-		F187A42FBE9CC4BAEF914982 /* CBPeripheral+RSSI_Universal.h in Headers */ = {isa = PBXBuildFile; fileRef = 177C55718A5A815EE20E9604 /* CBPeripheral+RSSI_Universal.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F233B1FFDA5FCB5B060B2C96 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 594097AD5B84F05840F727C8 /* CoreBluetooth.framework */; };
-		F25F285D839B61D4CA85904B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 362C83E7D28DB1E6F9706CBE /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		F2B10722378A15EF09670586 /* PTDBeanRemoteFirmwareVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 251BD025513FCE08EAC0CC8D /* PTDBeanRemoteFirmwareVersionManager.m */; };
-		F37A8A91256A96B6A772D61E /* GattPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BB66FF87CDED70B2A9D68D /* GattPacket.m */; };
-		F73868405C4F93D413573698 /* PTDBean.m in Sources */ = {isa = PBXBuildFile; fileRef = DF427636922F7C1DE1F32FDE /* PTDBean.m */; };
-		F9B7B2949831D37C6C2F1F68 /* Pods-PocketPark-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD294314A14C25484E5F51A /* Pods-PocketPark-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FA0F66E93A5A472B90287158 /* PTDBleDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = A958A0564B16409EDAFBC06F /* PTDBleDevice.m */; };
-		FF6ED38CFAB464683691D65D /* PTDBEAN_Helper.h in Headers */ = {isa = PBXBuildFile; fileRef = 67141248B146F225101FBF9C /* PTDBEAN_Helper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0135FA83F2DF0AD9B2A49FEB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6472FD0736409E6F4574D46A /* Foundation.framework */; };
+		04855B56A33B1ADC1D0F590A /* JGProgressHUDIndeterminateIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 875F0464DAA2E0B6A77C1573 /* JGProgressHUDIndeterminateIndicatorView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		04A0CF7A02EF5712DD0B4E3B /* JGProgressHUDFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CE0B39CCB546A4B74BDBE3 /* JGProgressHUDFadeAnimation.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		04D33FC4E0AC8E4635B4E849 /* JGProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 68DB8940686E8121A4A483DC /* JGProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05871E90BA10E02B22695B2B /* BEAN_Helper.h in Headers */ = {isa = PBXBuildFile; fileRef = A065749CD05CA14B675DEC4B /* BEAN_Helper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		064A4A6DE2FACA51DC834843 /* AppMessagingLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BF48D303B65C4F91915A727 /* AppMessagingLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06D0DA6647CAD2EAA8B264DC /* Pods-PocketPark-Bean-iOS-OSX-SDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9749FEA06197E48BB6D4D46D /* Pods-PocketPark-Bean-iOS-OSX-SDK-dummy.m */; };
+		07375A1334C8B634930B79ED /* PTDBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D0A98BF62E30212113DE2D /* PTDBean.m */; };
+		094402FCFF5174C6FABE9023 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E943EA82D88652CC89076F /* OnboardingViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		0A198674ED272F8497ABB1C8 /* JGProgressHUDErrorIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EAA1D3B37840956CAA3559 /* JGProgressHUDErrorIndicatorView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		0EE25C3FA24AE932DC448CC3 /* JGProgressHUDAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = AF4EACAB52EFD6C38CDBACF0 /* JGProgressHUDAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		11292746850EEC8503FEC50F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7125B56D77F7E4BDE7E91FFD /* CoreGraphics.framework */; };
+		1270652B4FCAF6F4F3624634 /* JGProgressHUDSuccessIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00E16F2CE9BA33A0BCE95B /* JGProgressHUDSuccessIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		13FF94CDDB59DD87BDA2C023 /* PTDBean+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 7713786FABEDADF5E60C47C3 /* PTDBean+Protected.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1428080478E789B6FCE71A96 /* Pods-PocketPark-Bean-iOS-OSX-SDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 18B31790C21E8E0A6B7C503A /* Pods-PocketPark-Bean-iOS-OSX-SDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1CE874A0026FA5E5820606DD /* CBPeripheral+RSSI_Universal.h in Headers */ = {isa = PBXBuildFile; fileRef = 959CBB4D98176BB73EF9F544 /* CBPeripheral+RSSI_Universal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		200296270182A19C7F8A76E1 /* GattPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = E0AF231CD46A8D2C706ED1E7 /* GattPacket.m */; };
+		28CECFA0513C66E6D315C82A /* BatteryProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 285A3BCEE5D11E1886969326 /* BatteryProfile.m */; };
+		2A4016EF0BD5C96A28AB8241 /* PTDBean.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C99A594C8A5F47DECAD7928 /* PTDBean.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BDBBB6C8563E8A3F0D53F99 /* JGProgressHUD Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FEFAB15FD217E44840DAD061 /* JGProgressHUD Resources.bundle */; };
+		2C55EAF1E42CFE3087F5F69F /* BEAN_Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BBC35BF0C8ABE4152E334C /* BEAN_Helper.m */; };
+		2D6AC0C43B0ACCA16F270F4D /* Pods-PocketPark-IJReachability-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D674E073DDED51D161ED20 /* Pods-PocketPark-IJReachability-dummy.m */; };
+		311E4CBC14D67EA295ADBEB6 /* BleProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = E3D29D466DAF7ADE5F6F9154 /* BleProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		31E66B886B615C81C67FC57E /* GattTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = E99A6CA8F02506D4ECAA1D2E /* GattTransport.m */; };
+		33595C0B5C69038C667EB986 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6472FD0736409E6F4574D46A /* Foundation.framework */; };
+		36654E9DB889B209A1056F29 /* JGProgressHUDIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = B067AC67ACE5229B7E01F02D /* JGProgressHUDIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		39F82FD4BCE1D97584A1BAE9 /* DevInfoProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = C37F2EEA14DD149721C86090 /* DevInfoProfile.m */; };
+		3CBDD4CEBAA66CACF46EF8A7 /* PTDBeanRadioConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 323F27E15C6376966FB2FA3B /* PTDBeanRadioConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3CF3B4E14F78F9FD6D413B3C /* CBPeripheral+RSSI_Universal.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F09E63ACEF634750E0BA83 /* CBPeripheral+RSSI_Universal.m */; };
+		3D849998C157DC1C6E976A4B /* JGProgressHUDSuccessIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB98ADD6C261836E4D21A48 /* JGProgressHUDSuccessIndicatorView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		410A9C13E9E4D94D7E470EC4 /* Pods-PocketPark-MBProgressHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 116C3D65385CC389C73679AA /* Pods-PocketPark-MBProgressHUD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4500243A35EACBB287862118 /* PTDBeanRemoteFirmwareVersionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E1468FADF87AD36AB2F3783 /* PTDBeanRemoteFirmwareVersionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		498A1D555CB508563728933D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6472FD0736409E6F4574D46A /* Foundation.framework */; };
+		4E2848F57C07E19AA2A6F6AB /* CBPeripheral+UniqueId.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC4AEDD875F4C7D4BF15E3F /* CBPeripheral+UniqueId.m */; };
+		50D99642E648745F1685690F /* Pods-PocketPark-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 992FA14E4329A0EC10801E9E /* Pods-PocketPark-dummy.m */; };
+		50F80B7A8D5B715A2A2B1ABD /* PTDBeanManager+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 9956CBAB6D3821E4DB933B78 /* PTDBeanManager+Protected.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5132EF240155FFF4560BDA7D /* CBPeripheral+isConnected_Universal.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EDC63AA316827EB928720E1 /* CBPeripheral+isConnected_Universal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5341B309933286FE614C63B4 /* 201411040000_BEAN_imgB.bin in Resources */ = {isa = PBXBuildFile; fileRef = 240912C01B9FD6AE834D95EB /* 201411040000_BEAN_imgB.bin */; };
+		548F7DE411B5A0CF76278855 /* oad.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AA7607B87D6A1A03867693A /* oad.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		59270C9BD789505572D35C98 /* Pods-PocketPark-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A2EF319F6F792A9D0C94F6D7 /* Pods-PocketPark-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5B1411B2253DD86B5171F5E9 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A65B5D3E5216D06FBCD4BAC /* CoreBluetooth.framework */; };
+		60EB46A7DEE6B489E9977632 /* DevInfoProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = A27A31F281F7699D6FF795DB /* DevInfoProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63BBA30BB6D01AC9164EC02F /* PTDBeanManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B858F22A913712513481F3 /* PTDBeanManager.m */; };
+		6714AD8E3B354F16B4B81529 /* GattSerialMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AB320176898E0C7E6762C9 /* GattSerialMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6738A65E78E13BC53FB61CD4 /* PTDBleDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E4A621040D40EE295D05D7B /* PTDBleDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		684B6464D3B5B4490DF600AC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C2D5D51A14BF0FD33E89EF /* SystemConfiguration.framework */; };
+		6A085FF073FE40BA32821412 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6472FD0736409E6F4574D46A /* Foundation.framework */; };
+		6CC8AFE16AD453A4B6CCBEE0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6472FD0736409E6F4574D46A /* Foundation.framework */; };
+		6D3EEFF536CB96AA2CDACE37 /* 201411040000_BEAN_imgA.bin in Resources */ = {isa = PBXBuildFile; fileRef = EDA5FE196D962B428E8F30AB /* 201411040000_BEAN_imgA.bin */; };
+		705A91F58E3272F3B982DCED /* Pods-PocketPark-MBProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE1F74EF2827E9B6DDA841F /* Pods-PocketPark-MBProgressHUD-dummy.m */; };
+		72BE048C0010B89E03E3BE1E /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 3886E948DFE6ABC51CD58783 /* MBProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		742B9D336946B1E433D4A5C5 /* JGProgressHUDPieIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C5E5D3614DAD2733EF7A62 /* JGProgressHUDPieIndicatorView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		7920E28EE677773681A8F62B /* Pods-PocketPark-JGProgressHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 263E034743D4A771709701FA /* Pods-PocketPark-JGProgressHUD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7B5D7179A8E2C8091BB0D96D /* IJReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F99E52712D923809CA5B9A0 /* IJReachability.swift */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		7CC20ED7B468E3B0EFD859E0 /* AppMessagingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF310FB0DE160514BA92DA2D /* AppMessagingLayer.m */; };
+		7F5C6830F5C5C10A218CD36D /* JGProgressHUDRingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = B23373B2D1BE5E0B33767749 /* JGProgressHUDRingIndicatorView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		82B699386A570785C8BB33D7 /* JGProgressHUDAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE2DFABD2EA0E94A94C4281 /* JGProgressHUDAnimation.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		83B12CB201145589CE54197C /* BEAN_Globals.h in Headers */ = {isa = PBXBuildFile; fileRef = 541F9F76B6107D168E89FA68 /* BEAN_Globals.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84E4C0EB9B1F85B99E89FF5E /* GattTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 12AD977BE0B50B086FD5B9F7 /* GattTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		868B1A8B3C81218A801DF28C /* GattSerialProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B14172293F8CC6B3302FF1 /* GattSerialProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		86E56FB0B0F895480FC5CAD4 /* ProfileDelegate_Protocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C84AE288D922469C68D6FA2 /* ProfileDelegate_Protocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B061A5E16091C36CA1449A0 /* CBPeripheral+UniqueId.h in Headers */ = {isa = PBXBuildFile; fileRef = 97B5A12482F47D3B4E9760F8 /* CBPeripheral+UniqueId.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8BC1746C7DA79051BB754E95 /* NSData+CRC.h in Headers */ = {isa = PBXBuildFile; fileRef = F253EAC5CE32D16DFAE596D1 /* NSData+CRC.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8CCC87B8EAE44904247CCBE2 /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D286D33FFAF0F57225C0DFAD /* OnboardingContentViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		8D00D8034BB09C73204356C7 /* JGProgressHUDErrorIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = B9067D35B07BF8866A712FFC /* JGProgressHUDErrorIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		965B4CC5518E6FFD1087CDCE /* PTDBeanManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FBF6841BFC5C8D8BDE7E62 /* PTDBeanManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9816EEA74F4A329B13185E58 /* GattCharacteristicObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = FF11C305EDB0972C4AEC888E /* GattCharacteristicObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9966331A65E341958B65AF6C /* GattSerialMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = D05A33A83E1476550282A4B9 /* GattSerialMessage.m */; };
+		9B8B75A82D3A90F7AE6F4DDA /* JGProgressHUDFadeZoomAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = E0CED449A94A23C7FC554CC0 /* JGProgressHUDFadeZoomAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A049CFA06AE407EAF83F71F6 /* GattSerialMessageRxAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8255057ACFB0C489737EFF /* GattSerialMessageRxAssembler.m */; };
+		A2F38563529CF63EB468E427 /* BleProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB00DCA45983CFCEF7EFC3F /* BleProfile.m */; };
+		AADBEC6191008FAD64AFBD31 /* NSData+CRC.m in Sources */ = {isa = PBXBuildFile; fileRef = 556ADC3D803B6664E368814B /* NSData+CRC.m */; };
+		AB595BB8D7D5B0F86CAC43FA /* JGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CBDA979EC05FE3FF2313ADE2 /* JGProgressHUD.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		AB5E305C3CDBA4ACDE968449 /* AppMessages.h in Headers */ = {isa = PBXBuildFile; fileRef = EABAF5F560597F3BF521AC67 /* AppMessages.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ABD7AC65768B0D47B058888F /* CBPeripheral+isConnected_Universal.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3E78FBD2A77AAF6F72C36A /* CBPeripheral+isConnected_Universal.m */; };
+		B39503B9F10EA5F8E7452E0A /* JGProgressHUDPieIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 87C7B19573559CEBD405B803 /* JGProgressHUDPieIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B67AB21B55F7EF22ABBD8D4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6472FD0736409E6F4574D46A /* Foundation.framework */; };
+		BB5C8C792821E8D5405E2358 /* JGProgressHUDFadeAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E3E305AB50D4717BD1BAFA3 /* JGProgressHUDFadeAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C0E4009A84D6048433D69E55 /* PTDBEAN_Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3059A1334ED58754E98AD447 /* PTDBEAN_Helper.m */; };
+		C289755150A14D60E12DCC98 /* GattSerialTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 040446B67E3DE342528B161B /* GattSerialTransport.m */; };
+		C65C60BD63E38DCD462089D8 /* GattSerialProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F46298613EEB25E798BEB19 /* GattSerialProfile.m */; };
+		C6D53D81C91BF7B32DE76069 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BC491C23500FD9243EB14E /* UIKit.framework */; };
+		C8D883C895F48025CCF665BF /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF71E02D24EA9143672ADD4 /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		C9A70325FF0516F0A76FBAD0 /* JGProgressHUDFadeZoomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C8A4793AE8213271CF1D46 /* JGProgressHUDFadeZoomAnimation.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		CC4A89B06E77DE24080762D8 /* JGProgressHUDIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB51EB70444072AEDF9D223 /* JGProgressHUDIndicatorView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		D09D2D33A9AF720CAC94A8D1 /* GattSerialMessageRxAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = CF8C14D53DA48CC229286F02 /* GattSerialMessageRxAssembler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D30853B7E44D3E7E80977C61 /* Pods-PocketPark-Onboard-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DBE175BAEDC35A9BA04B06F1 /* Pods-PocketPark-Onboard-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D462E99896F97EC626B8FB87 /* AppMessageTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 07304F628AD96B6100D207B2 /* AppMessageTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D5AA457D1925009D7ECD33B2 /* BatteryProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 42CA15EBC9C2E5B4177938AF /* BatteryProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D92AD90CECFBB42A67636187 /* PTDBEAN_Helper.h in Headers */ = {isa = PBXBuildFile; fileRef = E501A330F71B96ABBC482CC1 /* PTDBEAN_Helper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DCC593309EFF6DDAF85C9E8B /* GattPacket.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AF37F823BCC3255095ADC40 /* GattPacket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DCF5F70749FFB27EDB585BFF /* OnboardingContentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A7908F5C370292B9CA7BC56 /* OnboardingContentViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DD458BCDD97FD51AAAF94B10 /* Pods-PocketPark-IJReachability-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5008C97C2153ECF05F243935 /* Pods-PocketPark-IJReachability-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E1D770AD9305A695D627AF5E /* JGProgressHUDIndeterminateIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 01E52A04371836703054CB1A /* JGProgressHUDIndeterminateIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E6ADA5AACBC9AEA10C3DA99E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460EA0C634348531F2045A47 /* QuartzCore.framework */; };
+		E7C57C0C87A2615812EA6BCB /* OnboardingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A02DF3184F61DC9A6502587 /* OnboardingViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E7E60C1AC313F68C4D45688C /* PTDBeanRemoteFirmwareVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D2553CDF62E1C86E22D3BC2 /* PTDBeanRemoteFirmwareVersionManager.m */; };
+		E8F7521D71FC2585883021C0 /* OadProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = BC6BFD7C9ECEE04DE6AB6E1F /* OadProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EB100D44F2547541CBF65DDE /* GattCharacteristicHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C3C251C88BCDE26D9FD6923 /* GattCharacteristicHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EC87BFAD95B8791D160A93C9 /* Pods-PocketPark-JGProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 556B3E2BA35D89991847C1C4 /* Pods-PocketPark-JGProgressHUD-dummy.m */; };
+		EDB2FC18A2C664226879B1EF /* Profile_Protocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 02E7A50A0F9C30BCA2F4A741 /* Profile_Protocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F60CB47BC637C6FC81AC3EB4 /* GattSerialTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 294F6AF7E3546FCC3D6D3AA6 /* GattSerialTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80A87D413377CC116A12B07 /* Pods-PocketPark-Onboard-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4ABF0920B24781391B978B /* Pods-PocketPark-Onboard-dummy.m */; };
+		F827F2A94879FCF3C0719435 /* OadProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCF5121F4BCA75557668612 /* OadProfile.m */; };
+		F8C14C739B5CD0A125DE56CF /* PTDBeanRadioConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = D76DA025E1511E02A84B3E2C /* PTDBeanRadioConfig.m */; };
+		FB7F2C33FD0150B28E66475A /* PTDBleDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB9F4ECFD344A92603C8F68 /* PTDBleDevice.m */; };
+		FD194761A7AC2C98D7CFD997 /* JGProgressHUDRingIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = A5481470DA90098F1CA25118 /* JGProgressHUDRingIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		06AB0CB10D0AD164BCC3DB08 /* PBXContainerItemProxy */ = {
+		57225438BF5CF78C327285FF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FB21ABA358CBDC7AEDA6E1E7 /* Project object */;
+			containerPortal = 4F32F04C23BE699AF96FCC1A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 415951F7ED19BBFA2AEB0891;
-			remoteInfo = "Pods-PocketPark-IJReachability";
+			remoteGlobalIDString = 422C6EBB60C4B12F414C8958;
+			remoteInfo = "Pods-PocketPark-Bean-iOS-OSX-SDK";
 		};
-		0883E0584AF2BB80CC586A4E /* PBXContainerItemProxy */ = {
+		97989F05BCD3339159B16067 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FB21ABA358CBDC7AEDA6E1E7 /* Project object */;
+			containerPortal = 4F32F04C23BE699AF96FCC1A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 19F9152B476F568F731F8F4D;
+			remoteGlobalIDString = 82410A8C94548601341214F8;
 			remoteInfo = "Pods-PocketPark-Onboard";
 		};
-		0C753BA4845724A2583BACD7 /* PBXContainerItemProxy */ = {
+		BF35AA8FB1E5064E9E2676B6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FB21ABA358CBDC7AEDA6E1E7 /* Project object */;
+			containerPortal = 4F32F04C23BE699AF96FCC1A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E0B0159DC33D6DB2AD9A7E3A;
-			remoteInfo = "Pods-PocketPark-MBProgressHUD";
+			remoteGlobalIDString = 6EA1E689F7C58CC20257D3FA;
+			remoteInfo = "Pods-PocketPark-IJReachability";
 		};
-		57C560C332F7C2299241D31D /* PBXContainerItemProxy */ = {
+		C52045DFB635DAE976014454 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FB21ABA358CBDC7AEDA6E1E7 /* Project object */;
+			containerPortal = 4F32F04C23BE699AF96FCC1A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AC102E64DFBD9170B7FDA6F9;
-			remoteInfo = "Pods-PocketPark-Bean-iOS-OSX-SDK";
+			remoteGlobalIDString = 199B0152D87D38B44B616122;
+			remoteInfo = "Pods-PocketPark-JGProgressHUD";
+		};
+		E6F5A14738AAC41660A6847C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F32F04C23BE699AF96FCC1A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EDD7778EDFAA8C0EB85EF9A6;
+			remoteInfo = "Pods-PocketPark-MBProgressHUD";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07242AAA533E74B8C9741A2A /* 201411040000_BEAN_imgA.bin */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.macbinary; name = 201411040000_BEAN_imgA.bin; path = firmware/201411040000_BEAN_imgA.bin; sourceTree = "<group>"; };
-		07983A96EF285D85008CAEF8 /* PTDBleDevice.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PTDBleDevice.h; path = source/Public/PTDBleDevice.h; sourceTree = "<group>"; };
-		07D2DCBB24DF95F3156577CA /* Bean_iOS_OSX_SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bean_iOS_OSX_SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		07F8572AFBA9D2F2902EAE67 /* GattCharacteristicObserver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GattCharacteristicObserver.h; path = "source/Profiles/Gatt Serial/Transport/GattCharacteristicObserver.h"; sourceTree = "<group>"; };
-		0E203DB170920E64417B1502 /* Pods-PocketPark.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PocketPark.modulemap"; sourceTree = "<group>"; };
-		137DB34465C67E99CD6ACFC2 /* GattSerialMessage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GattSerialMessage.m; path = "source/Profiles/Gatt Serial/Transport/GattSerialMessage.m"; sourceTree = "<group>"; };
-		177C55718A5A815EE20E9604 /* CBPeripheral+RSSI_Universal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CBPeripheral+RSSI_Universal.h"; path = "source/Categories/CBPeripheral+RSSI_Universal.h"; sourceTree = "<group>"; };
-		18D80EBB83A18BDA113490D0 /* BatteryProfile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BatteryProfile.m; path = source/Profiles/Battery/BatteryProfile.m; sourceTree = "<group>"; };
-		1ADA19798B0B0C31D6646A6E /* OnboardingContentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OnboardingContentViewController.h; path = "Objective-C/Onboard/OnboardingContentViewController.h"; sourceTree = "<group>"; };
-		251BD025513FCE08EAC0CC8D /* PTDBeanRemoteFirmwareVersionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PTDBeanRemoteFirmwareVersionManager.m; path = source/Helper/PTDBeanRemoteFirmwareVersionManager.m; sourceTree = "<group>"; };
-		252CEC90C67671965E633F69 /* GattSerialTransport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GattSerialTransport.h; path = "source/Profiles/Gatt Serial/Transport/GattSerialTransport.h"; sourceTree = "<group>"; };
-		25B1563B8889361AA134CB6C /* Pods-PocketPark-IJReachability.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PocketPark-IJReachability.modulemap"; sourceTree = "<group>"; };
-		2753DF3807823C06DA96AC6E /* PTDBean.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PTDBean.h; path = source/Public/PTDBean.h; sourceTree = "<group>"; };
-		2978B6CE2E703F1FD3748D13 /* Pods-PocketPark-Onboard.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark-Onboard.xcconfig"; sourceTree = "<group>"; };
-		29909EE23CBAE662A88D0F48 /* CBPeripheral+isConnected_Universal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CBPeripheral+isConnected_Universal.m"; path = "source/Categories/CBPeripheral+isConnected_Universal.m"; sourceTree = "<group>"; };
-		2A65A469D310EBCAC58DBB2D /* Pods_PocketPark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PocketPark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A91D42DFB861D3B6D6F6DCD /* Pods-PocketPark-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PocketPark-dummy.m"; sourceTree = "<group>"; };
-		305BF749EAB60B73BBECF7DC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		313E8E850C1B71E5C78E7605 /* Profile_Protocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Profile_Protocol.h; path = source/Profiles/Profile_Protocol.h; sourceTree = "<group>"; };
-		32FEAB9060B835584EA0ED2B /* Pods-PocketPark-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PocketPark-resources.sh"; sourceTree = "<group>"; };
-		362C83E7D28DB1E6F9706CBE /* MBProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		37CBF48244B9C715532CEBDA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3BD294314A14C25484E5F51A /* Pods-PocketPark-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-umbrella.h"; sourceTree = "<group>"; };
-		414EA14B2CB2ED9819963F43 /* Pods-PocketPark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark.debug.xcconfig"; sourceTree = "<group>"; };
-		42A2A7B2420150F56BA1385B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
-		43967181B02B703ECD5DB4EF /* GattPacket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GattPacket.h; path = "source/Profiles/Gatt Serial/Transport/GattPacket.h"; sourceTree = "<group>"; };
-		45C66AC8A7D810FC83ADB5B7 /* Pods-PocketPark-MBProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-MBProgressHUD-prefix.pch"; sourceTree = "<group>"; };
-		4789E848E593E1336C7E7334 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		47ABDEAA1E45AB6834FFB298 /* CBPeripheral+UniqueId.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CBPeripheral+UniqueId.m"; path = "source/Categories/CBPeripheral+UniqueId.m"; sourceTree = "<group>"; };
-		491BCE7ABACFADFD4429D44C /* CBPeripheral+RSSI_Universal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CBPeripheral+RSSI_Universal.m"; path = "source/Categories/CBPeripheral+RSSI_Universal.m"; sourceTree = "<group>"; };
-		49E5E59F773C193E82356416 /* Pods-PocketPark-MBProgressHUD-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark-MBProgressHUD-Private.xcconfig"; sourceTree = "<group>"; };
-		4F873C8D175011B6372515EB /* BleProfile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BleProfile.m; path = source/Profiles/BleProfile.m; sourceTree = "<group>"; };
-		56AF0666EDF5A7EC46620D14 /* Pods-PocketPark-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PocketPark-acknowledgements.markdown"; sourceTree = "<group>"; };
-		56B03ED74C0B36751630EF5C /* OadProfile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OadProfile.h; path = source/Profiles/OAD/OadProfile.h; sourceTree = "<group>"; };
-		594097AD5B84F05840F727C8 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/CoreBluetooth.framework; sourceTree = DEVELOPER_DIR; };
-		5AD8E321325324E1AF776123 /* OnboardingViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OnboardingViewController.h; path = "Objective-C/Onboard/OnboardingViewController.h"; sourceTree = "<group>"; };
-		5E649D1153E2D1A6C4DF70E1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6007DE2B6FF859297614A461 /* Pods-PocketPark-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PocketPark-frameworks.sh"; sourceTree = "<group>"; };
-		618BE02B9433EDD7288A8B8A /* 201411040000_BEAN_imgB.bin */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.macbinary; name = 201411040000_BEAN_imgB.bin; path = firmware/201411040000_BEAN_imgB.bin; sourceTree = "<group>"; };
-		623A9F17A4616A732FF6AB0E /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		626DCCA4268C09AAF4DEA48F /* PTDBeanRemoteFirmwareVersionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PTDBeanRemoteFirmwareVersionManager.h; path = source/Helper/PTDBeanRemoteFirmwareVersionManager.h; sourceTree = "<group>"; };
-		626F2CE869B5626840044934 /* Pods-PocketPark-Onboard-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-Onboard-umbrella.h"; sourceTree = "<group>"; };
-		669CB886C0A736AF9B9FB852 /* GattSerialTransport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GattSerialTransport.m; path = "source/Profiles/Gatt Serial/Transport/GattSerialTransport.m"; sourceTree = "<group>"; };
-		67141248B146F225101FBF9C /* PTDBEAN_Helper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PTDBEAN_Helper.h; path = source/Helper/PTDBEAN_Helper.h; sourceTree = "<group>"; };
-		67EC34C5AEB81D7EECC039C4 /* CBPeripheral+UniqueId.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CBPeripheral+UniqueId.h"; path = "source/Categories/CBPeripheral+UniqueId.h"; sourceTree = "<group>"; };
-		6878528DDC8EFCAC4A51F27F /* Pods-PocketPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark.release.xcconfig"; sourceTree = "<group>"; };
-		69A8B75327D068D82E0297F1 /* OadProfile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OadProfile.m; path = source/Profiles/OAD/OadProfile.m; sourceTree = "<group>"; };
-		6BA7DB85BC1B0B6120C7DF6B /* PTDBeanManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PTDBeanManager.m; path = source/PTDBeanManager.m; sourceTree = "<group>"; };
-		72E4F48265ADD11BD7D4080F /* MBProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		73227423BB23ACEB2720D533 /* OnboardingContentViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OnboardingContentViewController.m; path = "Objective-C/Onboard/OnboardingContentViewController.m"; sourceTree = "<group>"; };
-		7324D33B06B764479706651B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		734649B57DFACEE497C6553D /* GattSerialProfile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GattSerialProfile.m; path = "source/Profiles/Gatt Serial/GattSerialProfile.m"; sourceTree = "<group>"; };
-		7598DECF134179055702F63D /* GattSerialMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GattSerialMessage.h; path = "source/Profiles/Gatt Serial/Transport/GattSerialMessage.h"; sourceTree = "<group>"; };
-		78E22E14CF2F56EA7C59360E /* BatteryProfile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BatteryProfile.h; path = source/Profiles/Battery/BatteryProfile.h; sourceTree = "<group>"; };
-		7B89E66955A4CA8D5288EEB4 /* Pods-PocketPark-MBProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PocketPark-MBProgressHUD.modulemap"; sourceTree = "<group>"; };
-		7E0B1DC93520E5114FCA2B2B /* PTDBeanManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PTDBeanManager.h; path = source/Public/PTDBeanManager.h; sourceTree = "<group>"; };
-		7F35B29B6BF414A9E85DEAA6 /* GattSerialMessageRxAssembler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GattSerialMessageRxAssembler.m; path = "source/Profiles/Gatt Serial/Transport/GattSerialMessageRxAssembler.m"; sourceTree = "<group>"; };
-		818F0CF26FF60E799234A28B /* IJReachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IJReachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		84C1F83809976BF7B4DE8464 /* BleProfile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BleProfile.h; path = source/Profiles/BleProfile.h; sourceTree = "<group>"; };
-		84F3DF4361A5ED2722A61D58 /* Pods-PocketPark-Bean-iOS-OSX-SDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PocketPark-Bean-iOS-OSX-SDK-dummy.m"; sourceTree = "<group>"; };
-		852B7BB8B54D32146CD73B22 /* DevInfoProfile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DevInfoProfile.h; path = "source/Profiles/Device Info/DevInfoProfile.h"; sourceTree = "<group>"; };
-		8B5E82E03ED62549D9A3CBA7 /* Pods-PocketPark-IJReachability-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-IJReachability-umbrella.h"; sourceTree = "<group>"; };
-		8BA8EC489418B7F6763A937F /* Pods-PocketPark-IJReachability-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PocketPark-IJReachability-dummy.m"; sourceTree = "<group>"; };
-		8D14359B464B7F4880E2E595 /* Pods-PocketPark-IJReachability-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark-IJReachability-Private.xcconfig"; sourceTree = "<group>"; };
-		8DBC6D625069D87016B32CCA /* DevInfoProfile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DevInfoProfile.m; path = "source/Profiles/Device Info/DevInfoProfile.m"; sourceTree = "<group>"; };
-		8F4FB90C1D2C8DD04DC10A66 /* Pods-PocketPark-IJReachability.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark-IJReachability.xcconfig"; sourceTree = "<group>"; };
-		90333D5FF3E2279B0A03FBF2 /* CBPeripheral+isConnected_Universal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CBPeripheral+isConnected_Universal.h"; path = "source/Categories/CBPeripheral+isConnected_Universal.h"; sourceTree = "<group>"; };
-		9130C1916829800C15E13211 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		926DFEAA33BECE4A79001F8B /* AppMessagingLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AppMessagingLayer.h; path = source/AppMessages/AppMessagingLayer.h; sourceTree = "<group>"; };
-		94BE531D28D2678A6C2A61E2 /* PTDBEAN_Helper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PTDBEAN_Helper.m; path = source/Helper/PTDBEAN_Helper.m; sourceTree = "<group>"; };
-		94D1EFA1CBFBE0E17FE69E9C /* Pods-PocketPark-IJReachability-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-IJReachability-prefix.pch"; sourceTree = "<group>"; };
-		94DE5CBD17C0BB5FE58FB071 /* GattCharacteristicHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GattCharacteristicHandler.h; path = "source/Profiles/Gatt Serial/Transport/GattCharacteristicHandler.h"; sourceTree = "<group>"; };
-		9FA896FBC9F1D94F22A8CF89 /* BEAN_Helper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BEAN_Helper.m; path = source/Helper/BEAN_Helper.m; sourceTree = "<group>"; };
-		A28D3EDD619477F6D52D76B8 /* Pods-PocketPark-Onboard-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark-Onboard-Private.xcconfig"; sourceTree = "<group>"; };
-		A6ADDC634918C7663BDE8B22 /* OnboardingViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OnboardingViewController.m; path = "Objective-C/Onboard/OnboardingViewController.m"; sourceTree = "<group>"; };
-		A958A0564B16409EDAFBC06F /* PTDBleDevice.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PTDBleDevice.m; path = source/Profiles/PTDBleDevice.m; sourceTree = "<group>"; };
-		A9F8A0D1661261D80A6705F4 /* BEAN_Helper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BEAN_Helper.h; path = source/Helper/BEAN_Helper.h; sourceTree = "<group>"; };
-		AA015DB6FB6EF2A429D794DD /* GattSerialMessageRxAssembler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GattSerialMessageRxAssembler.h; path = "source/Profiles/Gatt Serial/Transport/GattSerialMessageRxAssembler.h"; sourceTree = "<group>"; };
-		AE04561A94DE14B6A5D67811 /* Pods-PocketPark-Bean-iOS-OSX-SDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark-Bean-iOS-OSX-SDK.xcconfig"; sourceTree = "<group>"; };
-		AE45CCEF8E19A08B4D5908E6 /* Pods-PocketPark-Onboard-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PocketPark-Onboard-dummy.m"; sourceTree = "<group>"; };
-		B03CB50443B2F610EE2814D7 /* Pods-PocketPark-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-environment.h"; sourceTree = "<group>"; };
-		B35C537C534376D3B332AD06 /* PTDBeanRadioConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PTDBeanRadioConfig.m; path = source/PTDBeanRadioConfig.m; sourceTree = "<group>"; };
-		B3F7571F8767D4FAD2356443 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
-		B4B93112D831E17D66A8128F /* AppMessageTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AppMessageTypes.h; path = "App Message Definitions/AppMessageTypes.h"; sourceTree = "<group>"; };
-		BB1606842C769724681FA869 /* GattTransport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GattTransport.h; path = "source/Profiles/Gatt Serial/Transport/GattTransport.h"; sourceTree = "<group>"; };
-		BB83244F37AA344E7BE1F323 /* Pods-PocketPark-MBProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark-MBProgressHUD.xcconfig"; sourceTree = "<group>"; };
-		BFF1A9B9E9ACCE2064D2522C /* IJReachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IJReachability.swift; path = IJReachability/IJReachability/IJReachability.swift; sourceTree = "<group>"; };
-		C0B85BC21C0CE346B954EBA0 /* Pods-PocketPark-Bean-iOS-OSX-SDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-Bean-iOS-OSX-SDK-umbrella.h"; sourceTree = "<group>"; };
-		C266CC73D3767AF1D91406C2 /* Pods-PocketPark-Onboard.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PocketPark-Onboard.modulemap"; sourceTree = "<group>"; };
-		C3F426FC64A08F234B75201B /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		C4E20B9E54D6ED532DD546D2 /* AppMessages.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AppMessages.h; path = "App Message Definitions/AppMessages.h"; sourceTree = "<group>"; };
-		C7BB66FF87CDED70B2A9D68D /* GattPacket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GattPacket.m; path = "source/Profiles/Gatt Serial/Transport/GattPacket.m"; sourceTree = "<group>"; };
-		C9037D603B9C69BB5317F761 /* PTDBeanManager+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PTDBeanManager+Protected.h"; path = "source/PTDBeanManager+Protected.h"; sourceTree = "<group>"; };
-		D2BE5BD939BA035024D3ADF4 /* ProfileDelegate_Protocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ProfileDelegate_Protocol.h; path = source/Profiles/ProfileDelegate_Protocol.h; sourceTree = "<group>"; };
-		D40DD0BA54B1088673F01547 /* NSData+CRC.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+CRC.m"; path = "source/Categories/NSData+CRC.m"; sourceTree = "<group>"; };
-		D8DD437C5C7B554C92F58942 /* Pods-PocketPark-MBProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PocketPark-MBProgressHUD-dummy.m"; sourceTree = "<group>"; };
-		DADB7DE0FE9F91E4A90D2BF1 /* Pods-PocketPark-Bean-iOS-OSX-SDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-Bean-iOS-OSX-SDK-prefix.pch"; sourceTree = "<group>"; };
-		DB150FD6FEBB6C9DF197515B /* Pods-PocketPark-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PocketPark-acknowledgements.plist"; sourceTree = "<group>"; };
-		DF427636922F7C1DE1F32FDE /* PTDBean.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PTDBean.m; path = source/PTDBean.m; sourceTree = "<group>"; };
-		E1F0D4A6F434004EE95FE071 /* Pods-PocketPark-MBProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-MBProgressHUD-umbrella.h"; sourceTree = "<group>"; };
-		E427B8D7913FDDE4582F88DF /* GattTransport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GattTransport.m; path = "source/Profiles/Gatt Serial/Transport/GattTransport.m"; sourceTree = "<group>"; };
-		E525F13B37791C93F2607A02 /* GattSerialProfile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GattSerialProfile.h; path = "source/Profiles/Gatt Serial/GattSerialProfile.h"; sourceTree = "<group>"; };
-		E79AC572778C1239F399EDE6 /* PTDBeanRadioConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PTDBeanRadioConfig.h; path = source/Public/PTDBeanRadioConfig.h; sourceTree = "<group>"; };
-		E8B3CC49FB26FA8D6CE4B76B /* NSData+CRC.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+CRC.h"; path = "source/Categories/NSData+CRC.h"; sourceTree = "<group>"; };
-		F167E152C8649BEAB249C8E3 /* Onboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Onboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4CEFEFECA6AEF60E1D1A6EA /* Pods-PocketPark-Bean-iOS-OSX-SDK-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark-Bean-iOS-OSX-SDK-Private.xcconfig"; sourceTree = "<group>"; };
-		F576E399405E4ED05B3749C4 /* BEAN_Globals.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BEAN_Globals.h; path = source/BEAN_Globals.h; sourceTree = "<group>"; };
-		F6B636A907521BCA080D6695 /* AppMessagingLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AppMessagingLayer.m; path = source/AppMessages/AppMessagingLayer.m; sourceTree = "<group>"; };
-		F7E33DFC2B80E721C17B2AC5 /* Pods-PocketPark-Bean-iOS-OSX-SDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PocketPark-Bean-iOS-OSX-SDK.modulemap"; sourceTree = "<group>"; };
-		F90939E9F7F54447CDAC5AB2 /* oad.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = oad.h; path = source/Profiles/OAD/oad.h; sourceTree = "<group>"; };
-		FCCACFAC5041E58B3E738C32 /* PTDBean+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PTDBean+Protected.h"; path = "source/PTDBean+Protected.h"; sourceTree = "<group>"; };
-		FE8115C6500705AABE965709 /* Pods-PocketPark-Onboard-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-Onboard-prefix.pch"; sourceTree = "<group>"; };
+		01E52A04371836703054CB1A /* JGProgressHUDIndeterminateIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDIndeterminateIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDIndeterminateIndicatorView.h; sourceTree = "<group>"; };
+		02634970B7BECFB0B24D3C0A /* Pods-PocketPark-IJReachability.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PocketPark-IJReachability.modulemap"; sourceTree = "<group>"; };
+		02E7A50A0F9C30BCA2F4A741 /* Profile_Protocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Profile_Protocol.h; path = source/Profiles/Profile_Protocol.h; sourceTree = "<group>"; };
+		040446B67E3DE342528B161B /* GattSerialTransport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GattSerialTransport.m; path = "source/Profiles/Gatt Serial/Transport/GattSerialTransport.m"; sourceTree = "<group>"; };
+		04F1A90FAA4932A1BC7C651C /* Pods-PocketPark-Bean-iOS-OSX-SDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-Bean-iOS-OSX-SDK-prefix.pch"; sourceTree = "<group>"; };
+		07304F628AD96B6100D207B2 /* AppMessageTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AppMessageTypes.h; path = "App Message Definitions/AppMessageTypes.h"; sourceTree = "<group>"; };
+		07AB320176898E0C7E6762C9 /* GattSerialMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GattSerialMessage.h; path = "source/Profiles/Gatt Serial/Transport/GattSerialMessage.h"; sourceTree = "<group>"; };
+		0C3C251C88BCDE26D9FD6923 /* GattCharacteristicHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GattCharacteristicHandler.h; path = "source/Profiles/Gatt Serial/Transport/GattCharacteristicHandler.h"; sourceTree = "<group>"; };
+		0F99E52712D923809CA5B9A0 /* IJReachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IJReachability.swift; path = IJReachability/IJReachability/IJReachability.swift; sourceTree = "<group>"; };
+		116C3D65385CC389C73679AA /* Pods-PocketPark-MBProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-MBProgressHUD-umbrella.h"; sourceTree = "<group>"; };
+		12AD977BE0B50B086FD5B9F7 /* GattTransport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GattTransport.h; path = "source/Profiles/Gatt Serial/Transport/GattTransport.h"; sourceTree = "<group>"; };
+		18B31790C21E8E0A6B7C503A /* Pods-PocketPark-Bean-iOS-OSX-SDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-Bean-iOS-OSX-SDK-umbrella.h"; sourceTree = "<group>"; };
+		194E71536624214472C83098 /* Bean_iOS_OSX_SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bean_iOS_OSX_SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		19B3FDD9ECF2CD726DE0D849 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19C0D23C2AE1F09B7278C9CB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A00E16F2CE9BA33A0BCE95B /* JGProgressHUDSuccessIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDSuccessIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDSuccessIndicatorView.h; sourceTree = "<group>"; };
+		1A65B5D3E5216D06FBCD4BAC /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/CoreBluetooth.framework; sourceTree = DEVELOPER_DIR; };
+		1AE1F74EF2827E9B6DDA841F /* Pods-PocketPark-MBProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PocketPark-MBProgressHUD-dummy.m"; sourceTree = "<group>"; };
+		1C9791587B2D9D07E2598712 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C99A594C8A5F47DECAD7928 /* PTDBean.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PTDBean.h; path = source/Public/PTDBean.h; sourceTree = "<group>"; };
+		21D674E073DDED51D161ED20 /* Pods-PocketPark-IJReachability-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PocketPark-IJReachability-dummy.m"; sourceTree = "<group>"; };
+		22EEF7694DF698CB488AFC30 /* Onboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Onboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		233611A62926C4566C40E091 /* Pods-PocketPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark.release.xcconfig"; sourceTree = "<group>"; };
+		240912C01B9FD6AE834D95EB /* 201411040000_BEAN_imgB.bin */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.macbinary; name = 201411040000_BEAN_imgB.bin; path = firmware/201411040000_BEAN_imgB.bin; sourceTree = "<group>"; };
+		263E034743D4A771709701FA /* Pods-PocketPark-JGProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-JGProgressHUD-umbrella.h"; sourceTree = "<group>"; };
+		285A3BCEE5D11E1886969326 /* BatteryProfile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BatteryProfile.m; path = source/Profiles/Battery/BatteryProfile.m; sourceTree = "<group>"; };
+		28FC3BF1849370EB8C2782DF /* Pods-PocketPark-Onboard.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark-Onboard.xcconfig"; sourceTree = "<group>"; };
+		294F6AF7E3546FCC3D6D3AA6 /* GattSerialTransport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GattSerialTransport.h; path = "source/Profiles/Gatt Serial/Transport/GattSerialTransport.h"; sourceTree = "<group>"; };
+		2A7908F5C370292B9CA7BC56 /* OnboardingContentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OnboardingContentViewController.h; path = "Objective-C/Onboard/OnboardingContentViewController.h"; sourceTree = "<group>"; };
+		2AA7607B87D6A1A03867693A /* oad.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = oad.h; path = source/Profiles/OAD/oad.h; sourceTree = "<group>"; };
+		2BF48D303B65C4F91915A727 /* AppMessagingLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AppMessagingLayer.h; path = source/AppMessages/AppMessagingLayer.h; sourceTree = "<group>"; };
+		2C84AE288D922469C68D6FA2 /* ProfileDelegate_Protocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ProfileDelegate_Protocol.h; path = source/Profiles/ProfileDelegate_Protocol.h; sourceTree = "<group>"; };
+		3059A1334ED58754E98AD447 /* PTDBEAN_Helper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PTDBEAN_Helper.m; path = source/Helper/PTDBEAN_Helper.m; sourceTree = "<group>"; };
+		323F27E15C6376966FB2FA3B /* PTDBeanRadioConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PTDBeanRadioConfig.h; path = source/Public/PTDBeanRadioConfig.h; sourceTree = "<group>"; };
+		362010C2179E9CD4E0C5D86E /* Pods-PocketPark-Onboard-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark-Onboard-Private.xcconfig"; sourceTree = "<group>"; };
+		3886E948DFE6ABC51CD58783 /* MBProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		38B8B2D4E2D3A94D3FE1F12A /* Pods-PocketPark-IJReachability.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark-IJReachability.xcconfig"; sourceTree = "<group>"; };
+		3A0A3E4C34564D06DD69C2D9 /* Pods-PocketPark-JGProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark-JGProgressHUD.xcconfig"; sourceTree = "<group>"; };
+		3AB51EB70444072AEDF9D223 /* JGProgressHUDIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDIndicatorView.m; sourceTree = "<group>"; };
+		3B994E58FC98A3B6FB9E3E8D /* Pods-PocketPark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark.debug.xcconfig"; sourceTree = "<group>"; };
+		3D6C754482EC6B6EE9077863 /* Pods-PocketPark-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PocketPark-acknowledgements.markdown"; sourceTree = "<group>"; };
+		40AA23C6A687A2D1E5E4332F /* IJReachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IJReachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		41C2D5D51A14BF0FD33E89EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		42CA15EBC9C2E5B4177938AF /* BatteryProfile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BatteryProfile.h; path = source/Profiles/Battery/BatteryProfile.h; sourceTree = "<group>"; };
+		42F09E63ACEF634750E0BA83 /* CBPeripheral+RSSI_Universal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CBPeripheral+RSSI_Universal.m"; path = "source/Categories/CBPeripheral+RSSI_Universal.m"; sourceTree = "<group>"; };
+		43E943EA82D88652CC89076F /* OnboardingViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OnboardingViewController.m; path = "Objective-C/Onboard/OnboardingViewController.m"; sourceTree = "<group>"; };
+		460EA0C634348531F2045A47 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		48E4196C80A4AB430725C6C7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4AF37F823BCC3255095ADC40 /* GattPacket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GattPacket.h; path = "source/Profiles/Gatt Serial/Transport/GattPacket.h"; sourceTree = "<group>"; };
+		4D9211019562D8E3AAB2D231 /* Pods-PocketPark-Bean-iOS-OSX-SDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PocketPark-Bean-iOS-OSX-SDK.modulemap"; sourceTree = "<group>"; };
+		4E3E305AB50D4717BD1BAFA3 /* JGProgressHUDFadeAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDFadeAnimation.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeAnimation.h; sourceTree = "<group>"; };
+		4EDC63AA316827EB928720E1 /* CBPeripheral+isConnected_Universal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CBPeripheral+isConnected_Universal.h"; path = "source/Categories/CBPeripheral+isConnected_Universal.h"; sourceTree = "<group>"; };
+		4F00DBF91B5CC4229D947D40 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F46298613EEB25E798BEB19 /* GattSerialProfile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GattSerialProfile.m; path = "source/Profiles/Gatt Serial/GattSerialProfile.m"; sourceTree = "<group>"; };
+		5008C97C2153ECF05F243935 /* Pods-PocketPark-IJReachability-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-IJReachability-umbrella.h"; sourceTree = "<group>"; };
+		53BBC35BF0C8ABE4152E334C /* BEAN_Helper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BEAN_Helper.m; path = source/Helper/BEAN_Helper.m; sourceTree = "<group>"; };
+		541F9F76B6107D168E89FA68 /* BEAN_Globals.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BEAN_Globals.h; path = source/BEAN_Globals.h; sourceTree = "<group>"; };
+		54D394B2E1350F8CD96B48D7 /* Pods-PocketPark-JGProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-JGProgressHUD-prefix.pch"; sourceTree = "<group>"; };
+		556ADC3D803B6664E368814B /* NSData+CRC.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+CRC.m"; path = "source/Categories/NSData+CRC.m"; sourceTree = "<group>"; };
+		556B3E2BA35D89991847C1C4 /* Pods-PocketPark-JGProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PocketPark-JGProgressHUD-dummy.m"; sourceTree = "<group>"; };
+		59C8A4793AE8213271CF1D46 /* JGProgressHUDFadeZoomAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDFadeZoomAnimation.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeZoomAnimation.m; sourceTree = "<group>"; };
+		5B8255057ACFB0C489737EFF /* GattSerialMessageRxAssembler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GattSerialMessageRxAssembler.m; path = "source/Profiles/Gatt Serial/Transport/GattSerialMessageRxAssembler.m"; sourceTree = "<group>"; };
+		5D2553CDF62E1C86E22D3BC2 /* PTDBeanRemoteFirmwareVersionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PTDBeanRemoteFirmwareVersionManager.m; path = source/Helper/PTDBeanRemoteFirmwareVersionManager.m; sourceTree = "<group>"; };
+		637A4EA054FAECA9793164E6 /* JGProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JGProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6472FD0736409E6F4574D46A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		68DB8940686E8121A4A483DC /* JGProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUD.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUD.h; sourceTree = "<group>"; };
+		6E742E126564553C1FECFBF0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6EB00DCA45983CFCEF7EFC3F /* BleProfile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BleProfile.m; path = source/Profiles/BleProfile.m; sourceTree = "<group>"; };
+		70D7135C750955BE9CF6D546 /* Pods-PocketPark-MBProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PocketPark-MBProgressHUD.modulemap"; sourceTree = "<group>"; };
+		7125B56D77F7E4BDE7E91FFD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		76D0A98BF62E30212113DE2D /* PTDBean.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PTDBean.m; path = source/PTDBean.m; sourceTree = "<group>"; };
+		7713786FABEDADF5E60C47C3 /* PTDBean+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PTDBean+Protected.h"; path = "source/PTDBean+Protected.h"; sourceTree = "<group>"; };
+		7894CE206D1D80C786678CF6 /* Pods-PocketPark-IJReachability-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark-IJReachability-Private.xcconfig"; sourceTree = "<group>"; };
+		7B2678CC460B483C5D2A0446 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7BB9F4ECFD344A92603C8F68 /* PTDBleDevice.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PTDBleDevice.m; path = source/Profiles/PTDBleDevice.m; sourceTree = "<group>"; };
+		7DF71E02D24EA9143672ADD4 /* MBProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		7E1468FADF87AD36AB2F3783 /* PTDBeanRemoteFirmwareVersionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PTDBeanRemoteFirmwareVersionManager.h; path = source/Helper/PTDBeanRemoteFirmwareVersionManager.h; sourceTree = "<group>"; };
+		7FB98ADD6C261836E4D21A48 /* JGProgressHUDSuccessIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDSuccessIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDSuccessIndicatorView.m; sourceTree = "<group>"; };
+		84FBF6841BFC5C8D8BDE7E62 /* PTDBeanManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PTDBeanManager.h; path = source/Public/PTDBeanManager.h; sourceTree = "<group>"; };
+		875F0464DAA2E0B6A77C1573 /* JGProgressHUDIndeterminateIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDIndeterminateIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDIndeterminateIndicatorView.m; sourceTree = "<group>"; };
+		87C7B19573559CEBD405B803 /* JGProgressHUDPieIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDPieIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDPieIndicatorView.h; sourceTree = "<group>"; };
+		8A02DF3184F61DC9A6502587 /* OnboardingViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OnboardingViewController.h; path = "Objective-C/Onboard/OnboardingViewController.h"; sourceTree = "<group>"; };
+		8AC4AEDD875F4C7D4BF15E3F /* CBPeripheral+UniqueId.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CBPeripheral+UniqueId.m"; path = "source/Categories/CBPeripheral+UniqueId.m"; sourceTree = "<group>"; };
+		8E4A621040D40EE295D05D7B /* PTDBleDevice.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PTDBleDevice.h; path = source/Public/PTDBleDevice.h; sourceTree = "<group>"; };
+		8E99D882A794E11B83CA8C94 /* Pods-PocketPark-IJReachability-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-IJReachability-prefix.pch"; sourceTree = "<group>"; };
+		8F279A6D9D74B3138DB195E7 /* Pods-PocketPark-MBProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-MBProgressHUD-prefix.pch"; sourceTree = "<group>"; };
+		959CBB4D98176BB73EF9F544 /* CBPeripheral+RSSI_Universal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CBPeripheral+RSSI_Universal.h"; path = "source/Categories/CBPeripheral+RSSI_Universal.h"; sourceTree = "<group>"; };
+		95EAA1D3B37840956CAA3559 /* JGProgressHUDErrorIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDErrorIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDErrorIndicatorView.m; sourceTree = "<group>"; };
+		96A600C9251F9059F0E0FDEA /* Pods-PocketPark-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PocketPark-resources.sh"; sourceTree = "<group>"; };
+		96BC491C23500FD9243EB14E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		9749FEA06197E48BB6D4D46D /* Pods-PocketPark-Bean-iOS-OSX-SDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PocketPark-Bean-iOS-OSX-SDK-dummy.m"; sourceTree = "<group>"; };
+		97B5A12482F47D3B4E9760F8 /* CBPeripheral+UniqueId.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CBPeripheral+UniqueId.h"; path = "source/Categories/CBPeripheral+UniqueId.h"; sourceTree = "<group>"; };
+		992FA14E4329A0EC10801E9E /* Pods-PocketPark-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PocketPark-dummy.m"; sourceTree = "<group>"; };
+		9956CBAB6D3821E4DB933B78 /* PTDBeanManager+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PTDBeanManager+Protected.h"; path = "source/PTDBeanManager+Protected.h"; sourceTree = "<group>"; };
+		A065749CD05CA14B675DEC4B /* BEAN_Helper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BEAN_Helper.h; path = source/Helper/BEAN_Helper.h; sourceTree = "<group>"; };
+		A27A31F281F7699D6FF795DB /* DevInfoProfile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DevInfoProfile.h; path = "source/Profiles/Device Info/DevInfoProfile.h"; sourceTree = "<group>"; };
+		A2EF319F6F792A9D0C94F6D7 /* Pods-PocketPark-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-umbrella.h"; sourceTree = "<group>"; };
+		A4039B3794617BAAB1F0FA6C /* Pods-PocketPark-Bean-iOS-OSX-SDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark-Bean-iOS-OSX-SDK.xcconfig"; sourceTree = "<group>"; };
+		A5481470DA90098F1CA25118 /* JGProgressHUDRingIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDRingIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDRingIndicatorView.h; sourceTree = "<group>"; };
+		A941458D7A4EACB9DE603412 /* Pods-PocketPark-Bean-iOS-OSX-SDK-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark-Bean-iOS-OSX-SDK-Private.xcconfig"; sourceTree = "<group>"; };
+		AA4ABF0920B24781391B978B /* Pods-PocketPark-Onboard-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PocketPark-Onboard-dummy.m"; sourceTree = "<group>"; };
+		ABD1F21FEB595EFEC160BD4B /* Pods-PocketPark-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-environment.h"; sourceTree = "<group>"; };
+		ACE2DFABD2EA0E94A94C4281 /* JGProgressHUDAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDAnimation.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDAnimation.m; sourceTree = "<group>"; };
+		ADC44B2166125646FDD23AEF /* Pods-PocketPark-JGProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PocketPark-JGProgressHUD.modulemap"; sourceTree = "<group>"; };
+		AF4EACAB52EFD6C38CDBACF0 /* JGProgressHUDAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDAnimation.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDAnimation.h; sourceTree = "<group>"; };
+		B067AC67ACE5229B7E01F02D /* JGProgressHUDIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDIndicatorView.h; sourceTree = "<group>"; };
+		B23373B2D1BE5E0B33767749 /* JGProgressHUDRingIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDRingIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDRingIndicatorView.m; sourceTree = "<group>"; };
+		B23A67FE724FA0ADDAEA9E87 /* Pods-PocketPark-MBProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark-MBProgressHUD.xcconfig"; sourceTree = "<group>"; };
+		B9067D35B07BF8866A712FFC /* JGProgressHUDErrorIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDErrorIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDErrorIndicatorView.h; sourceTree = "<group>"; };
+		BC6BFD7C9ECEE04DE6AB6E1F /* OadProfile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OadProfile.h; path = source/Profiles/OAD/OadProfile.h; sourceTree = "<group>"; };
+		BF310FB0DE160514BA92DA2D /* AppMessagingLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AppMessagingLayer.m; path = source/AppMessages/AppMessagingLayer.m; sourceTree = "<group>"; };
+		C0C5E5D3614DAD2733EF7A62 /* JGProgressHUDPieIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDPieIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDPieIndicatorView.m; sourceTree = "<group>"; };
+		C2F27B32A06F649E481BEC9A /* Pods-PocketPark-JGProgressHUD-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark-JGProgressHUD-Private.xcconfig"; sourceTree = "<group>"; };
+		C37F2EEA14DD149721C86090 /* DevInfoProfile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DevInfoProfile.m; path = "source/Profiles/Device Info/DevInfoProfile.m"; sourceTree = "<group>"; };
+		C3B14172293F8CC6B3302FF1 /* GattSerialProfile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GattSerialProfile.h; path = "source/Profiles/Gatt Serial/GattSerialProfile.h"; sourceTree = "<group>"; };
+		C5B858F22A913712513481F3 /* PTDBeanManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PTDBeanManager.m; path = source/PTDBeanManager.m; sourceTree = "<group>"; };
+		C6CE0B39CCB546A4B74BDBE3 /* JGProgressHUDFadeAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDFadeAnimation.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeAnimation.m; sourceTree = "<group>"; };
+		C8D5F4B3C3F4BAB419746676 /* Pods-PocketPark-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PocketPark-acknowledgements.plist"; sourceTree = "<group>"; };
+		CBDA979EC05FE3FF2313ADE2 /* JGProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUD.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUD.m; sourceTree = "<group>"; };
+		CDCF5121F4BCA75557668612 /* OadProfile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OadProfile.m; path = source/Profiles/OAD/OadProfile.m; sourceTree = "<group>"; };
+		CF8C14D53DA48CC229286F02 /* GattSerialMessageRxAssembler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GattSerialMessageRxAssembler.h; path = "source/Profiles/Gatt Serial/Transport/GattSerialMessageRxAssembler.h"; sourceTree = "<group>"; };
+		D05A33A83E1476550282A4B9 /* GattSerialMessage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GattSerialMessage.m; path = "source/Profiles/Gatt Serial/Transport/GattSerialMessage.m"; sourceTree = "<group>"; };
+		D286D33FFAF0F57225C0DFAD /* OnboardingContentViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OnboardingContentViewController.m; path = "Objective-C/Onboard/OnboardingContentViewController.m"; sourceTree = "<group>"; };
+		D36FB5A9AB27A46CD22B4787 /* Pods_PocketPark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PocketPark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D76DA025E1511E02A84B3E2C /* PTDBeanRadioConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PTDBeanRadioConfig.m; path = source/PTDBeanRadioConfig.m; sourceTree = "<group>"; };
+		DBD90A2497FB51F1D6B23C9F /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBE175BAEDC35A9BA04B06F1 /* Pods-PocketPark-Onboard-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-Onboard-umbrella.h"; sourceTree = "<group>"; };
+		DC6F4244AE6B26CD4C42DAA8 /* Pods-PocketPark-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PocketPark-frameworks.sh"; sourceTree = "<group>"; };
+		DE3E78FBD2A77AAF6F72C36A /* CBPeripheral+isConnected_Universal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CBPeripheral+isConnected_Universal.m"; path = "source/Categories/CBPeripheral+isConnected_Universal.m"; sourceTree = "<group>"; };
+		E0AF231CD46A8D2C706ED1E7 /* GattPacket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GattPacket.m; path = "source/Profiles/Gatt Serial/Transport/GattPacket.m"; sourceTree = "<group>"; };
+		E0CED449A94A23C7FC554CC0 /* JGProgressHUDFadeZoomAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDFadeZoomAnimation.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeZoomAnimation.h; sourceTree = "<group>"; };
+		E1E2365F89824EACD5867374 /* Pods-PocketPark-Onboard-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PocketPark-Onboard-prefix.pch"; sourceTree = "<group>"; };
+		E21A2131792911FCAE4871CC /* Pods-PocketPark-MBProgressHUD-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PocketPark-MBProgressHUD-Private.xcconfig"; sourceTree = "<group>"; };
+		E3D29D466DAF7ADE5F6F9154 /* BleProfile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BleProfile.h; path = source/Profiles/BleProfile.h; sourceTree = "<group>"; };
+		E501A330F71B96ABBC482CC1 /* PTDBEAN_Helper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PTDBEAN_Helper.h; path = source/Helper/PTDBEAN_Helper.h; sourceTree = "<group>"; };
+		E6D9C508BC6DB51C72A02878 /* Pods-PocketPark.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PocketPark.modulemap"; sourceTree = "<group>"; };
+		E99A6CA8F02506D4ECAA1D2E /* GattTransport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GattTransport.m; path = "source/Profiles/Gatt Serial/Transport/GattTransport.m"; sourceTree = "<group>"; };
+		EABAF5F560597F3BF521AC67 /* AppMessages.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AppMessages.h; path = "App Message Definitions/AppMessages.h"; sourceTree = "<group>"; };
+		EDA5FE196D962B428E8F30AB /* 201411040000_BEAN_imgA.bin */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.macbinary; name = 201411040000_BEAN_imgA.bin; path = firmware/201411040000_BEAN_imgA.bin; sourceTree = "<group>"; };
+		F253EAC5CE32D16DFAE596D1 /* NSData+CRC.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+CRC.h"; path = "source/Categories/NSData+CRC.h"; sourceTree = "<group>"; };
+		FB134F1CCEFDA175E124324B /* Pods-PocketPark-Onboard.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PocketPark-Onboard.modulemap"; sourceTree = "<group>"; };
+		FEFAB15FD217E44840DAD061 /* JGProgressHUD Resources.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = "JGProgressHUD Resources.bundle"; path = "JGProgressHUD/JGProgressHUD/JGProgressHUD Resources.bundle"; sourceTree = "<group>"; };
+		FF11C305EDB0972C4AEC888E /* GattCharacteristicObserver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GattCharacteristicObserver.h; path = "source/Profiles/Gatt Serial/Transport/GattCharacteristicObserver.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0F2BE6AAEC8DB7FFAC4CF9AF /* Frameworks */ = {
+		2D009B536F9BFD14E309200B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8918010E36F1FD6C8EBE921E /* CoreGraphics.framework in Frameworks */,
-				51340E30601227CA3F859721 /* Foundation.framework in Frameworks */,
+				5B1411B2253DD86B5171F5E9 /* CoreBluetooth.framework in Frameworks */,
+				6A085FF073FE40BA32821412 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		13A7985E4C5E6E1BBCA14C4E /* Frameworks */ = {
+		46D247D3B20D0C0F49692783 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F233B1FFDA5FCB5B060B2C96 /* CoreBluetooth.framework in Frameworks */,
-				798F9954CECF0AA8EF04DB10 /* Foundation.framework in Frameworks */,
+				0135FA83F2DF0AD9B2A49FEB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2A5653CEA88766FE53772204 /* Frameworks */ = {
+		67D41631E7818D63D502DB25 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0C1AA6FB5D3A52CCF125DFD /* Foundation.framework in Frameworks */,
+				11292746850EEC8503FEC50F /* CoreGraphics.framework in Frameworks */,
+				498A1D555CB508563728933D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6E7DEA24C886294EC1DC77F6 /* Frameworks */ = {
+		99ACF3F09C5F346B3975F311 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C0D6D89639661FFF7836731 /* Foundation.framework in Frameworks */,
-				50DE3C904043D7786C9BD4DF /* SystemConfiguration.framework in Frameworks */,
+				6CC8AFE16AD453A4B6CCBEE0 /* Foundation.framework in Frameworks */,
+				684B6464D3B5B4490DF600AC /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8994E512805DF91458FF962D /* Frameworks */ = {
+		F26D6EEDC2BEBA4F51499833 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8F158786AD8BF3158608702 /* Foundation.framework in Frameworks */,
+				B67AB21B55F7EF22ABBD8D4A /* Foundation.framework in Frameworks */,
+				E6ADA5AACBC9AEA10C3DA99E /* QuartzCore.framework in Frameworks */,
+				C6D53D81C91BF7B32DE76069 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5BF2F4449C33A6B23A1442D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33595C0B5C69038C667EB986 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		036965260CAB0643623F1F32 /* Targets Support Files */ = {
+		039219D9595DB074E3AED99D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EAE882D8045EEDDEBF64CF3B /* Pods-PocketPark */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		09BB23371B38AE65D49213C4 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				305BF749EAB60B73BBECF7DC /* Info.plist */,
-				25B1563B8889361AA134CB6C /* Pods-PocketPark-IJReachability.modulemap */,
-				8F4FB90C1D2C8DD04DC10A66 /* Pods-PocketPark-IJReachability.xcconfig */,
-				8D14359B464B7F4880E2E595 /* Pods-PocketPark-IJReachability-Private.xcconfig */,
-				8BA8EC489418B7F6763A937F /* Pods-PocketPark-IJReachability-dummy.m */,
-				94D1EFA1CBFBE0E17FE69E9C /* Pods-PocketPark-IJReachability-prefix.pch */,
-				8B5E82E03ED62549D9A3CBA7 /* Pods-PocketPark-IJReachability-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Pods-PocketPark-IJReachability";
-			sourceTree = "<group>";
-		};
-		0A334284F2D8242E647716A7 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				EAD5E34313B8F8C0C540074B /* iOS */,
+				73CEDE598987A62B839A32A3 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1E221CB651A34764697B6566 /* Bean-iOS-OSX-SDK */ = {
+		03EC6DBFF234DDEB442BEB61 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				B4B93112D831E17D66A8128F /* AppMessageTypes.h */,
-				C4E20B9E54D6ED532DD546D2 /* AppMessages.h */,
-				926DFEAA33BECE4A79001F8B /* AppMessagingLayer.h */,
-				F6B636A907521BCA080D6695 /* AppMessagingLayer.m */,
-				F576E399405E4ED05B3749C4 /* BEAN_Globals.h */,
-				A9F8A0D1661261D80A6705F4 /* BEAN_Helper.h */,
-				9FA896FBC9F1D94F22A8CF89 /* BEAN_Helper.m */,
-				78E22E14CF2F56EA7C59360E /* BatteryProfile.h */,
-				18D80EBB83A18BDA113490D0 /* BatteryProfile.m */,
-				84C1F83809976BF7B4DE8464 /* BleProfile.h */,
-				4F873C8D175011B6372515EB /* BleProfile.m */,
-				177C55718A5A815EE20E9604 /* CBPeripheral+RSSI_Universal.h */,
-				491BCE7ABACFADFD4429D44C /* CBPeripheral+RSSI_Universal.m */,
-				67EC34C5AEB81D7EECC039C4 /* CBPeripheral+UniqueId.h */,
-				47ABDEAA1E45AB6834FFB298 /* CBPeripheral+UniqueId.m */,
-				90333D5FF3E2279B0A03FBF2 /* CBPeripheral+isConnected_Universal.h */,
-				29909EE23CBAE662A88D0F48 /* CBPeripheral+isConnected_Universal.m */,
-				852B7BB8B54D32146CD73B22 /* DevInfoProfile.h */,
-				8DBC6D625069D87016B32CCA /* DevInfoProfile.m */,
-				94DE5CBD17C0BB5FE58FB071 /* GattCharacteristicHandler.h */,
-				07F8572AFBA9D2F2902EAE67 /* GattCharacteristicObserver.h */,
-				43967181B02B703ECD5DB4EF /* GattPacket.h */,
-				C7BB66FF87CDED70B2A9D68D /* GattPacket.m */,
-				7598DECF134179055702F63D /* GattSerialMessage.h */,
-				137DB34465C67E99CD6ACFC2 /* GattSerialMessage.m */,
-				AA015DB6FB6EF2A429D794DD /* GattSerialMessageRxAssembler.h */,
-				7F35B29B6BF414A9E85DEAA6 /* GattSerialMessageRxAssembler.m */,
-				E525F13B37791C93F2607A02 /* GattSerialProfile.h */,
-				734649B57DFACEE497C6553D /* GattSerialProfile.m */,
-				252CEC90C67671965E633F69 /* GattSerialTransport.h */,
-				669CB886C0A736AF9B9FB852 /* GattSerialTransport.m */,
-				BB1606842C769724681FA869 /* GattTransport.h */,
-				E427B8D7913FDDE4582F88DF /* GattTransport.m */,
-				E8B3CC49FB26FA8D6CE4B76B /* NSData+CRC.h */,
-				D40DD0BA54B1088673F01547 /* NSData+CRC.m */,
-				56B03ED74C0B36751630EF5C /* OadProfile.h */,
-				69A8B75327D068D82E0297F1 /* OadProfile.m */,
-				67141248B146F225101FBF9C /* PTDBEAN_Helper.h */,
-				94BE531D28D2678A6C2A61E2 /* PTDBEAN_Helper.m */,
-				2753DF3807823C06DA96AC6E /* PTDBean.h */,
-				DF427636922F7C1DE1F32FDE /* PTDBean.m */,
-				FCCACFAC5041E58B3E738C32 /* PTDBean+Protected.h */,
-				7E0B1DC93520E5114FCA2B2B /* PTDBeanManager.h */,
-				6BA7DB85BC1B0B6120C7DF6B /* PTDBeanManager.m */,
-				C9037D603B9C69BB5317F761 /* PTDBeanManager+Protected.h */,
-				E79AC572778C1239F399EDE6 /* PTDBeanRadioConfig.h */,
-				B35C537C534376D3B332AD06 /* PTDBeanRadioConfig.m */,
-				626DCCA4268C09AAF4DEA48F /* PTDBeanRemoteFirmwareVersionManager.h */,
-				251BD025513FCE08EAC0CC8D /* PTDBeanRemoteFirmwareVersionManager.m */,
-				07983A96EF285D85008CAEF8 /* PTDBleDevice.h */,
-				A958A0564B16409EDAFBC06F /* PTDBleDevice.m */,
-				D2BE5BD939BA035024D3ADF4 /* ProfileDelegate_Protocol.h */,
-				313E8E850C1B71E5C78E7605 /* Profile_Protocol.h */,
-				F90939E9F7F54447CDAC5AB2 /* oad.h */,
-				96995BDB98C608EF30B99E45 /* Resources */,
-				E743941B8979408235EA8C6D /* Support Files */,
-			);
-			path = "Bean-iOS-OSX-SDK";
-			sourceTree = "<group>";
-		};
-		4A14D9CE5C01A015B658158C /* IJReachability */ = {
-			isa = PBXGroup;
-			children = (
-				BFF1A9B9E9ACCE2064D2522C /* IJReachability.swift */,
-				09BB23371B38AE65D49213C4 /* Support Files */,
-			);
-			path = IJReachability;
-			sourceTree = "<group>";
-		};
-		6B1B6547329091A523F45384 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				5E649D1153E2D1A6C4DF70E1 /* Info.plist */,
-				C266CC73D3767AF1D91406C2 /* Pods-PocketPark-Onboard.modulemap */,
-				2978B6CE2E703F1FD3748D13 /* Pods-PocketPark-Onboard.xcconfig */,
-				A28D3EDD619477F6D52D76B8 /* Pods-PocketPark-Onboard-Private.xcconfig */,
-				AE45CCEF8E19A08B4D5908E6 /* Pods-PocketPark-Onboard-dummy.m */,
-				FE8115C6500705AABE965709 /* Pods-PocketPark-Onboard-prefix.pch */,
-				626F2CE869B5626840044934 /* Pods-PocketPark-Onboard-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Pods-PocketPark-Onboard";
-			sourceTree = "<group>";
-		};
-		7F43E76B5E5C5A5334BE4196 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				07D2DCBB24DF95F3156577CA /* Bean_iOS_OSX_SDK.framework */,
-				818F0CF26FF60E799234A28B /* IJReachability.framework */,
-				623A9F17A4616A732FF6AB0E /* MBProgressHUD.framework */,
-				F167E152C8649BEAB249C8E3 /* Onboard.framework */,
-				2A65A469D310EBCAC58DBB2D /* Pods_PocketPark.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		8622EBC30E2D8D9C7DA23B27 = {
-			isa = PBXGroup;
-			children = (
-				C3F426FC64A08F234B75201B /* Podfile */,
-				0A334284F2D8242E647716A7 /* Frameworks */,
-				9E22FBB6AE7175D8EE179205 /* Pods */,
-				7F43E76B5E5C5A5334BE4196 /* Products */,
-				036965260CAB0643623F1F32 /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		8BBEC888E0ED451C616AA105 /* Onboard */ = {
-			isa = PBXGroup;
-			children = (
-				1ADA19798B0B0C31D6646A6E /* OnboardingContentViewController.h */,
-				73227423BB23ACEB2720D533 /* OnboardingContentViewController.m */,
-				5AD8E321325324E1AF776123 /* OnboardingViewController.h */,
-				A6ADDC634918C7663BDE8B22 /* OnboardingViewController.m */,
-				6B1B6547329091A523F45384 /* Support Files */,
-			);
-			path = Onboard;
-			sourceTree = "<group>";
-		};
-		96995BDB98C608EF30B99E45 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				07242AAA533E74B8C9741A2A /* 201411040000_BEAN_imgA.bin */,
-				618BE02B9433EDD7288A8B8A /* 201411040000_BEAN_imgB.bin */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		9E22FBB6AE7175D8EE179205 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				1E221CB651A34764697B6566 /* Bean-iOS-OSX-SDK */,
-				4A14D9CE5C01A015B658158C /* IJReachability */,
-				A950A7E82CEE9C069B3DCB0B /* MBProgressHUD */,
-				8BBEC888E0ED451C616AA105 /* Onboard */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		A0565020D01A6E71521830C0 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				37CBF48244B9C715532CEBDA /* Info.plist */,
-				7B89E66955A4CA8D5288EEB4 /* Pods-PocketPark-MBProgressHUD.modulemap */,
-				BB83244F37AA344E7BE1F323 /* Pods-PocketPark-MBProgressHUD.xcconfig */,
-				49E5E59F773C193E82356416 /* Pods-PocketPark-MBProgressHUD-Private.xcconfig */,
-				D8DD437C5C7B554C92F58942 /* Pods-PocketPark-MBProgressHUD-dummy.m */,
-				45C66AC8A7D810FC83ADB5B7 /* Pods-PocketPark-MBProgressHUD-prefix.pch */,
-				E1F0D4A6F434004EE95FE071 /* Pods-PocketPark-MBProgressHUD-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Pods-PocketPark-MBProgressHUD";
-			sourceTree = "<group>";
-		};
-		A950A7E82CEE9C069B3DCB0B /* MBProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				72E4F48265ADD11BD7D4080F /* MBProgressHUD.h */,
-				362C83E7D28DB1E6F9706CBE /* MBProgressHUD.m */,
-				A0565020D01A6E71521830C0 /* Support Files */,
-			);
-			path = MBProgressHUD;
-			sourceTree = "<group>";
-		};
-		E743941B8979408235EA8C6D /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				4789E848E593E1336C7E7334 /* Info.plist */,
-				F7E33DFC2B80E721C17B2AC5 /* Pods-PocketPark-Bean-iOS-OSX-SDK.modulemap */,
-				AE04561A94DE14B6A5D67811 /* Pods-PocketPark-Bean-iOS-OSX-SDK.xcconfig */,
-				F4CEFEFECA6AEF60E1D1A6EA /* Pods-PocketPark-Bean-iOS-OSX-SDK-Private.xcconfig */,
-				84F3DF4361A5ED2722A61D58 /* Pods-PocketPark-Bean-iOS-OSX-SDK-dummy.m */,
-				DADB7DE0FE9F91E4A90D2BF1 /* Pods-PocketPark-Bean-iOS-OSX-SDK-prefix.pch */,
-				C0B85BC21C0CE346B954EBA0 /* Pods-PocketPark-Bean-iOS-OSX-SDK-umbrella.h */,
+				1C9791587B2D9D07E2598712 /* Info.plist */,
+				4D9211019562D8E3AAB2D231 /* Pods-PocketPark-Bean-iOS-OSX-SDK.modulemap */,
+				A4039B3794617BAAB1F0FA6C /* Pods-PocketPark-Bean-iOS-OSX-SDK.xcconfig */,
+				A941458D7A4EACB9DE603412 /* Pods-PocketPark-Bean-iOS-OSX-SDK-Private.xcconfig */,
+				9749FEA06197E48BB6D4D46D /* Pods-PocketPark-Bean-iOS-OSX-SDK-dummy.m */,
+				04F1A90FAA4932A1BC7C651C /* Pods-PocketPark-Bean-iOS-OSX-SDK-prefix.pch */,
+				18B31790C21E8E0A6B7C503A /* Pods-PocketPark-Bean-iOS-OSX-SDK-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Pods-PocketPark-Bean-iOS-OSX-SDK";
 			sourceTree = "<group>";
 		};
-		EAD5E34313B8F8C0C540074B /* iOS */ = {
+		070BBDB5AA109D395D0C8EDF /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				594097AD5B84F05840F727C8 /* CoreBluetooth.framework */,
-				B3F7571F8767D4FAD2356443 /* CoreGraphics.framework */,
-				7324D33B06B764479706651B /* Foundation.framework */,
-				42A2A7B2420150F56BA1385B /* SystemConfiguration.framework */,
+				19C0D23C2AE1F09B7278C9CB /* Info.plist */,
+				02634970B7BECFB0B24D3C0A /* Pods-PocketPark-IJReachability.modulemap */,
+				38B8B2D4E2D3A94D3FE1F12A /* Pods-PocketPark-IJReachability.xcconfig */,
+				7894CE206D1D80C786678CF6 /* Pods-PocketPark-IJReachability-Private.xcconfig */,
+				21D674E073DDED51D161ED20 /* Pods-PocketPark-IJReachability-dummy.m */,
+				8E99D882A794E11B83CA8C94 /* Pods-PocketPark-IJReachability-prefix.pch */,
+				5008C97C2153ECF05F243935 /* Pods-PocketPark-IJReachability-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-PocketPark-IJReachability";
+			sourceTree = "<group>";
+		};
+		07D1302D111BBE6C2AF00226 = {
+			isa = PBXGroup;
+			children = (
+				7B2678CC460B483C5D2A0446 /* Podfile */,
+				039219D9595DB074E3AED99D /* Frameworks */,
+				CD3DD07CEB6BDDC55CB04D12 /* Pods */,
+				E610A3B614E1C52B2176D709 /* Products */,
+				EBB2585341CEA9E2AE6ABD32 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		129DDD58D8A381D3F4EFCAA3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EDA5FE196D962B428E8F30AB /* 201411040000_BEAN_imgA.bin */,
+				240912C01B9FD6AE834D95EB /* 201411040000_BEAN_imgB.bin */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		1ADE97BAA6294850423FFD5E /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				3886E948DFE6ABC51CD58783 /* MBProgressHUD.h */,
+				7DF71E02D24EA9143672ADD4 /* MBProgressHUD.m */,
+				C95C3C76B0921EEEFF401E4A /* Support Files */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		4B923A5CA8166FF83A708F09 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4F00DBF91B5CC4229D947D40 /* Info.plist */,
+				FB134F1CCEFDA175E124324B /* Pods-PocketPark-Onboard.modulemap */,
+				28FC3BF1849370EB8C2782DF /* Pods-PocketPark-Onboard.xcconfig */,
+				362010C2179E9CD4E0C5D86E /* Pods-PocketPark-Onboard-Private.xcconfig */,
+				AA4ABF0920B24781391B978B /* Pods-PocketPark-Onboard-dummy.m */,
+				E1E2365F89824EACD5867374 /* Pods-PocketPark-Onboard-prefix.pch */,
+				DBE175BAEDC35A9BA04B06F1 /* Pods-PocketPark-Onboard-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-PocketPark-Onboard";
+			sourceTree = "<group>";
+		};
+		6E28B42F3A944E1876DF5DEF /* Bean-iOS-OSX-SDK */ = {
+			isa = PBXGroup;
+			children = (
+				07304F628AD96B6100D207B2 /* AppMessageTypes.h */,
+				EABAF5F560597F3BF521AC67 /* AppMessages.h */,
+				2BF48D303B65C4F91915A727 /* AppMessagingLayer.h */,
+				BF310FB0DE160514BA92DA2D /* AppMessagingLayer.m */,
+				541F9F76B6107D168E89FA68 /* BEAN_Globals.h */,
+				A065749CD05CA14B675DEC4B /* BEAN_Helper.h */,
+				53BBC35BF0C8ABE4152E334C /* BEAN_Helper.m */,
+				42CA15EBC9C2E5B4177938AF /* BatteryProfile.h */,
+				285A3BCEE5D11E1886969326 /* BatteryProfile.m */,
+				E3D29D466DAF7ADE5F6F9154 /* BleProfile.h */,
+				6EB00DCA45983CFCEF7EFC3F /* BleProfile.m */,
+				959CBB4D98176BB73EF9F544 /* CBPeripheral+RSSI_Universal.h */,
+				42F09E63ACEF634750E0BA83 /* CBPeripheral+RSSI_Universal.m */,
+				97B5A12482F47D3B4E9760F8 /* CBPeripheral+UniqueId.h */,
+				8AC4AEDD875F4C7D4BF15E3F /* CBPeripheral+UniqueId.m */,
+				4EDC63AA316827EB928720E1 /* CBPeripheral+isConnected_Universal.h */,
+				DE3E78FBD2A77AAF6F72C36A /* CBPeripheral+isConnected_Universal.m */,
+				A27A31F281F7699D6FF795DB /* DevInfoProfile.h */,
+				C37F2EEA14DD149721C86090 /* DevInfoProfile.m */,
+				0C3C251C88BCDE26D9FD6923 /* GattCharacteristicHandler.h */,
+				FF11C305EDB0972C4AEC888E /* GattCharacteristicObserver.h */,
+				4AF37F823BCC3255095ADC40 /* GattPacket.h */,
+				E0AF231CD46A8D2C706ED1E7 /* GattPacket.m */,
+				07AB320176898E0C7E6762C9 /* GattSerialMessage.h */,
+				D05A33A83E1476550282A4B9 /* GattSerialMessage.m */,
+				CF8C14D53DA48CC229286F02 /* GattSerialMessageRxAssembler.h */,
+				5B8255057ACFB0C489737EFF /* GattSerialMessageRxAssembler.m */,
+				C3B14172293F8CC6B3302FF1 /* GattSerialProfile.h */,
+				4F46298613EEB25E798BEB19 /* GattSerialProfile.m */,
+				294F6AF7E3546FCC3D6D3AA6 /* GattSerialTransport.h */,
+				040446B67E3DE342528B161B /* GattSerialTransport.m */,
+				12AD977BE0B50B086FD5B9F7 /* GattTransport.h */,
+				E99A6CA8F02506D4ECAA1D2E /* GattTransport.m */,
+				F253EAC5CE32D16DFAE596D1 /* NSData+CRC.h */,
+				556ADC3D803B6664E368814B /* NSData+CRC.m */,
+				BC6BFD7C9ECEE04DE6AB6E1F /* OadProfile.h */,
+				CDCF5121F4BCA75557668612 /* OadProfile.m */,
+				E501A330F71B96ABBC482CC1 /* PTDBEAN_Helper.h */,
+				3059A1334ED58754E98AD447 /* PTDBEAN_Helper.m */,
+				1C99A594C8A5F47DECAD7928 /* PTDBean.h */,
+				76D0A98BF62E30212113DE2D /* PTDBean.m */,
+				7713786FABEDADF5E60C47C3 /* PTDBean+Protected.h */,
+				84FBF6841BFC5C8D8BDE7E62 /* PTDBeanManager.h */,
+				C5B858F22A913712513481F3 /* PTDBeanManager.m */,
+				9956CBAB6D3821E4DB933B78 /* PTDBeanManager+Protected.h */,
+				323F27E15C6376966FB2FA3B /* PTDBeanRadioConfig.h */,
+				D76DA025E1511E02A84B3E2C /* PTDBeanRadioConfig.m */,
+				7E1468FADF87AD36AB2F3783 /* PTDBeanRemoteFirmwareVersionManager.h */,
+				5D2553CDF62E1C86E22D3BC2 /* PTDBeanRemoteFirmwareVersionManager.m */,
+				8E4A621040D40EE295D05D7B /* PTDBleDevice.h */,
+				7BB9F4ECFD344A92603C8F68 /* PTDBleDevice.m */,
+				2C84AE288D922469C68D6FA2 /* ProfileDelegate_Protocol.h */,
+				02E7A50A0F9C30BCA2F4A741 /* Profile_Protocol.h */,
+				2AA7607B87D6A1A03867693A /* oad.h */,
+				129DDD58D8A381D3F4EFCAA3 /* Resources */,
+				03EC6DBFF234DDEB442BEB61 /* Support Files */,
+			);
+			path = "Bean-iOS-OSX-SDK";
+			sourceTree = "<group>";
+		};
+		6F682785BF2C8B8C6C8F963A /* Onboard */ = {
+			isa = PBXGroup;
+			children = (
+				2A7908F5C370292B9CA7BC56 /* OnboardingContentViewController.h */,
+				D286D33FFAF0F57225C0DFAD /* OnboardingContentViewController.m */,
+				8A02DF3184F61DC9A6502587 /* OnboardingViewController.h */,
+				43E943EA82D88652CC89076F /* OnboardingViewController.m */,
+				4B923A5CA8166FF83A708F09 /* Support Files */,
+			);
+			path = Onboard;
+			sourceTree = "<group>";
+		};
+		6FCA10CC7E2EBBE455E6BC01 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FEFAB15FD217E44840DAD061 /* JGProgressHUD Resources.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		73CEDE598987A62B839A32A3 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				1A65B5D3E5216D06FBCD4BAC /* CoreBluetooth.framework */,
+				7125B56D77F7E4BDE7E91FFD /* CoreGraphics.framework */,
+				6472FD0736409E6F4574D46A /* Foundation.framework */,
+				460EA0C634348531F2045A47 /* QuartzCore.framework */,
+				41C2D5D51A14BF0FD33E89EF /* SystemConfiguration.framework */,
+				96BC491C23500FD9243EB14E /* UIKit.framework */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		EAE882D8045EEDDEBF64CF3B /* Pods-PocketPark */ = {
+		7D743FF9899FB61E933882B3 /* Pods-PocketPark */ = {
 			isa = PBXGroup;
 			children = (
-				9130C1916829800C15E13211 /* Info.plist */,
-				0E203DB170920E64417B1502 /* Pods-PocketPark.modulemap */,
-				56AF0666EDF5A7EC46620D14 /* Pods-PocketPark-acknowledgements.markdown */,
-				DB150FD6FEBB6C9DF197515B /* Pods-PocketPark-acknowledgements.plist */,
-				2A91D42DFB861D3B6D6F6DCD /* Pods-PocketPark-dummy.m */,
-				B03CB50443B2F610EE2814D7 /* Pods-PocketPark-environment.h */,
-				6007DE2B6FF859297614A461 /* Pods-PocketPark-frameworks.sh */,
-				32FEAB9060B835584EA0ED2B /* Pods-PocketPark-resources.sh */,
-				3BD294314A14C25484E5F51A /* Pods-PocketPark-umbrella.h */,
-				414EA14B2CB2ED9819963F43 /* Pods-PocketPark.debug.xcconfig */,
-				6878528DDC8EFCAC4A51F27F /* Pods-PocketPark.release.xcconfig */,
+				19B3FDD9ECF2CD726DE0D849 /* Info.plist */,
+				E6D9C508BC6DB51C72A02878 /* Pods-PocketPark.modulemap */,
+				3D6C754482EC6B6EE9077863 /* Pods-PocketPark-acknowledgements.markdown */,
+				C8D5F4B3C3F4BAB419746676 /* Pods-PocketPark-acknowledgements.plist */,
+				992FA14E4329A0EC10801E9E /* Pods-PocketPark-dummy.m */,
+				ABD1F21FEB595EFEC160BD4B /* Pods-PocketPark-environment.h */,
+				DC6F4244AE6B26CD4C42DAA8 /* Pods-PocketPark-frameworks.sh */,
+				96A600C9251F9059F0E0FDEA /* Pods-PocketPark-resources.sh */,
+				A2EF319F6F792A9D0C94F6D7 /* Pods-PocketPark-umbrella.h */,
+				3B994E58FC98A3B6FB9E3E8D /* Pods-PocketPark.debug.xcconfig */,
+				233611A62926C4566C40E091 /* Pods-PocketPark.release.xcconfig */,
 			);
 			name = "Pods-PocketPark";
 			path = "Target Support Files/Pods-PocketPark";
 			sourceTree = "<group>";
 		};
+		A8CFBF3565492BC9EB79D5B1 /* IJReachability */ = {
+			isa = PBXGroup;
+			children = (
+				0F99E52712D923809CA5B9A0 /* IJReachability.swift */,
+				070BBDB5AA109D395D0C8EDF /* Support Files */,
+			);
+			path = IJReachability;
+			sourceTree = "<group>";
+		};
+		C95C3C76B0921EEEFF401E4A /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				48E4196C80A4AB430725C6C7 /* Info.plist */,
+				70D7135C750955BE9CF6D546 /* Pods-PocketPark-MBProgressHUD.modulemap */,
+				B23A67FE724FA0ADDAEA9E87 /* Pods-PocketPark-MBProgressHUD.xcconfig */,
+				E21A2131792911FCAE4871CC /* Pods-PocketPark-MBProgressHUD-Private.xcconfig */,
+				1AE1F74EF2827E9B6DDA841F /* Pods-PocketPark-MBProgressHUD-dummy.m */,
+				8F279A6D9D74B3138DB195E7 /* Pods-PocketPark-MBProgressHUD-prefix.pch */,
+				116C3D65385CC389C73679AA /* Pods-PocketPark-MBProgressHUD-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-PocketPark-MBProgressHUD";
+			sourceTree = "<group>";
+		};
+		CD3DD07CEB6BDDC55CB04D12 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6E28B42F3A944E1876DF5DEF /* Bean-iOS-OSX-SDK */,
+				A8CFBF3565492BC9EB79D5B1 /* IJReachability */,
+				DFC393501DF718B1634665A3 /* JGProgressHUD */,
+				1ADE97BAA6294850423FFD5E /* MBProgressHUD */,
+				6F682785BF2C8B8C6C8F963A /* Onboard */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DFC393501DF718B1634665A3 /* JGProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				68DB8940686E8121A4A483DC /* JGProgressHUD.h */,
+				CBDA979EC05FE3FF2313ADE2 /* JGProgressHUD.m */,
+				AF4EACAB52EFD6C38CDBACF0 /* JGProgressHUDAnimation.h */,
+				ACE2DFABD2EA0E94A94C4281 /* JGProgressHUDAnimation.m */,
+				B9067D35B07BF8866A712FFC /* JGProgressHUDErrorIndicatorView.h */,
+				95EAA1D3B37840956CAA3559 /* JGProgressHUDErrorIndicatorView.m */,
+				4E3E305AB50D4717BD1BAFA3 /* JGProgressHUDFadeAnimation.h */,
+				C6CE0B39CCB546A4B74BDBE3 /* JGProgressHUDFadeAnimation.m */,
+				E0CED449A94A23C7FC554CC0 /* JGProgressHUDFadeZoomAnimation.h */,
+				59C8A4793AE8213271CF1D46 /* JGProgressHUDFadeZoomAnimation.m */,
+				01E52A04371836703054CB1A /* JGProgressHUDIndeterminateIndicatorView.h */,
+				875F0464DAA2E0B6A77C1573 /* JGProgressHUDIndeterminateIndicatorView.m */,
+				B067AC67ACE5229B7E01F02D /* JGProgressHUDIndicatorView.h */,
+				3AB51EB70444072AEDF9D223 /* JGProgressHUDIndicatorView.m */,
+				87C7B19573559CEBD405B803 /* JGProgressHUDPieIndicatorView.h */,
+				C0C5E5D3614DAD2733EF7A62 /* JGProgressHUDPieIndicatorView.m */,
+				A5481470DA90098F1CA25118 /* JGProgressHUDRingIndicatorView.h */,
+				B23373B2D1BE5E0B33767749 /* JGProgressHUDRingIndicatorView.m */,
+				1A00E16F2CE9BA33A0BCE95B /* JGProgressHUDSuccessIndicatorView.h */,
+				7FB98ADD6C261836E4D21A48 /* JGProgressHUDSuccessIndicatorView.m */,
+				6FCA10CC7E2EBBE455E6BC01 /* Resources */,
+				E7C514E4B8F9D0E151FFACCB /* Support Files */,
+			);
+			path = JGProgressHUD;
+			sourceTree = "<group>";
+		};
+		E610A3B614E1C52B2176D709 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				194E71536624214472C83098 /* Bean_iOS_OSX_SDK.framework */,
+				40AA23C6A687A2D1E5E4332F /* IJReachability.framework */,
+				637A4EA054FAECA9793164E6 /* JGProgressHUD.framework */,
+				DBD90A2497FB51F1D6B23C9F /* MBProgressHUD.framework */,
+				22EEF7694DF698CB488AFC30 /* Onboard.framework */,
+				D36FB5A9AB27A46CD22B4787 /* Pods_PocketPark.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E7C514E4B8F9D0E151FFACCB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				6E742E126564553C1FECFBF0 /* Info.plist */,
+				ADC44B2166125646FDD23AEF /* Pods-PocketPark-JGProgressHUD.modulemap */,
+				3A0A3E4C34564D06DD69C2D9 /* Pods-PocketPark-JGProgressHUD.xcconfig */,
+				C2F27B32A06F649E481BEC9A /* Pods-PocketPark-JGProgressHUD-Private.xcconfig */,
+				556B3E2BA35D89991847C1C4 /* Pods-PocketPark-JGProgressHUD-dummy.m */,
+				54D394B2E1350F8CD96B48D7 /* Pods-PocketPark-JGProgressHUD-prefix.pch */,
+				263E034743D4A771709701FA /* Pods-PocketPark-JGProgressHUD-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-PocketPark-JGProgressHUD";
+			sourceTree = "<group>";
+		};
+		EBB2585341CEA9E2AE6ABD32 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7D743FF9899FB61E933882B3 /* Pods-PocketPark */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		44202407C360EC405A65D3FE /* Headers */ = {
+		3E52CBF706EA6F9FECA7FB6B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7715B18272C7505EB72643B0 /* MBProgressHUD.h in Headers */,
-				ED5FAC2875140BCF28936E4C /* Pods-PocketPark-MBProgressHUD-umbrella.h in Headers */,
+				DD458BCDD97FD51AAAF94B10 /* Pods-PocketPark-IJReachability-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		62FB008650DB4915A240376A /* Headers */ = {
+		561CE1F4E364318A650E1791 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9B7B2949831D37C6C2F1F68 /* Pods-PocketPark-umbrella.h in Headers */,
+				D462E99896F97EC626B8FB87 /* AppMessageTypes.h in Headers */,
+				AB5E305C3CDBA4ACDE968449 /* AppMessages.h in Headers */,
+				064A4A6DE2FACA51DC834843 /* AppMessagingLayer.h in Headers */,
+				83B12CB201145589CE54197C /* BEAN_Globals.h in Headers */,
+				05871E90BA10E02B22695B2B /* BEAN_Helper.h in Headers */,
+				D5AA457D1925009D7ECD33B2 /* BatteryProfile.h in Headers */,
+				311E4CBC14D67EA295ADBEB6 /* BleProfile.h in Headers */,
+				1CE874A0026FA5E5820606DD /* CBPeripheral+RSSI_Universal.h in Headers */,
+				8B061A5E16091C36CA1449A0 /* CBPeripheral+UniqueId.h in Headers */,
+				5132EF240155FFF4560BDA7D /* CBPeripheral+isConnected_Universal.h in Headers */,
+				60EB46A7DEE6B489E9977632 /* DevInfoProfile.h in Headers */,
+				EB100D44F2547541CBF65DDE /* GattCharacteristicHandler.h in Headers */,
+				9816EEA74F4A329B13185E58 /* GattCharacteristicObserver.h in Headers */,
+				DCC593309EFF6DDAF85C9E8B /* GattPacket.h in Headers */,
+				6714AD8E3B354F16B4B81529 /* GattSerialMessage.h in Headers */,
+				D09D2D33A9AF720CAC94A8D1 /* GattSerialMessageRxAssembler.h in Headers */,
+				868B1A8B3C81218A801DF28C /* GattSerialProfile.h in Headers */,
+				F60CB47BC637C6FC81AC3EB4 /* GattSerialTransport.h in Headers */,
+				84E4C0EB9B1F85B99E89FF5E /* GattTransport.h in Headers */,
+				8BC1746C7DA79051BB754E95 /* NSData+CRC.h in Headers */,
+				E8F7521D71FC2585883021C0 /* OadProfile.h in Headers */,
+				D92AD90CECFBB42A67636187 /* PTDBEAN_Helper.h in Headers */,
+				13FF94CDDB59DD87BDA2C023 /* PTDBean+Protected.h in Headers */,
+				2A4016EF0BD5C96A28AB8241 /* PTDBean.h in Headers */,
+				50F80B7A8D5B715A2A2B1ABD /* PTDBeanManager+Protected.h in Headers */,
+				965B4CC5518E6FFD1087CDCE /* PTDBeanManager.h in Headers */,
+				3CBDD4CEBAA66CACF46EF8A7 /* PTDBeanRadioConfig.h in Headers */,
+				4500243A35EACBB287862118 /* PTDBeanRemoteFirmwareVersionManager.h in Headers */,
+				6738A65E78E13BC53FB61CD4 /* PTDBleDevice.h in Headers */,
+				1428080478E789B6FCE71A96 /* Pods-PocketPark-Bean-iOS-OSX-SDK-umbrella.h in Headers */,
+				86E56FB0B0F895480FC5CAD4 /* ProfileDelegate_Protocol.h in Headers */,
+				EDB2FC18A2C664226879B1EF /* Profile_Protocol.h in Headers */,
+				548F7DE411B5A0CF76278855 /* oad.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		789D00D597DB03CEAE42862D /* Headers */ = {
+		8589B4E7C07715629400F284 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				875F0DE9459CD6FF55B2EA04 /* OnboardingContentViewController.h in Headers */,
-				78041DCB82F036E63778BD9F /* OnboardingViewController.h in Headers */,
-				15F53DCFC3FFE4523D4A4E75 /* Pods-PocketPark-Onboard-umbrella.h in Headers */,
+				72BE048C0010B89E03E3BE1E /* MBProgressHUD.h in Headers */,
+				410A9C13E9E4D94D7E470EC4 /* Pods-PocketPark-MBProgressHUD-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A80EE0AD8EFC4F2B2FB50817 /* Headers */ = {
+		E8BCED94D22D644C29F53573 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1350E3505C59A887CDA91390 /* Pods-PocketPark-IJReachability-umbrella.h in Headers */,
+				DCF5F70749FFB27EDB585BFF /* OnboardingContentViewController.h in Headers */,
+				E7C57C0C87A2615812EA6BCB /* OnboardingViewController.h in Headers */,
+				D30853B7E44D3E7E80977C61 /* Pods-PocketPark-Onboard-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CC82BF90E8182FE725EE97A9 /* Headers */ = {
+		EB90D980FA5B72AE7EBAD138 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DB0C6B7558FE490874F59D5 /* AppMessageTypes.h in Headers */,
-				EFF69D16FEDC603662755248 /* AppMessages.h in Headers */,
-				ABE48918147784D1F58D685A /* AppMessagingLayer.h in Headers */,
-				25543DC6B3F786BDF7CB03B9 /* BEAN_Globals.h in Headers */,
-				D9A458A23F797E892C078448 /* BEAN_Helper.h in Headers */,
-				E516864DF73A2352BDAB7139 /* BatteryProfile.h in Headers */,
-				CBDDBE3E09C96760DD61C7A8 /* BleProfile.h in Headers */,
-				F187A42FBE9CC4BAEF914982 /* CBPeripheral+RSSI_Universal.h in Headers */,
-				8EABC485C97E96D65A892802 /* CBPeripheral+UniqueId.h in Headers */,
-				C96B31B9783D03316CE17493 /* CBPeripheral+isConnected_Universal.h in Headers */,
-				D0CD31B68C3C427CB4953BF1 /* DevInfoProfile.h in Headers */,
-				177946CAA78BF33872CCA8E6 /* GattCharacteristicHandler.h in Headers */,
-				A2A729D00BEF1DCB9979CF2E /* GattCharacteristicObserver.h in Headers */,
-				DA64E373F031998067E49CE2 /* GattPacket.h in Headers */,
-				91C2A0E262881ABD4E3BBFD6 /* GattSerialMessage.h in Headers */,
-				1660643584D5DCB42A900264 /* GattSerialMessageRxAssembler.h in Headers */,
-				46EC096A58FB37D28C21A1AD /* GattSerialProfile.h in Headers */,
-				2578818320B2879F888638B4 /* GattSerialTransport.h in Headers */,
-				AC77D15B549AFD672AC380D0 /* GattTransport.h in Headers */,
-				E19F58B1D0C0CA3897BF69CE /* NSData+CRC.h in Headers */,
-				CA650FAC6E47CE1F015A16C1 /* OadProfile.h in Headers */,
-				FF6ED38CFAB464683691D65D /* PTDBEAN_Helper.h in Headers */,
-				A1B5F8027317EF442873DC03 /* PTDBean+Protected.h in Headers */,
-				02828BF5AF472B1705ADDA28 /* PTDBean.h in Headers */,
-				D64A35B8A627605C0DB25848 /* PTDBeanManager+Protected.h in Headers */,
-				B6997D058E4BE20963E8EE53 /* PTDBeanManager.h in Headers */,
-				6F7BB0D05F736EEA5538DFCA /* PTDBeanRadioConfig.h in Headers */,
-				6364B61B373AD75D2A7C9189 /* PTDBeanRemoteFirmwareVersionManager.h in Headers */,
-				B711D508AAC4642DB1340A61 /* PTDBleDevice.h in Headers */,
-				ED9555615CD648869A042279 /* Pods-PocketPark-Bean-iOS-OSX-SDK-umbrella.h in Headers */,
-				DB6B5BC7CA3E0E3C386243C3 /* ProfileDelegate_Protocol.h in Headers */,
-				C640D259A566B13B7A666368 /* Profile_Protocol.h in Headers */,
-				93A63D95C38C5CD6CA27AE75 /* oad.h in Headers */,
+				59270C9BD789505572D35C98 /* Pods-PocketPark-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9ACE8EE85A5AD4EC04F6C04 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04D33FC4E0AC8E4635B4E849 /* JGProgressHUD.h in Headers */,
+				0EE25C3FA24AE932DC448CC3 /* JGProgressHUDAnimation.h in Headers */,
+				8D00D8034BB09C73204356C7 /* JGProgressHUDErrorIndicatorView.h in Headers */,
+				BB5C8C792821E8D5405E2358 /* JGProgressHUDFadeAnimation.h in Headers */,
+				9B8B75A82D3A90F7AE6F4DDA /* JGProgressHUDFadeZoomAnimation.h in Headers */,
+				E1D770AD9305A695D627AF5E /* JGProgressHUDIndeterminateIndicatorView.h in Headers */,
+				36654E9DB889B209A1056F29 /* JGProgressHUDIndicatorView.h in Headers */,
+				B39503B9F10EA5F8E7452E0A /* JGProgressHUDPieIndicatorView.h in Headers */,
+				FD194761A7AC2C98D7CFD997 /* JGProgressHUDRingIndicatorView.h in Headers */,
+				1270652B4FCAF6F4F3624634 /* JGProgressHUDSuccessIndicatorView.h in Headers */,
+				7920E28EE677773681A8F62B /* Pods-PocketPark-JGProgressHUD-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		19F9152B476F568F731F8F4D /* Pods-PocketPark-Onboard */ = {
+		199B0152D87D38B44B616122 /* Pods-PocketPark-JGProgressHUD */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B0BC279591044681BBBFB823 /* Build configuration list for PBXNativeTarget "Pods-PocketPark-Onboard" */;
+			buildConfigurationList = 6CC9A5AD2AE487D27C9B19CF /* Build configuration list for PBXNativeTarget "Pods-PocketPark-JGProgressHUD" */;
 			buildPhases = (
-				3D6E2BC64D1C0D25A607EC6B /* Sources */,
-				2A5653CEA88766FE53772204 /* Frameworks */,
-				789D00D597DB03CEAE42862D /* Headers */,
+				9DD96338A66042258FA2372F /* Sources */,
+				F26D6EEDC2BEBA4F51499833 /* Frameworks */,
+				F9ACE8EE85A5AD4EC04F6C04 /* Headers */,
+				0D8272719FB0ED1DD636DDD5 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-PocketPark-Onboard";
-			productName = "Pods-PocketPark-Onboard";
-			productReference = F167E152C8649BEAB249C8E3 /* Onboard.framework */;
+			name = "Pods-PocketPark-JGProgressHUD";
+			productName = "Pods-PocketPark-JGProgressHUD";
+			productReference = 637A4EA054FAECA9793164E6 /* JGProgressHUD.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		415951F7ED19BBFA2AEB0891 /* Pods-PocketPark-IJReachability */ = {
+		422C6EBB60C4B12F414C8958 /* Pods-PocketPark-Bean-iOS-OSX-SDK */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A52434DB61A0C6847875206 /* Build configuration list for PBXNativeTarget "Pods-PocketPark-IJReachability" */;
+			buildConfigurationList = 4D182E12D09F21272B661544 /* Build configuration list for PBXNativeTarget "Pods-PocketPark-Bean-iOS-OSX-SDK" */;
 			buildPhases = (
-				0F3C16A3C032AFA38C72F05E /* Sources */,
-				6E7DEA24C886294EC1DC77F6 /* Frameworks */,
-				A80EE0AD8EFC4F2B2FB50817 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Pods-PocketPark-IJReachability";
-			productName = "Pods-PocketPark-IJReachability";
-			productReference = 818F0CF26FF60E799234A28B /* IJReachability.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		81635C8D8A2DD42246853E3F /* Pods-PocketPark */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 58419324EBBC2B7C2FDD7CAC /* Build configuration list for PBXNativeTarget "Pods-PocketPark" */;
-			buildPhases = (
-				08BEDD1F39C10577BCC25145 /* Sources */,
-				8994E512805DF91458FF962D /* Frameworks */,
-				62FB008650DB4915A240376A /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F07ECC1EE921C1D5E2EC278C /* PBXTargetDependency */,
-				383CA3468D071403F8D3943D /* PBXTargetDependency */,
-				BC8CF6B298D1BA92592C2525 /* PBXTargetDependency */,
-				351CF6D7799B3EA1C0DBD727 /* PBXTargetDependency */,
-			);
-			name = "Pods-PocketPark";
-			productName = "Pods-PocketPark";
-			productReference = 2A65A469D310EBCAC58DBB2D /* Pods_PocketPark.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		AC102E64DFBD9170B7FDA6F9 /* Pods-PocketPark-Bean-iOS-OSX-SDK */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D89801CB6C9665267D8AAAA6 /* Build configuration list for PBXNativeTarget "Pods-PocketPark-Bean-iOS-OSX-SDK" */;
-			buildPhases = (
-				9A24D1706F4FC287BFDF2483 /* Sources */,
-				13A7985E4C5E6E1BBCA14C4E /* Frameworks */,
-				CC82BF90E8182FE725EE97A9 /* Headers */,
-				B75E6B309952D2E7DC4E2FF0 /* Resources */,
+				6C7A71EA9E8827D7B170F0D7 /* Sources */,
+				2D009B536F9BFD14E309200B /* Frameworks */,
+				561CE1F4E364318A650E1791 /* Headers */,
+				A169E51872B86190A488A53B /* Resources */,
 			);
 			buildRules = (
 			);
@@ -677,16 +788,72 @@
 			);
 			name = "Pods-PocketPark-Bean-iOS-OSX-SDK";
 			productName = "Pods-PocketPark-Bean-iOS-OSX-SDK";
-			productReference = 07D2DCBB24DF95F3156577CA /* Bean_iOS_OSX_SDK.framework */;
+			productReference = 194E71536624214472C83098 /* Bean_iOS_OSX_SDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		E0B0159DC33D6DB2AD9A7E3A /* Pods-PocketPark-MBProgressHUD */ = {
+		6EA1E689F7C58CC20257D3FA /* Pods-PocketPark-IJReachability */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07C61A9ECDC06F7C0233412B /* Build configuration list for PBXNativeTarget "Pods-PocketPark-MBProgressHUD" */;
+			buildConfigurationList = 9499BCBC5DC43E2F005F7F59 /* Build configuration list for PBXNativeTarget "Pods-PocketPark-IJReachability" */;
 			buildPhases = (
-				AD699A8817DECF3D8AD941E1 /* Sources */,
-				0F2BE6AAEC8DB7FFAC4CF9AF /* Frameworks */,
-				44202407C360EC405A65D3FE /* Headers */,
+				4CB3DE5582705904CA65CD0C /* Sources */,
+				99ACF3F09C5F346B3975F311 /* Frameworks */,
+				3E52CBF706EA6F9FECA7FB6B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-PocketPark-IJReachability";
+			productName = "Pods-PocketPark-IJReachability";
+			productReference = 40AA23C6A687A2D1E5E4332F /* IJReachability.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		82410A8C94548601341214F8 /* Pods-PocketPark-Onboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD7D84884A069BA6863FBBA8 /* Build configuration list for PBXNativeTarget "Pods-PocketPark-Onboard" */;
+			buildPhases = (
+				786C1E18BEB7DA08833E603B /* Sources */,
+				F5BF2F4449C33A6B23A1442D /* Frameworks */,
+				E8BCED94D22D644C29F53573 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-PocketPark-Onboard";
+			productName = "Pods-PocketPark-Onboard";
+			productReference = 22EEF7694DF698CB488AFC30 /* Onboard.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CBA9B64440A1DE0AAAFCBE21 /* Pods-PocketPark */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 308AA3E70477F0047DC9C6CE /* Build configuration list for PBXNativeTarget "Pods-PocketPark" */;
+			buildPhases = (
+				7BA28356F46F286ADE97F51F /* Sources */,
+				46D247D3B20D0C0F49692783 /* Frameworks */,
+				EB90D980FA5B72AE7EBAD138 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7FAB08D47082CE0C23C3B593 /* PBXTargetDependency */,
+				A7D404EB45443944B89BAFAC /* PBXTargetDependency */,
+				DC877CC23BC9ECDC7E217794 /* PBXTargetDependency */,
+				64AFA6BAF6617B420331A989 /* PBXTargetDependency */,
+				EADA200AEDA0CBBEADB4BEDA /* PBXTargetDependency */,
+			);
+			name = "Pods-PocketPark";
+			productName = "Pods-PocketPark";
+			productReference = D36FB5A9AB27A46CD22B4787 /* Pods_PocketPark.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EDD7778EDFAA8C0EB85EF9A6 /* Pods-PocketPark-MBProgressHUD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FCC3A2537AC441B40ECECF82 /* Build configuration list for PBXNativeTarget "Pods-PocketPark-MBProgressHUD" */;
+			buildPhases = (
+				640805C6E40C92AF744BB2E9 /* Sources */,
+				67D41631E7818D63D502DB25 /* Frameworks */,
+				8589B4E7C07715629400F284 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -694,150 +861,183 @@
 			);
 			name = "Pods-PocketPark-MBProgressHUD";
 			productName = "Pods-PocketPark-MBProgressHUD";
-			productReference = 623A9F17A4616A732FF6AB0E /* MBProgressHUD.framework */;
+			productReference = DBD90A2497FB51F1D6B23C9F /* MBProgressHUD.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		FB21ABA358CBDC7AEDA6E1E7 /* Project object */ = {
+		4F32F04C23BE699AF96FCC1A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0510;
 			};
-			buildConfigurationList = 6D48C7BE4ED31E0ABFDF9870 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = A158E81542D4FCF0E9349751 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 8622EBC30E2D8D9C7DA23B27;
-			productRefGroup = 7F43E76B5E5C5A5334BE4196 /* Products */;
+			mainGroup = 07D1302D111BBE6C2AF00226;
+			productRefGroup = E610A3B614E1C52B2176D709 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				81635C8D8A2DD42246853E3F /* Pods-PocketPark */,
-				AC102E64DFBD9170B7FDA6F9 /* Pods-PocketPark-Bean-iOS-OSX-SDK */,
-				415951F7ED19BBFA2AEB0891 /* Pods-PocketPark-IJReachability */,
-				E0B0159DC33D6DB2AD9A7E3A /* Pods-PocketPark-MBProgressHUD */,
-				19F9152B476F568F731F8F4D /* Pods-PocketPark-Onboard */,
+				CBA9B64440A1DE0AAAFCBE21 /* Pods-PocketPark */,
+				422C6EBB60C4B12F414C8958 /* Pods-PocketPark-Bean-iOS-OSX-SDK */,
+				6EA1E689F7C58CC20257D3FA /* Pods-PocketPark-IJReachability */,
+				199B0152D87D38B44B616122 /* Pods-PocketPark-JGProgressHUD */,
+				EDD7778EDFAA8C0EB85EF9A6 /* Pods-PocketPark-MBProgressHUD */,
+				82410A8C94548601341214F8 /* Pods-PocketPark-Onboard */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B75E6B309952D2E7DC4E2FF0 /* Resources */ = {
+		0D8272719FB0ED1DD636DDD5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				695B762322860223B6EB43E8 /* 201411040000_BEAN_imgA.bin in Resources */,
-				5420FCDB23451D39EEBBE9B5 /* 201411040000_BEAN_imgB.bin in Resources */,
+				2BDBBB6C8563E8A3F0D53F99 /* JGProgressHUD Resources.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A169E51872B86190A488A53B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D3EEFF536CB96AA2CDACE37 /* 201411040000_BEAN_imgA.bin in Resources */,
+				5341B309933286FE614C63B4 /* 201411040000_BEAN_imgB.bin in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		08BEDD1F39C10577BCC25145 /* Sources */ = {
+		4CB3DE5582705904CA65CD0C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DC76D2920103B0AB9E0ADDA /* Pods-PocketPark-dummy.m in Sources */,
+				7B5D7179A8E2C8091BB0D96D /* IJReachability.swift in Sources */,
+				2D6AC0C43B0ACCA16F270F4D /* Pods-PocketPark-IJReachability-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0F3C16A3C032AFA38C72F05E /* Sources */ = {
+		640805C6E40C92AF744BB2E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87AA03BF26735252E67C7552 /* IJReachability.swift in Sources */,
-				5087CA546EDEC4D74A49864B /* Pods-PocketPark-IJReachability-dummy.m in Sources */,
+				C8D883C895F48025CCF665BF /* MBProgressHUD.m in Sources */,
+				705A91F58E3272F3B982DCED /* Pods-PocketPark-MBProgressHUD-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D6E2BC64D1C0D25A607EC6B /* Sources */ = {
+		6C7A71EA9E8827D7B170F0D7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34B20C9A03ADC7C2F1886614 /* OnboardingContentViewController.m in Sources */,
-				2F02664796C1E0E0188C8940 /* OnboardingViewController.m in Sources */,
-				02163CF21F258942CE1AD972 /* Pods-PocketPark-Onboard-dummy.m in Sources */,
+				7CC20ED7B468E3B0EFD859E0 /* AppMessagingLayer.m in Sources */,
+				2C55EAF1E42CFE3087F5F69F /* BEAN_Helper.m in Sources */,
+				28CECFA0513C66E6D315C82A /* BatteryProfile.m in Sources */,
+				A2F38563529CF63EB468E427 /* BleProfile.m in Sources */,
+				3CF3B4E14F78F9FD6D413B3C /* CBPeripheral+RSSI_Universal.m in Sources */,
+				4E2848F57C07E19AA2A6F6AB /* CBPeripheral+UniqueId.m in Sources */,
+				ABD7AC65768B0D47B058888F /* CBPeripheral+isConnected_Universal.m in Sources */,
+				39F82FD4BCE1D97584A1BAE9 /* DevInfoProfile.m in Sources */,
+				200296270182A19C7F8A76E1 /* GattPacket.m in Sources */,
+				9966331A65E341958B65AF6C /* GattSerialMessage.m in Sources */,
+				A049CFA06AE407EAF83F71F6 /* GattSerialMessageRxAssembler.m in Sources */,
+				C65C60BD63E38DCD462089D8 /* GattSerialProfile.m in Sources */,
+				C289755150A14D60E12DCC98 /* GattSerialTransport.m in Sources */,
+				31E66B886B615C81C67FC57E /* GattTransport.m in Sources */,
+				AADBEC6191008FAD64AFBD31 /* NSData+CRC.m in Sources */,
+				F827F2A94879FCF3C0719435 /* OadProfile.m in Sources */,
+				C0E4009A84D6048433D69E55 /* PTDBEAN_Helper.m in Sources */,
+				07375A1334C8B634930B79ED /* PTDBean.m in Sources */,
+				63BBA30BB6D01AC9164EC02F /* PTDBeanManager.m in Sources */,
+				F8C14C739B5CD0A125DE56CF /* PTDBeanRadioConfig.m in Sources */,
+				E7E60C1AC313F68C4D45688C /* PTDBeanRemoteFirmwareVersionManager.m in Sources */,
+				FB7F2C33FD0150B28E66475A /* PTDBleDevice.m in Sources */,
+				06D0DA6647CAD2EAA8B264DC /* Pods-PocketPark-Bean-iOS-OSX-SDK-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9A24D1706F4FC287BFDF2483 /* Sources */ = {
+		786C1E18BEB7DA08833E603B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FAFAACB0CDBB52D27217070 /* AppMessagingLayer.m in Sources */,
-				F082969C1D540FD8E6BD073A /* BEAN_Helper.m in Sources */,
-				C7EF5BA75D46DDDA47FA5236 /* BatteryProfile.m in Sources */,
-				195CA72DBA4793E2FC4C2563 /* BleProfile.m in Sources */,
-				B3A2AC3FDC28CCC3DF634DE7 /* CBPeripheral+RSSI_Universal.m in Sources */,
-				9D13230E5071237EFE89BA16 /* CBPeripheral+UniqueId.m in Sources */,
-				6D13844CAAE2B16ED0DE2BA0 /* CBPeripheral+isConnected_Universal.m in Sources */,
-				A9A374DBC02636265D1AE0FE /* DevInfoProfile.m in Sources */,
-				F37A8A91256A96B6A772D61E /* GattPacket.m in Sources */,
-				A41612859967F72DE85B222C /* GattSerialMessage.m in Sources */,
-				0CC7FCF0BF6B1FEE03822492 /* GattSerialMessageRxAssembler.m in Sources */,
-				2297CED01F00FA5274B478B4 /* GattSerialProfile.m in Sources */,
-				AE241C81BED57DFF4AC2C477 /* GattSerialTransport.m in Sources */,
-				53B0D034F9F43A6DF1F26EF7 /* GattTransport.m in Sources */,
-				8AB00C28D4476C32D4ABF307 /* NSData+CRC.m in Sources */,
-				92AFDE01F5968530E3F6A837 /* OadProfile.m in Sources */,
-				1F1C1EEEFF540C337D8A5D52 /* PTDBEAN_Helper.m in Sources */,
-				F73868405C4F93D413573698 /* PTDBean.m in Sources */,
-				E7F032BAB627DE99289F9CC0 /* PTDBeanManager.m in Sources */,
-				0951006D1362DD897AFFA164 /* PTDBeanRadioConfig.m in Sources */,
-				F2B10722378A15EF09670586 /* PTDBeanRemoteFirmwareVersionManager.m in Sources */,
-				FA0F66E93A5A472B90287158 /* PTDBleDevice.m in Sources */,
-				1B9F7F6C321BF4FF913CD24C /* Pods-PocketPark-Bean-iOS-OSX-SDK-dummy.m in Sources */,
+				8CCC87B8EAE44904247CCBE2 /* OnboardingContentViewController.m in Sources */,
+				094402FCFF5174C6FABE9023 /* OnboardingViewController.m in Sources */,
+				F80A87D413377CC116A12B07 /* Pods-PocketPark-Onboard-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AD699A8817DECF3D8AD941E1 /* Sources */ = {
+		7BA28356F46F286ADE97F51F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F25F285D839B61D4CA85904B /* MBProgressHUD.m in Sources */,
-				1DD5FB82F0A303A52B4946B6 /* Pods-PocketPark-MBProgressHUD-dummy.m in Sources */,
+				50D99642E648745F1685690F /* Pods-PocketPark-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DD96338A66042258FA2372F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB595BB8D7D5B0F86CAC43FA /* JGProgressHUD.m in Sources */,
+				82B699386A570785C8BB33D7 /* JGProgressHUDAnimation.m in Sources */,
+				0A198674ED272F8497ABB1C8 /* JGProgressHUDErrorIndicatorView.m in Sources */,
+				04A0CF7A02EF5712DD0B4E3B /* JGProgressHUDFadeAnimation.m in Sources */,
+				C9A70325FF0516F0A76FBAD0 /* JGProgressHUDFadeZoomAnimation.m in Sources */,
+				04855B56A33B1ADC1D0F590A /* JGProgressHUDIndeterminateIndicatorView.m in Sources */,
+				CC4A89B06E77DE24080762D8 /* JGProgressHUDIndicatorView.m in Sources */,
+				742B9D336946B1E433D4A5C5 /* JGProgressHUDPieIndicatorView.m in Sources */,
+				7F5C6830F5C5C10A218CD36D /* JGProgressHUDRingIndicatorView.m in Sources */,
+				3D849998C157DC1C6E976A4B /* JGProgressHUDSuccessIndicatorView.m in Sources */,
+				EC87BFAD95B8791D160A93C9 /* Pods-PocketPark-JGProgressHUD-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		351CF6D7799B3EA1C0DBD727 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-PocketPark-Onboard";
-			target = 19F9152B476F568F731F8F4D /* Pods-PocketPark-Onboard */;
-			targetProxy = 0883E0584AF2BB80CC586A4E /* PBXContainerItemProxy */;
-		};
-		383CA3468D071403F8D3943D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-PocketPark-IJReachability";
-			target = 415951F7ED19BBFA2AEB0891 /* Pods-PocketPark-IJReachability */;
-			targetProxy = 06AB0CB10D0AD164BCC3DB08 /* PBXContainerItemProxy */;
-		};
-		BC8CF6B298D1BA92592C2525 /* PBXTargetDependency */ = {
+		64AFA6BAF6617B420331A989 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-PocketPark-MBProgressHUD";
-			target = E0B0159DC33D6DB2AD9A7E3A /* Pods-PocketPark-MBProgressHUD */;
-			targetProxy = 0C753BA4845724A2583BACD7 /* PBXContainerItemProxy */;
+			target = EDD7778EDFAA8C0EB85EF9A6 /* Pods-PocketPark-MBProgressHUD */;
+			targetProxy = E6F5A14738AAC41660A6847C /* PBXContainerItemProxy */;
 		};
-		F07ECC1EE921C1D5E2EC278C /* PBXTargetDependency */ = {
+		7FAB08D47082CE0C23C3B593 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-PocketPark-Bean-iOS-OSX-SDK";
-			target = AC102E64DFBD9170B7FDA6F9 /* Pods-PocketPark-Bean-iOS-OSX-SDK */;
-			targetProxy = 57C560C332F7C2299241D31D /* PBXContainerItemProxy */;
+			target = 422C6EBB60C4B12F414C8958 /* Pods-PocketPark-Bean-iOS-OSX-SDK */;
+			targetProxy = 57225438BF5CF78C327285FF /* PBXContainerItemProxy */;
+		};
+		A7D404EB45443944B89BAFAC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-PocketPark-IJReachability";
+			target = 6EA1E689F7C58CC20257D3FA /* Pods-PocketPark-IJReachability */;
+			targetProxy = BF35AA8FB1E5064E9E2676B6 /* PBXContainerItemProxy */;
+		};
+		DC877CC23BC9ECDC7E217794 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-PocketPark-JGProgressHUD";
+			target = 199B0152D87D38B44B616122 /* Pods-PocketPark-JGProgressHUD */;
+			targetProxy = C52045DFB635DAE976014454 /* PBXContainerItemProxy */;
+		};
+		EADA200AEDA0CBBEADB4BEDA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-PocketPark-Onboard";
+			target = 82410A8C94548601341214F8 /* Pods-PocketPark-Onboard */;
+			targetProxy = 97989F05BCD3339159B16067 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1599FED4A048ABDFC009379C /* Release */ = {
+		1EB0778E8ED5B60E640BD409 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 49E5E59F773C193E82356416 /* Pods-PocketPark-MBProgressHUD-Private.xcconfig */;
+			baseConfigurationReference = E21A2131792911FCAE4871CC /* Pods-PocketPark-MBProgressHUD-Private.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -862,9 +1062,9 @@
 			};
 			name = Release;
 		};
-		22D16F5C691E9F4ED7D56B1E /* Debug */ = {
+		3E19D12FC248ED4864AF67C0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 49E5E59F773C193E82356416 /* Pods-PocketPark-MBProgressHUD-Private.xcconfig */;
+			baseConfigurationReference = C2F27B32A06F649E481BEC9A /* Pods-PocketPark-JGProgressHUD-Private.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -873,105 +1073,14 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-PocketPark-MBProgressHUD/Pods-PocketPark-MBProgressHUD-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-PocketPark-MBProgressHUD/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-PocketPark-JGProgressHUD/Pods-PocketPark-JGProgressHUD-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-PocketPark-JGProgressHUD/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-PocketPark-MBProgressHUD/Pods-PocketPark-MBProgressHUD.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = MBProgressHUD;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		3BDC2520115646EC8CAA9D9C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		3C42D42B7AA2764A4C6EF63D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 414EA14B2CB2ED9819963F43 /* Pods-PocketPark.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-PocketPark/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-PocketPark/Pods-PocketPark.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_PocketPark;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		3FAD1B771AEAAC05896488EB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A28D3EDD619477F6D52D76B8 /* Pods-PocketPark-Onboard-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-PocketPark-Onboard/Pods-PocketPark-Onboard-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-PocketPark-Onboard/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-PocketPark-Onboard/Pods-PocketPark-Onboard.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-PocketPark-JGProgressHUD/Pods-PocketPark-JGProgressHUD.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = Onboard;
+				PRODUCT_NAME = JGProgressHUD;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -980,9 +1089,9 @@
 			};
 			name = Release;
 		};
-		47F6404CB929A7323B849EC0 /* Debug */ = {
+		3E5E8F5199E6EA6C9F78A42A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A28D3EDD619477F6D52D76B8 /* Pods-PocketPark-Onboard-Private.xcconfig */;
+			baseConfigurationReference = C2F27B32A06F649E481BEC9A /* Pods-PocketPark-JGProgressHUD-Private.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -991,14 +1100,14 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-PocketPark-Onboard/Pods-PocketPark-Onboard-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-PocketPark-Onboard/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-PocketPark-JGProgressHUD/Pods-PocketPark-JGProgressHUD-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-PocketPark-JGProgressHUD/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-PocketPark-Onboard/Pods-PocketPark-Onboard.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-PocketPark-JGProgressHUD/Pods-PocketPark-JGProgressHUD.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = Onboard;
+				PRODUCT_NAME = JGProgressHUD;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1007,90 +1116,7 @@
 			};
 			name = Debug;
 		};
-		62C6C7EAA0E7319250D5BCAF /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D14359B464B7F4880E2E595 /* Pods-PocketPark-IJReachability-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-PocketPark-IJReachability/Pods-PocketPark-IJReachability-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-PocketPark-IJReachability/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-PocketPark-IJReachability/Pods-PocketPark-IJReachability.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = IJReachability;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		823F829E25E4DD57191AB708 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6878528DDC8EFCAC4A51F27F /* Pods-PocketPark.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-PocketPark/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-PocketPark/Pods-PocketPark.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_PocketPark;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		8C14F851E3798AC3F1B159F8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F4CEFEFECA6AEF60E1D1A6EA /* Pods-PocketPark-Bean-iOS-OSX-SDK-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-PocketPark-Bean-iOS-OSX-SDK/Pods-PocketPark-Bean-iOS-OSX-SDK-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-PocketPark-Bean-iOS-OSX-SDK/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-PocketPark-Bean-iOS-OSX-SDK/Pods-PocketPark-Bean-iOS-OSX-SDK.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = Bean_iOS_OSX_SDK;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		97ADF3AF80BFB5FBD52AF7AF /* Debug */ = {
+		5044EEA7B14FB36CE99574FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1129,9 +1155,97 @@
 			};
 			name = Debug;
 		};
-		A17C358F861300689224EB71 /* Release */ = {
+		5B056BF7035C8BCF1FB61654 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F4CEFEFECA6AEF60E1D1A6EA /* Pods-PocketPark-Bean-iOS-OSX-SDK-Private.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		63A0071E6E98198CD515CFE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A941458D7A4EACB9DE603412 /* Pods-PocketPark-Bean-iOS-OSX-SDK-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-PocketPark-Bean-iOS-OSX-SDK/Pods-PocketPark-Bean-iOS-OSX-SDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-PocketPark-Bean-iOS-OSX-SDK/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-PocketPark-Bean-iOS-OSX-SDK/Pods-PocketPark-Bean-iOS-OSX-SDK.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Bean_iOS_OSX_SDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6BB423B8CCDD0C79D9C17523 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 362010C2179E9CD4E0C5D86E /* Pods-PocketPark-Onboard-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-PocketPark-Onboard/Pods-PocketPark-Onboard-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-PocketPark-Onboard/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-PocketPark-Onboard/Pods-PocketPark-Onboard.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Onboard;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		816DD7BBC83075CD2004BEA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A941458D7A4EACB9DE603412 /* Pods-PocketPark-Bean-iOS-OSX-SDK-Private.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1156,9 +1270,9 @@
 			};
 			name = Release;
 		};
-		CFE00A3B786D1E4A7B9DBAC9 /* Debug */ = {
+		87248BC35F30BCE6DB848DAF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D14359B464B7F4880E2E595 /* Pods-PocketPark-IJReachability-Private.xcconfig */;
+			baseConfigurationReference = 7894CE206D1D80C786678CF6 /* Pods-PocketPark-IJReachability-Private.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1184,64 +1298,213 @@
 			};
 			name = Debug;
 		};
+		93972DB684DEA8FACC71AA7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7894CE206D1D80C786678CF6 /* Pods-PocketPark-IJReachability-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-PocketPark-IJReachability/Pods-PocketPark-IJReachability-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-PocketPark-IJReachability/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-PocketPark-IJReachability/Pods-PocketPark-IJReachability.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = IJReachability;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A74BD0389CB3BFF579D2FB67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 362010C2179E9CD4E0C5D86E /* Pods-PocketPark-Onboard-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-PocketPark-Onboard/Pods-PocketPark-Onboard-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-PocketPark-Onboard/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-PocketPark-Onboard/Pods-PocketPark-Onboard.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Onboard;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D09015B65D62D50E101CFF6A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E21A2131792911FCAE4871CC /* Pods-PocketPark-MBProgressHUD-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-PocketPark-MBProgressHUD/Pods-PocketPark-MBProgressHUD-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-PocketPark-MBProgressHUD/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-PocketPark-MBProgressHUD/Pods-PocketPark-MBProgressHUD.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = MBProgressHUD;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D8896E9C0C5F09C2734CD2EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 233611A62926C4566C40E091 /* Pods-PocketPark.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-PocketPark/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-PocketPark/Pods-PocketPark.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_PocketPark;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FE74FDE86788EEED56F0DEE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B994E58FC98A3B6FB9E3E8D /* Pods-PocketPark.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-PocketPark/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-PocketPark/Pods-PocketPark.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_PocketPark;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07C61A9ECDC06F7C0233412B /* Build configuration list for PBXNativeTarget "Pods-PocketPark-MBProgressHUD" */ = {
+		308AA3E70477F0047DC9C6CE /* Build configuration list for PBXNativeTarget "Pods-PocketPark" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				22D16F5C691E9F4ED7D56B1E /* Debug */,
-				1599FED4A048ABDFC009379C /* Release */,
+				FE74FDE86788EEED56F0DEE6 /* Debug */,
+				D8896E9C0C5F09C2734CD2EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1A52434DB61A0C6847875206 /* Build configuration list for PBXNativeTarget "Pods-PocketPark-IJReachability" */ = {
+		4D182E12D09F21272B661544 /* Build configuration list for PBXNativeTarget "Pods-PocketPark-Bean-iOS-OSX-SDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CFE00A3B786D1E4A7B9DBAC9 /* Debug */,
-				62C6C7EAA0E7319250D5BCAF /* Release */,
+				63A0071E6E98198CD515CFE6 /* Debug */,
+				816DD7BBC83075CD2004BEA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		58419324EBBC2B7C2FDD7CAC /* Build configuration list for PBXNativeTarget "Pods-PocketPark" */ = {
+		6CC9A5AD2AE487D27C9B19CF /* Build configuration list for PBXNativeTarget "Pods-PocketPark-JGProgressHUD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3C42D42B7AA2764A4C6EF63D /* Debug */,
-				823F829E25E4DD57191AB708 /* Release */,
+				3E5E8F5199E6EA6C9F78A42A /* Debug */,
+				3E19D12FC248ED4864AF67C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6D48C7BE4ED31E0ABFDF9870 /* Build configuration list for PBXProject "Pods" */ = {
+		9499BCBC5DC43E2F005F7F59 /* Build configuration list for PBXNativeTarget "Pods-PocketPark-IJReachability" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				97ADF3AF80BFB5FBD52AF7AF /* Debug */,
-				3BDC2520115646EC8CAA9D9C /* Release */,
+				87248BC35F30BCE6DB848DAF /* Debug */,
+				93972DB684DEA8FACC71AA7B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B0BC279591044681BBBFB823 /* Build configuration list for PBXNativeTarget "Pods-PocketPark-Onboard" */ = {
+		A158E81542D4FCF0E9349751 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				47F6404CB929A7323B849EC0 /* Debug */,
-				3FAD1B771AEAAC05896488EB /* Release */,
+				5044EEA7B14FB36CE99574FB /* Debug */,
+				5B056BF7035C8BCF1FB61654 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D89801CB6C9665267D8AAAA6 /* Build configuration list for PBXNativeTarget "Pods-PocketPark-Bean-iOS-OSX-SDK" */ = {
+		BD7D84884A069BA6863FBBA8 /* Build configuration list for PBXNativeTarget "Pods-PocketPark-Onboard" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8C14F851E3798AC3F1B159F8 /* Debug */,
-				A17C358F861300689224EB71 /* Release */,
+				A74BD0389CB3BFF579D2FB67 /* Debug */,
+				6BB423B8CCDD0C79D9C17523 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FCC3A2537AC441B40ECECF82 /* Build configuration list for PBXNativeTarget "Pods-PocketPark-MBProgressHUD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D09015B65D62D50E101CFF6A /* Debug */,
+				1EB0778E8ED5B60E640BD409 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = FB21ABA358CBDC7AEDA6E1E7 /* Project object */;
+	rootObject = 4F32F04C23BE699AF96FCC1A /* Project object */;
 }

@@ -1,12 +1,14 @@
 PODS:
   - Bean-iOS-OSX-SDK (0.8.0)
   - IJReachability (0.1.0)
+  - JGProgressHUD (1.2.3)
   - MBProgressHUD (0.9.1)
   - Onboard (2.1.1)
 
 DEPENDENCIES:
   - Bean-iOS-OSX-SDK (~> 0.6)
   - IJReachability (from `https://github.com/Isuru-Nanayakkara/IJReachability.git`)
+  - JGProgressHUD
   - MBProgressHUD (~> 0.9.1)
   - Onboard
 
@@ -22,7 +24,8 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Bean-iOS-OSX-SDK: 5597d11be1fc7fa1c0c9b1d0eeae7b64663b07c0
   IJReachability: 3eff33caca50869df09b257bcf712031a56a8575
-  MBProgressHUD: f3747dcbd45a9e855a6b0674550651e0b7ed250c
-  Onboard: 27cdf8db29740f0c17ed81371a003b9833a5e700
+  JGProgressHUD: 02eb5fc5f1069dc3a6aaf74a0da06f05c2546f32
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  Onboard: a305484bfcfa358bcfbd651ef32036fe0c58e9b7
 
-COCOAPODS: 0.36.0
+COCOAPODS: 0.36.1

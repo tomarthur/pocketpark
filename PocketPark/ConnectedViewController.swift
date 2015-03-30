@@ -72,7 +72,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println("loaded connected")
+        //println("loaded connected")
         
         // get object from parse to populate UI and know how to communicate with it
         getInteractiveObject(foundInteractiveObjectID!)
@@ -89,7 +89,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
     override func viewWillDisappear(animated: Bool)
     {
         super.viewWillDisappear(animated)
-        println("view will disappear")
+        //println("view will disappear")
     }
     
     
@@ -109,7 +109,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
         
         connectedBean?.setScratchBank(Int(scratchNumber), data:dataSend)
         
-        println("datain: \(dataIn) sentdata: \(dataSend) length: \(sizeof(dataIn.dynamicType))")
+        //println("datain: \(dataIn) sentdata: \(dataSend) length: \(sizeof(dataIn.dynamicType))")
         
     }
     
@@ -121,7 +121,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
             (objectInfo: PFObject!, error: NSError!) -> Void in
             if (error == nil) {
                 self.populateInteractiveInfo(objectInfo)
-                println(objectInfo)
+                //println(objectInfo)
             } else {
                 // There was an error.
                 var unableToInteractAlert = UIAlertController(title: "Unable to Interact",
@@ -181,15 +181,20 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
             case "rotationRate":
                 activateRotationMotion(modeString)
             case "light":
-                println("not yet implemented")
+                //println("not yet implemented")
+                return
             case "tap":
-                println("not yet implemented")
+                //println("not yet implemented")
+                return
             case "tilt-portrait":
-                println("not yet implemented")
+                //println("not yet implemented")
+                return
             case "compass":
-                println("not yet implemented")
+                //println("not yet implemented")
+                return
             default:
-                println("not yet implemented")
+                //println("not yet implemented")
+                return
         }
     }
     
@@ -200,25 +205,25 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
     func activateRotationMotion(modeString: String)
     {
         if motionManager.deviceMotionAvailable{
-            println("deviceMotion available")
+            //println("deviceMotion available")
             motionManager.deviceMotionUpdateInterval = 0.2
             motionManager.startDeviceMotionUpdatesToQueue(NSOperationQueue.mainQueue()) {
                 [weak self] (data: CMDeviceMotion!, error: NSError!) in
                 
                 if modeString == "gyro-rotate" {
                     let rotation = atan2(data.gravity.x, data.gravity.y) - M_PI
-                    println("data.gravity x:\(data.gravity.x), y:\(data.gravity.y), z:\(data.gravity.z)")
-//                    println("Rotation in: \(rotation)")
+                    //println("data.gravity x:\(data.gravity.x), y:\(data.gravity.y), z:\(data.gravity.z)")
+//                    //println("Rotation in: \(rotation)")
 //                    var mappedRotation = ((rotation - 0) * (180 - 0) / (-6.5 - 0) + 0)
                     var mappedRotation = (-(data.gravity.x) + 1)*90
-                    println("mappedRotation: \(mappedRotation)")
+                    //println("mappedRotation: \(mappedRotation)")
                     var mappedRotationInt:Int = Int(mappedRotation)
                     
                     self?.sendScratchDatatoBean(1, dataIn: mappedRotationInt)
                 } else if modeString == "force" {
                     let yForce = data.userAcceleration.y * 8
                     let yForceInt: Int = Int(yForce)
-                    println("force rate")
+                    //println("force rate")
                     
                     let alpha:Double = 0.05
                     var peakPowerForChannel:Double = pow(10, (0.05 * Double(yForce)))
@@ -227,31 +232,31 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
                     
                     var averageVal = self!.averageResults
                     
-//                    println("x \(data.userAcceleration.x)")
-                    println(averageVal)
+//                    //println("x \(data.userAcceleration.x)")
+                    //println(averageVal)
                     self?.sendScratchDatatoBean(1, dataIn: Int(averageVal))
-//                    println("z \(data.userAcceleration.z)")
+//                    //println("z \(data.userAcceleration.z)")
                     
                 
                 } else if modeString == "rotationRate" {
-                    println("rotation rate")
-                    println("x \(data.rotationRate.x)")
-                    println("y \(data.rotationRate.y)")
-                    println("z \(data.rotationRate.z)")
+                    //println("rotation rate")
+                    //println("x \(data.rotationRate.x)")
+                    //println("y \(data.rotationRate.y)")
+                    //println("z \(data.rotationRate.z)")
                     
                     let zRotationInt:Int = Int(data.rotationRate.z)
                     let absoluteZRotation:Int = abs(zRotationInt)
-                    println(absoluteZRotation)
+                    //println(absoluteZRotation)
                     self?.sendScratchDatatoBean(1, dataIn: absoluteZRotation)
                     
                 } else if modeString == "compass" {
-                    println("compass")
-                    println(data.magneticField)
+                    //println("compass")
+                    //println(data.magneticField)
                 }
                 
             }
         } else {
-            println("deviceMotion not available")
+            //println("deviceMotion not available")
         }
         
     }
@@ -288,7 +293,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
         
         if motion == .MotionShake && shakeDetectMode == true {
 
-            println("shake!")
+            //println("shake!")
             self.sendScratchDatatoBean(1, dataIn: 1)
             self.sendScratchDatatoBean(1, dataIn: 0)
         }
@@ -301,7 +306,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
     ////////////////////////////////////////
     
     func askForMicrophonePermission() {
-        println("getting into permissions")
+        //println("getting into permissions")
         var error: NSError?
         let session = AVAudioSession.sharedInstance()
  
@@ -324,13 +329,13 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
                     }
 
                 } else {
-                 println("Couldn't start audio session")
+                 //println("Couldn't start audio session")
                 endInteraction()
                 }
         } else {
             endInteraction()
             if let audioError = error{
-                println("An error occured in setting the audio" + "session category. Error = \(audioError)")
+                //println("An error occured in setting the audio" + "session category. Error = \(audioError)")
             }
             
         }
@@ -356,13 +361,13 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
                 let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
                 dispatch_sync(queue, startAudioUpdateTimer)
                 
-                println("Successuly started record")
+                //println("Successuly started record")
             } else {
-                println("Failed to record.")
+                //println("Failed to record.")
                 audioRecorder = nil
             }
         } else {
-            println("Failed to create audio recorder instance")
+            //println("Failed to create audio recorder instance")
         }
     }
     
@@ -382,7 +387,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
 
             var averageVal = lowPassResults
             var mappedValues = ((newVal - 0.03) * (255 - 0) / (2.00 - 0.03) + 0)
-            println("lowpass in \(newVal), mapped: \(mappedValues)")
+            //println("lowpass in \(newVal), mapped: \(mappedValues)")
             sendScratchDatatoBean(1, dataIn: Int(mappedValues))
             newVal = 0
         } else {
@@ -407,7 +412,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
     }
     
     func audioRecorderBeginInterruption(recorder: AVAudioRecorder!) {
-        println("interuption started")
+        //println("interuption started")
         endInteraction()
     }
     

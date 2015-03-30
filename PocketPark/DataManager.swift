@@ -34,7 +34,7 @@ class DataManager: NSObject {
     // get most recent interactives from parse cloud
     func queryParseForInteractiveObjects() {
         
-//        println("calling queryParseForInteractiveObjects")
+//        //println("calling queryParseForInteractiveObjects")
         // check for network availablity before requesting interactives from parse
         if (IJReachability.isConnectedToNetwork() == true) {
             // pull latest interactive objects from Parse
@@ -44,7 +44,7 @@ class DataManager: NSObject {
                     (objects: [AnyObject]!, error: NSError!) -> Void in
                     if error == nil
                     {
-                        println("found all parse objects")
+//                        //println("found all parse objects")
                         PFObject.pinAllInBackground(objects)
                         self.dictionaryOfInteractivesFromLocalDatastore()
                         self.networkTimer.invalidate()
@@ -58,7 +58,7 @@ class DataManager: NSObject {
             
             
         } else {
-            println("No network")
+//            //println("No network")
             NSNotificationCenter.defaultCenter().postNotificationName("noNetwork", object: nil)
             self.networkTimer.invalidate()
             // still attempt to load data if it's available
@@ -68,15 +68,15 @@ class DataManager: NSObject {
     
     func checkNetwork()
     {
-//        println("in data manager, check network")
+//        //println("in data manager, check network")
         if (IJReachability.isConnectedToNetwork() == false)
         {
-//            println("in data manager, check network false")
+//            //println("in data manager, check network false")
             NSNotificationCenter.defaultCenter().postNotificationName("noNetwork", object: nil)
         }
         else
         {
-//            println("in data manager, check network true")
+//            //println("in data manager, check network true")
         }
     }
     
