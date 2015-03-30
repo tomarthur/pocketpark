@@ -203,7 +203,8 @@ class OnboardingViewController: UIViewController, UIPageViewControllerDataSource
                 if appDelegate.notificationPermission() == false{
                     appDelegate.askForNotificationPermissionForApplication()
                 } else {
-                    
+                    // make sure registered for push anyway
+                    appDelegate.askForNotificationPermissionForApplication()
                     let HUD = JGProgressHUD(style: JGProgressHUDStyle.Dark)
                     HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
                     HUD.textLabel.text = "You'll be notified!"
