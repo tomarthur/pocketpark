@@ -19,7 +19,6 @@ class InteractiveMapViewController: UIViewController, UIToolbarDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addInteractiveGeoPoints()
         zoomUserLocation()
 
         mapView.delegate = self
@@ -33,7 +32,7 @@ class InteractiveMapViewController: UIViewController, UIToolbarDelegate, UINavig
     }
     
     override func viewDidAppear(animated: Bool) {
-        
+        addInteractiveGeoPoints()
         
     }
 
@@ -71,13 +70,13 @@ class InteractiveMapViewController: UIViewController, UIToolbarDelegate, UINavig
         let spanY = 0.007
         var userRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate, span: MKCoordinateSpanMake(spanX, spanY))
         mapView.setRegion(userRegion, animated: true)
-        
-        
+    
     }
     
-
-    
+    // TO DO: GROUP POINTS
     func addInteractiveGeoPoints(){
+        
+        println("COUNT of num: \(self.mapView.annotations.count)")
         // User's location
         let userGeoPoint = PFGeoPoint(latitude:mapView.userLocation.coordinate.latitude, longitude:mapView.userLocation.coordinate.latitude)
         
@@ -107,10 +106,13 @@ class InteractiveMapViewController: UIViewController, UIToolbarDelegate, UINavig
                             if let locationDetail = currentPFObject["locationString"] as? String {
                                 annotation.subtitle = locationDetail
                             }
-                             self.mapView.addAnnotation(annotation)
+                            
+                            if let downcastArray = self.mapView.annotations as? [MKPointAnnotation] {
+                                if contains(downcastArray, annotation) == false{
+                                  self.mapView.addAnnotation(annotation)
+                                }
+                            }
                         }
-                        
-                        
                     }
 
                 } else {
@@ -125,14 +127,5 @@ class InteractiveMapViewController: UIViewController, UIToolbarDelegate, UINavig
         userLocation: MKUserLocation!) {
             mapView.centerCoordinate = userLocation.location.coordinate
     }
-    
-
-    
-//    @IBAction func zoomIn(sender: AnyObject) {
-//    }
-    
-    
-//    @IBAction func changeMapType(sender: AnyObject) {
-//    }
 
 }
