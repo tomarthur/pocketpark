@@ -7,10 +7,10 @@ PocketPark enables serendipitous moments of surprise and wonder by enabling your
 
 ## How it Works
 
-PocketPark for iOS enables anyone to instantly control your installation. 
-> iOS Devices must be Bluetooth Low Energy enabled. iPhone 4S and newer.
+When you're nearby an installation installed out in the world (store window, park, etc.) PocketPark will notify you. When you open the app, you'll be able to control the installation using the sensors in your device.
 
-Sensor information from the iOS device is sent to a installation via the LightBlue Bean, a Bluetooth Low Energy enabled Arduino.
+Sensor information from the iOS device is sent to an installation via Bluetooth Low Energy. The controller is a LightBlue Bean which is a BLE enabled Arduino. Using the Arduino IDE, you can program the Bean to control your installation.
+> iOS Device must support Bluetooth Low Energy. iPhone 4S or newer.
 
 <iframe src="https://player.vimeo.com/video/121631359?loop=1&title=0&byline=0&portrait=0" width="300" height="169" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
@@ -18,77 +18,142 @@ The installation you create could be *anything*: a bubble machine controlled by 
 
 You'll find example code to get started below.
 
-## Getting Started
+# Getting Started
 
 Three steps making your installation part of the Theme Park of Everyday.
+### Step 1: Choose an input
+How do you want the user to control your installation? Your selection can be playful or logical. On the most basic level, your installation will respond to a range of values delivered in a scratch characteristic to the Arduino.
+> **What is a Scratch Characteristic?**
 
-### Step 1: What does the user do?
-#### Device Inputs Available
+> Characteristics are a Bluetooth convention, a defined attribute types that contain a single logical value single logical value.
 
-##### PockePark Version 1.0
+##### PockePark Version 1.0 Inputs Available
 
-* Microphone Blow
-* Shake
-* Gyroscope
-* G-Force
+
+**Microphone Blow**: User blows into the microphone on the device. The harder the user blows, the larger the value delivered to the bean.
+
+>**Mic Value Ranges**: The Bean will receive values between x and x
+
+**Shake**: User shakes the device.
+
+>**Shake Value Ranges**: the Bean will receive ```1``` when a shake is detected
+
+**Gyroscope**: User rotates device on Y axis.
+
+> **Gyroscope Ranges**: The Bean will receive values between x and x
+
+**G-Force**: User moves device rapidly
+
+> **G-Force Ranges**: The Bean will receive values between x and x
+
 	
 ##### Future Device Inputs
 Have an idea for a new input?
-- [Tweet @PocketPark >](https://twitter.com/PocketPark)
+>[Tweet @PocketPark >](https://twitter.com/PocketPark)
 
-### Step 2: What happens?
-### Step 3: Register your installation
+### Step 2: Set what happens
+What do you want to happen when your installation gets sensor data from the iOS Device? Use the code examples to control servos, relays, solenoids, LEDs, anything!
 
-Accelerometer
+**Microphone Blow**
 
-1. Create your thing
+>[Microphone Example >](http://www.google.com)
+
+**Shake**
+
+>[Shake Example >](http://www.google.com)
+
+**Gyroscope**
+
+>[Gyro Example >](http://www.google.com)
+
+**G-Force**
+
+>[G-Force Example >](http://www.google.com)
 
 
-## Device Inputs Available
+### Step 3: Register
 
-### PockePark Version 1.0
+#### Register your Installation
 
-* Microphone Blow
-* Shake
-* Gyroscope
-* G-Force
+
+### Step 4:Configure
+
+#### **Install Tools**
+If you haven't done so already, you'll need to install the Arduino IDE and the Bean Loader application.
+
+>[Bean Loader OS X >](https://punchthrough.com/bean/getting-started-osx/)
+
+>[Bean Loader Windows >](https://punchthrough.com/bean/getting-started-windows/)
+
+#### **Upload Sketch**
+[Follow the steps to program your Arduino sketch to the Bean.](https://punchthrough.com/bean/getting-started-osx/)
+
+![Program Sketch Screan](http://themeparkofeveryday.com/images/programsketch.png)
+
+
+#### **Set Bean Name**
+Set the Bean name to match the one provided during the registration step. 
+
+![Bean Name Screen](http://themeparkofeveryday.com/images/setbeanname.png)
+
+#### **Set iBeacon Settings** 
+iBeacon technology enables PocketPark to notify users of nearby installations
+
+>```Beacon UUID```: ```0x5441```
+
+>```Major ID```: As provided in registration
+
+>```Minor ID```: As provided in registration
+
+![iBeacon Setup Screen](http://themeparkofeveryday.com/images/beaconsetup.png)
+
 	
-	
-### Future Device Inputs
-Have an idea for a new input?
-- [Tweet @PocketPark >](https://twitter.com/PocketPark)
+That's it! Go test your installation. Tweet, post a GitHub Issue or email with questions or if you're having trouble.
+
+> [Tweet @PocketPark >](https://twitter.com/PocketPark)
+
+> [Github Issues >](https://twitter.com/PocketPark)
+
+> [Email >](PocketPark@howtomworks.com)
 
 
-## Add Your Interactive
->.
-[Add interactive >](http://google.com)
-Awesome! Once you've added your installation at the link to the right, it should be available to use in app. You'll need to update the name of your bean 
+# Acknowledgements and License
 
-## Arduino Example Code
-
-In process
-
-
-## Light Blue Bean Configuration
-
-In process
-
-
-
-## Author
 This project is part of [Tom Arthur's](http://www.howtomworks.com) thesis at NYU's Interactive Telecommunications Program.
 
-Pocket Theme Park & PocketPark is developed by Tom Arthur for thesis at ITP in 2015.
-
-## Acknowledgements and License
-
-PocketPark iOS was written by Tom Arthur
 PocketPark is available under the MIT license. See the LICENSE file for details.
 
-Thanks to:
+Special thanks to:
 
-Utilizes open source code:
+- Gabe Barcia-Colombo and ITP Thesis Classmates
+- [Sakar Khattar](http://www.sakark.com)
+- Robert Scarff
+- Stanley Wolfersberger
+- Punch Through Design
 
-- Bean-iOS-OSX-SDK is available under the MIT license. See the LICENSE file for details.
-- Cool Beans is available under the MIT license. See the LICENSE file for details.
-- Onboard is available under the MIT license. See the LICENSE file for details.
+Open source code included in PocketPark:
+
+- [Bean-iOS-OSX-SDK](https://github.com/PunchThrough/Bean-iOS-OSX-SDK) – MIT license
+- [Cool Beans](https://github.com/kyleweiner/Cool-Beans) – MIT license
+- [Onboard](https://github.com/mamaral/Onboard) – MIT license
+- [IJReachability](https://github.com/Isuru-Nanayakkara/IJReachability) – MIT license
+- [JGProgressHUD](https://github.com/JonasGessner/JGProgressHUD) – MIT license
+- [MBProgressHUD](https://github.com/jdg/MBProgressHUD) – [License](https://github.com/jdg/MBProgressHUD/blob/master/LICENSE)
+
+Open source Arduino examples:
+
+
+Creative Commons Noun Project icons:
+- [Signpost Created by Luboš Volkov](https://thenounproject.com/term/signpost/21109/)
+- [Radar Created by Pantelis Gkavos](https://thenounproject.com/term/radar/61238/)
+- [Light-Bulb Created by Charlene Chen](https://thenounproject.com/term/light-bulb/21901/)
+- [Arrow Created by John Caserta](https://thenounproject.com/term/arrow/11200/)
+
+Additional resources utilized:
+
+- [iOS 8 Swift Programming Cookbook](http://shop.oreilly.com/product/0636920034254.do) – Vandad Nahavandipoor – Print ISBN:978-1-4919-0869-3
+- [Swift Table View Animations Tutorial](http://www.raywenderlich.com/76024/swift-table-view-animations-tutorial-drop-cards)
+
+
+
+
