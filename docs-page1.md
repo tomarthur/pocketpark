@@ -21,7 +21,7 @@ You'll find example code to get started below.
 # Getting Started
 
 Three steps making your installation part of the Theme Park of Everyday.
-### Step 1: Choose an input
+### Step 1: Choose an Input
 How do you want the user to control your installation? Your selection can be playful or logical. On the most basic level, your installation will respond to a range of values delivered in a scratch characteristic to the Arduino.
 > **What is a Scratch Characteristic?**
 
@@ -34,24 +34,31 @@ How do you want the user to control your installation? Your selection can be pla
 
 >**Mic Value Ranges**: The Bean will receive values between x and x
 
+[[placeholder for image]]
+
 **Shake**: User shakes the device.
 
 >**Shake Value Ranges**: the Bean will receive ```1``` when a shake is detected
+
+[[placeholder for image]]
 
 **Gyroscope**: User rotates device on Y axis.
 
 > **Gyroscope Ranges**: The Bean will receive values between x and x
 
+[[placeholder for image]]
+
 **G-Force**: User moves device rapidly
 
 > **G-Force Ranges**: The Bean will receive values between x and x
 
+[[placeholder for image]]
 	
 ##### Future Device Inputs
 Have an idea for a new input?
 >[Tweet @PocketPark >](https://twitter.com/PocketPark)
 
-### Step 2: Set what happens
+### Step 2: Set What Happens
 What do you want to happen when your installation gets sensor data from the iOS Device? Use the code examples to control servos, relays, solenoids, LEDs, anything!
 
 **Microphone Blow**
@@ -73,8 +80,7 @@ What do you want to happen when your installation gets sensor data from the iOS 
 
 ### Step 3: Register
 
-#### Register your Installation
-
+[Registration Method TBD]
 
 ### Step 4:Configure
 
@@ -107,8 +113,15 @@ iBeacon technology enables PocketPark to notify users of nearby installations
 
 ![iBeacon Setup Screen](http://themeparkofeveryday.com/images/beaconsetup.png)
 
-	
-That's it! Go test your installation. Tweet, post a GitHub Issue or email with questions or if you're having trouble.
+
+### Step 5: Test 
+
+That's it! Go test your installation. After registration it should be immediately available in the app. Pull down to refresh data if you're not seeing it.
+
+
+# Troubleshooting
+
+Tweet, post a GitHub Issue or email with questions or if you're having trouble.
 
 > [Tweet @PocketPark >](https://twitter.com/PocketPark)
 
@@ -116,10 +129,15 @@ That's it! Go test your installation. Tweet, post a GitHub Issue or email with q
 
 > [Email >](PocketPark@howtomworks.com)
 
+### Can't Find
+Did you set the Bean name and iBeacon settings as directed in the registration step?
+
+### Unexpected Behavior
+Well, that isn't much fun. You might be having issues with mapping your values. A good method to troubleshoot is to use an existing Arduino and manually control your Installation through the serial monitor. 
 
 # Acknowledgements and License
 
-This project is part of [Tom Arthur's](http://www.howtomworks.com) thesis at NYU's Interactive Telecommunications Program.
+This project is part of [Tom Arthur's](http://www.howtomworks.com) thesis at the [NYU Interactive Telecommunications Program](http://itp.nyu.edu).
 
 PocketPark is available under the MIT license. See the LICENSE file for details.
 
@@ -129,7 +147,10 @@ Special thanks to:
 - [Sakar Khattar](http://www.sakark.com)
 - Robert Scarff
 - Stanley Wolfersberger
-- Punch Through Design
+- Mom & Dad
+- Everyone who listened to me try to explain this thing
+- Punch Through Design - the Bean is awesome!
+
 
 Open source code included in PocketPark:
 
