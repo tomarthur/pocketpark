@@ -288,9 +288,15 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     }
 
     func tableView(tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-        view.tintColor = .clearColor()
-        view.backgroundColor = .clearColor()
-//        contentView.backgroundColor.clea
+//        view.tintColor = .clearColor()
+//        view.backgroundColor = .clearColor()
+////        contentView.backgroundColor.clea
+    }
+
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 50))
+        footerView.backgroundColor = UIColor.clearColor()
+        return footerView
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

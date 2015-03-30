@@ -12,6 +12,8 @@
 		E2332B731ABFA15E00455422 /* InteractiveCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2332B721ABFA15E00455422 /* InteractiveCard.xib */; };
 		E2332B751ABFA33A00455422 /* InteractiveCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2332B741ABFA33A00455422 /* InteractiveCardCell.swift */; };
 		E24494841AC5F8000004AD6D /* PushNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24494831AC5F8000004AD6D /* PushNotificationController.swift */; };
+		E25C20AE1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25C20AC1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.swift */; };
+		E25C20AF1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25C20AD1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.xib */; };
 		E261D3DB1AB007DE00957726 /* PocketParkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D3DA1AB007DE00957726 /* PocketParkTests.swift */; };
 		E261D3EA1AB0087400957726 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E261D3E41AB0087400957726 /* Media.xcassets */; };
 		E261D3EB1AB0087400957726 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E261D3E51AB0087400957726 /* Default-568h@2x.png */; };
@@ -75,6 +77,8 @@
 		E2332B741ABFA33A00455422 /* InteractiveCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveCardCell.swift; sourceTree = "<group>"; };
 		E24494831AC5F8000004AD6D /* PushNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationController.swift; sourceTree = "<group>"; };
 		E25940A31AC8FF040064AB90 /* PKHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PKHUD.framework; path = ../../../../../Desktop/PKHUD.framework; sourceTree = "<group>"; };
+		E25C20AC1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFooterCellTableViewCell.swift; sourceTree = "<group>"; };
+		E25C20AD1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomFooterCellTableViewCell.xib; sourceTree = "<group>"; };
 		E261D3BF1AB007DE00957726 /* PocketPark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketPark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E261D3C31AB007DE00957726 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E261D3D41AB007DE00957726 /* PocketParkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketParkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -276,6 +280,7 @@
 				E261D3F61AB0089D00957726 /* AboutViewController.swift */,
 				E261D3F71AB0089D00957726 /* DisconnectedViewController.swift */,
 				E261D3F81AB0089D00957726 /* ConnectedViewController.swift */,
+				E25C20AC1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.swift */,
 				E261D3F91AB0089D00957726 /* OnboardingViewController.swift */,
 				E261D3FA1AB0089D00957726 /* OnboardingContentViewController.swift */,
 			);
@@ -285,6 +290,7 @@
 		E261D3F21AB0088200957726 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E25C20AD1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.xib */,
 				E261D4011AB008A600957726 /* LaunchScreen.xib */,
 				E261D4021AB008A600957726 /* DisconnectedView.xib */,
 				E2332B721ABFA15E00455422 /* InteractiveCard.xib */,
@@ -401,6 +407,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E25C20AF1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.xib in Resources */,
 				E2A78F2F1AB2736F0096B7A8 /* OtterFont.ttf in Resources */,
 				E2A78F311AB288A70096B7A8 /* bg.jpg in Resources */,
 				E261D3EA1AB0087400957726 /* Media.xcassets in Resources */,
@@ -507,6 +514,7 @@
 				E261D4111AB008B000957726 /* DataManager.swift in Sources */,
 				E24494841AC5F8000004AD6D /* PushNotificationController.swift in Sources */,
 				E261D3FC1AB0089D00957726 /* AboutViewController.swift in Sources */,
+				E25C20AE1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -292,14 +292,11 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
         
         if motion == .MotionShake && shakeDetectMode == true {
-
             //println("shake!")
             self.sendScratchDatatoBean(1, dataIn: 1)
             self.sendScratchDatatoBean(1, dataIn: 0)
         }
     }
-    
-    
     
     ////////////////////////////////////////
     // AUDIO
