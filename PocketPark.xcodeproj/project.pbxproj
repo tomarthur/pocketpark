@@ -14,13 +14,12 @@
 		E24494841AC5F8000004AD6D /* PushNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24494831AC5F8000004AD6D /* PushNotificationController.swift */; };
 		E25C20AE1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25C20AC1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.swift */; };
 		E25C20AF1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25C20AD1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.xib */; };
+		E25C20B51AC9101800BA46DD /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = E25C20B11AC9101800BA46DD /* location.png */; };
+		E25C20B61AC9101800BA46DD /* pocketPark.png in Resources */ = {isa = PBXBuildFile; fileRef = E25C20B21AC9101800BA46DD /* pocketPark.png */; };
+		E25C20B71AC9101800BA46DD /* wheel.png in Resources */ = {isa = PBXBuildFile; fileRef = E25C20B31AC9101800BA46DD /* wheel.png */; };
+		E25C20B91AC910E800BA46DD /* blue.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = E25C20B81AC910E800BA46DD /* blue.jpeg */; };
 		E261D3DB1AB007DE00957726 /* PocketParkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D3DA1AB007DE00957726 /* PocketParkTests.swift */; };
 		E261D3EA1AB0087400957726 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E261D3E41AB0087400957726 /* Media.xcassets */; };
-		E261D3EB1AB0087400957726 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E261D3E51AB0087400957726 /* Default-568h@2x.png */; };
-		E261D3EC1AB0087400957726 /* street.png in Resources */ = {isa = PBXBuildFile; fileRef = E261D3E61AB0087400957726 /* street.png */; };
-		E261D3ED1AB0087400957726 /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = E261D3E71AB0087400957726 /* blue.png */; };
-		E261D3EE1AB0087400957726 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = E261D3E81AB0087400957726 /* red.png */; };
-		E261D3EF1AB0087400957726 /* yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = E261D3E91AB0087400957726 /* yellow.png */; };
 		E261D3FB1AB0089D00957726 /* InteractiveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D3F51AB0089D00957726 /* InteractiveMapViewController.swift */; };
 		E261D3FC1AB0089D00957726 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D3F61AB0089D00957726 /* AboutViewController.swift */; };
 		E261D3FD1AB0089D00957726 /* DisconnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D3F71AB0089D00957726 /* DisconnectedViewController.swift */; };
@@ -55,7 +54,6 @@
 		E267FD7F1AC6079F00654B20 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E267FD7C1AC6079F00654B20 /* Parse.framework */; };
 		E267FD801AC6079F00654B20 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E267FD7D1AC6079F00654B20 /* ParseCrashReporting.framework */; };
 		E2A78F2F1AB2736F0096B7A8 /* OtterFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2A78F2E1AB272120096B7A8 /* OtterFont.ttf */; };
-		E2A78F311AB288A70096B7A8 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2A78F301AB288A70096B7A8 /* bg.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,20 +74,18 @@
 		E2332B721ABFA15E00455422 /* InteractiveCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InteractiveCard.xib; sourceTree = "<group>"; };
 		E2332B741ABFA33A00455422 /* InteractiveCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveCardCell.swift; sourceTree = "<group>"; };
 		E24494831AC5F8000004AD6D /* PushNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationController.swift; sourceTree = "<group>"; };
-		E25940A31AC8FF040064AB90 /* PKHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PKHUD.framework; path = ../../../../../Desktop/PKHUD.framework; sourceTree = "<group>"; };
 		E25C20AC1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFooterCellTableViewCell.swift; sourceTree = "<group>"; };
 		E25C20AD1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomFooterCellTableViewCell.xib; sourceTree = "<group>"; };
+		E25C20B11AC9101800BA46DD /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
+		E25C20B21AC9101800BA46DD /* pocketPark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pocketPark.png; sourceTree = "<group>"; };
+		E25C20B31AC9101800BA46DD /* wheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wheel.png; sourceTree = "<group>"; };
+		E25C20B81AC910E800BA46DD /* blue.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blue.jpeg; sourceTree = "<group>"; };
 		E261D3BF1AB007DE00957726 /* PocketPark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketPark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E261D3C31AB007DE00957726 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E261D3D41AB007DE00957726 /* PocketParkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketParkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E261D3D91AB007DE00957726 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E261D3DA1AB007DE00957726 /* PocketParkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketParkTests.swift; sourceTree = "<group>"; };
 		E261D3E41AB0087400957726 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		E261D3E51AB0087400957726 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		E261D3E61AB0087400957726 /* street.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = street.png; sourceTree = "<group>"; };
-		E261D3E71AB0087400957726 /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue.png; sourceTree = "<group>"; };
-		E261D3E81AB0087400957726 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
-		E261D3E91AB0087400957726 /* yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow.png; sourceTree = "<group>"; };
 		E261D3F41AB0089C00957726 /* PocketPark-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PocketPark-Bridging-Header.h"; sourceTree = "<group>"; };
 		E261D3F51AB0089D00957726 /* InteractiveMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveMapViewController.swift; sourceTree = "<group>"; };
 		E261D3F61AB0089D00957726 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -125,7 +121,6 @@
 		E267FD7C1AC6079F00654B20 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = PocketPark/AddedFrameworks/Parse.framework; sourceTree = "<group>"; };
 		E267FD7D1AC6079F00654B20 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = PocketPark/AddedFrameworks/ParseCrashReporting.framework; sourceTree = "<group>"; };
 		E2A78F2E1AB272120096B7A8 /* OtterFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OtterFont.ttf; sourceTree = "<group>"; };
-		E2A78F301AB288A70096B7A8 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,7 +171,6 @@
 		C046217728DF1AD06B053BE4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E25940A31AC8FF040064AB90 /* PKHUD.framework */,
 				E267FD7B1AC6079F00654B20 /* Bolts.framework */,
 				E267FD7C1AC6079F00654B20 /* Parse.framework */,
 				E267FD7D1AC6079F00654B20 /* ParseCrashReporting.framework */,
@@ -263,12 +257,10 @@
 			isa = PBXGroup;
 			children = (
 				E261D3E41AB0087400957726 /* Media.xcassets */,
-				E261D3E51AB0087400957726 /* Default-568h@2x.png */,
-				E2A78F301AB288A70096B7A8 /* bg.jpg */,
-				E261D3E61AB0087400957726 /* street.png */,
-				E261D3E71AB0087400957726 /* blue.png */,
-				E261D3E81AB0087400957726 /* red.png */,
-				E261D3E91AB0087400957726 /* yellow.png */,
+				E25C20B81AC910E800BA46DD /* blue.jpeg */,
+				E25C20B11AC9101800BA46DD /* location.png */,
+				E25C20B21AC9101800BA46DD /* pocketPark.png */,
+				E25C20B31AC9101800BA46DD /* wheel.png */,
 			);
 			name = Media;
 			sourceTree = "<group>";
@@ -408,20 +400,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E25C20AF1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.xib in Resources */,
+				E25C20B91AC910E800BA46DD /* blue.jpeg in Resources */,
 				E2A78F2F1AB2736F0096B7A8 /* OtterFont.ttf in Resources */,
-				E2A78F311AB288A70096B7A8 /* bg.jpg in Resources */,
 				E261D3EA1AB0087400957726 /* Media.xcassets in Resources */,
 				E261D4091AB008A600957726 /* AboutView.xib in Resources */,
 				E261D4081AB008A600957726 /* ConnectedView.xib in Resources */,
-				E261D3EF1AB0087400957726 /* yellow.png in Resources */,
 				E2332B731ABFA15E00455422 /* InteractiveCard.xib in Resources */,
-				E261D3EB1AB0087400957726 /* Default-568h@2x.png in Resources */,
+				E25C20B61AC9101800BA46DD /* pocketPark.png in Resources */,
 				E261D4071AB008A600957726 /* DisconnectedView.xib in Resources */,
+				E25C20B51AC9101800BA46DD /* location.png in Resources */,
+				E25C20B71AC9101800BA46DD /* wheel.png in Resources */,
 				E261D4061AB008A600957726 /* LaunchScreen.xib in Resources */,
-				E261D3EC1AB0087400957726 /* street.png in Resources */,
-				E261D3EE1AB0087400957726 /* red.png in Resources */,
 				E261D40A1AB008A600957726 /* InteractiveMap.xib in Resources */,
-				E261D3ED1AB0087400957726 /* blue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,7 +638,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "406bbae8-9f95-43d9-9a0e-6ec16af125ec";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/PocketPark-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/PocketPark/PocketPark-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
@@ -690,7 +680,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "406bbae8-9f95-43d9-9a0e-6ec16af125ec";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/PocketPark-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/PocketPark/PocketPark-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
 			};

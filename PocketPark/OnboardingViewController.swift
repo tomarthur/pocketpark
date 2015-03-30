@@ -20,7 +20,7 @@ class OnboardingViewController: UIViewController, UIPageViewControllerDataSource
     let kBackgroundMaskAlpha: CGFloat = 0.6
     var backgroundImage: UIImage?
     var contents: [OnboardingContentViewController] = []
-    var shouldMaskBackground: Bool = true
+    var shouldMaskBackground: Bool = false
     let delayRemoveAfterRefresh = 1.0
     
     init(backgroundImage: UIImage?, contents: [OnboardingContentViewController]) {
@@ -38,6 +38,10 @@ class OnboardingViewController: UIViewController, UIPageViewControllerDataSource
         self.edgesForExtendedLayout = .None
         
         generateView()
+    }
+
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     func generateView() {
@@ -188,9 +192,9 @@ class OnboardingViewController: UIViewController, UIPageViewControllerDataSource
                     
                     let HUD = JGProgressHUD(style: JGProgressHUDStyle.Dark)
                     HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-                    HUD.textLabel.text = "Location approved!"
+                    HUD.textLabel.text = "Location services on!"
                     HUD.showInView(self.view)
-                    HUD.dismissAfterDelay(1.0)
+                    HUD.dismissAfterDelay(0.5)
                     
                 }
             
@@ -204,7 +208,7 @@ class OnboardingViewController: UIViewController, UIPageViewControllerDataSource
                     HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
                     HUD.textLabel.text = "You'll be notified!"
                     HUD.showInView(self.view)
-                    HUD.dismissAfterDelay(1.0)
+                    HUD.dismissAfterDelay(0.5)
                     
                 }
             

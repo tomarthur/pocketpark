@@ -302,6 +302,11 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
     // AUDIO
     ////////////////////////////////////////
     
+    func audioError() {
+        self.endInteraction()
+        NSNotificationCenter.defaultCenter().postNotificationName("audioError", object: nil)
+    }
+    
     func askForMicrophonePermission() {
         //println("getting into permissions")
         var error: NSError?
@@ -313,24 +318,23 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
                     if session.setActive(true, error: nil){
                         session.requestRecordPermission{[weak self](allowed: Bool) in
                             if allowed {
+                                println("allowed")
                                 self?.startListeningToAudioLoudness()
                             } else {
-                                var unableToInteractAlert = UIAlertController(title: "Microphone Required",
-                                    message: "Please grant access to the microphone to experience this installation.",
-                                    preferredStyle: UIAlertControllerStyle.Alert)
-                                unableToInteractAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                                self?.showViewController(unableToInteractAlert, sender: nil)
                                 self?.endInteraction()
+                                NSNotificationCenter.defaultCenter().postNotificationName("audioPermission", object: nil)
                             }
                         }
                     }
 
                 } else {
                  //println("Couldn't start audio session")
-                endInteraction()
+                    println("no session")
+                audioError()
                 }
         } else {
-            endInteraction()
+            println("no category")
+            audioError()
             if let audioError = error{
                 //println("An error occured in setting the audio" + "session category. Error = \(audioError)")
             }
@@ -348,34 +352,49 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
 
         if let recorder = audioRecorder{
             recorder.delegate = self
-            
+
             if recorder.prepareToRecord() && recorder.record(){
                 recorder.meteringEnabled = true
-                
+
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: "endAudioInteraction:",
                     name: "EndInteraction", object: nil)
-                
-                let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-                dispatch_sync(queue, startAudioUpdateTimer)
+
+                startAudioUpdateTimer()
                 
                 //println("Successuly started record")
             } else {
-                //println("Failed to record.")
+
+                audioError()//println("Failed to record.")
                 audioRecorder = nil
             }
         } else {
+            audioError()
             //println("Failed to create audio recorder instance")
         }
     }
     
+    
+    // for some reason, not always starting levels check when asking for permission first. this fixed it.
     func startAudioUpdateTimer() {
+
+        let delayInSeconds = 0.5
+        let delayInNanoSeconds = dispatch_time(DISPATCH_TIME_NOW, Int64(delayInSeconds * Double(NSEC_PER_SEC)))
         
-        loudnessTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "getLevels:", userInfo: nil, repeats: true)
+        dispatch_after(delayInNanoSeconds, dispatch_get_main_queue(), {
+
+            self.audioAfterDelay()
+        })
+    }
+    
+    func audioAfterDelay() {
+        self.loudnessTimer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector:("getLevels"), userInfo: nil, repeats: true)
     }
     
 
-    func getLevels(timer: NSTimer){
+    func getLevels(){
+
         if let recorder = audioRecorder{
+ 
             recorder.updateMeters()
             let alpha:Double = 0.09
             var peakPowerForChannel:Double = pow(10, (0.05 * Double(recorder.peakPowerForChannel(0))))
@@ -388,7 +407,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
             sendScratchDatatoBean(1, dataIn: Int(mappedValues))
             newVal = 0
         } else {
-
+            audioError()
         }
 
     }

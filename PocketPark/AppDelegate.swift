@@ -166,33 +166,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func generateOnboardingViewController() -> OnboardingViewController {
         // generate the welcome page
-        let welcomePage: OnboardingContentViewController = OnboardingContentViewController(title: "Control the World", body: "PocketPark is your gateway to  experiences embedded in the world around you.", image: UIImage(named:
-            "blue"), buttonText: nil) {
+        let welcomePage: OnboardingContentViewController = OnboardingContentViewController(title: "Control the World", body: "PocketPark is your gateway to experiences embedded in the world around you.", image: UIImage(named:
+            "pocketPark"), buttonText: nil) {
         }
 
         // Generate the first page...
-        let firstPage: OnboardingContentViewController = OnboardingContentViewController(title: "Discover Installations Around You", body: "Enableing location services will help you find nearby installations.", image: UIImage(named:
-            "blue"), buttonText: nil) {
+        let firstPage: OnboardingContentViewController = OnboardingContentViewController(title: "Discover Installations Around You", body: "Enabling location services will help you find nearby installations.", image: UIImage(named:
+            "location"), buttonText: nil) {
                 
         }
         
         // Generate the second page...
         let secondPage: OnboardingContentViewController = OnboardingContentViewController(title: "Get Notified", body: "When you're near an installation, Pocket Park will notify you.", image: UIImage(named:
-            "red"), buttonText: nil) {
+            "location"), buttonText: nil) {
                 
                 
         }
         
         // Generate the third page, and when the user hits the button we want to handle that the onboarding
         // process has been completed.
-        let thirdPage: OnboardingContentViewController = OnboardingContentViewController(title: "Start Exploring", body: "Nearby installations will appear automatically. Tap to begin.", image: UIImage(named:
-            "yellow"), buttonText: "Let's Get Started") {
+        let thirdPage: OnboardingContentViewController = OnboardingContentViewController(title: "Start Exploring", body: "Discover nearby installations or experience your own!", image: UIImage(named:
+            "wheel"), buttonText: "Let's Get Started") {
                 
                 self.handleOnboardingCompletion()
         }
         
         // Create the onboarding controller with the pages and return it.
-        let onboardingVC: OnboardingViewController = OnboardingViewController(backgroundImage: UIImage(named: "bg.jpg"), contents: [welcomePage, firstPage, secondPage, thirdPage])
+        let onboardingVC: OnboardingViewController = OnboardingViewController(backgroundImage: UIImage(named: "blue.jpeg"), contents: [welcomePage, firstPage, secondPage, thirdPage])
         
         return onboardingVC
     }

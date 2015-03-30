@@ -63,15 +63,15 @@
                         <action selector="createOwnButtonPressed:" destination="-1" eventType="touchUpInside" id="Dp0-X7-qpF"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Vjw-hJ-cn1">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vjw-hJ-cn1">
                     <rect key="frame" x="35" y="95" width="530" height="229"/>
                     <attributedString key="attributedText">
                         <fragment>
-                            <string key="content">Pocket Theme Park enables serendipitous moments of surprise and wonder by enabling your device to control the physical world. Create your own installations and help build the Theme Park of Everyday.</string>
+                            <string key="content">PocketPark enables serendipitous moments of surprise and wonder by enabling your device to control the physical world. Create your own installations and help build the Theme Park of Everyday.</string>
                             <attributes>
                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <font key="NSFont" size="20" name="HelveticaNeue-Light"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
                     </attributedString>

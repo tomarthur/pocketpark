@@ -156,6 +156,12 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayNoGeopointsAlert:",
             name: "noGeopoints", object: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayAudioErrorAlert:",
+            name: "audioError", object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayAudioPermissionAlert:",
+            name: "audioPermission", object: nil)
+        
         
         self.view.backgroundColor = .ITWelcomeColor()
     }
@@ -225,6 +231,22 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         
         self.showViewController(alert, sender: nil)
     }
+    
+    func displayAudioErrorAlert(notification: NSNotification) {
+        var unableToInteractAlert = UIAlertController(title: "Microphone Required",
+            message: "Unable to access microphone please try again later.",
+            preferredStyle: UIAlertControllerStyle.Alert)
+        unableToInteractAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.showViewController(unableToInteractAlert, sender: nil)
+    }
+    
+    func displayAudioPermissionAlert(notification: NSNotification) {
+        var unableToInteractAlert = UIAlertController(title: "Microphone Required",
+            message: "Please grant access to the microphone to experience this installation.",
+            preferredStyle: UIAlertControllerStyle.Alert)
+        unableToInteractAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.showViewController(unableToInteractAlert, sender: nil)
+    }
 
     func showStatus(currentStatus: String) {
         
@@ -285,12 +307,6 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
 
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 50
-    }
-
-    func tableView(tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-//        view.tintColor = .clearColor()
-//        view.backgroundColor = .clearColor()
-////        contentView.backgroundColor.clea
     }
 
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

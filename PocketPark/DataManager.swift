@@ -45,8 +45,14 @@ class DataManager: NSObject {
                     if error == nil
                     {
 //                        //println("found all parse objects")
-                        PFObject.pinAllInBackground(objects)
-                        self.dictionaryOfInteractivesFromLocalDatastore()
+                        PFObject.pinAllInBackground(objects, block: { (success, error) -> Void in
+                            if !success {
+                               NSNotificationCenter.defaultCenter().postNotificationName("parseError", object: nil)
+                            } else {
+                               self.dictionaryOfInteractivesFromLocalDatastore()
+                            }
+                        })
+                        
                         self.networkTimer.invalidate()
                     } else {
                         NSNotificationCenter.defaultCenter().postNotificationName("parseError", object: nil)

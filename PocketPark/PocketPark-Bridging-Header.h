@@ -6,8 +6,7 @@
 #import <Bolts/Bolts.h>
 #import <Parse/Parse.h>
 #import <ParseCrashReporting/ParseCrashReporting.h>
-#import "HockeySDK.h"
-#import "MBProgressHUD.h/MBProgressHUD.h"
+#import "MBProgressHUD/MBProgressHUD.h"
 #import "JGProgressHUD/JGProgressHUD.h"
 #import "JGProgressHUD/JGProgressHUDIndicatorView.h"
 #import "JGProgressHUD/JGProgressHUDSuccessIndicatorView.h"
