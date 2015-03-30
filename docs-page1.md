@@ -162,8 +162,11 @@ Open source code included in PocketPark:
 - [JGProgressHUD](https://github.com/JonasGessner/JGProgressHUD) – MIT license
 - [MBProgressHUD](https://github.com/jdg/MBProgressHUD) – [License](https://github.com/jdg/MBProgressHUD/blob/master/LICENSE)
 
-Open source Arduino examples:
+Documentation formating:
+- [Flatdoc](https://github.com/rstacruz/flatdoc) – MIT license
 
+Arduino examples:
+- TBD
 
 Creative Commons Noun Project icons:
 - [Signpost Created by Luboš Volkov](https://thenounproject.com/term/signpost/21109/)
