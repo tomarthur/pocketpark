@@ -95,13 +95,17 @@ If you haven't done so already, you'll need to install the Arduino IDE and the B
 #### **Upload Sketch**
 [Follow the steps to program your Arduino sketch to the Bean.](https://punchthrough.com/bean/getting-started-osx/)
 
-![Program Sketch Screen](http://themeparkofeveryday.com/images/programsketch.png)
+<img src="http://themeparkofeveryday.com/images/programsketch.png" alt="Program Sketch Screen" style="
+    max-width: 100%;
+">
 
 
 #### **Set Bean Name**
 Set the Bean name to match the one provided during the registration step. 
 
-![Bean Name Screen](http://themeparkofeveryday.com/images/setbeanname.png)
+<img src="http://themeparkofeveryday.com/images/setbeanname.png" alt="Program Sketch Screen" style="
+    max-width: 100%;
+">
 
 #### **Set iBeacon Settings** 
 iBeacon technology enables PocketPark to notify users of nearby installations
@@ -112,7 +116,9 @@ iBeacon technology enables PocketPark to notify users of nearby installations
 
 >```Minor ID```: As provided in registration
 
-![iBeacon Setup Screen](http://themeparkofeveryday.com/images/beaconsetup.png)
+<img src="http://themeparkofeveryday.com/images/beaconsetup.png" alt="Program Sketch Screen" style="
+    max-width: 100%;
+">
 
 
 ### Step 5: Test 

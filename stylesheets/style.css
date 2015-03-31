@@ -677,7 +677,7 @@ body.no-literate .content pre > code:hover::-webkit-scrollbar-thumb {
   }
   .header li a {
     padding: 0 15px;
-  }
+  } 
 }
 @media (max-width: 480px) {
   .right {
