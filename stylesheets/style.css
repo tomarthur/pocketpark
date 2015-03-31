@@ -38,7 +38,9 @@ code,
 del,
 dfn,
 em,
-img,
+img{
+  max-width: 100%;
+  },
 ins,
 kbd,
 q,
@@ -101,7 +103,6 @@ td {
   vertical-align: middle;
 }
 a img {
-  max-width: 100%;
   border: none;
 }
 html,
