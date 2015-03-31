@@ -101,6 +101,7 @@ td {
   vertical-align: middle;
 }
 a img {
+  max-width: 100%;
   border: none;
 }
 html,
