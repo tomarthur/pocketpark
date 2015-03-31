@@ -147,7 +147,6 @@ Special thanks to:
 - Gabe Barcia-Colombo and ITP Thesis Classmates
 - [Sakar Khattar](http://www.sakark.com)
 - Robert Scarff
-- Stanley Wolfersberger
 - Mom & Dad
 - Everyone who listened to me try to explain this thing
 - Punch Through Design - the Bean is awesome!
