@@ -10,11 +10,11 @@ PocketPark enables serendipitous moments of surprise and wonder by enabling your
 
 When you're nearby an installation installed out in the world (store window, park, etc.) PocketPark will notify you. When you open the app, you'll be able to control the installation using the sensors in your device.
 
-> iOS Device must support Bluetooth Low Energy. iPhone 4S or newer.
+<iframe src="https://player.vimeo.com/video/121631359?title=0&byline=0&portrait=0" width="250" height="141" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
 Sensor information from the iOS device is sent to an installation via Bluetooth Low Energy. The controller is a LightBlue Bean which is a BLE enabled Arduino. Using the Arduino IDE, you can program the Bean to control your installation.
 
-<iframe src="https://player.vimeo.com/video/121631359?loop=1&title=0&byline=0&portrait=0" width="300" height="169" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+> iOS Device must support Bluetooth Low Energy. iPhone 4S or newer.
 
 The installation you create could be *anything*: a bubble machine controlled by blowing into the device microphone, a fire breathing dragon you wake up by waving at it, or everyone's favorite… LEDs.
 
