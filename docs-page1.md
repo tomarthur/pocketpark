@@ -20,7 +20,8 @@ You'll find example code to get started below.
 
 # Getting Started
 
-Three steps making your installation part of the Theme Park of Everyday.
+These steps will help you make an installation part of the Theme Park of Everyday.
+
 ### Step 1: Choose an Input
 How do you want the user to control your installation? Your selection can be playful or logical. On the most basic level, your installation will respond to a range of values delivered in a scratch characteristic to the Arduino.
 > **What is a Scratch Characteristic?**
@@ -94,7 +95,7 @@ If you haven't done so already, you'll need to install the Arduino IDE and the B
 #### **Upload Sketch**
 [Follow the steps to program your Arduino sketch to the Bean.](https://punchthrough.com/bean/getting-started-osx/)
 
-![Program Sketch Screan](http://themeparkofeveryday.com/images/programsketch.png)
+![Program Sketch Screen](http://themeparkofeveryday.com/images/programsketch.png)
 
 
 #### **Set Bean Name**
