@@ -81,11 +81,11 @@ What do you want to happen when your installation gets sensor data from the iOS 
 
 ### Step 3: Register
 
-[Register your installation here >](http://installations.themeparkofeveryday.com/new)
+[Register your Installation here >](http://installations.themeparkofeveryday.com/new)
 
 **Be sure to write down your Installation ID, and Bean settings. You'll use them to configure your installation.** 
 
-### Step 4:Configure
+### Step 4: Configure
 
 #### **Install Tools**
 If you haven't done so already, you'll need to install the Arduino IDE and the Bean Loader application.
