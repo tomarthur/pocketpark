@@ -138,8 +138,22 @@ Tweet, post a GitHub Issue or email with questions or if you're having trouble.
 
 > [Email >](PocketPark@howtomworks.com)
 
-### Can't Find
+### Can't Find in App
 Did you set the Bean name and iBeacon settings as directed in the registration step?
+
+### Nothing Happens
+Is the LightBlue Bean LED turning green when you contact the Installation in PocketPark? 
+
+If the LED doesn't turn on:
+- Does the Bean name match the one provided in the registration step?
+- Is your battery fresh?
+- Can you connect to the Bean using the LightBlue iOS App?
+ 
+If the LED is green but nothing happens:
+- Check your Arduino code and make sure you've set your Installation to respond within the values above for the input you selected.
+- Make sure your Arduino code is set with the correct pins for inputs and outputs
+- Try testing your Installation using a standard Arduino and Serial input
+
 
 ### Unexpected Behavior
 Well, that isn't much fun. You might be having issues with mapping your values. A good method to troubleshoot is to use an existing Arduino and manually control your Installation through the serial monitor. 
