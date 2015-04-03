@@ -81,7 +81,7 @@ What do you want to happen when your installation gets sensor data from the iOS 
 
 ### Step 3: Register
 
-[Registration Method TBD]
+[http://installations.themeparkofeveryday.com/new](Register Your Installation Here >)
 
 ### Step 4:Configure
 
