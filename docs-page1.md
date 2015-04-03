@@ -64,24 +64,26 @@ What do you want to happen when your installation gets sensor data from the iOS 
 
 **Microphone Blow**
 
->[Microphone Example >](http://www.google.com)
+>[Microphone Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/microphone_apr03/microphone_apr03.ino)
 
 **Shake**
 
->[Shake Example >](http://www.google.com)
+>[Shake Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/shake_apr03/shake_apr03.ino)
 
 **Gyroscope**
 
->[Gyro Example >](http://www.google.com)
+>[Gyro Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/gyro_apr03/gyro_apr03.ino)
 
 **G-Force**
 
->[G-Force Example >](http://www.google.com)
+>[G-Force Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/gforce_apr03/gforce_apr03.ino)
 
 
 ### Step 3: Register
 
-[http://installations.themeparkofeveryday.com/new](Register Your Installation Here >)
+[Register your installation here >](http://installations.themeparkofeveryday.com/new)
+
+**Be sure to write down your Installation ID, and Bean settings. You'll use them to configure your installation.** 
 
 ### Step 4:Configure
 
