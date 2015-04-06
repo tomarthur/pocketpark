@@ -47,7 +47,7 @@ How do you want the user to control your installation? Your selection can be pla
 
 > **Gyroscope Ranges**: The Bean will receive values between x and x
 
-<iframe class="imgur-embed" width="90%" height="300" frameborder="0" src="http://i.imgur.com/U0cjsMu.gifv#embed"></iframe>
+<iframe class="imgur-embed" width="40%" height="131" frameborder="0" src="http://i.imgur.com/U0cjsMu.gifv#embed"></iframe>
 
 **G-Force**: User moves device rapidly
 
