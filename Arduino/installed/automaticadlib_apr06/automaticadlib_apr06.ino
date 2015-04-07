@@ -2,42 +2,42 @@
 
  Automatic Ad Lib
  Thesis Version
-
+ 
  Tom Arthur
  ITP Thesis 2015 Spring
  ITP Automata 2014 Fall
-
+ 
  Includes public domain code by Nicholas Zambetti
  Wire Master Reader
  by Nicholas Zambetti <http://www.zambetti.com>
-
+ 
  Demonstrates use of the Wire library
  Reads data from an I2C/TWI slave device
  Refer to the "Wire Slave Sender" example for use with this
-
+ 
  Created 29 March 2006
  This example code is in the public domain.
-
+ 
  Includes public domain code by Tom Igoe:
  Time Check
-
+ 
  Gets the time from the Linux processor via Bridge
  then parses out hours, minutes and seconds for the Arduino
  using an Arduino Yun.
-
+ 
  created  27 May 2013
  modified 21 June 2013
  By Tom Igoe
-
+ 
  */
 
 
 #include <AccelStepper.h>
 #include <Wire.h>
+#define DS1307_ADDRESS 0x68
 
 //Process date;                 // process used to get the date
 int hours, minutes, seconds;  // for the results
-String hourString, minString;
 int lastSecond = -1;          // need an impossible value for comparison
 int lastMinute = -1;          // last minute for use with cards
 int lastDisplayedTime = -2;   // last time displayed on cards
@@ -55,12 +55,12 @@ int serialCard0, serialCard1, serialCard2, serialCard3, serialCard4;
 const int motorDirPin = 4;    // all motors travel in the same direction
 const int sleepPin = 13;
 int fullRotation = 2000;      // define full rotation to calculate new card
-int state = 1;                // current display mode
+int state = 2;                // current display mode
 
 //set up the accelStepper intances and associated variables
 const int motorStepPin0 = 3;
 const int calibratePin0 = 2;
-const int homingValue0 = 433;
+const int homingValue0 = 440;
 int calibrateState0 = 0;
 int nextCard0 = 0;
 int currentCard0 = 0;
@@ -87,7 +87,7 @@ AccelStepper stepper2(1, motorStepPin2, motorDirPin);    // flip3
 
 const int motorStepPin3 = 9;
 const int calibratePin3 = 8;
-const int homingValue3 = 92;
+const int homingValue3 = 87;
 int calibrateState3 = 0;
 int nextCard3 = 0;
 int currentCard3 = 0;
@@ -105,10 +105,12 @@ AccelStepper stepper4(1, motorStepPin4, motorDirPin);    // flip5
 int networkState;
 int lastState;
 int showTimeRandom = 0;
-
+int count = 0;
 void setup() {
   Serial.begin(9600);
 
+  Wire.begin(4);
+  Wire.onReceive(receiveEvent); // register event
   //  while (!Serial);
   Serial.println("Automatic Automata");  // Title of sketch
 
@@ -146,33 +148,111 @@ void setup() {
   calibrate(stepper2, 2);
   calibrate(stepper3, 3);
   calibrate(stepper4, 4);
+  Serial.println("done");
 
-  // Wire.begin(2);
-  // Wire.onReceive(receiveEvent); // register event
 }
 
 void loop() {
+//Serial.println("loop");
+  // random sequence
+  if (state == 0) {
+    Serial.println("starting");
+    serialCard0 = random(11, 44);
+    serialCard1 = random(11, 44);
+    serialCard2 = random(2, 13);
+    serialCard3 = random(11, 44);
+    serialCard4 = random(11, 44);
+    state = 3;
+
+  }
+  // display 0s
+  else if (state == 1) {              // set next turn for blank display
+    Serial.println("time to display 0s");
+    Serial.println("time to display 0s");
+
+    serialCard0 = 0;
+    serialCard1 = 0;
+    serialCard2 = 0;
+    serialCard3 = 0;
+    serialCard4 = 0;
+
+    state = 2;
+
+    // display time
+  } 
+  else if (state == 2) {
+    delay(1000);
+    getTime();
+
+    if (lastDisplayedTime != minutes) {
+      String tempHours0, tempHours1, tempMin0, tempMin1;
+
+      String hourString = String( hours );
+      String minString = String(minutes);
+
+      tempHours0 = hourString.substring(0, 1);
+      tempHours1 = hourString.substring(1);
+
+      tempMin0 = minString.substring(0, 1);
+      tempMin1 = minString.substring(1);
+
+      Serial.println(hourString);
+      Serial.println(minString);
+      Serial.println("tempHours: ");
+      Serial.println(tempHours0);
+      Serial.println(tempHours1);
+      Serial.println(tempMin0);
+      Serial.println(tempMin1);
 
 
-    if (state == 0) {
+      if (tempHours0 == 0 && tempHours1 == 0 && tempMin0 == 0 && tempMin1 == 0) {
+        serialCard0 = 0;
+        serialCard1 = 0;
+        serialCard2 = 0;
+        serialCard3 = 0;
+        serialCard4 = 0;
+        Serial.println("0 time so random cards");
+      } 
+      else {
+        if (tempHours0 == 0) {
+          serialCard0 = 1;
+        } else {
+          
+          serialCard0 = tempHours0.toInt() + 1;
+        }
+        
+        serialCard1 = tempHours1.toInt() + 1;
+        serialCard2 = 1;
+        serialCard3 = tempMin0.toInt() + 2;
+        serialCard4 = tempMin1.toInt() + 1;
+      }
 
-      state = 1;
-
+      //      state = ;
+      lastDisplayedTime = minutes;
     }
-    else if (state == 1) {              // set next turn for blank display
-      Serial.println("time to display 0s");
-      Serial.println("time to display 0s");
-//      delay(14000);
 
-      serialCard0 = 0;
-      serialCard1 = 0;
-      serialCard2 = 0;
-      serialCard3 = 0;
-      serialCard4 = 0;
-
-      state = 0;
-
-    }
+  } 
+  else if (state == 3) {
+    delay(100);
+  } 
+  else if (state == 4) {
+    calibrate(stepper0, 0);
+    calibrate(stepper1, 1);
+    calibrate(stepper2, 2);
+    calibrate(stepper3, 3);
+    calibrate(stepper4, 4);
+    state = 2;
+  } else if (state == 5) {
+    
+    serialCard0 = 0;
+    serialCard1 = 0;
+    serialCard2 = 0;
+    serialCard3 = 0;
+    serialCard4 = 0;
+    
+    state = 4;
+  }
+  
 
 
   serialCard0 = constrain(serialCard0, 0, 45);
@@ -241,9 +321,14 @@ void loop() {
   stepper3.moveTo(newPosition3);
   stepper4.moveTo(newPosition4);
 
+  if (stepper0.distanceToGo() != 0 || stepper1.distanceToGo() != 0 || stepper2.distanceToGo() != 0 || stepper3.distanceToGo() != 0 || stepper4.distanceToGo() != 0){
+    digitalWrite(sleepPin, HIGH);
+    delay(100);
+  } else {
+    digitalWrite(sleepPin, LOW);
+  }
   
   while (stepper0.distanceToGo() != 0 || stepper1.distanceToGo() != 0 || stepper2.distanceToGo() != 0 || stepper3.distanceToGo() != 0 || stepper4.distanceToGo() != 0) {
-    digitalWrite(sleepPin, HIGH);
     stepper0.run();
     stepper1.run();
     stepper2.run();
@@ -320,14 +405,8 @@ void loop() {
       stepper4.stop();
     }
   }
-  digitalWrite(sleepPin, LOW);
-  delay(2000);
 }
 
-//void displayTime() {
-//
-//
-//}
 
 void calibrate(AccelStepper currentStepper, int currentFlip) {
   digitalWrite(sleepPin, HIGH);
@@ -434,13 +513,26 @@ void calibrate(AccelStepper currentStepper, int currentFlip) {
 
 void getTime() {
 
-    // convert to ints,saving the previous second:
-    hours = 00;
-    minutes = 00;
-    lastSecond = 00;          // save to do a time comparison
-    seconds = 00;
-    lastMinute = 00;
-  
+  // Reset the register pointer
+  Wire.beginTransmission(DS1307_ADDRESS);
+
+  byte zero = 0x00;
+  Wire.write(zero);
+  Wire.endTransmission();
+
+  Wire.requestFrom(DS1307_ADDRESS, 7);
+
+  int second = bcdToDec(Wire.read());
+  int minute = bcdToDec(Wire.read());
+  int hour = bcdToDec(Wire.read() & 0b111111); //24 hour time
+  int weekDay = bcdToDec(Wire.read()); //0-6 -> sunday - Saturday
+  int monthDay = bcdToDec(Wire.read());
+  int month = bcdToDec(Wire.read());
+  int year = bcdToDec(Wire.read());
+
+  //print the date EG   3/1/11 23:59:59
+  hours = hour;
+  minutes = minute;
 
 }
 
@@ -448,27 +540,28 @@ void getTime() {
 // this function is registered as an event, see setup()
 void receiveEvent(int howMany)
 {
-  Serial.println("Message from bean");
-  while (1 < Wire.available()) // loop through all but the last
+  while(1 < Wire.available()) // loop through all but the last
   {
     char c = Wire.read(); // receive byte as a character
     Serial.print(c);         // print the character
-    Serial.println("Message from bean");
-    String content = "";
-    content.concat(c);
-
-    if (content == "G") {
-      state = 0;
-      Serial.println("Story");
-    } else if (content == "E") {
-      Serial.println("Back to normal");
-      state = 1; // set to 0 then set to time
-    } else {
-      Serial.println("Clock");
-      state = 2;
-    }
-
   }
+  int x = Wire.read();    // receive byte as an integer
 
+  Serial.println(x);         // print the integer
+
+  if (x == 71) {
+    Serial.println("start sequence");
+    state = 0;
+  } 
+  else if ( x == 69) {
+    state = 5;
+    Serial.println("end Sequence");
+  }
 }
+
+byte bcdToDec(byte val)  {
+  // Convert binary coded decimal to normal decimal numbers
+  return ( (val/16*10) + (val%16) );
+}
+
 
