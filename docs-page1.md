@@ -50,9 +50,15 @@ Version 1 inputs are experiments. It is best to constrain values on your Bean. F
 
 <iframe class="imgur-embed" width="40%" height="131" frameborder="0" src="http://i.imgur.com/U0cjsMu.gifv#embed"></iframe>
 
-**G-Force**: User moves device rapidly
+**G-Force**: User waves device toward the ground rapidly
 
 > **G-Force Ranges**: The Bean will receive values between ```0``` and ```200``` with the average being around 25 for a good force. This one is a little touchy.
+
+[[placeholder for image]]
+
+**Rotation Rate**: User moves device rapidly back and forth
+
+> **Rotation Ranges**: The Bean will receive values between ```0``` and ```50``` with the average being around 20 when rotating semi-rapidly.
 
 [[placeholder for image]]
 	
