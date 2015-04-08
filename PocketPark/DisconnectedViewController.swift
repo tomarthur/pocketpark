@@ -394,6 +394,22 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     }
     }
     
+    func objectsNearbyFake(){
+        hideStatus()
+            for (key, value) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
+                getInteractiveObject(key)
+                
+                let objectID = appDelegate.dataManager.knownInteractivesFromParse[key]
+                //println("objectID: \(objectID)")
+                getInteractiveObject(objectID!)
+                
+                println (key)
+                println(value)
+                
+            }
+
+        
+    }
 
     // get data from parse to insert into table view
     func getInteractiveObject(foundInteractiveObjectID: String){
@@ -428,36 +444,36 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     
     func removeStaleData()
     {
-        interactivesNearbyTable.beginUpdates()
-        var rowsToDelete = [NSIndexPath]()
-        var removedItems = 0
-        for (index,friendlyName) in enumerate(nearbyInteractivesFriendlyArray)
-        {
-            var BLEName = getBLEName(friendlyName)
-            if !BLEName.isEmpty
-            {
-                let found = nearbyBLEInteractives[BLEName] != nil
-                
-                if found == false
-                {
-                    readyToDisplayInteractives[friendlyName] = nil
-                    rowsToDelete.append(NSIndexPath(forRow: index, inSection: 0))
-                    didAnimateCell[rowsToDelete.last!] = false
-                    nearbyInteractivesFriendlyArray.removeAtIndex(index - removedItems)
-                    removedItems++
-                }
-            }
-        }
-        
-        if rowsToDelete.count > 0 {
-            interactivesNearbyTable.deleteRowsAtIndexPaths(rowsToDelete, withRowAnimation: UITableViewRowAnimation.Fade)
-            rowsToDelete.removeAll()
-        }
-        
-        if nearbyBLEInteractives.count == 0 {
-            showStatus("Nearby installations appear automatically when discovered.\nCheck out the map for all locations.")
-        }
-        interactivesNearbyTable.endUpdates()
+//        interactivesNearbyTable.beginUpdates()
+//        var rowsToDelete = [NSIndexPath]()
+//        var removedItems = 0
+//        for (index,friendlyName) in enumerate(nearbyInteractivesFriendlyArray)
+//        {
+//            var BLEName = getBLEName(friendlyName)
+//            if !BLEName.isEmpty
+//            {
+//                let found = nearbyBLEInteractives[BLEName] != nil
+//                
+//                if found == false
+//                {
+//                    readyToDisplayInteractives[friendlyName] = nil
+//                    rowsToDelete.append(NSIndexPath(forRow: index, inSection: 0))
+//                    didAnimateCell[rowsToDelete.last!] = false
+//                    nearbyInteractivesFriendlyArray.removeAtIndex(index - removedItems)
+//                    removedItems++
+//                }
+//            }
+//        }
+//        
+//        if rowsToDelete.count > 0 {
+//            interactivesNearbyTable.deleteRowsAtIndexPaths(rowsToDelete, withRowAnimation: UITableViewRowAnimation.Fade)
+//            rowsToDelete.removeAll()
+//        }
+//        
+//        if nearbyBLEInteractives.count == 0 {
+//            showStatus("Nearby installations appear automatically when discovered.\nCheck out the map for all locations.")
+//        }
+//        interactivesNearbyTable.endUpdates()
     }
 
     
@@ -482,6 +498,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     
     func startScanningForInteractives(notif: NSNotification)
     {
+        objectsNearbyFake();
         if appDelegate.dataManager.dataStoreReady == true && bluetoothIsReady == true && runningInForground() == true {
             if nearbyBLEInteractives.count == 0 {
             showStatus("Nearby installations appear automatically when discovered.\nCheck out the map for all locations.")
