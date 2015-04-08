@@ -109,7 +109,7 @@ class ConnectedViewController: UIViewController, PTDBeanDelegate, AVAudioRecorde
         
         connectedBean?.setScratchBank(Int(scratchNumber), data:dataSend)
         
-        //println("datain: \(dataIn) sentdata: \(dataSend) length: \(sizeof(dataIn.dynamicType))")
+        println("datain: \(dataIn) sentdata: \(dataSend) length: \(sizeof(dataIn.dynamicType))")
         
     }
     
