@@ -29,11 +29,12 @@ How do you want the user to control your installation? Your selection can be pla
 > Characteristics are a Bluetooth convention, a defined attribute types that contain a single logical value single logical value.
 
 ##### PockePark Version 1.0 Inputs Available
+Version 1 inputs are experiments. It is best to constrain values on your Bean. Future versions will be indicated and may include better averaged and normalized values.
 
 
 **Microphone Blow**: User blows into the microphone on the device. The harder the user blows, the larger the value delivered to the bean.
 
->**Mic Value Ranges**: The Bean will receive values between x and x
+>**Mic Value Ranges**: The Bean will receive values between ```-2``` when very quiet and ```200``` when blowing very hard.
 
 [[placeholder for image]]
 
@@ -45,13 +46,13 @@ How do you want the user to control your installation? Your selection can be pla
 
 **Gyroscope**: User rotates device on Y axis.
 
-> **Gyroscope Ranges**: The Bean will receive values between x and x
+> **Gyroscope Ranges**: The Bean will receive values between ```0``` and ```180``` depending on the rotation of the device when it's held in a portrait position.
 
 <iframe class="imgur-embed" width="40%" height="131" frameborder="0" src="http://i.imgur.com/U0cjsMu.gifv#embed"></iframe>
 
 **G-Force**: User moves device rapidly
 
-> **G-Force Ranges**: The Bean will receive values between x and x
+> **G-Force Ranges**: The Bean will receive values between ```0``` and ```200``` with the average being around 25 for a good force. This one is a little touchy.
 
 [[placeholder for image]]
 	
