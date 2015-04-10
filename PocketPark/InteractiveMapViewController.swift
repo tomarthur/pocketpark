@@ -11,7 +11,7 @@ import MapKit
 
 class InteractiveMapViewController: UIViewController, UIToolbarDelegate, UINavigationBarDelegate, MKMapViewDelegate  {
     
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBOutlet weak var mapView: MKMapView!
     var placesObjects = [AnyObject]()
@@ -76,7 +76,7 @@ class InteractiveMapViewController: UIViewController, UIToolbarDelegate, UINavig
     // TO DO: GROUP POINTS
     func addInteractiveGeoPoints(){
         
-        //println("COUNT of num: \(self.mapView.annotations.count)")
+        println("COUNT of num: \(self.mapView.annotations.count)")
         // User's location
         let userGeoPoint = PFGeoPoint(latitude:mapView.userLocation.coordinate.latitude, longitude:mapView.userLocation.coordinate.latitude)
         
@@ -91,17 +91,17 @@ class InteractiveMapViewController: UIViewController, UIToolbarDelegate, UINavig
         
         query.findObjectsInBackgroundWithBlock
             {
-                (objects: [AnyObject]!, error: NSError!) -> Void in
+                (objects: [AnyObject]?, error: NSError?) -> Void in
                 if error == nil
                 {
-                    self.placesObjects = objects
+                    self.placesObjects = objects!
                     for object in self.placesObjects {
                         var annotation = MKPointAnnotation()
-                        let currentPFObject = object as PFObject
+                        let currentPFObject = object as! PFObject
                         
                         if let locationGeopoint = currentPFObject["location"] as? PFGeoPoint {
                             annotation.coordinate = CLLocationCoordinate2DMake(locationGeopoint.latitude, locationGeopoint.longitude)
-                            annotation.title = currentPFObject["name"] as String
+                            annotation.title = currentPFObject["name"] as! String
                             
                             if let locationDetail = currentPFObject["locationString"] as? String {
                                 annotation.subtitle = locationDetail
@@ -118,7 +118,7 @@ class InteractiveMapViewController: UIViewController, UIToolbarDelegate, UINavig
                 } else {
                     NSNotificationCenter.defaultCenter().postNotificationName("parseError", object: nil)
                     NSLog("Unable to find geopoints")
-                    NSLog("Error: %@ %@", error, error.userInfo!)
+                    NSLog("Error: %@ %@", error!, error!.userInfo!)
                 }
         }
     }

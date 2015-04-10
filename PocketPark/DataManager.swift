@@ -34,17 +34,17 @@ class DataManager: NSObject {
     // get most recent interactives from parse cloud
     func queryParseForInteractiveObjects() {
         
-//        //println("calling queryParseForInteractiveObjects")
+//        println("calling queryParseForInteractiveObjects")
         // check for network availablity before requesting interactives from parse
         if (IJReachability.isConnectedToNetwork() == true) {
             // pull latest interactive objects from Parse
             var query = PFQuery(className:"installations")
             query.findObjectsInBackgroundWithBlock
                 {
-                    (objects: [AnyObject]!, error: NSError!) -> Void in
+                    (objects: [AnyObject]?, error: NSError?) -> Void in
                     if error == nil
                     {
-//                        //println("found all parse objects")
+//                        println("found all parse objects")
                         PFObject.pinAllInBackground(objects, block: { (success, error) -> Void in
                             if !success {
                                NSNotificationCenter.defaultCenter().postNotificationName("parseError", object: nil)
@@ -58,13 +58,13 @@ class DataManager: NSObject {
                         NSNotificationCenter.defaultCenter().postNotificationName("parseError", object: nil)
                         
                         NSLog("Unable to add interactives to local data store")
-                        NSLog("Error: %@ %@", error, error.userInfo!)
+//                        NSLog("Error: %@ %@", error, error.userInfo!)
                     }
             }
             
             
         } else {
-//            //println("No network")
+//            println("No network")
             NSNotificationCenter.defaultCenter().postNotificationName("noNetwork", object: nil)
             self.networkTimer.invalidate()
             // still attempt to load data if it's available
@@ -74,15 +74,15 @@ class DataManager: NSObject {
     
     func checkNetwork()
     {
-//        //println("in data manager, check network")
+//        println("in data manager, check network")
         if (IJReachability.isConnectedToNetwork() == false)
         {
-//            //println("in data manager, check network false")
+//            println("in data manager, check network false")
             NSNotificationCenter.defaultCenter().postNotificationName("noNetwork", object: nil)
         }
         else
         {
-//            //println("in data manager, check network true")
+//            println("in data manager, check network true")
         }
     }
     
@@ -93,16 +93,16 @@ class DataManager: NSObject {
         query.fromLocalDatastore()
         query.findObjectsInBackgroundWithBlock
             {
-                (objects: [AnyObject]!, error: NSError!) -> Void in
+                (objects: [AnyObject]?, error: NSError?) -> Void in
                 if error != nil {
                     // There was an error.
                     NSNotificationCenter.defaultCenter().postNotificationName("parseError", object: nil)
                     
                 } else {
-                    var PFVersions = objects as [PFObject]
+                    var PFVersions = objects as! [PFObject]
                     for PFVersion in PFVersions {
-                        self.knownInteractivesFromParse[toString(PFVersion["blename"])] = toString(PFVersion.objectId)
-                        self.knownInteractivesFromParseFriendlyNames[toString(PFVersion["blename"])] = toString(PFVersion["name"])
+                        self.knownInteractivesFromParse[toString(PFVersion["blename"]!)] = toString(PFVersion.objectId!)
+                        self.knownInteractivesFromParseFriendlyNames[toString(PFVersion["blename"]!)] = toString(PFVersion["name"]!)
                       
                     }
                     self.dictionaryOfInteractivesWithGeoPoints()
@@ -121,14 +121,14 @@ class DataManager: NSObject {
         
         query.findObjectsInBackgroundWithBlock
             {
-                (objects: [AnyObject]!, error: NSError!) -> Void in
+                (objects: [AnyObject]?, error: NSError?) -> Void in
                 if error != nil {
                     // There was an error.
                     NSNotificationCenter.defaultCenter().postNotificationName("noGeopoints", object: nil)
                 } else {
-                    var PFVersions = objects as [PFObject]
+                    var PFVersions = objects as! [PFObject]
                     for PFVersion in PFVersions {
-                        self.knownInteractivesFromParseWithGeopoints[toString(PFVersion["name"])] = PFVersion["location"] as? PFGeoPoint
+                        self.knownInteractivesFromParseWithGeopoints[toString(PFVersion["name"]!)] = PFVersion["location"] as? PFGeoPoint!
                     }
                     NSNotificationCenter.defaultCenter().postNotificationName("GeoPointDictionaryReady", object: nil)
                 }

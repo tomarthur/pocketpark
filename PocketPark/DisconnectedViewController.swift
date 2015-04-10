@@ -20,7 +20,7 @@ import MBProgressHUD
 
 class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UITableViewDataSource, UITableViewDelegate, PTDBeanManagerDelegate {
     
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -56,8 +56,8 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
                 let connectedViewController:ConnectedViewController = ConnectedViewController(nibName: "ConnectedView", bundle: nil)
                 
                 //Pass identifers to connectedVC
-                connectedViewController.connectedBean = connectedBean
-                connectedViewController.foundInteractiveObjectID = connectedBeanObjectID
+                connectedViewController.connectedBean = connectedBean!
+                connectedViewController.foundInteractiveObjectID = connectedBeanObjectID!
                 
                 // Send the dimensions to Parse along with the 'connect' event
                 let connectInfo = [
@@ -79,7 +79,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
             refreshTimerActive = true
             refreshBLEObjects = NSTimer.scheduledTimerWithTimeInterval(refreshTime, target: self, selector: Selector("stopStartScan"), userInfo: nil, repeats: true)
         } else {
-            //println("already started timer")
+            println("already started timer")
         }
     }
     
@@ -193,7 +193,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     }
     
     func displayNoNetworkAlert(notification: NSNotification) {
-        //println("SHOULD REPORT NETWORK PROBLEM")
+        println("SHOULD REPORT NETWORK PROBLEM")
         var alert = UIAlertController(title: "Unable to Connect",
             message: "Please check your internet connection.",
             preferredStyle: UIAlertControllerStyle.Alert)
@@ -338,10 +338,10 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         // load content to cell
         
         var interactiveInfo = readyToDisplayInteractives[nearbyInteractivesFriendlyArray[indexPath.row]] as PFObject!
-        var loc = interactiveInfo["location"] as PFGeoPoint
+        var loc = interactiveInfo["location"] as!  PFGeoPoint
         var coordinate = CLLocationCoordinate2DMake(loc.latitude, loc.longitude)
         
-        cell.loadItem(title: nearbyInteractivesFriendlyArray[indexPath.row], desc: toString(interactiveInfo["explanation"]), coordinates: coordinate)
+        cell.loadItem(title: nearbyInteractivesFriendlyArray[indexPath.row], desc: toString(interactiveInfo["explanation"]!), coordinates: coordinate)
 
         return cell
     }
@@ -386,8 +386,8 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         if let parseFriendlyName = appDelegate.dataManager.knownInteractivesFromParseFriendlyNames [bean.name] {
 
             if contains(nearbyInteractivesFriendlyArray, parseFriendlyName) == false {
-                let objectID = appDelegate.dataManager.knownInteractivesFromParse[bean.name]
-                //println("objectID: \(objectID)")
+                let objectID = appDelegate.dataManager.knownInteractivesFromParse[bean.name!]
+                println("objectID: \(objectID)")
                 getInteractiveObject(objectID!)
             } else {
         }
@@ -399,17 +399,21 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     func getInteractiveObject(foundInteractiveObjectID: String){
         var query = PFQuery(className: "installations")
         query.fromLocalDatastore()
+        
         query.getObjectInBackgroundWithId(foundInteractiveObjectID) {
-            (objectInfo: PFObject!, error: NSError!) -> Void in
-            if (error == nil) {
-                // TO DO
-                self.addToTableView(objectInfo)
+            (objectInfo: PFObject?, error: NSError?) -> Void in
+            if error == nil {
+                self.addToTableView(objectInfo!)
+            } else {
+                println(error)
             }
+            
+
         }
     }
     
     func addToTableView(objectInfo: PFObject) {
-        var objectName = objectInfo["name"] as String
+        var objectName = objectInfo["name"] as! String
         readyToDisplayInteractives[objectName] = objectInfo
         if contains(nearbyInteractivesFriendlyArray, objectName) == false {
             nearbyInteractivesFriendlyArray.append(objectName)
@@ -494,10 +498,10 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         var state = UIApplication.sharedApplication().applicationState
         
         if (state == .Active) {
-//            //println("SCAN!!!!!")
+            println("SCAN!!!!!")
             return true
         } else {
-//            //println("NO SCAN IN BACKROUND")
+            println("NO SCAN IN BACKROUND")
             return false
         }
         
@@ -506,10 +510,10 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     func stopStartScan()
     {
         if appDelegate.dataManager.dataStoreReady == false || bluetoothIsReady == false || runningInForground() == false {
-            //println("no scan becuase things aren't ready")
+            println("no scan becuase things aren't ready")
             return
         }
-        
+        println("scanningnow")
 //        self.manager.stopScanningForBeans_error(nil)
         clearCacheOfInteractives()
         self.manager.startScanningForBeans_error(nil)
@@ -535,6 +539,8 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     }
     
     func beanManager(beanManager: PTDBeanManager!, didDiscoverBean bean: PTDBean!, error: NSError!) {
+        println("DISCOVERED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
+        
         
         // add found interactive to dictionary
         if appDelegate.dataManager.isInteractiveKnown(toString(bean.name)) == true {
@@ -546,7 +552,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     }
 
     func BeanManager(beanManager: PTDBeanManager!, didConnectToBean bean: PTDBean!, error: NSError!) {
-        //println("CONNECTED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
+        println("CONNECTED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
         
         if (error != nil){
             connectionFailure()
@@ -554,13 +560,13 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         }
         
         if connectedBean == nil {
-            connectedBeanObjectID = appDelegate.dataManager.knownInteractivesFromParse[bean.name]
+            connectedBeanObjectID = appDelegate.dataManager.knownInteractivesFromParse[bean.name!]
             connectedBean = bean
         }
     }
     
     func beanManager(beanManager: PTDBeanManager!, didDisconnectBean bean: PTDBean!, error: NSError!) {
-        //println("DISCONNECTED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
+        println("DISCONNECTED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
         
         self.connectedBeanObjectID = nil
         self.connectedBean = nil
@@ -571,7 +577,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         })
         
         if (error != nil){
-            //println("error \(error)")
+            println("error \(error)")
         }
         
          NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
@@ -583,14 +589,14 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     // end interaction by disconnecting and adding to temporary ignore list
     func clearCacheOfInteractives() {
         
-//        //println("clearing dictionary of known interactives")
+//        println("clearing dictionary of known interactives")
         nearbyBLEInteractives.removeAll()
  
         
     }
     
     func pauseTimer(notification: NSNotification) {
-        //println("timer stopped")
+        println("timer stopped")
         invalidatRefreshTimer()
         manager.stopScanningForBeans_error(nil)
 
@@ -644,7 +650,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
                             self.completeConnectionFromNotificationAfterDelay(parseBLEName, friendlyNameIn: parseFriendlyName)
                         })
                     } else {
-                        //println("Didn't work")
+                        println("Didn't work")
                     }
                 }
             }

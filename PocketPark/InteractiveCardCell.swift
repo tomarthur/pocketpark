@@ -12,7 +12,7 @@ import MapKit
 
 class InteractiveCardCell: UITableViewCell {
 
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBOutlet weak var interactiveCardView: UIView!
     @IBOutlet weak var interactiveSubCardView: UIView!

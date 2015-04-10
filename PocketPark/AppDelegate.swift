@@ -30,8 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
         PFUser.enableAutomaticUser()
-        PFUser.currentUser().incrementKey("RunCount")
-        PFUser.currentUser().saveInBackground()
+        PFUser.currentUser()!.incrementKey("RunCount")
+        PFUser.currentUser()!.saveInBackground()
         
         // start Parse datamanager
         dataManager.start()
@@ -139,7 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        //println("didReceiveRemoteNotification")
+        println("didReceiveRemoteNotification")
         PFPush.handlePush(userInfo)
     }
     

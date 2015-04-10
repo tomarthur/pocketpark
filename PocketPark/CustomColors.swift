@@ -49,11 +49,11 @@ extension UIColor {
             var hexValue: CUnsignedLongLong = 0
 
             if scanner.scanHexLongLong(&hexValue) {
-                if countElements(hex) == 6 {
+                if count(hex) == 6 {
                     red   = CGFloat((hexValue & 0xFF0000) >> 16) / 255.0
                     green = CGFloat((hexValue & 0x00FF00) >> 8)  / 255.0
                     blue  = CGFloat(hexValue & 0x0000FF) / 255.0
-                } else if countElements(hex) == 8 {
+                } else if count(hex) == 8 {
                     red   = CGFloat((hexValue & 0xFF000000) >> 24) / 255.0
                     green = CGFloat((hexValue & 0x00FF0000) >> 16) / 255.0
                     blue  = CGFloat((hexValue & 0x0000FF00) >> 8)  / 255.0
@@ -62,7 +62,7 @@ extension UIColor {
                     print("invalid rgb string, length should be 7 or 9")
                 }
             } else {
-                //println("scan hex error")
+                println("scan hex error")
             }
         } else {
             print("invalid rgb string, missing '#' as prefix")

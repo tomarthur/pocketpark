@@ -120,7 +120,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
             
             
             if(beacons.count > 0) {
-                let nearestBeacon:CLBeacon = beacons[0] as CLBeacon
+                let nearestBeacon:CLBeacon = beacons[0] as! CLBeacon
                 
                 if(nearestBeacon.proximity == lastProximity ||
                     nearestBeacon.proximity == CLProximity.Unknown) {
@@ -134,10 +134,10 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
                 case CLProximity.Far:
                     return
                 case CLProximity.Near:
-                        //println("near proximity")
+                        println("near proximity")
                         sendLocalNotificationToStartInteraction(beaconString)
                 case CLProximity.Immediate:
-                        //println("Immediate proximity")
+                        println("Immediate proximity")
                         sendLocalNotificationToStartInteraction(beaconString)
                 case CLProximity.Unknown:
                     return
@@ -152,7 +152,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager!,
         didEnterRegion region: CLRegion!) {
-            manager.startRangingBeaconsInRegion(region as CLBeaconRegion)
+            manager.startRangingBeaconsInRegion(region as! CLBeaconRegion)
             manager.startUpdatingLocation()
             
             NSLog("You entered the region")
@@ -160,7 +160,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager!,
         didExitRegion region: CLRegion!) {
-            manager.stopRangingBeaconsInRegion(region as CLBeaconRegion)
+            manager.stopRangingBeaconsInRegion(region as! CLBeaconRegion)
             manager.stopUpdatingLocation()
             previouslySentNotifications.removeAll()
             sentNotification = false
@@ -169,7 +169,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     
     func pushLocalInteractiveAvailableNotification(friendlyName: String, bleName: String) {
         
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
         var interactionNearbyNotification = UILocalNotification()
         interactionNearbyNotification.alertBody = "Control \(friendlyName) nearby."
@@ -187,7 +187,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     
     // check if beacon is for a known interactive and that it isn't ignored
     func sendLocalNotificationToStartInteraction(beaconString: String) {
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         // TODO: Add timeout to prevent multiple notifications
         let appState : UIApplicationState = UIApplication.sharedApplication().applicationState
@@ -199,7 +199,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
                 if (beaconIsIgnored(beaconString) == false) {
                     for (value, key) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames{
                         if (value == beaconString){
-                            //println("send local notification")
+                            println("send local notification")
                             
                             self.pushLocalInteractiveAvailableNotification(key, bleName: value)
                             previouslySentNotifications[beaconString] = NSDate()
@@ -226,7 +226,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     
     
     func beaconIsIgnored(beaconString: String) -> Bool {
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
         let alreadyExperienced = appDelegate.dataManager.isBeaconIgnored(beaconString)
         var recentlyNotified = false
@@ -242,7 +242,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         }
 
         if alreadyExperienced == true || recentlyNotified == true {
-            //println("ignored \(beaconString) beacon")
+            println("ignored \(beaconString) beacon")
             return true
         } else{
             return false
