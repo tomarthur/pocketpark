@@ -1,6 +1,12 @@
 # Theme Park of Everyday
 
-Why hasn’t it been feasible to bring interactive physical vignettes out of engineered spaces like theme parks and into daily life? Theme Park of Everyday explores how the devices in our pockets can augment and control the physical world. A series of installations and tools for anyone to contribute will depict how playful physical “micro-interactions” can be easily built and embedded into the city around us.
+Why hasn’t it been feasible to bring interactive physical vignettes out of engineered spaces like theme parks and into daily life? Theme Park of Everyday explores how the devices in our pockets can augment and control the physical world, for fun. 
+
+With PocketPark (the iOS companion app developed to enable the experience), users are notified when they approach installations. Simply by opening the app, users can wirelessly control installations using mobile device sensors.
+
+Anyone can add new experiences. They automatically appear in PocketPark app when registered.
+
+Theme Park of Everyday depicts how mobile devices can make the world more fun, and how playful physical installations can be easily built and embedded into the city around us.
 
 ## Pocket Park iOS
 
