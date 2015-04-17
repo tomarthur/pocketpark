@@ -54,7 +54,7 @@ Version 1 inputs are experiments. It is best to constrain values on your Bean. F
 
 > **Gyroscope Ranges**: The Bean will receive values between ```0``` and ```180``` depending on the rotation of the device when it's held in a portrait position.
 
-<iframe class="imgur-embed" width="40%" height="131" frameborder="0" src="http://i.imgur.com/U0cjsMu.gifv#embed"></iframe>
+![Imgur](http://i.imgur.com/U0cjsMu.gif)
 
 **G-Force**: User waves device toward the ground rapidly
 
@@ -154,6 +154,10 @@ Tweet, post a GitHub Issue or email with questions or if you're having trouble.
 ### Can't Find in App
 Did you set the Bean name and iBeacon settings as directed in the registration step?
 
+Sometimes iOS caching of Bluetooth device information can make a new Installation not appear in App. Resetting your device can remedy this. 
+
+If not, try using LightBlue to confirm that the Bean name is what you set in the steps above. You may need to set the name again and reset your iOS device to get things working.
+
 ### Nothing Happens
 Is the LightBlue Bean LED turning green when you contact the Installation in PocketPark? 
 
@@ -173,18 +177,18 @@ Well, that isn't much fun. You might be having issues with mapping your values. 
 
 # Acknowledgements and License
 
-This project is part of [Tom Arthur's](http://www.howtomworks.com) thesis at the [NYU Interactive Telecommunications Program](http://itp.nyu.edu).
+Theme Park of Everyday is [Tom Arthur's](http://www.howtomworks.com) thesis at the [NYU Interactive Telecommunications Program](http://itp.nyu.edu).
 
 PocketPark is available under the MIT license. See the LICENSE file for details.
 
 Special thanks to:
 
 - Gabe Barcia-Colombo and ITP Thesis Classmates
-- [Sakar Khattar](http://www.sakark.com)
+- [Sakar Khattar](http://www.sakark.com) 
 - Robert Scarff
-- Mom & Dad
+- Parental units
 - Everyone who listened to me try to explain this thing
-- Punch Through Design - the Bean is awesome!
+- [Punch Through Design](https://punchthrough.com) - the Bean is awesome!
 
 
 Open source code included in PocketPark:
