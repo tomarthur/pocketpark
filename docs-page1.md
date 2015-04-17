@@ -54,7 +54,7 @@ Version 1 inputs are experiments. It is best to constrain values on your Bean. F
 
 > **Gyroscope Ranges**: The Bean will receive values between ```0``` and ```180``` depending on the rotation of the device when it's held in a portrait position.
 
-<a href="http://imgur.com/cg2g1FZ"><img src="http://i.imgur.com/cg2g1FZt.gif" title="Gyro Example" /></a>
+<a href="http://imgur.com/cg2g1FZ"><img src="http://i.imgur.com/cg2g1FZt.gifv" title="Gyro Example" /></a>
 
 **G-Force**: User waves device toward the ground rapidly
 
