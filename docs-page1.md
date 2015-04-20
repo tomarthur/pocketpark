@@ -12,6 +12,11 @@ Theme Park of Everyday depicts how mobile devices can make the world more fun, a
 
 PocketPark enables serendipitous moments of surprise and wonder by enabling your device to control the physical world. Using the frameworks available here and the <a href="http://www.amazon.com/gp/product/B00LU46NLA/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00LU46NLA&linkCode=as2&tag=theparofeve-20&linkId=PS5VC75DSSUOWYEQ">LightBlue Bean</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=theparofeve-20&l=as2&o=1&a=B00LU46NLA" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />, you can create your own installations as part of the Theme Park of Everyday.
 
+
+[![App Store](http://themeparkofeveryday.com/images/appstore-small.png)](https://itunes.apple.com/us/app/pocketpark/id975793961)
+
+[Download PocketPark from the App Store](https://itunes.apple.com/us/app/pocketpark/id975793961).
+
 ## How it Works
 
 When you're nearby an installation installed out in the world (store window, park, etc.) PocketPark will notify you. When you open the app, you'll be able to control the installation using the sensors in your device.
