@@ -87,7 +87,7 @@ AccelStepper stepper2(1, motorStepPin2, motorDirPin);    // flip3
 
 const int motorStepPin3 = 9;
 const int calibratePin3 = 8;
-const int homingValue3 = 87;
+const int homingValue3 = 110;
 int calibrateState3 = 0;
 int nextCard3 = 0;
 int currentCard3 = 0;
@@ -96,16 +96,19 @@ AccelStepper stepper3(1, motorStepPin3, motorDirPin);    // flip4
 
 const int motorStepPin4 = 10;
 const int calibratePin4 = 12;
-const int homingValue4 = 100;
+const int homingValue4 = 105;
 int calibrateState4 = 0;
 int nextCard4 = 0;
 int currentCard4 = 0;
 int stepperCard4 = 0;
+
 AccelStepper stepper4(1, motorStepPin4, motorDirPin);    // flip5
 int networkState;
 int lastState;
 int showTimeRandom = 0;
 int count = 0;
+int needCalibrateCount = 0;
+
 void setup() {
   Serial.begin(9600);
 
@@ -216,18 +219,25 @@ void loop() {
       else {
         if (tempHours0 == 0) {
           serialCard0 = 1;
+          serialCard1 = tempHours1.toInt() + 1;
+ 
         } else {
-          
           serialCard0 = tempHours0.toInt() + 1;
+          serialCard1 = tempHours1.toInt() + 1;
         }
         
-        serialCard1 = tempHours1.toInt() + 1;
-        serialCard2 = 1;
-        serialCard3 = tempMin0.toInt() + 2;
-        serialCard4 = tempMin1.toInt() + 1;
+        if (tempMin0 == 0) {
+          serialCard3 = 1;
+          serialCard4 = tempMin1.toInt() + 1;
+        } else {
+          serialCard3 = tempMin0.toInt() + 1;
+          serialCard4 = tempMin1.toInt() + 1;
+        }
+        
       }
 
       //      state = ;
+
       lastDisplayedTime = minutes;
     }
 
@@ -236,11 +246,17 @@ void loop() {
     delay(100);
   } 
   else if (state == 4) {
+    
+    if (needCalibrateCount >= 5) {
+      
     calibrate(stepper0, 0);
     calibrate(stepper1, 1);
     calibrate(stepper2, 2);
     calibrate(stepper3, 3);
     calibrate(stepper4, 4);
+    needCalibrateCount = 0;
+    }
+    
     state = 2;
   } else if (state == 5) {
     
@@ -322,10 +338,10 @@ void loop() {
   stepper4.moveTo(newPosition4);
 
   if (stepper0.distanceToGo() != 0 || stepper1.distanceToGo() != 0 || stepper2.distanceToGo() != 0 || stepper3.distanceToGo() != 0 || stepper4.distanceToGo() != 0){
-    digitalWrite(sleepPin, HIGH);
+    digitalWrite(sleepPin, LOW);
     delay(100);
   } else {
-    digitalWrite(sleepPin, LOW);
+    digitalWrite(sleepPin, HIGH);
   }
   
   while (stepper0.distanceToGo() != 0 || stepper1.distanceToGo() != 0 || stepper2.distanceToGo() != 0 || stepper3.distanceToGo() != 0 || stepper4.distanceToGo() != 0) {
@@ -409,7 +425,7 @@ void loop() {
 
 
 void calibrate(AccelStepper currentStepper, int currentFlip) {
-  digitalWrite(sleepPin, HIGH);
+  digitalWrite(sleepPin, LOW);
   boolean step1 = false;        // part one of calibration complete
   boolean calibrated = false;   // calibration complete
   int startTime = millis();
@@ -506,7 +522,7 @@ void calibrate(AccelStepper currentStepper, int currentFlip) {
   //  Serial.print("calibration done for: ");
   //  Serial.println(currentFlip);
   //  delay(500);
-  digitalWrite(sleepPin, LOW);
+  digitalWrite(sleepPin, HIGH);
 }
 
 
@@ -555,6 +571,7 @@ void receiveEvent(int howMany)
   } 
   else if ( x == 69) {
     state = 5;
+    needCalibrateCount++;
     Serial.println("end Sequence");
   }
 }
