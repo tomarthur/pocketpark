@@ -1,7 +1,7 @@
-
 @font-face {
   font-family: 'otterfontmedium';
   font-style: normal;
   font-weight: 700;
-  src: local('OtterFont'), url(http://tomarthur.github.io/pocketpark/fonts/OtterFont.ttf) format('truetype');
+  src: url('../fonts/OtterFont.eot');
+  src: url('../fonts/OtterFont.eot?#iefix') format('embedded-opentype'), url('../fonts/OtterFont.woff2') format('woff2'), url('../fonts/OtterFont.woff') format('woff'), url('../fonts/OtterFont.ttf') format('truetype'), url('../fonts/OtterFont') format('svg');
 }
