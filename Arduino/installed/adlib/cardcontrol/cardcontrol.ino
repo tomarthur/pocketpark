@@ -219,7 +219,7 @@ void loop() {
       else {
         if (tempHours0 == 0) {
           serialCard0 = 1;
-          serialCard1 = tempHours1.toInt() + 1;
+          serialCard1 = tempHours0.toInt() + 1;
  
         } else {
           serialCard0 = tempHours0.toInt() + 1;
@@ -228,7 +228,7 @@ void loop() {
         
         if (tempMin0 == 0) {
           serialCard3 = 1;
-          serialCard4 = tempMin1.toInt() + 1;
+          serialCard4 = tempMin0.toInt() + 1;
         } else {
           serialCard3 = tempMin0.toInt() + 1;
           serialCard4 = tempMin1.toInt() + 1;
