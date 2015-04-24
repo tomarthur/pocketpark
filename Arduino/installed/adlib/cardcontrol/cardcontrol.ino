@@ -233,7 +233,7 @@ void loop() {
           serialCard3 = tempMin0.toInt() + 1;
           serialCard4 = tempMin1.toInt() + 1;
         }
-        
+         serialCard2 = 2;
       }
 
       //      state = ;
