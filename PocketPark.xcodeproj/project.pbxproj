@@ -18,6 +18,7 @@
 		E25C20B61AC9101800BA46DD /* pocketPark.png in Resources */ = {isa = PBXBuildFile; fileRef = E25C20B21AC9101800BA46DD /* pocketPark.png */; };
 		E25C20B71AC9101800BA46DD /* wheel.png in Resources */ = {isa = PBXBuildFile; fileRef = E25C20B31AC9101800BA46DD /* wheel.png */; };
 		E25C20B91AC910E800BA46DD /* blue.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = E25C20B81AC910E800BA46DD /* blue.jpeg */; };
+		E25E34E21AEA0685009E59C8 /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E34E11AEA0685009E59C8 /* SensorManager.swift */; };
 		E261D3DB1AB007DE00957726 /* PocketParkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D3DA1AB007DE00957726 /* PocketParkTests.swift */; };
 		E261D3EA1AB0087400957726 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E261D3E41AB0087400957726 /* Media.xcassets */; };
 		E261D3FB1AB0089D00957726 /* InteractiveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E261D3F51AB0089D00957726 /* InteractiveMapViewController.swift */; };
@@ -80,6 +81,7 @@
 		E25C20B21AC9101800BA46DD /* pocketPark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pocketPark.png; sourceTree = "<group>"; };
 		E25C20B31AC9101800BA46DD /* wheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wheel.png; sourceTree = "<group>"; };
 		E25C20B81AC910E800BA46DD /* blue.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blue.jpeg; sourceTree = "<group>"; };
+		E25E34E11AEA0685009E59C8 /* SensorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorManager.swift; sourceTree = "<group>"; };
 		E261D3BF1AB007DE00957726 /* PocketPark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketPark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E261D3C31AB007DE00957726 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E261D3D41AB007DE00957726 /* PocketParkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketParkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -303,6 +305,7 @@
 				E261D40D1AB008B000957726 /* DataManager.swift */,
 				E24494831AC5F8000004AD6D /* PushNotificationController.swift */,
 				E2624DCC1AC7BBF5006848D6 /* UIViewExtensions.swift */,
+				E25E34E11AEA0685009E59C8 /* SensorManager.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				E2332B751ABFA33A00455422 /* InteractiveCardCell.swift in Sources */,
 				E2624DCD1AC7BBF5006848D6 /* UIViewExtensions.swift in Sources */,
 				E261D4141AB008BA00957726 /* AppDelegate.swift in Sources */,
+				E25E34E21AEA0685009E59C8 /* SensorManager.swift in Sources */,
 				E261D3FB1AB0089D00957726 /* InteractiveMapViewController.swift in Sources */,
 				E261D4001AB0089D00957726 /* OnboardingContentViewController.swift in Sources */,
 				E261D40F1AB008B000957726 /* CustomColors.swift in Sources */,

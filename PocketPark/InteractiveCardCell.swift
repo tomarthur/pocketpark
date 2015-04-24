@@ -30,8 +30,6 @@ class InteractiveCardCell: UITableViewCell {
             }
         }
     }
-
-
     
     func loadItem(#title: String, desc: String, coordinates: CLLocationCoordinate2D){
         

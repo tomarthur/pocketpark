@@ -162,12 +162,18 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayAudioPermissionAlert:",
             name: "audioPermission", object: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "fixStatusBar", name: UIApplicationDidChangeStatusBarFrameNotification, object: nil)
         
         self.view.backgroundColor = .ITWelcomeColor()
     }
     
     override func viewDidAppear(animated: Bool) {
         makeNavigationBar()
+    }
+    
+    func fixStatusBar(notification: NSNotification) {
+        
+        
     }
     
     func makeNavigationBar () {
@@ -577,11 +583,11 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         })
         
         if (error != nil){
-            println("error \(error)")
+            NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
+            connectionFailure()
+            println("error disconnect \(error)")
         }
         
-         NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
-
     }
     
     // MARK: Bean Interaction Elements
@@ -604,6 +610,9 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     
     // end interaction by disconnecting and adding to temporary ignore list
     func endInteraction(notification: NSNotification) {
+        
+        manager.disconnectFromAllBeans(nil)
+        
         // Dismiss any modal view controllers.
         presentedViewController?.dismissViewControllerAnimated(true, completion: { () in
             self.dismissViewControllerAnimated(true, completion: nil)
@@ -611,8 +620,8 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         
         if connectedBean != nil {
             appDelegate.dataManager.previouslyExperiencedInteractivesToIgnore[toString(connectedBean!.name)] = connectedBean!.identifier!
-            manager.disconnectFromAllBeans(nil)
         }
+        
     }
     
 
