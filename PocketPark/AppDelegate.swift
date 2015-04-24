@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var interactionBeaconManager = InteractionBeaconManager()   // Core Location
     var dataManager = DataManager()                             // Parse Data
     var pushNotificationController:PushNotificationController?  // Push Notifications
+    var tabs = UITabBarController()
 
     let defaults = NSUserDefaults.standardUserDefaults()
     let userHasOnboardedKey = "user_has_onboarded"
@@ -93,6 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         interactionBeaconManager.startMonitoringForRegionOnly()
     }
     
+
     func askForNotificationPermissionForApplication(){
         // Local Notification Registration
         
@@ -208,7 +210,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func setupNormalRootVC(animated : Bool) {
-        var tabs = UITabBarController()
+        
         var disconnectedViewController = DisconnectedViewController(nibName: "DisconnectedView", bundle: nil)
         var mapViewController = InteractiveMapViewController(nibName: "InteractiveMap", bundle: nil)
         var aboutViewController = AboutViewController(nibName: "AboutView", bundle: nil)
@@ -234,7 +236,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // however you want.
         if animated {
             UIView.transitionWithView(self.window!, duration: 0.5, options:.TransitionCrossDissolve, animations: { () -> Void in
-                self.window!.rootViewController = tabs
+                self.window!.rootViewController = self.tabs
                                 }, completion:nil)
         }
             // Otherwise we just want to set the root view controller normally.

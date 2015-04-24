@@ -57,7 +57,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     func startMonitoringForRegionOnly() {
         switch CLLocationManager.authorizationStatus() {
         case .AuthorizedAlways:
-            stopUpdatingLocation()
+//            stopUpdatingLocation()
             // iBeacon Regions and Notification to find Interactive Elements enabled by LightBlue Bean
             let uuid = NSUUID(UUIDString: "A4955441-C5B1-4B44-B512-1370F02D74DE")
             let beaconIdentifier = NSBundle.mainBundle().bundleIdentifier!
@@ -65,6 +65,8 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
                 identifier: beaconIdentifier)
             
             locationManager!.startMonitoringForRegion(beaconRegion)
+            println("looking for region")
+            
             
         case .NotDetermined:
             locationManager!.requestAlwaysAuthorization()
@@ -164,6 +166,8 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
             manager.stopUpdatingLocation()
             previouslySentNotifications.removeAll()
             sentNotification = false
+            UIApplication.sharedApplication().cancelAllLocalNotifications();
+
             NSLog("You exited the region")
     }
     
@@ -175,12 +179,12 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         interactionNearbyNotification.alertBody = "Control \(friendlyName) nearby."
         interactionNearbyNotification.hasAction = true
         interactionNearbyNotification.alertAction = "begin"
+        interactionNearbyNotification.soundName = UILocalNotificationDefaultSoundName
         interactionNearbyNotification.userInfo = [
             "friendlyName" : friendlyName,
             "bleName" : bleName
         ]
         
-        // first check to make sure the interactive is on the list
         UIApplication.sharedApplication().scheduleLocalNotification(interactionNearbyNotification)
 
     }
@@ -226,6 +230,8 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     
     
     func beaconIsIgnored(beaconString: String) -> Bool {
+        
+        println("FIX THIS checking if ignored")
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
         let alreadyExperienced = appDelegate.dataManager.isBeaconIgnored(beaconString)
@@ -234,8 +240,8 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         for (name, lastTime) in previouslySentNotifications {
             if (name == beaconString){
                 let elapsedTime = NSDate().timeIntervalSinceDate(lastTime)
-
-                if Int(elapsedTime) < 3600 {
+                println("Elapsed Time \(elapsedTime)")
+                if Int(elapsedTime) < 1 {
                     recentlyNotified = true
                 }
             }
@@ -245,6 +251,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
             println("ignored \(beaconString) beacon")
             return true
         } else{
+            println("notify!")
             return false
         }
         

@@ -37,6 +37,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     var connectedBeanObjectID: String?                      // Parse objectId for connected bean
     var nearbyBLEInteractives = [String:PTDBean]()          // PTDBean objects detected in the area
     var connectionRequestTimer = NSTimer()
+    var connectionNotificationTimeout = NSTimer()
     
     let refreshTime = 30.0
     let delayRemoveAfterRefresh = 2.0
@@ -51,7 +52,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
 
             } else {
                 self.connectionRequestTimer.invalidate()
-                
+                self.connectionNotificationTimeout.invalidate()
                 // present connected view when beacon connection established
                 let connectedViewController:ConnectedViewController = ConnectedViewController(nibName: "ConnectedView", bundle: nil)
                 
@@ -162,7 +163,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayAudioPermissionAlert:",
             name: "audioPermission", object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "fixStatusBar", name: UIApplicationDidChangeStatusBarFrameNotification, object: nil)
+
         
         self.view.backgroundColor = .ITWelcomeColor()
     }
@@ -171,10 +172,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         makeNavigationBar()
     }
     
-    func fixStatusBar(notification: NSNotification) {
-        
-        
-    }
+
     
     func makeNavigationBar () {
         
@@ -654,6 +652,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
                 for (parseBLEName, parseFriendlyName) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames {
                     
                     if parseBLEName == id {
+                        connectionNotificationTimeout = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: Selector("connectionFailure"), userInfo: nil, repeats: false)
                         showContactingSpinner(parseFriendlyName)
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delayRemoveAfterRefresh * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
                             self.completeConnectionFromNotificationAfterDelay(parseBLEName, friendlyNameIn: parseFriendlyName)
@@ -677,7 +676,6 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
 
     // establish a connection after a final check that this is a valid bean
     func intiateConnectionIfInteractionValid(bean: PTDBean!, friendlyName: String) {
-        
         // check if Bean SDK still has detected the bean
         if bean.state == .Discovered{
 

@@ -317,7 +317,9 @@ class SensorManager: NSObject, PTDBeanDelegate, AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
         
         println("ending audio")
+        delay(0.15){
         NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
+        }
         
     }
     
@@ -372,6 +374,15 @@ class SensorManager: NSObject, PTDBeanDelegate, AVAudioRecorderDelegate {
         }
         
         
+    }
+    
+    func delay(delay:Double, closure:()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
     }
 
     
