@@ -44,6 +44,7 @@ class DataManager: NSObject {
                     (objects: [AnyObject]?, error: NSError?) -> Void in
                     if error == nil
                     {
+                        PFObject.unpinAll(objects)
 //                        println("found all parse objects")
                         PFObject.pinAllInBackground(objects, block: { (success, error) -> Void in
                             if !success {
