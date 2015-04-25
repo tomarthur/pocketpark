@@ -133,16 +133,12 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
                 var beaconString = toString(nearestBeacon.major) + toString(nearestBeacon.minor)
                 
                 switch nearestBeacon.proximity {
-                case CLProximity.Far:
-                    return
-                case CLProximity.Near:
-                        println("near proximity")
+                    
+                    case CLProximity.Unknown:
+                        return
+                    default:
                         sendLocalNotificationToStartInteraction(beaconString)
-                case CLProximity.Immediate:
-                        println("Immediate proximity")
-                        sendLocalNotificationToStartInteraction(beaconString)
-                case CLProximity.Unknown:
-                    return
+                    
                 }
             } else {
                 if(lastProximity == CLProximity.Unknown) {
@@ -156,7 +152,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         didEnterRegion region: CLRegion!) {
             manager.startRangingBeaconsInRegion(region as! CLBeaconRegion)
             manager.startUpdatingLocation()
-            
+
             NSLog("You entered the region")
     }
     
@@ -184,6 +180,15 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
             "friendlyName" : friendlyName,
             "bleName" : bleName
         ]
+        
+        // Send the dimensions to Parse along with the 'connect' event
+        let notificationInfo = [
+            // Define ranges to bucket data points into meaningful segments
+            "interactiveFriendlyName": friendlyName,
+            "interactiveBLEName": bleName,
+            "notificationTime": toString(NSDate())
+        ]
+        PFAnalytics.trackEvent("notification", dimensions:notificationInfo)
         
         UIApplication.sharedApplication().scheduleLocalNotification(interactionNearbyNotification)
 
@@ -241,8 +246,10 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
             if (name == beaconString){
                 let elapsedTime = NSDate().timeIntervalSinceDate(lastTime)
                 println("Elapsed Time \(elapsedTime)")
-                if Int(elapsedTime) < 1 {
+                if Int(elapsedTime) < 3000 {
                     recentlyNotified = true
+                } else {
+                    recentlyNotified = false
                 }
             }
         }
