@@ -50,8 +50,8 @@ void loop() {
       int mappedValue = map(scratchNumber, 0, 25, 90, 180);
 
       bigWheel.write(mappedValue / 2);
-      smallWheel0.write(mappedValue);
-      smallWheel1.write(mappedValue);
+      smallWheel0.write(mappedValue-2);
+      smallWheel1.write(mappedValue-2);
 
       lastScratchNumber = scratchNumber;
 
