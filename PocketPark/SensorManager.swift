@@ -39,7 +39,7 @@ class SensorManager: NSObject, PTDBeanDelegate, AVAudioRecorderDelegate {
         
         var scratchNumber = scratchBank;
         
-        connectedBean?.setScratchBank(Int(scratchNumber), data:dataSend)
+        connectedBean!.setScratchBank(Int(scratchNumber), data:dataSend)
         
         println("datain: \(dataIn) sentdata: \(dataSend) length: \(sizeof(dataIn.dynamicType))")
         
