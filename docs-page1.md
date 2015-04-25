@@ -17,6 +17,13 @@ PocketPark enables serendipitous moments of surprise and wonder by enabling your
 
 [Download PocketPark from the App Store](https://itunes.apple.com/us/app/pocketpark/id975793961).
 
+## New York Demos
+
+You can check out how Theme Park of Everyday works at [721 Broadway](https://www.google.com/maps/dir/40.7296318,-73.9934576//@40.729614,-73.9934676,20z). [At the corner of Waverly Place and Broadway](https://www.google.com/maps/dir/40.7296318,-73.9934576//@40.729614,-73.9934676,20z) there are two installations 'Pinwheels'  (using microphone) and 'Auotmatic Ad Lib (using shake).
+
+<a href="https://www.flickr.com/photos/tomarthur/17192707635" title="If you&#x27;re around Washington Square Park head on over to Waverly Pl. and Broadway to play test my thesis, The Theme Park of Everyday! by Tom Arthur, on Flickr"><img src="https://farm8.staticflickr.com/7700/17192707635_3387ac6267.jpg" width="500" height="500" alt="If you&#x27;re around Washington Square Park head on over to Waverly Pl. and Broadway to play test my thesis, The Theme Park of Everyday!"></a>
+
+
 ## How it Works
 
 When you're nearby an installation installed out in the world (store window, park, etc.) PocketPark will notify you. When you open the app, you'll be able to control the installation using the sensors in your device.
@@ -32,6 +39,15 @@ You'll find example code to get started below.
 # Getting Started
 
 These steps will help you make an installation part of the Theme Park of Everyday.
+
+Below: 
+
+- You'll choose one input from a user's device
+- You'll program your Interactive
+- You'll register your Interactive 
+- You'll configure your Interactive so it appears in PocketPark
+
+
 
 ### Step 1: Choose an Input
 How do you want the user to control your installation? Your selection can be playful or logical. On the most basic level, your installation will respond to a range of values delivered in a scratch characteristic to the Arduino.
