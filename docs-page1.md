@@ -21,7 +21,7 @@ PocketPark enables serendipitous moments of surprise and wonder by enabling your
 
 You can check out how Theme Park of Everyday works at [721 Broadway](https://www.google.com/maps/dir/40.7296318,-73.9934576//@40.729614,-73.9934676,20z). [At the corner of Waverly Place and Broadway](https://www.google.com/maps/dir/40.7296318,-73.9934576//@40.729614,-73.9934676,20z) there are two installations 'Pinwheels'  (using microphone) and 'Auotmatic Ad Lib (using shake).
 
-<a href="https://www.flickr.com/photos/tomarthur/17192707635" title="If you&#x27;re around Washington Square Park head on over to Waverly Pl. and Broadway to play test my thesis, The Theme Park of Everyday! by Tom Arthur, on Flickr"><img src="https://farm8.staticflickr.com/7700/17192707635_3387ac6267.jpg" width="500" height="500" alt="If you&#x27;re around Washington Square Park head on over to Waverly Pl. and Broadway to play test my thesis, The Theme Park of Everyday!"></a>
+<a href="https://www.flickr.com/photos/tomarthur/17192707635" title="If you&#x27;re around Washington Square Park head on over to Waverly Pl. and Broadway to play test my thesis, The Theme Park of Everyday! by Tom Arthur, on Flickr"><img src="https://farm8.staticflickr.com/7700/17192707635_3387ac6267.jpg" width="300" height="300" alt="If you&#x27;re around Washington Square Park head on over to Waverly Pl. and Broadway to play test my thesis, The Theme Park of Everyday!"></a>
 
 
 ## How it Works
