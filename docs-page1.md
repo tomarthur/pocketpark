@@ -183,11 +183,13 @@ If not, try using LightBlue to confirm that the Bean name is what you set in the
 Is the LightBlue Bean LED turning green when you contact the Installation in PocketPark? 
 
 If the LED doesn't turn on:
+
 - Does the Bean name match the one provided in the registration step?
 - Is your battery fresh?
 - Can you connect to the Bean using the LightBlue iOS App?
  
 If the LED is green but nothing happens:
+
 - Check your Arduino code and make sure you've set your Installation to respond within the values above for the input you selected.
 - Make sure your Arduino code is set with the correct pins for inputs and outputs
 - Try testing your Installation using a standard Arduino and Serial input
