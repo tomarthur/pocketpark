@@ -13,7 +13,7 @@
   
   Range between 0 and 300
   
-  It requires signifigant blowing to get to 300, you're more likely
+  It requires significant blowing to get to 300, you're more likely
   to see values maxing out around 150.
   
   Experiment by mapping and constraining the value.
