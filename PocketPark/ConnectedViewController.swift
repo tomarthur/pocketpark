@@ -61,6 +61,15 @@ class ConnectedViewController: UIViewController{
         super.viewDidLoad()
         println("loaded connected")
         
+        connectedBean!.readBatteryVoltage()
+        
+        if let bat = connectedBean!.batteryVoltage {
+            
+            println(connectedBean!.batteryVoltage.intValue)
+            
+        }
+        
+        
         // get object from parse to populate UI and know how to communicate with it
         getInteractiveObject(foundInteractiveObjectID!)
         
@@ -135,7 +144,6 @@ class ConnectedViewController: UIViewController{
     // determine the method stored for the interaction
     func startInteraction() {
         var objectInfo = connectedObjectInfo!
-
         sensorManager.startInteraction(connectedBean!, controlString: toString(objectInfo["control"]!))
     }
     

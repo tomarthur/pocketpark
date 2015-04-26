@@ -63,8 +63,9 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
             let beaconIdentifier = NSBundle.mainBundle().bundleIdentifier!
             let beaconRegion:CLBeaconRegion = CLBeaconRegion(proximityUUID: uuid,
                 identifier: beaconIdentifier)
-            
+
             locationManager!.startMonitoringForRegion(beaconRegion)
+//            locationManager!.startRangingBeaconsInRegion(beaconRegion)
             println("looking for region")
             
             
@@ -124,27 +125,19 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
             if(beacons.count > 0) {
                 let nearestBeacon:CLBeacon = beacons[0] as! CLBeacon
                 
-                if(nearestBeacon.proximity == lastProximity ||
-                    nearestBeacon.proximity == CLProximity.Unknown) {
-                        return;
-                }
-                
-                lastProximity = nearestBeacon.proximity
                 var beaconString = toString(nearestBeacon.major) + toString(nearestBeacon.minor)
-                
+                                    println("checking proximity")
                 switch nearestBeacon.proximity {
-                    
+
                     case CLProximity.Unknown:
+                        println("unknown")
                         return
                     default:
+                        println("default")
                         sendLocalNotificationToStartInteraction(beaconString)
+                        return
                     
                 }
-            } else {
-                if(lastProximity == CLProximity.Unknown) {
-                    return
-                }
-                lastProximity = CLProximity.Unknown
             }
     }
     
@@ -160,6 +153,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         didExitRegion region: CLRegion!) {
             manager.stopRangingBeaconsInRegion(region as! CLBeaconRegion)
             manager.stopUpdatingLocation()
+            
             previouslySentNotifications.removeAll()
             sentNotification = false
             UIApplication.sharedApplication().cancelAllLocalNotifications();
@@ -189,6 +183,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
             "notificationTime": toString(NSDate())
         ]
         PFAnalytics.trackEvent("notification", dimensions:notificationInfo)
+        UIApplication.sharedApplication().cancelAllLocalNotifications();
         
         UIApplication.sharedApplication().scheduleLocalNotification(interactionNearbyNotification)
 
@@ -237,33 +232,26 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     func beaconIsIgnored(beaconString: String) -> Bool {
         
 //        println("FIX THIS checking if ignored")
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//
-//        let alreadyExperienced = appDelegate.dataManager.isBeaconIgnored(beaconString)
-//        var recentlyNotified = false
-//        
-//        for (name, lastTime) in previouslySentNotifications {
-//            if (name == beaconString){
-//                let elapsedTime = NSDate().timeIntervalSinceDate(lastTime)
-//                println("Elapsed Time \(elapsedTime)")
-//                if Int(elapsedTime) < 3000 {
-//                    recentlyNotified = true
-//                } else {
-//                    recentlyNotified = false
-//                }
-//            }
-//        }
-//
-//        if alreadyExperienced == true || recentlyNotified == true {
-//            println("ignored \(beaconString) beacon")
-//            return true
-//        } else{
-//            println("notify!")
-//            return false
-//        }
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
+        let alreadyExperienced = appDelegate.dataManager.isBeaconIgnored(beaconString)
+        var recentlyNotified = false
+        
+        if let lastNotified = previouslySentNotifications[beaconString] {
+            let currentTime = NSDate()
+            let elapsedTime = currentTime.timeIntervalSinceDate(lastNotified)
+            println("Elapsed Time since Last Notification \(elapsedTime) seconds)")
+            
+            if elapsedTime < 7200 {
+                println("registered in last 100 seconds")
+                return true
+            } else {
+                println("ready to go")
+                return false
+            }
+        }
         
         return false
-        
     }
     
 }
