@@ -61,67 +61,67 @@ Version 1 inputs are experiments. It is best to constrain values on your Bean. F
 
 **Microphone Blow**: User blows into the microphone on the device. The harder the user blows, the larger the value delivered to the bean.
 
+>[Otter Microphone Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_microphone_otter_apr25.ino)
+
 >**Mic Value Ranges**: The Bean will receive values between ```-2``` when very quiet and ```200``` when blowing very hard.
 
->[Otter Microphone Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_microphone_otter_apr25.ino)
 
 [[placeholder for image]]
 
 **Shake**: User shakes the device.
 
+>[Otter Shake Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_shake_otter_apr25.ino)
+
 >**Shake Value Ranges**: the Bean will receive ```1``` when a shake is detected
 
->[Otter Shake Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_shake_otter_apr25.ino)
+
 
 [[placeholder for image]]
 
 **Gyroscope**: User rotates device on Y axis.
 
+>[Otter Gyro Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_gryo_otter_apr25.ino
+)
+
 > **Gyroscope Ranges**: The Bean will receive values between ```0``` and ```180``` depending on the rotation of the device when it's held in a portrait position.
 
 ![Gyro](http://themeparkofeveryday.com/images/gyro.gif)
 
->[Otter Gyro Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_gryo_otter_apr25.ino
-)
+
 
 
 **G-Force**: User waves device toward the ground rapidly
+
+>[Otter G-Force Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_gforce_otter_apr25.ino
+)
 
 > **G-Force Ranges**: The Bean will receive values between ```0``` and ```200``` with the average being around 25 for a good force. This one is a little touchy.
 
 [[placeholder for image]]
 
->[Otter G-Force Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_gforce_otter_apr25.ino
-)
 
-**Rotation Rate**: User moves device rapidly back and forth
-
-> **Rotation Ranges**: The Bean will receive values between ```0``` and ```50``` with the average being around 20 when rotating semi-rapidly.
-
-[[placeholder for image]]
-	
 ##### Future Device Inputs
 Have an idea for a new input?
 >[Tweet @PocketPark >](https://twitter.com/PocketThemePark)
 
 ### Step 2: Set What Happens
-What do you want to happen when your installation gets sensor data from the iOS Device? Use the code examples to control servos, relays, solenoids, LEDs, anything!
+What do you want to happen when your installation gets sensor data from the iOS Device? Use the code examples to control servos, relays, solenoids, LEDs, anything! You can start with any of the otter based examples above, or these blank templates.
 
 **Microphone Blow**
 
->[Microphone Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/microphone_apr03/microphone_apr03.ino)
+>[Microphone Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_microphone_apr25.ino)
 
 **Shake**
 
->[Shake Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/shake_apr03/shake_apr03.ino)
+>[Shake Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_shake_apr25.ino)
 
 **Gyroscope**
 
->[Gyro Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/gyro_apr03/gyro_apr03.ino)
+>[Gyro Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_gryoExample_apr25.ino)
 
 **G-Force**
 
->[G-Force Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/gforce_apr03/gforce_apr03.ino)
+>[G-Force Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_gforce_apr25.ino)
 
 
 ### Step 3: Register
