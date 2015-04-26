@@ -63,11 +63,15 @@ Version 1 inputs are experiments. It is best to constrain values on your Bean. F
 
 >**Mic Value Ranges**: The Bean will receive values between ```-2``` when very quiet and ```200``` when blowing very hard.
 
+>[Otter Microphone Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_microphone_otter_apr25.ino)
+
 [[placeholder for image]]
 
 **Shake**: User shakes the device.
 
 >**Shake Value Ranges**: the Bean will receive ```1``` when a shake is detected
+
+>[Otter Shake Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_shake_otter_apr25.ino)
 
 [[placeholder for image]]
 
@@ -77,11 +81,18 @@ Version 1 inputs are experiments. It is best to constrain values on your Bean. F
 
 ![Gyro](http://themeparkofeveryday.com/images/gyro.gif)
 
+>[Otter Gyro Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_gryo_otter_apr25.ino
+)
+
+
 **G-Force**: User waves device toward the ground rapidly
 
 > **G-Force Ranges**: The Bean will receive values between ```0``` and ```200``` with the average being around 25 for a good force. This one is a little touchy.
 
 [[placeholder for image]]
+
+>[Otter G-Force Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_gforce_otter_apr25.ino
+)
 
 **Rotation Rate**: User moves device rapidly back and forth
 
