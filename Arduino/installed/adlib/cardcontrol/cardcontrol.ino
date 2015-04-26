@@ -87,7 +87,7 @@ AccelStepper stepper2(1, motorStepPin2, motorDirPin);    // flip3
 
 const int motorStepPin3 = 9;
 const int calibratePin3 = 8;
-const int homingValue3 = 110;
+const int homingValue3 = 113;
 int calibrateState3 = 0;
 int nextCard3 = 0;
 int currentCard3 = 0;
@@ -96,7 +96,7 @@ AccelStepper stepper3(1, motorStepPin3, motorDirPin);    // flip4
 
 const int motorStepPin4 = 10;
 const int calibratePin4 = 12;
-const int homingValue4 = 105;
+const int homingValue4 = 102;
 int calibrateState4 = 0;
 int nextCard4 = 0;
 int currentCard4 = 0;
@@ -226,14 +226,14 @@ void loop() {
           serialCard1 = tempHours1.toInt() + 1;
         }
         
-        if (tempMin0 == 0) {
+        if (tempMin1 == 0) {
           serialCard3 = 1;
           serialCard4 = tempMin0.toInt() + 1;
         } else {
           serialCard3 = tempMin0.toInt() + 1;
           serialCard4 = tempMin1.toInt() + 1;
         }
-         serialCard2 = 2;
+         serialCard2 = 1;
       }
 
       //      state = ;

@@ -30,9 +30,6 @@ bool connected;
 void setup() {
   Serial.begin(57600);
 
-  bigWheel.attach(0);     // attaches the servo on pin 0 to the servo object
-  smallWheel0.attach(3);  // attaches the servo on pin 3 to the servo object
-  smallWheel1.attach(2);  // attaches the servo on pin 2 to the servo object
 
   Bean.enableWakeOnConnect(true);    // only wakeup arduino if phone is connected
 }
@@ -44,14 +41,23 @@ void loop() {
     scratchNumber = Bean.readScratchNumber(1);
     Bean.setLed(0, 255, 0);
 
+
+
     if (scratchNumber != lastScratchNumber) {
       lastScratchNumber = scratchNumber;
+      
+      bigWheel.attach(0);     // attaches the servo on pin 0 to the servo object
+      smallWheel0.attach(3);  // attaches the servo on pin 3 to the servo object
+      smallWheel1.attach(2);  // attaches the servo on pin 2 to the servo object
       //      int constrainedVal = constrain(scratchNumber, 0, 25);
       int mappedValue = map(scratchNumber, 0, 25, 90, 180);
-
+      int tempSmallWheelValue = mappedValue - 5;
+      int smallWheelValue = constrain(tempSmallWheelValue, 90, 180);
+      int tempBigWheel = mappedValue / 2;
+      int bigWheelValue = constrain(tempBigWheel, 90, 180);
       bigWheel.write(mappedValue / 2);
-      smallWheel0.write(mappedValue-2);
-      smallWheel1.write(mappedValue-2);
+      smallWheel0.write(smallWheelValue);
+      smallWheel1.write(smallWheelValue);
 
       lastScratchNumber = scratchNumber;
 
@@ -60,6 +66,7 @@ void loop() {
   }
   else {    // when disconnected from phone, reset the device
     bigWheel.detach();
+    Bean.setScratchNumber(1, 0);
     smallWheel0.detach();
     smallWheel1.detach();
     Bean.setLed(0, 0, 0);
