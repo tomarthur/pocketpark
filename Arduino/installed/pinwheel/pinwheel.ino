@@ -50,10 +50,10 @@ void loop() {
       smallWheel0.attach(3);  // attaches the servo on pin 3 to the servo object
       smallWheel1.attach(2);  // attaches the servo on pin 2 to the servo object
       //      int constrainedVal = constrain(scratchNumber, 0, 25);
-      int mappedValue = map(scratchNumber, 0, 25, 90, 180);
-      int tempSmallWheelValue = mappedValue - 5;
+      int mappedValue = map(scratchNumber, 0, 100, 90, 180);
+      int tempSmallWheelValue = mappedValue / 1.5;
       int smallWheelValue = constrain(tempSmallWheelValue, 90, 180);
-      int tempBigWheel = mappedValue / 2;
+      int tempBigWheel = mappedValue / 3;
       int bigWheelValue = constrain(tempBigWheel, 90, 180);
       
       bigWheel.write(bigWheelValue);
