@@ -113,7 +113,7 @@ class OnboardingContentViewController: UIViewController {
         
         if (count(self.buttonText) != 0) {
             var actionButton: UIButton = UIButton(frame: CGRectMake((CGRectGetMaxX(self.view.frame) / 2) - (contentWidth / 2), CGRectGetMaxY(self.view.frame) - kDefaultMainPageControlHeight - kDefaultActionButtonHeight - self.bottomPadding, contentWidth, kDefaultActionButtonHeight))
-//            actionButton.backgroundColor = .ITConnectedColor()
+            actionButton.backgroundColor = .ITConnectedColor()
             actionButton.titleLabel?.font = UIFont .systemFontOfSize(24)
             actionButton.setTitle(self.buttonText, forState: .Normal)
             actionButton.setTitleColor(self.buttonTextColor, forState: .Normal)

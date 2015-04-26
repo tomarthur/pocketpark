@@ -582,7 +582,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         
         if (error != nil){
             NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
-            connectionFailure()
+//            connectionFailure()
             println("error disconnect \(error)")
         }
         
@@ -616,9 +616,9 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
             self.dismissViewControllerAnimated(true, completion: nil)
         })
         
-        if connectedBean != nil {
-            appDelegate.dataManager.previouslyExperiencedInteractivesToIgnore[toString(connectedBean!.name)] = connectedBean!.identifier!
-        }
+//        if connectedBean != nil {
+//            appDelegate.dataManager.previouslyExperiencedInteractivesToIgnore[toString(connectedBean!.name)] = connectedBean!.identifier!
+//        }
         
     }
     

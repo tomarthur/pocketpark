@@ -38,30 +38,31 @@ class DataManager: NSObject {
         // check for network availablity before requesting interactives from parse
         if (IJReachability.isConnectedToNetwork() == true) {
             // pull latest interactive objects from Parse
-            var query = PFQuery(className:"installations")
-            query.findObjectsInBackgroundWithBlock
-                {
-                    (objects: [AnyObject]?, error: NSError?) -> Void in
-                    if error == nil
+           
+                var query = PFQuery(className:"installations")
+                query.findObjectsInBackgroundWithBlock
                     {
-                        PFObject.unpinAll(objects)
-//                        println("found all parse objects")
-                        PFObject.pinAllInBackground(objects, block: { (success, error) -> Void in
-                            if !success {
-                               NSNotificationCenter.defaultCenter().postNotificationName("parseError", object: nil)
-                            } else {
-                               self.dictionaryOfInteractivesFromLocalDatastore()
-                            }
-                        })
-                        
-                        self.networkTimer.invalidate()
-                    } else {
-                        NSNotificationCenter.defaultCenter().postNotificationName("parseError", object: nil)
-                        
-                        NSLog("Unable to add interactives to local data store")
-//                        NSLog("Error: %@ %@", error, error.userInfo!)
-                    }
-            }
+                        (objects: [AnyObject]?, error: NSError?) -> Void in
+                        if error == nil
+                        {
+    //                        println("found all parse objects")
+                            PFObject.pinAllInBackground(objects, block: { (success, error) -> Void in
+                                if !success {
+                                   NSNotificationCenter.defaultCenter().postNotificationName("parseError", object: nil)
+                                } else {
+                                   self.dictionaryOfInteractivesFromLocalDatastore()
+                                }
+                            })
+                            
+                            self.networkTimer.invalidate()
+                        } else {
+                            NSNotificationCenter.defaultCenter().postNotificationName("parseError", object: nil)
+                            
+                            NSLog("Unable to add interactives to local data store")
+    //                        NSLog("Error: %@ %@", error, error.userInfo!)
+                        }
+                }
+
             
             
         } else {
