@@ -1,15 +1,35 @@
 /* 
-  Shake Example
+  Gforce Otter Example
+  April 25 2015
   Theme Park of Everyday
   http://www.themeparkofeveryday.com
   
-  This project is enabled by the LightBlue Bean.
-  https://punchthrough.com/bean/
-  
+  In this example, you can move your device rapidly (like your pitching a
+  baseball) to make the otter hide or pop out of the grass.
 
+  ///////////////////////////////////////////////////////
+  Expected Values from Pocket Park for GForce
+  NOTE: This is an experimental input.
+ 
+  Range between 0 and 200.
+  
+  It requires significant force to get to 200, you're more likely
+  to see values maxing out around 50 to 70.
+  
+  Experiment by mapping and constraining the value.
+  int mappedValue = map(scratchNumber, 0, 100, 0, 180);
+  int constrainedValue = constrain(mappedValue, 0, 180);
+  
+  ///////////////////////////////////////////////////////
+  
+  This example also shows how to troubleshoot, the LED changes red when data
+  from a user device is received. 
   
   Tom Arthur
   NYU ITP
+  
+  This project is enabled by the LightBlue Bean.
+  https://punchthrough.com/bean/
   
    Contains code adapted from:
      'Facebook Flagger' (Bean Notifications)
@@ -29,12 +49,11 @@
 #define OTTER_SERVO_PIN 0
 
 Servo otterServo;
-boolean visableOtter = false;
 
 ///////////////////////////////////////////////////////
 // Required variables for Theme Park of Everyday Installations
 
-// Store values recieved by phone
+// Store values received by device
 long scratchNumber = 0;   
 long lastScratchNumber = 0;
 
@@ -59,43 +78,32 @@ void loop()
   if (connected)
   {
     // Set the LightBlue Bean LED to Green so you know PocketPark has connected.
-    
+    Bean.setLed(0, 255, 0);
     // Read the scratch number. This is how a user's device talks to your Installation.
     scratchNumber = Bean.readScratchNumber(1);
-
-    // for this example, the expected values are between 0 and 180 which match the servo
-    // there is no need to constrain or map values in this case
     
     if (scratchNumber != lastScratchNumber) {
-//      otterServo.attach(OTTER_SERVO_PIN);
+      // TROUBLESHOOTING: show that data has come in from the user device
+      Bean.setLed(0, 0, 255);
       
-      if (scratchNumber != 0) {
-        Bean.setLed(0, 255, 0);
-        visableOtter = !visableOtter;
-      } else {
-        Bean.setLed(255, 0, 0);
-      }
-      
-      if (visableOtter == true) {
-        Bean.setLed(255, 0, 0);
-        otterServo.write(0);
-      } else {
-        Bean.setLed(0, 0, 255);
-        otterServo.write(180);
-      }
- 
-      
+      int mappedValue = map(scratchNumber, 0, 70, 0, 180);
+      int constrainedValue = constrain(mappedValue, 0, 180);
+  
+      otterServo.attach(OTTER_SERVO_PIN);
+      otterServo.write(constrainedValue);
+
+      delay(500);
+
       lastScratchNumber = scratchNumber;
     }
 
-    Bean.sleep(50);
 
   } 
-  // when disconnected from the user device, turn the installation off.
   else {
-
+    // when disconnected from the user device, turn the installation off.
+    
     // reset the location of the servo
-    otterServo.write(180);
+    otterServo.write(150);
     delay(1000);
     otterServo.detach();
 
@@ -109,6 +117,7 @@ void loop()
 void resetInstallation() {
     // Reset the scratch number, prevents unexpected behavior on the next connection
     Bean.setScratchNumber(1, 0);
+
     // Turn the LightBlue Bean LED off so you know PocketPark has disconnected
     Bean.setLed(0, 0, 0);
     Bean.sleep(0xFFFFFFFF);

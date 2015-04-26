@@ -1,40 +1,35 @@
 /* 
-  Sound Example
+  Gyro Example
+  April 25 2015
   Theme Park of Everyday
   http://www.themeparkofeveryday.com
   
-  This project is enabled by the LightBlue Bean.
-  https://punchthrough.com/bean/
+  In this example, you can rotate your device to make the otter hide
+  or pop out of the grass.
   
-  Use data from the microphone on a user's device 
-  to activate a relay which switches on a bubble machine.
+  ///////////////////////////////////////////////////////
+  Expected Values from Pocket Park for Gyro
+ 
+  Range between 0 and 180
+ 
+  ///////////////////////////////////////////////////////
+ 
+  This example also shows how to troubleshoot, the LED changes red when data
+  from a user device is received. 
   
   Tom Arthur
   NYU ITP
   
-   Contains code adapted from:
-     'Facebook Flagger' (Bean Notifications)
-     Release r1-0
-     by Colin Karpfinger, Punch Through Design LLC
-     Released under MIT license.
-   
-   and
-   
-     enableWakeOnConnect() function example.
-     This example code is in the public domain.
- 
+  This project is enabled by the LightBlue Bean.
+  https://punchthrough.com/bean/
+
  */
 
-
-#include <Servo.h>
-#define OTTER_SERVO_PIN 0
-
-Servo otterServo;
 
 ///////////////////////////////////////////////////////
 // Required variables for Theme Park of Everyday Installations
 
-// Store values recieved by phone
+// Store values received by device
 long scratchNumber = 0;   
 long lastScratchNumber = 0;
 
@@ -67,21 +62,23 @@ void loop()
     // there is no need to constrain or map values in this case
     
     if (scratchNumber != lastScratchNumber) {
-      otterServo.attach(OTTER_SERVO_PIN);
-      otterServo.write(scratchNumber);
+      // TROUBLESHOOTING: show that data has come in from the user device
+      Bean.setLed(0, 0, 255);
+      
+
+      // make something happen here //
+
+
       lastScratchNumber = scratchNumber;
     }
 
     Bean.sleep(50);
 
   } 
-  // when disconnected from the user device, turn the installation off.
   else {
-
-    // reset the location of the servo
-    otterServo.write(150);
-    delay(1000);
-    otterServo.detach();
+    // when disconnected from the user device, turn the installation off.
+    
+    // reset your installation here //
 
     resetInstallation();
   }
