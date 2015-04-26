@@ -55,7 +55,8 @@ void loop() {
       int smallWheelValue = constrain(tempSmallWheelValue, 90, 180);
       int tempBigWheel = mappedValue / 2;
       int bigWheelValue = constrain(tempBigWheel, 90, 180);
-      bigWheel.write(mappedValue / 2);
+      
+      bigWheel.write(bigWheelValue);
       smallWheel0.write(smallWheelValue);
       smallWheel1.write(smallWheelValue);
 
