@@ -175,7 +175,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         interactionNearbyNotification.alertBody = "Control \(friendlyName) nearby."
         interactionNearbyNotification.hasAction = true
         interactionNearbyNotification.alertAction = "begin"
-        interactionNearbyNotification.soundName = UILocalNotificationDefaultSoundName
+        interactionNearbyNotification.soundName = "tone.aiff"
         interactionNearbyNotification.userInfo = [
             "friendlyName" : friendlyName,
             "bleName" : bleName
@@ -236,31 +236,33 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     
     func beaconIsIgnored(beaconString: String) -> Bool {
         
-        println("FIX THIS checking if ignored")
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-
-        let alreadyExperienced = appDelegate.dataManager.isBeaconIgnored(beaconString)
-        var recentlyNotified = false
+//        println("FIX THIS checking if ignored")
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//
+//        let alreadyExperienced = appDelegate.dataManager.isBeaconIgnored(beaconString)
+//        var recentlyNotified = false
+//        
+//        for (name, lastTime) in previouslySentNotifications {
+//            if (name == beaconString){
+//                let elapsedTime = NSDate().timeIntervalSinceDate(lastTime)
+//                println("Elapsed Time \(elapsedTime)")
+//                if Int(elapsedTime) < 3000 {
+//                    recentlyNotified = true
+//                } else {
+//                    recentlyNotified = false
+//                }
+//            }
+//        }
+//
+//        if alreadyExperienced == true || recentlyNotified == true {
+//            println("ignored \(beaconString) beacon")
+//            return true
+//        } else{
+//            println("notify!")
+//            return false
+//        }
         
-        for (name, lastTime) in previouslySentNotifications {
-            if (name == beaconString){
-                let elapsedTime = NSDate().timeIntervalSinceDate(lastTime)
-                println("Elapsed Time \(elapsedTime)")
-                if Int(elapsedTime) < 3000 {
-                    recentlyNotified = true
-                } else {
-                    recentlyNotified = false
-                }
-            }
-        }
-
-        if alreadyExperienced == true || recentlyNotified == true {
-            println("ignored \(beaconString) beacon")
-            return true
-        } else{
-            println("notify!")
-            return false
-        }
+        return false
         
     }
     

@@ -139,6 +139,12 @@ class ConnectedViewController: UIViewController{
         sensorManager.startInteraction(connectedBean!, controlString: toString(objectInfo["control"]!))
     }
     
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
+        
+        if motion == .MotionShake {
+            sensorManager.shake()
+        }
+    }
         
     
 }

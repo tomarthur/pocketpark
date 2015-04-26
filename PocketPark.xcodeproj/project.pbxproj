@@ -51,6 +51,7 @@
 		E261D4591AB00B0F00957726 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E261D4581AB00B0F00957726 /* CFNetwork.framework */; };
 		E261D45B1AB00B1600957726 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E261D45A1AB00B1600957726 /* Accounts.framework */; };
 		E2624DCD1AC7BBF5006848D6 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2624DCC1AC7BBF5006848D6 /* UIViewExtensions.swift */; };
+		E262AEB01AECADEC00CC6080 /* tone.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E262AEAF1AECADEC00CC6080 /* tone.aiff */; };
 		E267FD7E1AC6079F00654B20 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E267FD7B1AC6079F00654B20 /* Bolts.framework */; };
 		E267FD7F1AC6079F00654B20 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E267FD7C1AC6079F00654B20 /* Parse.framework */; };
 		E267FD801AC6079F00654B20 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E267FD7D1AC6079F00654B20 /* ParseCrashReporting.framework */; };
@@ -119,6 +120,7 @@
 		E261D4581AB00B0F00957726 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E261D45A1AB00B1600957726 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		E2624DCC1AC7BBF5006848D6 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		E262AEAF1AECADEC00CC6080 /* tone.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = tone.aiff; sourceTree = "<group>"; };
 		E267FD7B1AC6079F00654B20 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = PocketPark/AddedFrameworks/Bolts.framework; sourceTree = "<group>"; };
 		E267FD7C1AC6079F00654B20 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = PocketPark/AddedFrameworks/Parse.framework; sourceTree = "<group>"; };
 		E267FD7D1AC6079F00654B20 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = PocketPark/AddedFrameworks/ParseCrashReporting.framework; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 		E261D3F01AB0087A00957726 /* Media */ = {
 			isa = PBXGroup;
 			children = (
+				E262AEAF1AECADEC00CC6080 /* tone.aiff */,
 				E261D3E41AB0087400957726 /* Media.xcassets */,
 				E25C20B81AC910E800BA46DD /* blue.jpeg */,
 				E25C20B11AC9101800BA46DD /* location.png */,
@@ -407,6 +410,7 @@
 				E2A78F2F1AB2736F0096B7A8 /* OtterFont.ttf in Resources */,
 				E261D3EA1AB0087400957726 /* Media.xcassets in Resources */,
 				E261D4091AB008A600957726 /* AboutView.xib in Resources */,
+				E262AEB01AECADEC00CC6080 /* tone.aiff in Resources */,
 				E261D4081AB008A600957726 /* ConnectedView.xib in Resources */,
 				E2332B731ABFA15E00455422 /* InteractiveCard.xib in Resources */,
 				E25C20B61AC9101800BA46DD /* pocketPark.png in Resources */,

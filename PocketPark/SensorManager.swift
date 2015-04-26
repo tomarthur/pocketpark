@@ -165,17 +165,23 @@ class SensorManager: NSObject, PTDBeanDelegate, AVAudioRecorderDelegate {
     ////////////////////////////////////////
     
     func activateShakeDetect(){
+
         shakeDetectMode = true
     }
     
     var shakeDetectMode = false
     
-    func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
+
+    
+    func shake()
+    {
         
-        if motion == .MotionShake && shakeDetectMode == true {
+        if (shakeDetectMode == true) {
             println("shake!")
             self.sendScratchDatatoBean(1, dataIn: 1)
-            self.sendScratchDatatoBean(1, dataIn: 0)
+            delay(0.2){
+                self.sendScratchDatatoBean(1, dataIn: 0)
+            }
         }
     }
     
@@ -285,7 +291,7 @@ class SensorManager: NSObject, PTDBeanDelegate, AVAudioRecorderDelegate {
             var averageVal = lowPassResults
             var mappedValues = ((newVal - 0.03) * (255 - 0) / (2.00 - 0.03) + 0)
             println("lowpass in \(newVal), mapped: \(mappedValues)")
-            sendScratchDatatoBean(1, dataIn: Int(mappedValues))
+            sendScratchDatatoBean(1, dataIn: abs(Int(mappedValues)))
             newVal = 0
         } else {
             audioError()
