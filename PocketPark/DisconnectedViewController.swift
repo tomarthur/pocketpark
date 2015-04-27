@@ -387,7 +387,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     
     func prepareInteractiveTableViewCellInformation (bean:PTDBean) {
         hideStatus()
-        if let parseFriendlyName = appDelegate.dataManager.knownInteractivesFromParseFriendlyNames [bean.name] {
+        if let parseFriendlyName = appDelegate.dataManager.knownInteractivesFromParseFriendlyNames[bean.name] {
 
             if contains(nearbyInteractivesFriendlyArray, parseFriendlyName) == false {
                 let objectID = appDelegate.dataManager.knownInteractivesFromParse[bean.name!]

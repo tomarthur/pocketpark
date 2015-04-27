@@ -32,7 +32,7 @@ class DataManager: NSObject {
 //                if !success {
                     self.queryParseForInteractiveObjects()
 //                } else {
-//                    println("error")
+//                    //println("error")
 //                }
 //            })
 //        } else {
@@ -152,13 +152,15 @@ class DataManager: NSObject {
     
     // quickly check dictionary to see if interactive is in the known
     func isInteractiveKnown(foundInteractiveIdentifier: String) -> Bool{
-        for (key, value) in knownInteractivesFromParse {
-            if (key == foundInteractiveIdentifier)
-            {
-                return true
-            }
+        
+        let isNotKnown = knownInteractivesFromParse[foundInteractiveIdentifier] == nil
+        
+        if isNotKnown {
+            return false
+        } else {
+           return true
         }
-        return false
+        
     }
     
     // check to see if interactive is ignored because it's been played with
