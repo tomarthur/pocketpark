@@ -66,7 +66,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
 
             locationManager!.startMonitoringForRegion(beaconRegion)
             locationManager!.startRangingBeaconsInRegion(beaconRegion)
-            println("looking for region")
+            //println("looking for region")
             
             
         case .NotDetermined:
@@ -126,14 +126,14 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
                 let nearestBeacon:CLBeacon = beacons[0] as! CLBeacon
                 
                 var beaconString = toString(nearestBeacon.major) + toString(nearestBeacon.minor)
-                                    println("checking proximity")
+                                    //println("checking proximity")
                 switch nearestBeacon.proximity {
 
                     case CLProximity.Unknown:
-                        println("unknown")
+                        //println("unknown")
                         return
                     default:
-                        println("default")
+                        //println("default")
                         sendLocalNotificationToStartInteraction(beaconString)
                         return
                     
@@ -203,7 +203,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
                 if (beaconIsIgnored(beaconString) == false) {
                     for (value, key) in appDelegate.dataManager.knownInteractivesFromParseFriendlyNames{
                         if (value == beaconString){
-                            println("send local notification")
+                            //println("send local notification")
                             
                             self.pushLocalInteractiveAvailableNotification(key, bleName: value)
                             previouslySentNotifications[beaconString] = NSDate()
@@ -231,7 +231,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
     
     func beaconIsIgnored(beaconString: String) -> Bool {
         
-//        println("FIX THIS checking if ignored")
+//        //println("FIX THIS checking if ignored")
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
         let alreadyExperienced = appDelegate.dataManager.isBeaconIgnored(beaconString)
@@ -240,13 +240,13 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
         if let lastNotified = previouslySentNotifications[beaconString] {
             let currentTime = NSDate()
             let elapsedTime = currentTime.timeIntervalSinceDate(lastNotified)
-            println("Elapsed Time since Last Notification \(elapsedTime) seconds)")
+            //println("Elapsed Time since Last Notification \(elapsedTime) seconds)")
             
             if elapsedTime < 7200 {
-                println("registered in last 100 seconds")
+                //println("registered in last 100 seconds")
                 return true
             } else {
-                println("ready to go")
+                //println("ready to go")
                 return false
             }
         }

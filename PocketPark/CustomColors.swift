@@ -62,7 +62,7 @@ extension UIColor {
                     print("invalid rgb string, length should be 7 or 9")
                 }
             } else {
-                println("scan hex error")
+                //println("scan hex error")
             }
         } else {
             print("invalid rgb string, missing '#' as prefix")

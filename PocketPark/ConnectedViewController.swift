@@ -59,15 +59,15 @@ class ConnectedViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println("loaded connected")
+        //println("loaded connected")
         
         connectedBean!.readBatteryVoltage()
         
-        if let bat = connectedBean!.batteryVoltage {
-            
-            println(connectedBean!.batteryVoltage.intValue)
-            
-        }
+//        if let bat = connectedBean!.batteryVoltage {
+//            
+//            //println(connectedBean!.batteryVoltage.intValue)
+//            
+//        }
         
         
         // get object from parse to populate UI and know how to communicate with it

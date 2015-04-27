@@ -76,7 +76,7 @@ class InteractiveMapViewController: UIViewController, UIToolbarDelegate, UINavig
     // TO DO: GROUP POINTS
     func addInteractiveGeoPoints(){
         
-        println("COUNT of num: \(self.mapView.annotations.count)")
+        //println("COUNT of num: \(self.mapView.annotations.count)")
         // User's location
         let userGeoPoint = PFGeoPoint(latitude:mapView.userLocation.coordinate.latitude, longitude:mapView.userLocation.coordinate.latitude)
         

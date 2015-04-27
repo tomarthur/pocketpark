@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     var interactionBeaconManager = InteractionBeaconManager()   // Core Location
     var dataManager = DataManager()                             // Parse Data
-    var pushNotificationController:PushNotificationController?  // Push Notifications
+//    var pushNotificationController:PushNotificationController?  // Push Notifications
     var tabs = UITabBarController()
 
     let defaults = NSUserDefaults.standardUserDefaults()
@@ -99,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func askForNotificationPermissionForApplication(){
         // Local Notification Registration
         
-        self.pushNotificationController = PushNotificationController()
+//        self.pushNotificationController = PushNotificationController()
         
         if(UIApplication.sharedApplication().respondsToSelector("registerUserNotificationSettings:")) {
             UIApplication.sharedApplication().registerUserNotificationSettings(
@@ -127,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-//        println("didRegisterForRemoteNotificationsWithDeviceToken")
+//        //println("didRegisterForRemoteNotificationsWithDeviceToken")
         
         let currentInstallation = PFInstallation.currentInstallation()
         
@@ -138,11 +138,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-//        println("failed to register for remote notifications:  (error)")
+//        //println("failed to register for remote notifications:  (error)")
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        println("didReceiveRemoteNotification")
+        //println("didReceiveRemoteNotification")
         PFPush.handlePush(userInfo)
     }
     

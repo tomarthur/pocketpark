@@ -41,7 +41,7 @@ class SensorManager: NSObject, PTDBeanDelegate, AVAudioRecorderDelegate {
         
         connectedBean!.setScratchBank(Int(scratchNumber), data:dataSend)
         
-        println("datain: \(dataIn) sentdata: \(dataSend) length: \(sizeof(dataIn.dynamicType))")
+        //println("datain: \(dataIn) sentdata: \(dataSend) length: \(sizeof(dataIn.dynamicType))")
         
     }
     
@@ -62,19 +62,19 @@ class SensorManager: NSObject, PTDBeanDelegate, AVAudioRecorderDelegate {
         case "rotationRate":
             activateRotationMotion(interactionMode)
         case "light":
-            println("not yet implemented")
+            //println("not yet implemented")
             return
         case "tap":
-            println("not yet implemented")
+            //println("not yet implemented")
             return
         case "tilt-portrait":
-            println("not yet implemented")
+            //println("not yet implemented")
             return
         case "compass":
-            println("not yet implemented")
+            //println("not yet implemented")
             return
         default:
-            println("not yet implemented")
+            //println("not yet implemented")
             return
         }
     }
@@ -86,25 +86,25 @@ class SensorManager: NSObject, PTDBeanDelegate, AVAudioRecorderDelegate {
     func activateRotationMotion(modeString: String)
     {
         if motionManager.deviceMotionAvailable{
-            println("deviceMotion available")
+            //println("deviceMotion available")
             motionManager.deviceMotionUpdateInterval = 0.2
             motionManager.startDeviceMotionUpdatesToQueue(NSOperationQueue.mainQueue()) {
                 [weak self] (data: CMDeviceMotion!, error: NSError!) in
                 
                 if modeString == "gyro-rotate" {
                     let rotation = atan2(data.gravity.x, data.gravity.y) - M_PI
-                    println("data.gravity x:\(data.gravity.x), y:\(data.gravity.y), z:\(data.gravity.z)")
-                    //                    println("Rotation in: \(rotation)")
+                    //println("data.gravity x:\(data.gravity.x), y:\(data.gravity.y), z:\(data.gravity.z)")
+                    //                    //println("Rotation in: \(rotation)")
                     //                    var mappedRotation = ((rotation - 0) * (180 - 0) / (-6.5 - 0) + 0)
                     var mappedRotation = (-(data.gravity.x) + 1)*90
-                    println("mappedRotation: \(mappedRotation)")
+                    //println("mappedRotation: \(mappedRotation)")
                     var mappedRotationInt:Int = Int(mappedRotation)
                     
                     self?.sendScratchDatatoBean(1, dataIn: mappedRotationInt)
                 } else if modeString == "force" {
                     let yForce = data.userAcceleration.y * 8
                     let yForceInt: Int = Int(yForce)
-                    println("force rate")
+                    //println("force rate")
                     
                     let alpha:Double = 0.05
                     var peakPowerForChannel:Double = pow(10, (0.05 * Double(yForce)))
@@ -113,31 +113,31 @@ class SensorManager: NSObject, PTDBeanDelegate, AVAudioRecorderDelegate {
                     
                     var averageVal = self!.averageResults
                     
-                    //                    println("x \(data.userAcceleration.x)")
-                    println(averageVal)
+                    //                    //println("x \(data.userAcceleration.x)")
+                    //println(averageVal)
                     self?.sendScratchDatatoBean(1, dataIn: Int(averageVal))
-                    //                    println("z \(data.userAcceleration.z)")
+                    //                    //println("z \(data.userAcceleration.z)")
                     
                     
                 } else if modeString == "rotationRate" {
-                    println("rotation rate")
-                    println("x \(data.rotationRate.x)")
-                    println("y \(data.rotationRate.y)")
-                    println("z \(data.rotationRate.z)")
+                    //println("rotation rate")
+                    //println("x \(data.rotationRate.x)")
+                    //println("y \(data.rotationRate.y)")
+                    //println("z \(data.rotationRate.z)")
                     
                     let zRotationInt:Int = Int(data.rotationRate.z)
                     let absoluteZRotation:Int = abs(zRotationInt)
-                    println(absoluteZRotation)
+                    //println(absoluteZRotation)
                     self?.sendScratchDatatoBean(1, dataIn: absoluteZRotation)
                     
                 } else if modeString == "compass" {
-                    println("compass")
-                    println(data.magneticField)
+                    //println("compass")
+                    //println(data.magneticField)
                 }
                 
             }
         } else {
-            println("deviceMotion not available")
+            //println("deviceMotion not available")
         }
         
     }
@@ -177,7 +177,7 @@ class SensorManager: NSObject, PTDBeanDelegate, AVAudioRecorderDelegate {
     {
         
         if (shakeDetectMode == true) {
-            println("shake!")
+            //println("shake!")
             self.sendScratchDatatoBean(1, dataIn: 1)
             delay(0.2){
                 self.sendScratchDatatoBean(1, dataIn: 0)
@@ -195,7 +195,7 @@ class SensorManager: NSObject, PTDBeanDelegate, AVAudioRecorderDelegate {
     }
     
     func askForMicrophonePermission() {
-        println("getting into permissions")
+        //println("getting into permissions")
         var error: NSError?
         let session = AVAudioSession.sharedInstance()
         
@@ -205,7 +205,7 @@ class SensorManager: NSObject, PTDBeanDelegate, AVAudioRecorderDelegate {
                     if session.setActive(true, error: nil){
                         session.requestRecordPermission{[weak self](allowed: Bool) in
                             if allowed {
-                                println("allowed")
+                                //println("allowed")
                                 self?.startListeningToAudioLoudness()
                             } else {
                                 self?.endInteraction()
@@ -215,15 +215,15 @@ class SensorManager: NSObject, PTDBeanDelegate, AVAudioRecorderDelegate {
                     }
                     
                 } else {
-                    println("Couldn't start audio session")
-                    println("no session")
+                    //println("Couldn't start audio session")
+                    //println("no session")
                     audioError()
                 }
         } else {
-            println("no category")
+            //println("no category")
             audioError()
             if let audioError = error{
-                println("An error occured in setting the audio" + "session category. Error = \(audioError)")
+                //println("An error occured in setting the audio" + "session category. Error = \(audioError)")
             }
             
         }
@@ -248,15 +248,15 @@ class SensorManager: NSObject, PTDBeanDelegate, AVAudioRecorderDelegate {
                 
                 startAudioUpdateTimer()
                 
-                println("Successuly started record")
+                //println("Successuly started record")
             } else {
                 
-                //                audioError()println("Failed to record.")
+                //                audioError()//println("Failed to record.")
                 audioRecorder = nil
             }
         } else {
             audioError()
-            println("Failed to create audio recorder instance")
+            //println("Failed to create audio recorder instance")
         }
     }
     
@@ -290,7 +290,7 @@ class SensorManager: NSObject, PTDBeanDelegate, AVAudioRecorderDelegate {
             
             var averageVal = lowPassResults
             var mappedValues = ((newVal - 0.03) * (255 - 0) / (2.00 - 0.03) + 0)
-            println("lowpass in \(newVal), mapped: \(mappedValues)")
+            //println("lowpass in \(newVal), mapped: \(mappedValues)")
             sendScratchDatatoBean(1, dataIn: abs(Int(mappedValues)))
             newVal = 0
         } else {
@@ -315,14 +315,14 @@ class SensorManager: NSObject, PTDBeanDelegate, AVAudioRecorderDelegate {
     }
     
     func audioRecorderBeginInterruption(recorder: AVAudioRecorder!) {
-        println("interuption started")
+        //println("interuption started")
         endInteraction()
     }
     
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
         
-        println("ending audio")
+        //println("ending audio")
         delay(0.15){
         NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
         }
@@ -360,19 +360,19 @@ class SensorManager: NSObject, PTDBeanDelegate, AVAudioRecorderDelegate {
                 NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
             case "light":
                 NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
-                println("not yet implemented")
+                //println("not yet implemented")
                 return
             case "tap":
                 NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
-                println("not yet implemented")
+                //println("not yet implemented")
                 return
             case "tilt-portrait":
                 NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
-                println("not yet implemented")
+                //println("not yet implemented")
                 return
             case "compass":
                 NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
-                println("not yet implemented")
+                //println("not yet implemented")
                 return
             default:
                 NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)

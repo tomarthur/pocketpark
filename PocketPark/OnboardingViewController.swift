@@ -181,11 +181,11 @@ class OnboardingViewController: UIViewController, UIPageViewControllerDataSource
         
         let newViewController = pageViewController.viewControllers[0] as! UIViewController
         
-        println(indexOfViewController(newViewController))
+        //println(indexOfViewController(newViewController))
         
         switch indexOfViewController(newViewController){
             case 2:
-                println("request auth")
+                //println("request auth")
                 if appDelegate.interactionBeaconManager.haveLocationPermission() == false {
                    appDelegate.interactionBeaconManager.requestAuthorization()
                 } else {
@@ -199,7 +199,7 @@ class OnboardingViewController: UIViewController, UIPageViewControllerDataSource
                 }
             
             case 3:
-                println("request auth 2")
+                //println("request auth 2")
                 if appDelegate.notificationPermission() == false{
                     appDelegate.askForNotificationPermissionForApplication()
                 } else {

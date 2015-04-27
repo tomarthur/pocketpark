@@ -11,7 +11,6 @@
 		E22299FA1AC4E4DE0002457B /* CellAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22299F91AC4E4DE0002457B /* CellAnimation.swift */; };
 		E2332B731ABFA15E00455422 /* InteractiveCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2332B721ABFA15E00455422 /* InteractiveCard.xib */; };
 		E2332B751ABFA33A00455422 /* InteractiveCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2332B741ABFA33A00455422 /* InteractiveCardCell.swift */; };
-		E24494841AC5F8000004AD6D /* PushNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24494831AC5F8000004AD6D /* PushNotificationController.swift */; };
 		E25C20AE1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25C20AC1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.swift */; };
 		E25C20AF1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25C20AD1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.xib */; };
 		E25C20B51AC9101800BA46DD /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = E25C20B11AC9101800BA46DD /* location.png */; };
@@ -75,7 +74,6 @@
 		E22299F91AC4E4DE0002457B /* CellAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellAnimation.swift; sourceTree = "<group>"; };
 		E2332B721ABFA15E00455422 /* InteractiveCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InteractiveCard.xib; sourceTree = "<group>"; };
 		E2332B741ABFA33A00455422 /* InteractiveCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveCardCell.swift; sourceTree = "<group>"; };
-		E24494831AC5F8000004AD6D /* PushNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationController.swift; sourceTree = "<group>"; };
 		E25C20AC1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFooterCellTableViewCell.swift; sourceTree = "<group>"; };
 		E25C20AD1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomFooterCellTableViewCell.xib; sourceTree = "<group>"; };
 		E25C20B11AC9101800BA46DD /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
@@ -306,7 +304,6 @@
 				E261D40B1AB008B000957726 /* CustomColors.swift */,
 				E261D40C1AB008B000957726 /* InteractionBeaconManager.swift */,
 				E261D40D1AB008B000957726 /* DataManager.swift */,
-				E24494831AC5F8000004AD6D /* PushNotificationController.swift */,
 				E2624DCC1AC7BBF5006848D6 /* UIViewExtensions.swift */,
 				E25E34E11AEA0685009E59C8 /* SensorManager.swift */,
 			);
@@ -510,7 +507,6 @@
 				E261D3FE1AB0089D00957726 /* ConnectedViewController.swift in Sources */,
 				E22299FA1AC4E4DE0002457B /* CellAnimation.swift in Sources */,
 				E261D4111AB008B000957726 /* DataManager.swift in Sources */,
-				E24494841AC5F8000004AD6D /* PushNotificationController.swift in Sources */,
 				E261D3FC1AB0089D00957726 /* AboutViewController.swift in Sources */,
 				E25C20AE1AC90CDC00BA46DD /* CustomFooterCellTableViewCell.swift in Sources */,
 			);

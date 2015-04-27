@@ -80,7 +80,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
             refreshTimerActive = true
             refreshBLEObjects = NSTimer.scheduledTimerWithTimeInterval(refreshTime, target: self, selector: Selector("stopStartScan"), userInfo: nil, repeats: true)
         } else {
-            println("already started timer")
+            //println("already started timer")
         }
     }
     
@@ -197,7 +197,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     }
     
     func displayNoNetworkAlert(notification: NSNotification) {
-        println("SHOULD REPORT NETWORK PROBLEM")
+        //println("SHOULD REPORT NETWORK PROBLEM")
         var alert = UIAlertController(title: "Unable to Connect",
             message: "Please check your internet connection.",
             preferredStyle: UIAlertControllerStyle.Alert)
@@ -362,7 +362,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     
     func handleRefresh(paramSender: AnyObject) {
         
-        appDelegate.dataManager.queryParseForInteractiveObjects()
+        appDelegate.dataManager.retrieveUpdates()
         
         let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC))
         dispatch_after(popTime, dispatch_get_main_queue(), {
@@ -391,7 +391,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
 
             if contains(nearbyInteractivesFriendlyArray, parseFriendlyName) == false {
                 let objectID = appDelegate.dataManager.knownInteractivesFromParse[bean.name!]
-                println("objectID: \(objectID)")
+                //println("objectID: \(objectID)")
                 getInteractiveObject(objectID!)
             } else {
         }
@@ -409,7 +409,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
             if error == nil {
                 self.addToTableView(objectInfo!)
             } else {
-                println(error)
+                //println(error)
             }
             
 
@@ -502,10 +502,10 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         var state = UIApplication.sharedApplication().applicationState
         
         if (state == .Active) {
-            println("SCAN!!!!!")
+            //println("SCAN!!!!!")
             return true
         } else {
-            println("NO SCAN IN BACKROUND")
+            //println("NO SCAN IN BACKROUND")
             return false
         }
         
@@ -514,10 +514,10 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     func stopStartScan()
     {
         if appDelegate.dataManager.dataStoreReady == false || bluetoothIsReady == false || runningInForground() == false {
-            println("no scan becuase things aren't ready")
+            //println("no scan becuase things aren't ready")
             return
         }
-        println("scanningnow")
+        //println("scanningnow")
 //        self.manager.stopScanningForBeans_error(nil)
         clearCacheOfInteractives()
         self.manager.startScanningForBeans_error(nil)
@@ -543,7 +543,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     }
     
     func beanManager(beanManager: PTDBeanManager!, didDiscoverBean bean: PTDBean!, error: NSError!) {
-        println("DISCOVERED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
+        //println("DISCOVERED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
         
         
         // add found interactive to dictionary
@@ -556,7 +556,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     }
 
     func BeanManager(beanManager: PTDBeanManager!, didConnectToBean bean: PTDBean!, error: NSError!) {
-        println("CONNECTED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
+        //println("CONNECTED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
         
         if (error != nil){
             connectionFailure()
@@ -570,7 +570,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     }
     
     func beanManager(beanManager: PTDBeanManager!, didDisconnectBean bean: PTDBean!, error: NSError!) {
-        println("DISCONNECTED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
+        //println("DISCONNECTED BEAN \nName: \(bean.name), UUID: \(bean.identifier) RSSI: \(bean.RSSI)")
         
         self.connectedBeanObjectID = nil
         self.connectedBean = nil
@@ -583,7 +583,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
         if (error != nil){
             NSNotificationCenter.defaultCenter().postNotificationName("EndInteraction", object: nil)
 //            connectionFailure()
-            println("error disconnect \(error)")
+            //println("error disconnect \(error)")
         }
         
     }
@@ -593,14 +593,14 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
     // end interaction by disconnecting and adding to temporary ignore list
     func clearCacheOfInteractives() {
         
-//        println("clearing dictionary of known interactives")
+//        //println("clearing dictionary of known interactives")
         nearbyBLEInteractives.removeAll()
  
         
     }
     
     func pauseTimer(notification: NSNotification) {
-        println("timer stopped")
+        //println("timer stopped")
         invalidatRefreshTimer()
         manager.stopScanningForBeans_error(nil)
 
@@ -658,7 +658,7 @@ class DisconnectedViewController: UIViewController, UINavigationBarDelegate, UIT
                             self.completeConnectionFromNotificationAfterDelay(parseBLEName, friendlyNameIn: parseFriendlyName)
                         })
                     } else {
-                        println("Didn't work")
+                        //println("Didn't work")
                     }
                 }
             }
