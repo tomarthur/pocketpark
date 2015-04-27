@@ -65,7 +65,7 @@ class InteractionBeaconManager: NSObject, CLLocationManagerDelegate {
                 identifier: beaconIdentifier)
 
             locationManager!.startMonitoringForRegion(beaconRegion)
-//            locationManager!.startRangingBeaconsInRegion(beaconRegion)
+            locationManager!.startRangingBeaconsInRegion(beaconRegion)
             println("looking for region")
             
             
