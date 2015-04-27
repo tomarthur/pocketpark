@@ -12,7 +12,7 @@ import JGProgressHUD
 
 class OnboardingViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     let pageViewController: UIPageViewController = UIPageViewController(transitionStyle: UIPageViewControllerTransitionStyle.Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
     let pageControl: UIPageControl = UIPageControl()
@@ -174,12 +174,12 @@ class OnboardingViewController: UIViewController, UIPageViewControllerDataSource
     
     // PRAGMA: page view controller delegate
     
-    func pageViewController(pageViewController: UIPageViewController!, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject]!, transitionCompleted completed: Bool) {
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
         if !completed {
             return
         }
         
-        let newViewController = pageViewController.viewControllers[0] as UIViewController
+        let newViewController = pageViewController.viewControllers[0] as! UIViewController
         
         //println(indexOfViewController(newViewController))
         

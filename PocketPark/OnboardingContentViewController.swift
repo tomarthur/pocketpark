@@ -103,7 +103,6 @@ class OnboardingContentViewController: UIViewController {
         
         var bodyLabel: UILabel = UILabel(frame: CGRectMake(0, CGRectGetMaxY(titleLabel.frame) + self.underTitlePadding, contentWidth, 0))
         bodyLabel.text = self.body
-//        bodyLabel.font = UIFont(name: self.fontName, size: self.bodyFontSize)
         UIFont (name: "HelveticaNeue-Light", size: self.bodyFontSize)
         bodyLabel.textColor = self.titleTextColor
         bodyLabel.numberOfLines = 0
@@ -112,8 +111,9 @@ class OnboardingContentViewController: UIViewController {
         bodyLabel.center = CGPointMake(horizontalCenter, bodyLabel.center.y)
         self.view.addSubview(bodyLabel)
         
-        if (countElements(self.buttonText) != 0) {
+        if (count(self.buttonText) != 0) {
             var actionButton: UIButton = UIButton(frame: CGRectMake((CGRectGetMaxX(self.view.frame) / 2) - (contentWidth / 2), CGRectGetMaxY(self.view.frame) - kDefaultMainPageControlHeight - kDefaultActionButtonHeight - self.bottomPadding, contentWidth, kDefaultActionButtonHeight))
+            actionButton.backgroundColor = .ITConnectedColor()
             actionButton.titleLabel?.font = UIFont .systemFontOfSize(24)
             actionButton.setTitle(self.buttonText, forState: .Normal)
             actionButton.setTitleColor(self.buttonTextColor, forState: .Normal)

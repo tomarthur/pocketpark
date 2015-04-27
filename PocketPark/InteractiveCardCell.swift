@@ -12,7 +12,7 @@ import MapKit
 
 class InteractiveCardCell: UITableViewCell {
 
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBOutlet weak var interactiveCardView: UIView!
     @IBOutlet weak var interactiveSubCardView: UIView!
@@ -30,8 +30,6 @@ class InteractiveCardCell: UITableViewCell {
             }
         }
     }
-
-
     
     func loadItem(#title: String, desc: String, coordinates: CLLocationCoordinate2D){
         
