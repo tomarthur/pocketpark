@@ -201,9 +201,13 @@ Tweet, post a GitHub Issue or email with questions or if you're having trouble.
 ### Can't Find in App
 Did you set the Bean name and iBeacon settings as directed in the registration step?
 
-Sometimes iOS caching of Bluetooth device information can make a new Installation not appear in App. Resetting your device can remedy this. 
+Sometimes iOS caching of Bluetooth device information can make a new Installation not appear in App. Try resetting your iOS device or follow the steps below to update the Bean name on your iOS device:
 
-If not, try using LightBlue to confirm that the Bean name is what you set in the steps above. You may need to set the name again and reset your iOS device to get things working.
+- [Download LightBlue from the App Store](https://itunes.apple.com/us/app/lightblue-bluetooth-low-energy/id557428110)
+- Connect to the Bean you're using for your install
+- Tap ```Options``` and select ```Service View```
+- Disconnect from the Bean by going back to the list screen
+- You should see the name of your Bean match what you set in the steps above.
 
 ### Nothing Happens
 Is the LightBlue Bean LED turning green when you contact the Installation in PocketPark? 
