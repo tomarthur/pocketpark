@@ -66,7 +66,7 @@ Version 1 inputs are experiments. It is best to constrain values on your Bean. F
 >**Mic Value Ranges**: Between ```0``` and ```300```. It requires significant blowing to get to 300, you're more likely to see values maxing out around 150.
 
 
-[[placeholder for image]]
+![Gyro](http://themeparkofeveryday.com/images/microphone.gif)
 
 **Shake**: User shakes the device.
 
@@ -74,7 +74,7 @@ Version 1 inputs are experiments. It is best to constrain values on your Bean. F
 
 >**Shake Value Ranges**: the Bean will receive ```1``` when a shake is detected
 
-
+![Gyro](http://themeparkofeveryday.com/images/shake.gif)
 
 [[placeholder for image]]
 
@@ -97,7 +97,7 @@ Version 1 inputs are experiments. It is best to constrain values on your Bean. F
 
 > **G-Force Ranges**: The Bean will receive values between ```0``` and ```200``` with the average being around 25 for a good force. This is an experimental input.
 
-[[placeholder for image]]
+![Gyro](http://themeparkofeveryday.com/images/force.gif)
 
 
 ##### Future Device Inputs
