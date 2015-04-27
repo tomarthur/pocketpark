@@ -76,7 +76,6 @@ Version 1 inputs are experiments. It is best to constrain values on your Bean. F
 
 ![Gyro](http://themeparkofeveryday.com/images/shake.gif)
 
-[[placeholder for image]]
 
 **Gyroscope**: User rotates device on Y axis.
 
@@ -107,7 +106,7 @@ Have an idea for a new input?
 ### Step 2: Set What Happens
 What do you want to happen when your installation gets sensor data from the iOS Device? Use the code examples to control servos, relays, solenoids, LEDs, anything! You can start with any of the otter based examples above, or these blank templates.
 
-**Microphone Blow**
+##### Microphone Blow
 
 >[Microphone Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_microphone_apr25.ino)
 
