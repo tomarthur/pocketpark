@@ -59,7 +59,9 @@ How do you want the user to control your installation? Your selection can be pla
 Version 1 inputs are experiments. It is best to constrain values on your Bean. Future versions will be indicated and may include better averaged and normalized values.
 
 
-**Microphone Blow**: User blows into the microphone on the device. The harder the user blows, the larger the value delivered to the bean.
+##### Microphone Blow
+
+User blows into the microphone on the device. The harder the user blows, the larger the value delivered to the bean.
 
 >[Otter Microphone Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_microphone_otter_apr25.ino)
 
@@ -68,7 +70,9 @@ Version 1 inputs are experiments. It is best to constrain values on your Bean. F
 
 ![Gyro](http://themeparkofeveryday.com/images/microphone.gif)
 
-**Shake**: User shakes the device.
+##### Shake
+
+User shakes the device.
 
 >[Otter Shake Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_shake_otter_apr25.ino)
 
@@ -77,7 +81,9 @@ Version 1 inputs are experiments. It is best to constrain values on your Bean. F
 ![Gyro](http://themeparkofeveryday.com/images/shake.gif)
 
 
-**Gyroscope**: User rotates device on Y axis.
+##### Gyroscope
+
+User rotates device on Y axis.
 
 >[Otter Gyro Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_gryo_otter_apr25.ino
 )
@@ -89,7 +95,9 @@ Version 1 inputs are experiments. It is best to constrain values on your Bean. F
 
 
 
-**G-Force**: User waves device toward the ground rapidly
+##### G-Force
+
+User waves device toward the ground rapidly
 
 >[Otter G-Force Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_gforce_otter_apr25.ino
 )
@@ -112,19 +120,19 @@ What do you want to happen when your installation gets sensor data from the iOS 
 
 >**Mic Value Ranges**: Between ```0``` and ```300```. It requires significant blowing to get to 300, you're more likely to see values maxing out around 150.
 
-**Shake**
+##### Shake
 
 >[Shake Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_shake_apr25.ino)
 
 >**Shake Value Ranges**: the Bean will receive ```1``` when a shake is detected
 
-**Gyroscope**
+##### Gyroscope
 
 >[Gyro Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_gryo_apr25.ino)
 
 > **Gyroscope Ranges**: The Bean will receive values between ```0``` and ```180``` depending on the rotation of the device.
 
-**G-Force**
+##### G-Force
 
 >[G-Force Example >](https://github.com/tomarthur/pocketpark/blob/master/Arduino/themeparkofeveryday_gforce_apr25.ino)
 
