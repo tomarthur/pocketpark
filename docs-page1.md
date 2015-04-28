@@ -236,8 +236,10 @@ PocketPark is available under the MIT license. See the LICENSE file for details.
 
 Special thanks to:
 
-- Gabe Barcia-Colombo and ITP Thesis Classmates
+- ITP Classmates and Gabe Barcia-Colombo
 - [Sakar Khattar](http://www.sakark.com) 
+- Brett and Sarah Peterson (and family)
+- Chris Tucker
 - Robert Scarff
 - Parental units
 - Everyone who listened to me try to explain this thing
