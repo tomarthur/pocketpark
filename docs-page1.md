@@ -43,7 +43,7 @@ These steps will help you make an installation part of the Theme Park of Everyda
 
 Also, check out this Instructable about creating Otter in the Grass:
 
-[> Otter in the Grass Instructable](http://www.instructables.com/id/Build-a-Fun-Installation-and-Help-Create-the-Theme/)
+[Otter in the Grass Instructable >](http://www.instructables.com/id/Build-a-Fun-Installation-and-Help-Create-the-Theme/)
 
 Below: 
 
