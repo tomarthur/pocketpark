@@ -244,7 +244,7 @@ Special thanks to:
 - ITP Classmates and Gabe Barcia-Colombo
 - [Sakar Khattar](http://www.sakark.com) 
 - Brett and Sarah Peterson (and family)
-- Chris Tucker
+- Chris Tucker - [Writeup about Building an Installation >](https://medium.com/@jctucker/i-didn-t-really-know-what-to-expect-with-theme-park-of-everything-when-tom-explained-it-to-me-afa01655d0ef)
 - Robert Scarff
 - Parental units
 - Everyone who listened to me try to explain this thing
