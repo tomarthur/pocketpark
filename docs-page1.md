@@ -34,11 +34,16 @@ Sensor information from the iOS device is sent to an installation via Bluetooth 
 
 The installation you create could be *anything*: a bubble machine controlled by blowing into the device microphone, a fire breathing dragon you wake up by waving at it, or everyone's favorite… LEDs.
 
-You'll find example code to get started below.
+You'll find example code to get started below. 
+
 
 # Getting Started
 
 These steps will help you make an installation part of the Theme Park of Everyday.
+
+Also, check out this Instructable about creating Otter in the Grass:
+
+[> Otter in the Grass Instructable](http://www.instructables.com/id/Build-a-Fun-Installation-and-Help-Create-the-Theme/)
 
 Below: 
 
