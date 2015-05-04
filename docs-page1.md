@@ -60,7 +60,7 @@ How do you want the user to control your installation? Your selection can be pla
 
 > Characteristics are a Bluetooth convention, a defined attribute types that contain a single logical value single logical value.
 
-##### PockePark Version 1.0 Inputs Available
+##### PocketPark Version 1.0 Inputs Available
 Version 1 inputs are experiments. It is best to constrain values on your Bean. Future versions will be indicated and may include better averaged and normalized values.
 
 
